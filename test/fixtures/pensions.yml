@@ -1,0 +1,43 @@
+# Pension Fixture
+
+gyeonggi1:
+  title: 가평펜션
+  addr1: 경기도
+  addr2: 가평
+  min_price: 50000
+  max_price: 150000
+
+gyeonggi2:
+  title: 양평펜션
+  addr1: 경기도
+  addr2: 양평
+  min_price: 100000
+  max_price: 200000
+
+gangwon1:
+  title: 춘천펜션
+  addr1: 강원도
+  addr2: 춘천
+  min_price: 100000
+  max_price: 300000
+
+gangwon2:
+  title: 속초펜션
+  addr1: 강원도
+  addr2: 속초
+  min_price: 150000
+  max_price: 300000
+  
+gangwon3:
+  title: 평창펜션
+  addr1: 강원도
+  addr2: 평창
+  min_price: 50000
+  max_price: 200000
+  
+jeju1:
+  title: 서귀포펜션
+  addr1: 제주도
+  addr2: 서귀포
+  min_price: 200000
+  max_price: 300000

@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="span5 columns">
+		Must Visit by Resty!
+	</div>
+	<div class="span11 columns">
+		<div class="alert-message success">
+			<%= link_to '전국', pensions_path %>
+			<% if params[:addr1] %>
+				> <%= link_to params[:addr1], pensions_path(:addr1 => params[:addr1]) if params[:addr1] %>
+			<% end %>
+			<% if params[:addr2] %>
+				> <%= link_to params[:addr2], pensions_path(:addr1 => params[:addr1], :addr2 => params[:addr2]) if params[:addr2] %>
+			<% end %>
+		</div>
+		<p>
+		<% Pension.addrs.each do |addr| %>
+			<%= link_to addr, pensions_path(:addr1 => addr) %> |
+		<% end %>
+		</p>
+		<p>
+		<% Pension.sub_addrs(params[:addr1]).each do |sub_addr| %>
+			<%= link_to sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)%>
+		<% end %>
+		</p>
+	</div>
+	<div class="span5 columns">
+		<h3>테마</h3>
+		<h3>가격대</h3>
+		<h3>시설</h3>
+	</div>
+	<div class="span11 columns">
+		<% @pensions.each do |pension| %>
+		<div class="alert-message block-message warning">
+			<p><strong><%= pension.title %></strong></p>
+			<div class="alert-actions">
+				<%= link_to 'show', pension_path(pension), :class => 'btn success' %>
+			</div>
+		</div>
+		<% end %>
+	<div>
+</div>

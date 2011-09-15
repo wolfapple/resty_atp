@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+spot1:
+  title: 아침고요수목원
+
+spot2:
+  title: 경포대
+  
+spot3:
+  title: 자라섬

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  pension: gangwon1
+  content: MyText
+
+two:
+  user: 
+  pension: jeju1
+  content: MyText

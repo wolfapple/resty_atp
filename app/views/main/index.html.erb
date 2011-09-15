@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="span8 columns">
+		<h2>전국펜션 <%= Pension.count %>개</h2>
+		<ul class="unstyled">
+			<% Pension.addrs.each do |addr| %>
+			<li>
+				<h3><%= link_to addr, pensions_path(:addr1 => addr) %>(<%= Pension.by_addr1(addr).count %>개)<h3>
+					<p>
+						<% Pension.sub_addrs(addr).each do |sub_addr| %>
+						<%= link_to sub_addr, pensions_path(:addr1 => addr, :addr2 => sub_addr) %>
+						<% end %>
+					</p>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="span8 columns">
+		<h2>인기 여행지 펜션</h2>
+		<ul class="unstyled">
+		<% Spot.all.each do |spot| %>
+			<li><%= spot.title %></li>
+		<% end %>
+	</div>
+</div>

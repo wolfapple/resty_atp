@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pension: 
+  title: MyString
+  img: MyString
+
+two:
+  pension: 
+  title: MyString
+  img: MyString
