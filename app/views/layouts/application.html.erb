@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>RestyAtp</title>
-	<%= stylesheet_link_tag    "http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css" %>
-	<%= stylesheet_link_tag    "application" %>
-	<%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
+  <title>RestyAtp</title>
+  <%= stylesheet_link_tag    "http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css" %>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
 </head>
 <body style="padding-top:40px">
-	<div class="topbar">
-		<div class="topbar-inner">
-			<div class="container">
-				<h3><%= link_to 'Resty', main_path %></h3>
-				<ul class="nav">
-					<li><%= link_to 'menu1', main_path %></li>
-					<li><%= link_to 'menu2', main_path %></li>
-				</ul>
-				<form action="">
-					<input type="text" placeholder="Search" />
-				</form> 
-				<ul class="nav secondary-nav"> 
-					<li class="dropdown"> 
-						<a href="#" class="dropdown-toggle" onclick="$('.dropdown').toggleClass('open');">Dropdown</a> 
-						<ul class="dropdown-menu"> 
-							<li><a href="#">Facebook Login</a></li> 
-							<li><a href="#">Login</a></li> 
-							<li class="divider"></li> 
-							<li><a href="#">Sign Up</a></li> 
-						</ul> 
-					</li> 
-				</ul>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<%= yield %>
-	</div>
-	<div id="footer">
-		<table style="width:100%"><tr><td></td></tr><tr><td style="text-align:center">Copyright(c) Resty. All rights reserved.</td></tr></table>
-	</div>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="container">
+        <h3><%= link_to 'Resty', main_path %></h3>
+        <ul class="nav">
+          <li><%= link_to 'menu1', main_path %></li>
+          <li><%= link_to 'menu2', main_path %></li>
+        </ul>
+        <form action="">
+          <input type="text" placeholder="Search" />
+        </form> 
+        <ul class="nav secondary-nav"> 
+          <li class="dropdown"> 
+            <a href="#" class="dropdown-toggle" onclick="$('.dropdown').toggleClass('open');">Dropdown</a> 
+            <ul class="dropdown-menu"> 
+              <li><a href="#">Facebook Login</a></li> 
+              <li><a href="#">Login</a></li> 
+              <li class="divider"></li> 
+              <li><a href="#">Sign Up</a></li> 
+            </ul> 
+          </li> 
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <div id="footer">
+    <table style="width:100%"><tr><td></td></tr><tr><td style="text-align:center">Copyright(c) Resty. All rights reserved.</td></tr></table>
+  </div>
 </body>
 </html>

@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+spa:
+  title: 스파
+
+pet:
+  title: 애견
+
+workshop:
+  title: 워크샵

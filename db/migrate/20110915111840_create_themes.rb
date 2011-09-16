@@ -1,10 +1,9 @@
 # -*- encoding : utf-8 -*-
-class CreateSpots < ActiveRecord::Migration
+class CreateThemes < ActiveRecord::Migration
   def change
-    create_table :spots do |t|
+    create_table :themes do |t|
       t.string :title
-      t.integer :lat
-      t.integer :lng
+      t.string :img
       t.integer :pensions_count
 
       t.timestamps

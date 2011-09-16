@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
-  pension: 
-  title: MyString
-  img: MyString
+  pension: gangwon2
+  title: must visit1
 
 two:
-  pension: 
-  title: MyString
-  img: MyString
+  pension: jeju1
+  title: must visit2
