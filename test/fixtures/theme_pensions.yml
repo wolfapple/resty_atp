@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  theme: spa
+  pension: gyeonggi1
+
+two:
+  theme: spa
+  pension: gyeonggi2
+    
+three:
+  theme: pet
+  pension: gyeonggi1
+
+four:
+  theme: workshop
+  pension: jeju1
+    
+five:
+  theme: workshop
+  pension: gangwon1

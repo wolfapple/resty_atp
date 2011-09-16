@@ -12,7 +12,7 @@ class CreatePensions < ActiveRecord::Migration
       t.integer :min_price
       t.integer :max_price
       t.integer :like_count
-      t.integer :reviews_count
+      t.integer :reviews_count, :default => 0
 
       t.timestamps
     end

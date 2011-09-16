@@ -1,10 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
-spot1:
+morning:
   title: 아침고요수목원
-
-spot2:
+  pensions_count: 2
+kyungpo:
   title: 경포대
-  
-spot3:
+  pensions_count: 1 
+jara:
   title: 자라섬
+  pensions_count: 2

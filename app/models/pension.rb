@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
 class Pension < ActiveRecord::Base
+  has_many :reviews, :class_name => "PensionReview"
+  has_many :rooms
+  
   scope :by_addr1, lambda { |addr| where(:addr1 => addr) }
   scope :by_addr2, lambda { |addr| where(:addr2 => addr) }
   

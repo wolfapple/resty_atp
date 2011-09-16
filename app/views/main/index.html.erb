@@ -18,7 +18,7 @@
     <h2>인기 여행지 펜션</h2>
     <ul class="unstyled">
     <% Spot.all.each do |spot| %>
-      <li><%= link_to spot.title, pensions_path %>(<%= spot.pensions_count %>)</li>
+      <li><%= link_to spot.title, spot %>(<%= spot.pensions_count %>)</li>
     <% end %>
   </div>
 </div>
@@ -28,7 +28,7 @@
     <h2>인기 테마 펜션</h2>
     <ul class="unstyled">
     <% Theme.all.each do |theme| %>
-      <li><%= link_to theme.title, pensions_path %>(<%= theme.pensions_count %>)</li>
+      <li><%= link_to theme.title, theme_pensions_path(theme) %>(<%= theme.pensions_count %>)</li>
     <% end %>
   </div>
   <div class="span8 columns">

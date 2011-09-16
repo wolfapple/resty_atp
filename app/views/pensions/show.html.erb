@@ -1,1 +1,17 @@
-<h1><%= @pension.title %>의 뷰페이지</h1>
+<h1><%= @pension.title %></h1>
+<p>펜션 설명 블라블라블라...</p>
+<%= link_to '객실정보', pension_rooms_path(@pension) if @pension.rooms.count > 0 %>
+
+<h2>펜션 후기</h2>
+<div>
+  <ul class="unstyled">
+  <% @reviews.each do |review| %>
+    <li><%= review.content %></li>
+  <% end %>
+  </ul>
+</div>
+
+<h2>블로그 후기</h2>
+<div>
+  후기후기후기
+</div>

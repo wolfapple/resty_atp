@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  spot: jara
+  pension: gyeonggi1
+
+two:
+  spot: jara
+  pension: gyeonggi2
+
+three:
+  spot: kyungpo
+  pension: jeju1
+  
+four:
+  spot: morning
+  pension: gangwon1
+  
+five:
+  spot: morning
+  pension: gangwon2

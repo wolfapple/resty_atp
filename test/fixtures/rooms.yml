@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pension: jeju1
+  title: 블루베리
+
+two:
+  pension: jeju1
+  title: 로즈마리

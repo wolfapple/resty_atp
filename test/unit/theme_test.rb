@@ -11,4 +11,12 @@ class ThemeTest < ActiveSupport::TestCase
     theme = Theme.first
     assert_equal theme.title, '워크샵'
   end
+  
+  test "check pension count by theme" do
+    count = 0
+    Theme.all.each do |theme|
+      count += 1 if theme.pensions_count == theme.pensions.count
+    end
+    assert_equal Theme.count, count
+  end
 end

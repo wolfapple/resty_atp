@@ -5,7 +5,7 @@ class CreateSpots < ActiveRecord::Migration
       t.string :title
       t.integer :lat
       t.integer :lng
-      t.integer :pensions_count
+      t.integer :pensions_count, :default => 0
 
       t.timestamps
     end

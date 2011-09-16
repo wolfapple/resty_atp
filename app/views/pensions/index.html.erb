@@ -14,12 +14,12 @@
 		</div>
 		<p>
 		<% Pension.addrs.each do |addr| %>
-			<%= link_to addr, pensions_path(:addr1 => addr) %> |
+			<%= params[:addr1] == addr ? addr : link_to(addr, pensions_path(:addr1 => addr)) %> |
 		<% end %>
 		</p>
 		<p>
 		<% Pension.sub_addrs(params[:addr1]).each do |sub_addr| %>
-			<%= link_to sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)%>
+			<%= params[:addr2] == sub_addr ? sub_addr : link_to(sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)) %>
 		<% end %>
 		</p>
 	</div>
@@ -37,5 +37,6 @@
 			</div>
 		</div>
 		<% end %>
+		<%= paginate @pensions %>
 	<div>
 </div>

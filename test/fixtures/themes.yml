@@ -2,9 +2,12 @@
 
 spa:
   title: 스파
+  pensions_count: 2
 
 pet:
   title: 애견
+  pensions_count: 1
 
 workshop:
   title: 워크샵
+  pensions_count: 2
