@@ -1,3 +1,10 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#area_list, #spot_list, #theme_list, #must_visit {
+	background-color: #F6F6F6;
+	margin: 10px 0px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	padding: 30px;
+}

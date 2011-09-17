@@ -22,6 +22,7 @@
 			<%= params[:addr2] == sub_addr ? sub_addr : link_to(sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)) %>
 		<% end %>
 		</p>
+		<%= content_tag :h2, @theme.title if @theme %>
 	</div>
 	<div class="span5 columns">
 		<h3>테마</h3>
