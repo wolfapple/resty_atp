@@ -4,8 +4,8 @@
   <%= submit_tag "등록" %>
 <% end %>
 
-<ul>
+<ul id="review_list">
 <% @reviews.each do |review| %>
-  <li><%= review.content %> <%= link_to 'x', review_path(review), :method => :delete %></li>
+  <li class="review"><%= review.content %> <%= link_to 'x', review_path(review, :type => params[:controller].singularize), :method => :delete %></li>
 <% end %>
 </ul>

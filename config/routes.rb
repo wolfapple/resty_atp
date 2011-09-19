@@ -10,7 +10,10 @@ RestyAtp::Application.routes.draw do
   resources :pensions do
     resources :rooms
   end
-  resources :theme do
+  resources :themes do
+    resources :pensions
+  end
+  resources :spots do
     resources :pensions
   end
   resources :spots

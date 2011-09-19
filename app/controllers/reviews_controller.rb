@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
   end
   
   def destroy
-    if params[:review_type] == 'pension'
+    if params[:type] == 'pension'
       @review = PensionReview.find(params[:id])
       @pension = @review.pension
       @review.destroy

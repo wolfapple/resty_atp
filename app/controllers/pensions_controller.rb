@@ -5,6 +5,8 @@ class PensionsController < ApplicationController
     @pensions = @pensions.by_addr1(params[:addr1]) if params[:addr1]
     @pensions = @pensions.by_addr2(params[:addr2]) if params[:addr2]
     @theme = Theme.find(params[:theme_id]) if params[:theme_id]
+    @spot = Spot.find(params[:spot_id]) if params[:spot_id]
+    
   end
   
   def show
