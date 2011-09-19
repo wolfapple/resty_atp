@@ -1,0 +1,9 @@
+<%= content_tag :h2, "#{@theme.title} 테마의 펜션" if @theme %>
+<ul>
+<% @pensions.each do |pension| %>
+<li>
+	<p><strong><%= pension.title %></strong></p>
+	<%= link_to 'show', pension_path(pension), :class => 'show_btn' %>
+</li>
+<% end %>
+<%= paginate @pensions %>

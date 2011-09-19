@@ -1,0 +1,8 @@
+<h3>테마</h3>
+<ul>
+<% Theme.all.each do |theme| %>
+  <li><%= link_to theme.title, theme_pensions_path(theme) %>
+<% end %>
+</ul>
+<h3>가격대</h3>
+<h3>시설</h3>

@@ -3,9 +3,11 @@ class CreateSpots < ActiveRecord::Migration
   def change
     create_table :spots do |t|
       t.string :title
+      t.text :desc
       t.integer :lat
       t.integer :lng
       t.integer :pensions_count, :default => 0
+      t.integer :reviews_count, :default => 0
 
       t.timestamps
     end

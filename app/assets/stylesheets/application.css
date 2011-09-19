@@ -19,10 +19,6 @@
 #header nav {
 	float: right;
 }
-#header nav ul li {
-	list-style-type: none;
-	display: inline;
-}
 #content {
 	width: 960px;
 	margin: 0px auto;

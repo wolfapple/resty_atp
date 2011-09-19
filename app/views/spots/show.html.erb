@@ -1,22 +1,24 @@
-<h1><%= @spot.title %></h1>
-<p>여행지 설명 블라블라블라...</p>
-
-<h2>리뷰</h2>
-<div>
-  <ul class="unstyled">
-  <% @reviews.each do |review| %>
-    <li><%= review.content %></li>
-  <% end %>
+<div id="must_visit_banner">
+  <%= render 'must_visit_banner' %>
 </div>
 
-<h2>펜션</h2>
-<div>
-  <% @pensions.each do |pension| %>
-	<div class="alert-message block-message warning">
-		<p><strong><%= pension.title %></strong></p>
-		<div class="alert-actions">
-			<%= link_to 'show', pension_path(pension), :class => 'btn success' %>
-		</div>
-	</div>
-	<% end %>
+<div id="area_nav">
+  <%= render 'area_nav' %>
+</div>
+
+<div id="sidebar">
+  <%= render 'sidebar' %>
+</div>
+
+<div id="main_content">
+  <h1><%= @spot.title %></h1>
+  <p><%= @spot.desc %></p>
+  <h2>리뷰</h2>
+  <div>
+    <%= render 'review' %>
+  </div>
+  <h2>펜션</h2>
+  <div id="pension_list">
+    <%= render 'pension_list' %>
+  </div>
 </div>

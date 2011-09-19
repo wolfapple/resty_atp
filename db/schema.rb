@@ -79,9 +79,11 @@ ActiveRecord::Schema.define(:version => 20110916101007) do
 
   create_table "spots", :force => true do |t|
     t.string   "title"
+    t.text     "desc"
     t.integer  "lat"
     t.integer  "lng"
     t.integer  "pensions_count", :default => 0
+    t.integer  "reviews_count",  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

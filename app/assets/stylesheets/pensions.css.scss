@@ -1,3 +1,40 @@
 // Place all the styles related to the pensions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#main_content, #sidebar, #area_nav, #must_visit_banner {
+	background-color: #F6F6F6;
+	margin: 10px 0px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	padding: 30px;
+}
+#must_visit_banner {
+	width: 280px;
+	float: left;
+}
+#area_nav {
+	width: 540px;
+	float: right;
+}
+#sidebar {
+	width: 280px;
+	float: left;
+}
+#pension_list {
+	width: 540px;
+	float: right;
+}
+#main_content {
+	width: 540px;
+	float: right;
+}
+#pension_list {
+	ul li {
+		list-style-type: none;
+		background-color: #33b785;
+		margin: 10px;
+		padding: 10px;
+		-moz-border-radius: 10px;
+		-webkit-border-radius: 10px;
+	}
+}

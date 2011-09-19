@@ -14,6 +14,7 @@ RestyAtp::Application.routes.draw do
     resources :pensions
   end
   resources :spots
+  resources :reviews
   
   root :to => 'main#index'
 end
