@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ReviewsController < ApplicationController
+  before_filter :require_login
+  
   def create
     if params[:review][:pension_id]
       @review = PensionReview.new(params[:review])

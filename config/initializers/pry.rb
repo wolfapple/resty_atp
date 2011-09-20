@@ -1,4 +1,4 @@
-Sorcery::Application.configure do
+RestyAtp::Application.configure do
   silence_warnings do
     begin
       require 'pry'

@@ -2,6 +2,7 @@
 class CreatePensionReviews < ActiveRecord::Migration
   def change
     create_table :pension_reviews do |t|
+      t.references :user
       t.references :pension
       t.text :content
 

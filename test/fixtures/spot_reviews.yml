@@ -1,17 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 one:
+  user: wolfapple
   spot: morning
   content: 전국의 수목원들 중 독보적인 수목원 하나가 있지요.바로 아침고요수목원입니다.
 
 two:
+  user: wolfapple
   spot: jara
   content: 자라섬으로 일박이일 캠프를 다녀왔다 ^^ 갑작스럽게 출발했는데 생각외로 좋은 시간.
 
 three:
+  user: wolfapple
   spot: morning
   content: 아침고요수목원의 여름 춘천 청평사를 돌아본 다음에 집으로 오면서 찾은 곳이 바로 아침고요수목원이다. 언젠가 한 번 낮에 방문하고 싶었는데 몇 년 전 연말에
 
 four:
+  user: wolfapple
   spot: jara
   content: 자라섬 캠핑장... 막바지 더위가 기승을 부리던 자라섬에서는 땍커플과... .. 그늘이 없어 사하라 사막보다 더 더웠던 자라섬은 사람들로 가득 채워지고 있습니다...-_-;

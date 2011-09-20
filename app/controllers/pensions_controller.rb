@@ -12,5 +12,6 @@ class PensionsController < ApplicationController
   def show
     @pension = Pension.find(params[:id])
     @reviews = @pension.reviews
+    @naver_results = NaverBlog.search(@pension.title)
   end
 end

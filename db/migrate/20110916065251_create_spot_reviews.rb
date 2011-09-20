@@ -2,6 +2,7 @@
 class CreateSpotReviews < ActiveRecord::Migration
   def change
     create_table :spot_reviews do |t|
+      t.references :user
       t.references :spot
       t.text :content
 
