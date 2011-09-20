@@ -2,6 +2,8 @@
 class Pension < ActiveRecord::Base
   has_many :reviews, :class_name => "PensionReview"
   has_many :rooms
+  has_many :theme_pensions
+  has_many :themes, :through => :theme_pensions
   
   scope :by_addr1, lambda { |addr| where(:addr1 => addr) }
   scope :by_addr2, lambda { |addr| where(:addr2 => addr) }

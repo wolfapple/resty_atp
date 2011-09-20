@@ -3,6 +3,11 @@
 <% @pensions.each do |pension| %>
 <li>
 	<p><strong><%= pension.title %></strong></p>
+	<ul>
+	<% pension.themes.each do |theme| %>
+	  <li><%= theme.title %></li>
+	<% end %>
+	</ul>
 	<%= link_to 'show', pension_path(pension), :class => 'show_btn' %>
 </li>
 <% end %>
