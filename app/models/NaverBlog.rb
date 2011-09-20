@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class NaverBlog
   require 'net/http'
   attr_reader :title, :link, :description

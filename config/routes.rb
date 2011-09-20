@@ -1,11 +1,18 @@
 # -*- encoding : utf-8 -*-
-RestyAtp::Application.routes.draw do
-  get "rooms/index"
-
-  get "spots/show"
-
-  match '/main' => 'main#index'
-  
+RestyAtp::Application.routes.draw do  
+  # login, logout
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+  # oauth
+  resource :oauth do
+    get :callback
+  end
+  match 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
+  # auth
+  resources :users
+  resources :user_sessions
+  resources :password_resets
+  #etc
   resources :pensions
   resources :pensions do
     resources :rooms
@@ -18,6 +25,7 @@ RestyAtp::Application.routes.draw do
   end
   resources :spots
   resources :reviews
-  
+  # main
+  match 'main' => 'main#index'
   root :to => 'main#index'
 end

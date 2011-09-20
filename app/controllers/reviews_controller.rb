@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class ReviewsController < ApplicationController
   def create
     if params[:review][:pension_id]

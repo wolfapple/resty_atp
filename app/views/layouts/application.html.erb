@@ -10,7 +10,14 @@
   <div id="header">
     <%= link_to image_tag('logo.gif', :height => '70px'), root_path %>
     <nav>
-      페이스북 로그인 | 로그인 | 회원가입
+      <% if current_user %>
+        <%= link_to 'Edit Profile', edit_user_path(current_user) %> |
+        <%= link_to 'Logout', :logout %>
+      <% else %>
+        <%= link_to 'Register', new_user_path %> |
+        <%= link_to 'Login', :login %> |
+        <%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %>
+      <% end %>
     </nav>
   </div>
   <div id="content">
