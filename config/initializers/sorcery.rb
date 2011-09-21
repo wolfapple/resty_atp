@@ -36,10 +36,15 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   # 
-  config.facebook.key = "34cebc81c08a521bc66e212f947d73ec"
-  config.facebook.secret = "5b458d179f61d4f036ee66a497ffbcd0"
-  config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  config.facebook.key = "267286263291604"
+  config.facebook.secret = "1fb51f7950c691f32a6ccd3e70da19be"
+  if ENV["RAILS_ENV"] == "development"
+    config.facebook.callback_url = "http://local.resty.co.kr:3000/oauth/callback?provider=facebook"
+  else
+    config.facebook.callback_url = "http://www.resty.co.kr/oauth/callback?provider=facebook"
+  end
   config.facebook.user_info_mapping = {:email => "email", :username => "name"}
+  config.facebook.scope = "email,offline_access,publish_stream,user_checkins,friends_checkins,publish_checkins,friends_status"
   
   # --- user config ---
   config.user_config do |user|

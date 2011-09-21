@@ -1,8 +1,8 @@
 <div id="area_list">
   <h2>전국펜션 <%= Pension.count %>개</h2>
   <a id="wide_btn" href="#" onclick="$('#area_list').toggleClass('wide');">change</a>
-  <ul class="unstyled">
-    <% Pension.addrs.each do |addr| %>
+  <ul>
+    <% @addrs.each do |addr| %>
     <li>
       <h3><%= link_to addr, pensions_path(:addr1 => addr) %>(<%= Pension.by_addr1(addr).count %>개)<h3>
         <p>
@@ -17,24 +17,24 @@
 
 <div id="spot_list">
   <h2>인기 여행지 펜션</h2>
-  <ul class="unstyled">
-  <% Spot.all.each do |spot| %>
+  <ul>
+  <% @spots.each do |spot| %>
     <li><%= link_to spot.title, spot %>(<%= spot.pensions_count %>)</li>
   <% end %>
 </div>
 
 <div id="theme_list">
   <h2>인기 테마 펜션</h2>
-  <ul class="unstyled">
-  <% Theme.all.each do |theme| %>
+  <ul>
+  <% @themes.each do |theme| %>
     <li><%= link_to theme.title, theme_pensions_path(theme) %>(<%= theme.pensions_count %>)</li>
   <% end %>
 </div>
 
 <div id="must_visit">
   <h2>Must Visit by Resty</h2>
-  <ul class="unstyled">
-  <% MustVisit.all.each do |mv| %>
+  <ul>
+  <% @must_visits.each do |mv| %>
     <li><%= link_to mv.pension.title, pension_path(mv.pension) %></li>
   <% end %>
   </ul>

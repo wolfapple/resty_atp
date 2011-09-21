@@ -6,6 +6,7 @@ class ReviewsController < ApplicationController
     if params[:review][:pension_id]
       @review = PensionReview.new(params[:review])
       if @review.save
+        graph.put_wall_post(params[:review][:content]) if params[:facebook]
         redirect_to @review.pension
       else
         render :controller => :pensions, :action => :show
@@ -13,6 +14,7 @@ class ReviewsController < ApplicationController
     else
       @review = SpotReview.new(params[:review])
       if @review.save
+        graph.put_wall_post(params[:review][:content]) if params[:review][:facebook]
         redirect_to @review.spot
       else
         render :controller => :spots, :action => :show

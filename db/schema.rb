@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110920033752) do
   add_index "must_visits", ["pension_id"], :name => "index_must_visits_on_pension_id"
 
   create_table "pension_reviews", :force => true do |t|
+    t.integer  "user_id"
     t.integer  "pension_id"
     t.text     "content"
     t.datetime "created_at"
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20110920033752) do
   add_index "spot_pensions", ["spot_id"], :name => "index_spot_pensions_on_spot_id"
 
   create_table "spot_reviews", :force => true do |t|
+    t.integer  "user_id"
     t.integer  "spot_id"
     t.text     "content"
     t.datetime "created_at"

@@ -10,6 +10,7 @@ gem 'kaminari'
 gem 'sorcery'
 gem 'pry', :group => :development
 gem 'nokogiri'
+gem 'koala'
 
 # Gems used only for assets and not required
 # in production environments by default.

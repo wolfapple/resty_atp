@@ -1,6 +1,7 @@
 <%= form_tag '/reviews', :method => :post do %>
   <%= hidden_field_tag "review[#{params[:controller].singularize}_id]", params[:id] %>
   <%= text_area_tag 'review[content]' %>
+  <%= check_box_tag 'facebook', true %>facebook
   <%= submit_tag "등록" %>
 <% end %>
 

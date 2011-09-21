@@ -11,7 +11,8 @@
     <%= link_to image_tag('logo.gif', :height => '70px'), root_path %>
     <nav>
       <% if current_user %>
-        <%= link_to 'Edit Profile', edit_user_path(current_user) %> |
+        <%= image_tag graph.get_picture('me') if graph %>
+        <%= link_to 'Edit Profile', edit_user_path(current_user) unless graph %> |
         <%= link_to 'Logout', :logout %>
       <% else %>
         <%= link_to 'Register', new_user_path %> |

@@ -1,5 +1,11 @@
 # -*- encoding : utf-8 -*-
 RestyAtp::Application.routes.draw do  
+  get "password_resets/create"
+
+  get "password_resets/edit"
+
+  get "password_resets/update"
+
   # login, logout
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
