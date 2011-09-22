@@ -23,8 +23,15 @@
 
   <h2>블로그 후기</h2>
   <div>
+    네이버
     <ul>
     <% @naver_results.each do |item| %>
+      <li><%= link_to raw(item.title), item.link, :target => :blank %></li>
+    <% end %>
+    </ul>
+    다음
+    <ul>
+    <% @daum_results.each do |item| %>
       <li><%= link_to raw(item.title), item.link, :target => :blank %></li>
     <% end %>
     </ul>

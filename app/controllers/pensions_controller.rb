@@ -13,5 +13,6 @@ class PensionsController < ApplicationController
     @pension = Pension.find(params[:id])
     @reviews = @pension.reviews
     @naver_results = NaverBlog.search(@pension.title)
+    @daum_results = DaumBlog.search(@pension.title)
   end
 end

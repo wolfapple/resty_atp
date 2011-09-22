@@ -1,11 +1,5 @@
 # -*- encoding : utf-8 -*-
 RestyAtp::Application.routes.draw do  
-  get "password_resets/create"
-
-  get "password_resets/edit"
-
-  get "password_resets/update"
-
   # login, logout
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
@@ -23,6 +17,7 @@ RestyAtp::Application.routes.draw do
   resources :pensions do
     resources :rooms
   end
+  match 'themes/:id' => redirect("/themes/%{id}/pensions")
   resources :themes do
     resources :pensions
   end
@@ -31,6 +26,9 @@ RestyAtp::Application.routes.draw do
   end
   resources :spots
   resources :reviews
+  #search'
+  match 'search/autocomplete' => 'search#autocomplete'
+  match 'search/result' => 'search#result'
   # main
   match 'main' => 'main#index'
   root :to => 'main#index'

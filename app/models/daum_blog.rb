@@ -1,8 +1,7 @@
-# -*- encoding : utf-8 -*-
-class NaverBlog
+class DaumBlog
   attr_reader :title, :link, :desc
   
-  KEY = "c62d07d4a31a2879995b51ac4f0af84f"
+  KEY = "6ec77440b494f3985c75f386744a0c914d6a5422"
   
   def initialize(title, link, desc)
     @title = title
@@ -10,8 +9,8 @@ class NaverBlog
     @desc = desc
   end
   
-  def self.search(query, start=1, display=10)
-    url = "http://openapi.naver.com/search?key=#{self::KEY}&query=#{URI.escape(query)}&display=#{display}&start=#{start}&target=blog&sort=sim"
+  def self.search(query, page=1, result=10)
+    url = "http://apis.daum.net/search/blog?apikey=#{self::KEY}&q=#{URI.escape(query)}&result=#{result}&page=#{page}&sort=accu"
     require 'open-uri'
     doc = Nokogiri::XML(open(url))
     results = doc.xpath('//item').map do |i|

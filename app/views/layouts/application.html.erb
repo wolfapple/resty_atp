@@ -20,10 +20,23 @@
         <%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %>
       <% end %>
     </nav>
+    <span id="search_form">
+      <%= form_tag search_result_path do %>
+        <%= text_field_tag 'search_input' %>
+        <%= hidden_field_tag 'search_class' %>
+        <%= hidden_field_tag 'search_id' %>
+        <%= submit_tag 'search' %>
+      <% end %>
+    </span>
   </div>
   <div id="content">
     <%= yield %>
   </div>
-  <div id="footer">Footer</div>
+  <div id="footer">
+    <%= link_to '회사소개', page_path('about') %> |
+    <%= link_to '이용약관', page_path('terms') %> |
+    <%= link_to '개인정보취급방침', page_path('privacy') %> |
+    <%= link_to '제휴문의', page_path('withus') %>
+  </div>
 </body>
 </html>

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
