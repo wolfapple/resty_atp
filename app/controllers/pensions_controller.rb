@@ -18,7 +18,9 @@ class PensionsController < ApplicationController
   def show
     @pension = Pension.find(params[:id])
     @reviews = @pension.reviews.page(params[:page]).per(5)
-    @blog_search = BlogSearch.new(@pension.title, 20)
+    @blog_search = BlogSearch.new(@pension.title, 100)
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(10)
+    params[:addr1] = @pension.addr1
+    params[:addr2] = @pension.addr2
   end
 end

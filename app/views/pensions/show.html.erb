@@ -1,12 +1,11 @@
-<div id="area_nav">
-  <%= render 'area_nav' %>
-</div>
-
 <div id="sidebar">
   <%= render 'sidebar' %>
 </div>
 
 <div id="main_content">
+  <div class="header">
+    <%= render 'header' %>
+  </div>
   <h1><%= @pension.title %></h1>
   <p>펜션 설명 블라블라블라...</p>
   <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>

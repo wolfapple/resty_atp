@@ -1,16 +1,11 @@
-<div id="must_visit_banner">
-  <%= render 'must_visit_banner' %>
-</div>
-
-<div id="area_nav">
-  <%= render 'area_nav' %>
-</div>
-
 <div id="sidebar">
   <%= render 'sidebar' %>
 </div>
 
 <div id="main_content">
+  <div class="header">
+    <%= render 'header' %>
+  </div>
   <h1><%= @spot.title %></h1>
   <p><%= @spot.desc %></p>
   <h2>리뷰</h2>

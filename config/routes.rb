@@ -9,7 +9,9 @@ RestyAtp::Application.routes.draw do
   end
   match 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
   # auth
-  resources :users
+  resources :users do
+    get :map, :on => :member
+  end
   resources :user_sessions
   resources :password_resets
   #etc

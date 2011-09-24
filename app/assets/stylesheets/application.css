@@ -6,7 +6,7 @@
  *= require_tree . 
 */
 body, form, div {
-	font-family: Tahoma,돋움;
+	font-family: Tahoma,Dotum;
 	font-size: 9pt;
 	color: #333;
 	margin: 0px;
@@ -56,6 +56,12 @@ a {
 	right: 10px;
 	width: 330px;
 	height: 27px;
+	margin: 30px 0px 8px;
+}
+#logout {
+	position: relative;
+	bottom: 48px;
+	height: 50px;
 	margin: 30px 0px 8px;
 }
 #login_fb {
@@ -147,4 +153,8 @@ a {
 }
 #content {
 	position: relative;
+}
+li.autocomplete_category {
+	font-weight: bold;
+	color: #339966;
 }

@@ -14,7 +14,7 @@ $.widget( "custom.catcomplete", $.ui.autocomplete, {
 			currentCategory = "";
 		$.each( items, function( index, item ) {
 			if ( item.category != currentCategory ) {
-				ul.append( "<li class='ui-autocomplete-category'>" + item.category + "</li>" );
+				ul.append( "<li class='autocomplete_category'>" + item.category + "</li>" );
 				currentCategory = item.category;
 			}
 			self._renderItem( ul, item );
@@ -26,7 +26,7 @@ $(function(){
 	//한글 처리
 	$('#search_input').keydown(function() {
 		if(event.keyCode == '38' || event.keyCode == '40') {
-			$('#search_input').focus();
+			;
 		}
 	});
 	var cache = {}, lastXhr;

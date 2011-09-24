@@ -13,9 +13,11 @@
       <%= image_tag 'header_title.png', :class => 'title' %>
       <div id="login">
       <% if current_user %>
-        <%= image_tag graph.get_picture('me') if graph %>
-        <%= link_to 'Edit Profile', edit_user_path(current_user) unless graph %> |
-        <%= link_to 'Logout', :logout %>
+        <div id="logout">
+          <%= image_tag graph.get_picture('me') if graph %>
+          <%= link_to 'My Resty', current_user %> |
+          <%= link_to 'Logout', :logout %>
+        </div>
       <% else %>
         <div id="login_fb">
           <%= link_to image_tag('header_login_facebook.png'), auth_at_provider_path(:provider => :facebook) %>
