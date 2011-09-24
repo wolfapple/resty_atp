@@ -1,44 +1,42 @@
-<div id="themes-box">
-  <h3 id="themes">테마</h3>
+<div class="themes_box">
+  <h3>테마</h3>
   <ul>
     <% Theme.all.each do |theme| %>
-      <li><%= link_to theme.title, theme_pensions_path(theme) %>
+      <li class="<%= cycle('odd', 'even') %>"><%= link_to theme.title, theme_pensions_path(theme) %>
     <% end %>
-    <li class="li_odd">애완동물 펜션</li>
-    <li class="li_even">유아, 어린이 동반</li>
-    <li class="li_odd">바닷가 근처</li>
-    <li class="themes li_even hide">산 근처</li>
-    <li class="themes li_odd hide">자전거 펜션</li>
-    <li class="themes li_even hide">1박 2일 펜션</li>
-    <li class="themes li_odd hide">수련회, 워크샵</li>
-    <li class="themes li_even hide">축제</li>
+    <li class="li_even hide">산 근처</li>
+    <li class="li_odd hide">자전거 펜션</li>
+    <li class="li_even hide">1박 2일 펜션</li>
+    <li class="li_odd hide">수련회, 워크샵</li>
+    <li class="li_even hide">축제</li>
   </ul>
   <div class="box_footer"></div>
 </div>
 
-<div id="prices-box">
+<div class="prices_box">
   <h3 id="prices">가격대</h3>
   <ul>
-    <li class="li_odd">10만원 이하</li>
-    <li class="li_even">10만원 ~ 15만원</li>
-    <li class="li_odd">15만원 ~ 20만원</li>
-    <li class="prices li_even hide">20만원 ~ 25만원</li>
+    <li class="odd">10만원 이하</li>
+    <li class="even">10만원 ~ 15만원</li>
+    <li class="odd">15만원 ~ 20만원</li>
+    <li class="even hide">20만원 ~ 25만원</li>
   </ul>
   <div class="box_footer"></div>
 </div>
 
-<div id="facilities-box">
+<div class="facilities_box">
   <h3 id="facilities">시설</h3>
   <ul>
-    <li class="li_odd"><span class="checkbox"><label>스파, 월풀</label><input type="checkbox" /></span></li>
-    <li class="li_even"><span class="checkbox"><label>수영장</label><input type="checkbox" /></span></li>
-    <li class="li_odd"><span class="checkbox"><label>프로젝터</label><input type="checkbox" /></span></li>
-    <li class="facilities li_even hide"><span class="checkbox"><label>세미나실</label><input type="checkbox" /></span></li>
-    <li class="facilities li_odd hide"><span class="checkbox"><label>조식</label><input type="checkbox" /></span></li>
+    <li class="odd"><span class="checkbox"><label>스파, 월풀</label><input type="checkbox" /></span></li>
+    <li class="even"><span class="checkbox"><label>수영장</label><input type="checkbox" /></span></li>
+    <li class="odd"><span class="checkbox"><label>프로젝터</label><input type="checkbox" /></span></li>
+    <li class="even hide"><span class="checkbox"><label>세미나실</label><input type="checkbox" /></span></li>
+    <li class="odd hide"><span class="checkbox"><label>조식</label><input type="checkbox" /></span></li>
   </ul>
   <div class="box_footer"></div>
 </div>
 
-<div id="must_visit_banner">
-  <%= render 'must_visit_banner' %>
+<div class="must_visit_banner">
+  <h3>Must Visit By Resty</h3>
+  <%= image_tag 'pension_01.jpg' %>
 </div>

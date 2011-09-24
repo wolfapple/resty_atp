@@ -1,0 +1,50 @@
+<div class="crumbs">
+  <%= link_to '전국', pensions_path %>
+	<% if params[:addr1] %>
+		> <%= link_to params[:addr1], pensions_path(:addr1 => params[:addr1]) %>
+	<% end %>
+	<% if params[:addr2] %>
+		> <%= link_to params[:addr2], pensions_path(:addr1 => params[:addr1], :addr2 => params[:addr2]) %>
+	<% end %>
+</div>
+
+<div class="nav">
+  <div class="addr1">
+    <ul>
+    <% Pension.addrs.each do |addr| %>
+      <% if params[:addr1] == addr %>
+        <%= content_tag :li, addr, :class => 'selected' %>
+      <% else %>
+        <%= content_tag :li, link_to(addr, pensions_path(:addr1 => addr)) %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+  <div class="addr2">
+    <ul>
+    <% Pension.sub_addrs(params[:addr1]).each do |sub_addr| %>
+      <% if params[:addr2] == sub_addr %>
+        <%= content_tag :li, sub_addr, :class => 'selected' %>
+      <% else %>
+        <%= content_tag :li, link_to(sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)), :class => 'dot' %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="spots">
+  <h3>주요 관광지</h3>
+  <ul>
+  <% Spot.all.each do |spot| %>
+    <li><%= link_to spot.title, spot %></li>
+  <% end %>
+	</ul>
+</div>
+
+<div class="map">
+  <div id="openCloseIdentifier"></div>
+  <div id="map"></div>
+  <div id="map_toggle"></div>
+</div>
+<div id="map_rect"></div>

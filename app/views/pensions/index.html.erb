@@ -2,10 +2,9 @@
   <%= render 'sidebar' %>
 </div>
 
-<div id="pensions">
-  <div id="area_nav">
-    <%= render 'area_nav' %>
-    <%= render 'area_map' %>
+<div id="main_content">
+  <div class="header">
+    <%= render 'header' %>
   </div>
   <%= content_tag :h2, "#{@theme.title} 테마의 펜션" if @theme %>
   <%= content_tag :h2, "#{@spot.title} 주변의 펜션" if @spot %>
