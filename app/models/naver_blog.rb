@@ -14,6 +14,7 @@ class NaverBlog
     url = "http://openapi.naver.com/search?key=#{self::KEY}&query=#{URI.escape(query)}&display=#{display}&start=#{start}&target=blog&sort=sim"
     require 'open-uri'
     doc = Nokogiri::XML(open(url))
+    total = doc.xpath('//total').inner_text.to_i
     results = doc.xpath('//item').map do |i|
       self.new(i.xpath('title').inner_text, i.xpath('link').inner_text, i.xpath('description'))
     end

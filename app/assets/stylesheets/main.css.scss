@@ -1,32 +1,123 @@
 // Place all the styles related to the main controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#area_list, #spot_list, #theme_list, #must_visit {
-	background-color: #F6F6F6;
-	margin: 10px 0px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	padding: 30px;
-}
-#area_list {
-	width: 540px;
+#main-category {
+	position: relative;
 	float: left;
-	#wide_btn {
-		float: right;
-	}
+	background-image: url("/assets/main_categorybox_bg.png");
+	background-repeat: no-repeat;
+	width: 629px;
+	height: 462px;
 }
-#content .wide {
-	width: 900px;
+
+#main-category table {
+	width: 629px;
+	padding: 0px 20px;
+	margin-top: 55px;
 }
-#spot_list {
-	width: 280px;
-	float: right;
+
+#main-category table tr {
+	height: 78px;
 }
-#theme_list {
-	width: 540px;
+
+#main-category .local {
+	font-weight: bold;
+	font-size: 1.2em;
+	line-height: 35px;
+}
+
+#main-category a.underline:hover {
+	text-decoration: underline;
+	color: #1d7350;
+}
+
+#main-category a .num {
+	color: #aaa;
+}
+
+#main-category a:hover {
+	color: #2ab07b;
+}
+
+#main-category a:hover .num {
+	color: #2ab07b;
+}
+
+#main-category a:hover .local {
+	color: #2ab07b;
+}
+
+#main-facebook-activities {
+	position: relative;
 	float: left;
+	background-image: url("/assets/main_fb_activities_bg.png");
+	background-repeat: no-repeat;
+	width: 361px;
+	height: 250px;
 }
-#must_visit {
-	width: 280px;
+
+#main-facebook-activities ul {
+	padding: 20px 0px 0px 0px;
+}
+
+#main-facebook-landmarks {
+	position: relative;
+	float: left;
+	background-image: url("/assets/main_fb_landmarks_bg.png");
+	background-repeat: no-repeat;
+	width: 361px;
+	height: 212px;
+	margin: 0px;
+}
+
+#main-landmarks {
 	float: right;
+	position: relative;
+	background-image: url("/assets/main_landmarks_bg.png");
+	background-repeat: no-repeat;
+	width: 306px;
+	height: 293px;
+}
+
+#main-landmarks ul {
+	padding: 60px 0px 0px 0px;
+	margin: 0px;
+	list-style: none;
+}
+
+#main-landmarks ul li {
+	height: 28px;
+	padding-left: 30px;
+}
+
+#main-landmarks ul li a {
+	font-weight: bold;
+}
+
+#main-landmarks ul li a:hover{
+	color: #2ab07b;
+}
+
+#main-themes {
+	position: relative;
+	float: right;
+	background-image: url("/assets/main_themes_bg.png");
+	background-repeat: no-repeat;
+	width: 323px;
+	height: 293px;
+}
+
+#main-must-visit-title {
+	background-image: url("/assets/main_must_visit_title.png");
+	background-repeat: no-repeat;
+	width: 361px;
+	height: 29px;
+}
+
+#main-must-visit {
+	position: relative;
+	float: right;
+	background-image: url("/assets/main_must_visit_bg.png");
+	width: 361px;
+	height: 293px;
 }

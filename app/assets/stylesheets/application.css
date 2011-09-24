@@ -5,36 +5,146 @@
  *= require_self
  *= require_tree . 
 */
-#header, #footer {
-	background-color: #F6F6F6;
-	margin: 10px 0px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-	padding: 30px;
+body, form, div {
+	font-family: Tahoma,돋움;
+	font-size: 9pt;
+	color: #333;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: #222;
+}
+#totalWrapper {
+	width: 3000px;
+	position: relative;
+	left: 50%;
+	margin-left: -1500px;
+}
+.wrapper {
+	width: 990px;
+	position: relative;
+	left: 50%;
+	margin-left: -495px;
 }
 #header {
-	width: 900px;
-	margin:0px auto;
+	position: relative;
+	background-image: url("/assets/header_bgcolor.png");
+	height: 108px;
+	margin: 0px 0px -8px 0px;
 }
-#header nav {
+#title {
+	height: 65px;
+}
+#title img.logo {
+	position: relative;
+	float: left;
+	width: 105px;
+	height: 48px;
+	margin: 10px 0px 0px 8px;
+}
+#title img.title {
+	position: relative;
+	float: left;
+	width: 155px;
+	height: 38px;
+	margin: 18px 0px 0px 0px;
+}
+#login {
+	position: relative;
 	float: right;
+	right: 10px;
+	width: 330px;
+	height: 27px;
+	margin: 30px 0px 8px;
 }
-#content {
-	width: 960px;
-	margin: 0px auto;
-	overflow: hidden;
+#login_fb {
+	position: absolute;
+	float: right;
+	right: 150px;
+	width: 180px;
+	height: 27px;
+}
+#login_resty {
+	position: absolute;
+	float: right;
+	right: 0px;
+	height: 27px;
+}
+#search_bar {
+	background-image: url("/assets/header_search_bg.png");
+	position: relative;
+	height: 43px;
+}
+#search_bar .content {
+	height: 43px;
+	clear: both;
+}
+#search_bar .title {
+	margin-left: 8px;
+}
+#search_box {
+	position: absolute;
+	background-image: url("/assets/header_searchbox_bg.png");
+	background-repeat: no-repeat;
+	right: 10px;
+	top: 0px;
+	border: 0px;
+	width: 329px;
+	height: 20px;
+	margin: 8px 0px 0px 0px;
+	padding: 0px;
+}
+#search_input {
+	border: none;
+	height: 18px;
+	line-height: 18px;
+	width: 290px;
+	margin: 0px 10px;
+}
+#search_button {
+	position: absolute;
+	background-repeat: no-repeat;
+	right: 0px;
+	border: 0px;
+	width: 18px;
+	height: 18px;
+	padding: 1px 5px;
 }
 #footer {
-	width: 900px;
-	margin: 0px auto;
+	position: relative;
+	clear: both;
+	background-image: url("/assets/footer_bg.png");
+	height: 115px;
 }
-#review_list .review {
-	list-style-type: none;
-  background: #E5EEED;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px;
+#footer img.logo {
+	position: relative;
+	float: left;
+	width: 84px;
+	height: 35px;
+	margin: 20px 0px 0px 25px;
+}
+#footer ul {
+	position: relative;
+	float: left;
+	width: 300px;
+	height: 30px;
+	margin: 20px 10px;
+	font-size: 0.9em;
+	padding: 0px;
+}
+#footer ul li {
+	display: inline;
+}
+#footer a {
+	color: #666;
+}
+#footer a:hover {
+	color: #2ab07b;
+}
+#footer .copyright {
+	clear: both;
+}
+#content {
+	position: relative;
 }

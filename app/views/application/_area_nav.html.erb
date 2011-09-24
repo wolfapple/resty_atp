@@ -1,4 +1,4 @@
-<span id="breadcrumb">
+<div id="navi-top">
   <%= link_to '전국', pensions_path %>
 	<% if params[:addr1] %>
 		> <%= link_to params[:addr1], pensions_path(:addr1 => params[:addr1]) if params[:addr1] %>
@@ -6,14 +6,33 @@
 	<% if params[:addr2] %>
 		> <%= link_to params[:addr2], pensions_path(:addr1 => params[:addr1], :addr2 => params[:addr2]) if params[:addr2] %>
 	<% end %>
-</span>
-<p>
-<% Pension.addrs.each do |addr| %>
-	<%= params[:addr1] == addr ? content_tag(:strong, addr) : link_to(addr, pensions_path(:addr1 => addr)) %> |
-<% end %>
-</p>
-<p>
-<% Pension.sub_addrs(params[:addr1]).each do |sub_addr| %>
-	<%= params[:addr2] == sub_addr ? content_tag(:strong, sub_addr) : link_to(sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)) %>
-<% end %>
-</p>
+</div>
+<div id="navi-local">
+  <div id="local1">
+    <ul>
+    <% Pension.addrs.each do |addr| %>
+      <% if params[:addr1] == addr %>
+        <%= content_tag :li, addr, :class => 'selected' %>
+      <% else %>
+        <%= content_tag :li, link_to(addr, pensions_path(:addr1 => addr)) %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+  <div id="local2">
+    <ul>
+    <% Pension.sub_addrs(params[:addr1]).each do |sub_addr| %>
+      <li<%= ' class="selected"' if params[:addr2] == sub_addr %>><%= params[:addr2] == sub_addr ? content_tag(:strong, sub_addr) : link_to(sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)) %></li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<div id="navi-landmark">
+  <div id="navi-landmark-title"></div>
+  <ul>
+    <li>산정호수</li>
+		<li>에버랜드</li>
+		<li>아침고요수목원</li>
+		<li>광릉수목원</li>
+	</ul>
+</div>

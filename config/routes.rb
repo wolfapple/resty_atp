@@ -13,11 +13,9 @@ RestyAtp::Application.routes.draw do
   resources :user_sessions
   resources :password_resets
   #etc
-  resources :pensions
   resources :pensions do
     resources :rooms
   end
-  match 'themes/:id' => redirect("/themes/%{id}/pensions")
   resources :themes do
     resources :pensions
   end

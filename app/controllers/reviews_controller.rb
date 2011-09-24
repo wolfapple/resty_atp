@@ -2,6 +2,15 @@
 class ReviewsController < ApplicationController
   before_filter :require_login
   
+  def index
+    if params[:type] == 'pensions'
+      @reviews = PensionReview.page(params[:page]).per(5)
+    elsif params[:type] == 'spots'
+      @reviews = SpotReview.page(params[:page]).per(5)
+    end
+    params[:controller] = params[:type]
+  end
+  
   def create
     if params[:review][:pension_id]
       @review = PensionReview.new(params[:review])

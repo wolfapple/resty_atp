@@ -16,3 +16,5 @@
   </li>
 <% end %>
 </ul>
+<%= paginate @reviews, :remote => true,
+:params => {:controller => :reviews, :action => :index, :type => params[:controller]} %>

@@ -1,5 +1,12 @@
 <h1>'<%= params[:search_input] %>' 검색 결과</h1>
 
+<h2>지역(<%= @areas.size %>)</h2>
+<ul>
+<% @areas.each do |area| %>
+  <li><%= link_to area.addr2, pensions_path(:addr1 => area.addr1, :addr2 => area.addr2) %></li>
+<% end %>
+</ul>
+
 <h2>펜션(<%= @pensions.size %>)</h2>
 <ul>
 <% @pensions.each do |pension| %>

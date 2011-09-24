@@ -8,35 +8,54 @@
 </head>
 <body>
   <div id="header">
-    <%= link_to image_tag('logo.gif', :height => '70px'), root_path %>
-    <nav>
+    <div id="title" class="wrapper">
+      <%= link_to image_tag('header_logo.png', :class => 'logo'), root_url %>
+      <%= image_tag 'header_title.png', :class => 'title' %>
+      <div id="login">
       <% if current_user %>
         <%= image_tag graph.get_picture('me') if graph %>
         <%= link_to 'Edit Profile', edit_user_path(current_user) unless graph %> |
         <%= link_to 'Logout', :logout %>
       <% else %>
-        <%= link_to 'Register', new_user_path %> |
-        <%= link_to 'Login', :login %> |
-        <%= link_to 'Login with Facebook', auth_at_provider_path(:provider => :facebook) %>
+        <div id="login_fb">
+          <%= link_to image_tag('header_login_facebook.png'), auth_at_provider_path(:provider => :facebook) %>
+        </div>
+        <div id="login_resty">
+          <%= link_to image_tag('header_login_button.png'), :login %>
+        </div>
       <% end %>
-    </nav>
-    <span id="search_form">
-      <%= form_tag search_result_path do %>
-        <%= text_field_tag 'search_input' %>
-        <%= hidden_field_tag 'search_class' %>
-        <%= hidden_field_tag 'search_id' %>
-        <%= submit_tag 'search' %>
-      <% end %>
-    </span>
+      </div>
+    </div>
+    <div id="search_bar">
+      <div class="content wrapper">
+        <span class="title"><%= image_tag 'header_search_title.png', :cass => 'title' %></span>
+        <div id="search_box">
+          <%= form_tag search_result_path do %>
+            <%= text_field_tag 'search_input' %>
+            <%= hidden_field_tag 'search_class' %>
+            <%= hidden_field_tag 'search_id' %>
+            <%= image_submit_tag 'header_searchbox_button.png', :id => 'search_button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="content">
+  
+  <div id="content" class="wrapper">
     <%= yield %>
   </div>
+  
   <div id="footer">
-    <%= link_to '회사소개', page_path('about') %> |
-    <%= link_to '이용약관', page_path('terms') %> |
-    <%= link_to '개인정보취급방침', page_path('privacy') %> |
-    <%= link_to '제휴문의', page_path('withus') %>
+    <div class="wrapper">
+      <%= link_to image_tag('footer_logo.png', :class => 'logo'), root_url %>
+      <ul>
+        <li><%= link_to '회사소개', page_path('about') %> | </li>
+        <li><%= link_to '이용약관', page_path('terms') %> | </li>
+        <li><%= link_to '개인정보취급방침', page_path('privacy') %> | </li>
+        <li><%= link_to '제휴문의', page_path('withus') %></li>
+      </ul>
+      <p class="copyright">Copyright ⓒ Resty. All rights reserved.</p>
+    </div>
   </div>
 </body>
 </html>
