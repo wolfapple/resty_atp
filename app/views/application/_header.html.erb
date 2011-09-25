@@ -1,10 +1,10 @@
 <div class="crumbs">
   <%= link_to '전국', pensions_path %>
 	<% if @area %>
-		> <%= link_to @area.title, area_pensions_path(@area) %>
+		> <%= @area.title %>
 	<% end %>
 	<% if @sub_area %>
-		> <%= link_to @sub_area.title, area_sub_area_pensions_path(@area, @sub_area) %>
+		> <%= @sub_area.title %>
 	<% end %>
 </div>
 
@@ -32,7 +32,7 @@
     </ul>
   </div>
 </div>
-
+  
 <div class="spots">
   <h3>주요 관광지</h3>
   <ul>
