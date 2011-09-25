@@ -1,13 +1,38 @@
-<ul>
+<div class="sort">
+  <span class="like-order"><a href="#">좋아요순</a></span>
+  <span class="popular-order"><a href="#">인기도순</a></span>
+</div>
+
+<div class="list">
 <% @pensions.each do |pension| %>
-<li>
-	<p><strong><%= pension.title %></strong></p>
-	<ul>
-	<% pension.themes.each do |theme| %>
-	  <li><%= theme.title %></li>
-	<% end %>
-	</ul>
-	<%= link_to 'show', pension_path(pension), :class => 'show_btn' %>
-</li>
+  <div id="pension-<%= pension.id %>" class="pension-item<%= ' must-visit' if pension.must_visit %>">
+    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if pension.must_visit %>
+  	<div class="line-dotted"></div>
+  	<div class="left">
+  		<div class="pension-thumbnail">
+  		  <%= link_to image_tag('pension_01.jpg'), pension %>
+  		</div>
+  		<div class="pension-name"><%= link_to pension.title, pension %></div>
+  		<span class="fb_like">좋아요</span>
+  		<div class="pension-type">커플, 가족, 모임, 워크샵</div>
+  		<div class="pension-theme">테마</div>
+  		<div class="pension-faci">시설</div>
+  	</div>
+  	<div class="right">
+  		<div class="pension-addr"><%= pension.addr %></div>
+  		<div class="pension-price">
+  		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
+  		</div>
+  		<div class="pension-review">
+  			<span class="pension-review-count"><%= pension.reviews_count %></span>
+  			<a href="#">리뷰/후기</a>
+  			<span class="pension-detail">
+  				<%= link_to '상세보기', pension %>
+  			</span>
+  		</div>
+  	</div>
+  </div>
 <% end %>
+</div>
+<div class="line-dotted"></div>
 <%= paginate @pensions %>

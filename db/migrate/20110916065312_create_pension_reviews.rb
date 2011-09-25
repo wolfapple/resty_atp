@@ -8,6 +8,7 @@ class CreatePensionReviews < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :pension_reviews, :user_id
     add_index :pension_reviews, :pension_id
   end
 end

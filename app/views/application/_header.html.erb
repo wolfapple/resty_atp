@@ -1,32 +1,32 @@
 <div class="crumbs">
   <%= link_to '전국', pensions_path %>
-	<% if params[:addr1] or @pension %>
-		> <%= link_to params[:addr1], pensions_path(:addr1 => params[:addr1]) %>
+	<% if @area %>
+		> <%= link_to @area.title, area_pensions_path(@area) %>
 	<% end %>
-	<% if params[:addr2] or @pension %>
-		> <%= link_to params[:addr2], pensions_path(:addr1 => params[:addr1], :addr2 => params[:addr2]) %>
+	<% if @sub_area %>
+		> <%= link_to @sub_area.title, area_sub_area_pensions_path(@area, @sub_area) %>
 	<% end %>
 </div>
 
 <div class="nav">
   <div class="addr1">
     <ul>
-    <% Pension.addrs.each do |addr| %>
-      <% if params[:addr1] == addr %>
-        <%= content_tag :li, addr, :class => 'selected' %>
+    <% Area.all.each do |area| %>
+      <% if @area == area %>
+        <%= content_tag :li, area.title, :class => 'selected' %>
       <% else %>
-        <%= content_tag :li, link_to(addr, pensions_path(:addr1 => addr)) %>
+        <%= content_tag :li, link_to(area.title, area_pensions_path(area)) %>
       <% end %>
     <% end %>
     </ul>
   </div>
   <div class="addr2">
     <ul>
-    <% Pension.sub_addrs(params[:addr1]).each do |sub_addr| %>
-      <% if params[:addr2] == sub_addr %>
-        <%= content_tag :li, sub_addr, :class => 'selected' %>
+    <% @area.sub_areas.each do |sub_area| %>
+      <% if @sub_area == sub_area %>
+        <%= content_tag :li, sub_area.title, :class => 'selected' %>
       <% else %>
-        <%= content_tag :li, link_to(sub_addr, pensions_path(:addr1 => params[:addr1], :addr2 => sub_addr)), :class => 'dot' %>
+        <%= content_tag :li, link_to(sub_area.title, area_sub_area_pensions_path(@area, sub_area)), :class => 'dot' %>
       <% end %>
     <% end %>
     </ul>
@@ -36,8 +36,12 @@
 <div class="spots">
   <h3>주요 관광지</h3>
   <ul>
-  <% Spot.all.each do |spot| %>
-    <li><%= link_to spot.title, spot %></li>
+  <% @area.spots.each do |spot| %>
+    <% if @spot == spot %>
+      <%= content_tag :li, content_tag(:strong, spot.title) %>
+    <% else %>
+      <%= content_tag :li, link_to(spot.title, spot) %>
+    <% end %>
   <% end %>
 	</ul>
 </div>

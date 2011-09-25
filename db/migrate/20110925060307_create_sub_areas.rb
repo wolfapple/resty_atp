@@ -1,0 +1,12 @@
+class CreateSubAreas < ActiveRecord::Migration
+  def change
+    create_table :sub_areas do |t|
+      t.references :area
+      t.string :title
+      t.integer :pensions_count
+
+      t.timestamps
+    end
+    add_index :sub_areas, :area_id
+  end
+end

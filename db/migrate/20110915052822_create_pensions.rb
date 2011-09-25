@@ -2,6 +2,8 @@
 class CreatePensions < ActiveRecord::Migration
   def change
     create_table :pensions do |t|
+      t.references :area
+      t.references :sub_area
       t.string :title
       t.string :addr1
       t.string :addr2
@@ -16,5 +18,7 @@ class CreatePensions < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :pensions, :area_id
+    add_index :pensions, :sub_area_id
   end
 end

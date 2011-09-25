@@ -24,6 +24,12 @@ RestyAtp::Application.routes.draw do
   resources :spots do
     resources :pensions
   end
+  resources :areas do
+    resources :pensions
+    resources :sub_areas do
+      resources :pensions
+    end
+  end
   resources :spots
   resources :reviews
   #search'

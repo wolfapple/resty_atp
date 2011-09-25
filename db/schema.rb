@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920033752) do
+ActiveRecord::Schema.define(:version => 20110925075055) do
+
+  create_table "area_spots", :force => true do |t|
+    t.integer  "area_id"
+    t.integer  "sub_area_id"
+    t.integer  "spot_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "area_spots", ["area_id"], :name => "index_area_spots_on_area_id"
+  add_index "area_spots", ["spot_id"], :name => "index_area_spots_on_spot_id"
+  add_index "area_spots", ["sub_area_id"], :name => "index_area_spots_on_sub_area_id"
+
+  create_table "areas", :force => true do |t|
+    t.string   "title"
+    t.integer  "pensions_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "must_visits", :force => true do |t|
     t.integer  "pension_id"
@@ -32,8 +51,11 @@ ActiveRecord::Schema.define(:version => 20110920033752) do
   end
 
   add_index "pension_reviews", ["pension_id"], :name => "index_pension_reviews_on_pension_id"
+  add_index "pension_reviews", ["user_id"], :name => "index_pension_reviews_on_user_id"
 
   create_table "pensions", :force => true do |t|
+    t.integer  "area_id"
+    t.integer  "sub_area_id"
     t.string   "title"
     t.string   "addr1"
     t.string   "addr2"
@@ -48,6 +70,9 @@ ActiveRecord::Schema.define(:version => 20110920033752) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "pensions", ["area_id"], :name => "index_pensions_on_area_id"
+  add_index "pensions", ["sub_area_id"], :name => "index_pensions_on_sub_area_id"
 
   create_table "rooms", :force => true do |t|
     t.integer  "pension_id"
@@ -78,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20110920033752) do
   end
 
   add_index "spot_reviews", ["spot_id"], :name => "index_spot_reviews_on_spot_id"
+  add_index "spot_reviews", ["user_id"], :name => "index_spot_reviews_on_user_id"
 
   create_table "spots", :force => true do |t|
     t.string   "title"
@@ -89,6 +115,16 @@ ActiveRecord::Schema.define(:version => 20110920033752) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sub_areas", :force => true do |t|
+    t.integer  "area_id"
+    t.string   "title"
+    t.integer  "pensions_count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sub_areas", ["area_id"], :name => "index_sub_areas_on_area_id"
 
   create_table "theme_pensions", :force => true do |t|
     t.integer  "theme_id"

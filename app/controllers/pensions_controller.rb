@@ -1,9 +1,18 @@
 # -*- encoding : utf-8 -*-
 class PensionsController < ApplicationController
   def index
+    @area = Area.find(params[:area_id]) if params[:area_id]
+    @sub_area = SubArea.find(params[:sub_area_id]) if params[:sub_area_id]
     @theme = Theme.find(params[:theme_id]) if params[:theme_id]
     @spot = Spot.find(params[:spot_id]) if params[:spot_id]
-    if @theme
+    if @area
+      @spots = @area.spots
+      @pensions = @area.pensions
+      if @sub_area
+        @spots = @spots.where(:sub_area_id => @sub_area.id)
+        @pensions = @pensions.where(:sub_area_id => @sub_area.id)
+      end
+    elsif @theme
       @pensions = @theme.pensions
     elsif @spot
       @pensions = @spot.pensions
@@ -11,8 +20,6 @@ class PensionsController < ApplicationController
       @pensions = Pension
     end
     @pensions = @pensions.page(params[:page]).per(5)
-    @pensions = @pensions.by_addr1(params[:addr1]) if params[:addr1]
-    @pensions = @pensions.by_addr2(params[:addr2]) if params[:addr2]
   end
   
   def show
@@ -20,7 +27,7 @@ class PensionsController < ApplicationController
     @reviews = @pension.reviews.page(params[:page]).per(5)
     @blog_search = BlogSearch.new(@pension.title, 100)
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(10)
-    params[:addr1] = @pension.addr1
-    params[:addr2] = @pension.addr2
+    @area = @pension.area
+    @sub_area = @pension.sub_area
   end
 end

@@ -1,0 +1,415 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+ggd_one:
+  id: 1
+  area_id: 1
+  title: 가평
+  pensions_count: 1
+
+ggd_two:
+  id: 2
+  area_id: 1
+  title: 양평
+  pensions_count: 1
+  
+ggd_three:
+  id: 3
+  area_id: 1
+  title: 포천
+  pensions_count: 1
+
+ggd_four:
+  id: 4
+  area_id: 1
+  title: 파주
+  pensions_count: 1
+
+ggd_five:
+  id: 5
+  area_id: 1
+  title: 남양주
+
+ggd_six:
+  id: 6
+  area_id: 1
+  title: 안산(대부도)
+
+ggd_seven:
+  id: 7
+  area_id: 1
+  title: 용인
+  
+ggd_eight:
+  id: 8
+  area_id: 1
+  title: 화성(제부도)
+  
+gwd_one:
+  id: 9
+  area_id: 2
+  title: 평창
+  
+gwd_two:
+  id: 10
+  area_id: 2
+  title: 홍천
+
+gwd_three:
+  id: 11
+  area_id: 2
+  title: 양양
+  
+gwd_four:
+  id: 12
+  area_id: 2
+  title: 강릉
+  
+gwd_five:
+  id: 13
+  area_id: 2
+  title: 속초
+  
+gwd_six:
+  id: 14
+  area_id: 2
+  title: 춘천(남이섬)
+  
+gwd_seven:
+  id: 15
+  area_id: 2
+  title: 영월
+  
+gwd_eight:
+  id: 16
+  area_id: 2
+  title: 횡성
+  
+gwd_nine:
+  id: 17
+  area_id: 2
+  title: 정선
+  
+gwd_ten:
+  id: 18
+  area_id: 2
+  title: 인제
+  
+ccnd_one:
+  id: 19
+  area_id: 3
+  title: 안면도
+  
+ccnd_two:
+  id: 20
+  area_id: 3
+  title: 태안
+  
+ccnd_three:
+  id: 21
+  area_id: 3
+  title: 보령(대천)
+  
+ccnd_four:
+  id: 22
+  area_id: 3
+  title: 당진
+  
+ccnd_five:
+  id: 23
+  area_id: 3
+  title: 서산
+  
+ccnd_six:
+  id: 24
+  area_id: 3
+  title: 서천
+
+ccnd_seven:
+  id: 25
+  area_id: 3
+  title: 공주
+  
+ccnd_eight:
+  id: 26
+  area_id: 3
+  title: 논산/금산
+  
+ccbd_one:
+  id: 27
+  area_id: 4
+  title: 충주
+
+ccbd_two:
+  id: 28
+  area_id: 4
+  title: 제천
+  
+ccbd_three:
+  id: 29
+  area_id: 4
+  title: 단양
+
+ccbd_four:
+  id: 30
+  area_id: 4
+  title: 괴산
+    
+ccbd_five:
+  id: 31
+  area_id: 4
+  title: 영동
+  
+gsnd_one:
+  id: 32
+  area_id: 5
+  title: 통영
+  
+gsnd_two:
+  id: 33
+  area_id: 5
+  title: 거제
+
+gsnd_three:
+  id: 34
+  area_id: 5
+  title: 남해
+
+gsnd_four:
+  id: 35
+  area_id: 5
+  title: 산청
+
+gsnd_five:
+  id: 36
+  area_id: 5
+  title: 밀양
+
+gsnd_six:
+  id: 37
+  area_id: 5
+  title: 양산
+
+gsnd_seven:
+  id: 38
+  area_id: 5
+  title: 하동(지리산)
+  
+gsbd_one:
+  id: 39
+  area_id: 6
+  title: 경주
+  
+gsbd_two:
+  id: 40
+  area_id: 6
+  title: 울릉도
+  
+gsbd_three:
+  id: 41
+  area_id: 6
+  title: 포항
+  
+gsbd_four:
+  id: 42
+  area_id: 6
+  title: 문경
+  
+gsbd_five:
+  id: 43
+  area_id: 6
+  title: 안동
+  
+gsbd_six:
+  id: 44
+  area_id: 6
+  title: 울진
+  
+gsbd_seven:
+  id: 45
+  area_id: 6
+  title: 청도
+  
+gsbd_eight:
+  id: 46
+  area_id: 6
+  title: 영덕
+  
+jlnd_one:
+  id: 47
+  area_id: 7
+  title: 여수
+  
+jlnd_two:
+  id: 48
+  area_id: 7
+  title: 광양
+  
+jlnd_three:
+  id: 49
+  area_id: 7
+  title: 보성
+  
+jlnd_four:
+  id: 50
+  area_id: 7
+  title: 해남
+  
+jlnd_five:
+  id: 51
+  area_id: 7
+  title: 구례
+  
+jlnd_six:
+  id: 52
+  area_id: 7
+  title: 완도
+  
+jlnd_seven:
+  id: 53
+  area_id: 7
+  title: 담양
+  
+jlnd_eight:
+  id: 54
+  area_id: 7
+  title: 신안
+  
+jlbd_one:
+  id: 55
+  area_id: 8
+  title: 군산(선유도)
+  
+jlbd_two:
+  id: 56
+  area_id: 8
+  title: 전주
+  
+jlbd_three:
+  id: 57
+  area_id: 8
+  title: 남원
+  
+jlbd_four:
+  id: 58
+  area_id: 8
+  title: 부안(변산반도)
+  
+jlbd_five:
+  id: 59
+  area_id: 8
+  title: 무주
+  
+jlbd_six:
+  id: 60
+  area_id: 8
+  title: 고창
+  
+jlbd_seven:
+  id: 61
+  area_id: 8
+  title: 완주
+  
+jlbd_eight:
+  id: 62
+  area_id: 8
+  title: 진안
+  
+jeju_one:
+  id: 63
+  area_id: 9
+  title: 제주(애월)
+  
+jeju_two:
+  id: 64
+  area_id: 9
+  title: 제주(한림)
+  
+jeju_three:
+  id: 65
+  area_id: 9
+  title: 제주시
+  
+jeju_four:
+  id: 66
+  area_id: 9
+  title: 제주(조천)
+  
+jeju_five:
+  id: 67
+  area_id: 9
+  title: 중문
+  
+jeju_six:
+  id: 68
+  area_id: 9
+  title: 표선/성산
+  
+jeju_seven:
+  id: 69
+  area_id: 9
+  title: 안덕
+  
+etc_one:
+  id: 70
+  area_id: 10
+  title: 강화도
+  
+etc_two:
+  id: 71
+  area_id: 10
+  title: 영종도/용유도
+  
+etc_three:
+  id: 72
+  area_id: 10
+  title: 석모도
+  
+etc_four:
+  id: 73
+  area_id: 10
+  title: 백령도
+  
+etc_five:
+  id: 74
+  area_id: 10
+  title: 장봉도
+  
+etc_six:
+  id: 75
+  area_id: 10
+  title: 승봉도
+  
+etc_seven:
+  id: 76
+  area_id: 10
+  title: 영흥도
+  
+etc_eight:
+  id: 77
+  area_id: 10
+  title: 덕적도
+  
+etc_nine:
+  id: 78
+  area_id: 10
+  title: 서울
+  
+etc_ten:
+  id: 79
+  area_id: 10
+  title: 울산(울주)
+  
+etc_eleven:
+  id: 80
+  area_id: 10
+  title: 대구
+  
+etc_twelve:
+  id: 81
+  area_id: 10
+  title: 대전
+
+etc_thirteen:
+  id: 82
+  area_id: 10
+  title: 부산

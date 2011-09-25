@@ -1,125 +1,27 @@
 <div id="main-category">
   <table>
+    <% 0.upto(@areas.size / 2 - 1) do |i| %>
 	  <tr>
-	    <td>
-		    <a href="../pensions/index.html" class="underline"><span class="local">경기도</span> <span class="num">(1988)</span></a>
+	    <td style="width:297px;">
+	      <% area = @areas[i*2] %>
+	      <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
+	      <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
   		  <br />
-  		  <a href="../pensions/index.html">가평</a>,
-  		  <a href="../pensions/index.html">양평</a>,
-  		  <a href="../pensions/index.html">포천</a>,
-  		  <a href="../pensions/index.html">제부도</a>,
-  		  <a href="../pensions/index.html">대부도</a>,
-  		  <a href="../pensions/index.html">용인</a>,
-  		  <a href="../pensions/index.html">남양주</a>
+  		  <% area.sub_areas.each_with_index do |sub_area, idx| %>
+  		    <%= link_to sub_area.title, area_sub_area_pensions_path(area, sub_area) %><%= ',' if idx < area.sub_areas.size - 1 %>
+  		  <% end %>
 		  </td>
-		  <td>
-		    <a href="../pensions/index.html" class="underline"><span class="local">강원도</span> <span class="num">(1988)</span></a>
+		  <td style="width:297px;">
+		    <% area = @areas[i*2+1] %>
+		    <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
+		    <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
   		  <br />
-  		  <a href="../pensions/index.html">평창</a>,
-  		  <a href="../pensions/index.html">흥천</a>,
-  		  <a href="../pensions/index.html">양양</a>,
-  		  <a href="../pensions/index.html">강릉</a>,
-  		  <a href="../pensions/index.html">춘천</a>,
-  		  <a href="../pensions/index.html">속초</a>,
-  		  <a href="../pensions/index.html">남이섬</a>
+  		  <% area.sub_areas.each_with_index do |sub_area, idx| %>
+  		    <%= link_to sub_area.title, area_sub_area_pensions_path(area, sub_area) %><%= ',' if idx < area.sub_areas.size - 1 %>
+  		  <% end %>
   		</td>
     </tr>
-	  <tr>
-	    <td>
-		    <a href="../pensions/index.html" class="underline"><span class="local">경기도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">가평</a>,
-  		  <a href="../pensions/index.html">양평</a>,
-  		  <a href="../pensions/index.html">포천</a>,
-  		  <a href="../pensions/index.html">제부도</a>,
-  		  <a href="../pensions/index.html">대부도</a>,
-  		  <a href="../pensions/index.html">용인</a>,
-  		  <a href="../pensions/index.html">남양주</a>
-  		</td>
-		  <td>
-		    <a href="../pensions/index.html" class="underline"><span class="local">강원도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">평창</a>,
-  		  <a href="../pensions/index.html">흥천</a>,
-  		  <a href="../pensions/index.html">양양</a>,
-  		  <a href="../pensions/index.html">강릉</a>,
-  		  <a href="../pensions/index.html">춘천</a>,
-  		  <a href="../pensions/index.html">속초</a>,
-  		  <a href="../pensions/index.html">남이섬</a>
-  		</td>
-    </tr>
-	  <tr>
-	    <td>
-		    <a href="../pensions/index.html" class="underline"><span class="local">경기도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">가평</a>,
-  		  <a href="../pensions/index.html">양평</a>,
-  		  <a href="../pensions/index.html">포천</a>,
-  		  <a href="../pensions/index.html">제부도</a>,
-  		  <a href="../pensions/index.html">대부도</a>,
-  		  <a href="../pensions/index.html">용인</a>,
-  		  <a href="../pensions/index.html">남양주</a>
-  		</td>
-		  <td>
-  		  <a href="../pensions/index.html" class="underline"><span class="local">강원도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">평창</a>,
-  		  <a href="../pensions/index.html">흥천</a>,
-  		  <a href="../pensions/index.html">양양</a>,
-  		  <a href="../pensions/index.html">강릉</a>,
-  		  <a href="../pensions/index.html">춘천</a>,
-  		  <a href="../pensions/index.html">속초</a>,
-  		  <a href="../pensions/index.html">남이섬</a>
-  		</td>
-    </tr>
-	  <tr>
-	    <td>
-		    <a href="../pensions/index.html" class="underline"><span class="local">경기도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">가평</a>,
-  		  <a href="../pensions/index.html">양평</a>,
-  		  <a href="../pensions/index.html">포천</a>,
-  		  <a href="../pensions/index.html">제부도</a>,
-  		  <a href="../pensions/index.html">대부도</a>,
-  		  <a href="../pensions/index.html">용인</a>,
-  		  <a href="../pensions/index.html">남양주</a>
-  		</td>
-		  <td>
-  		  <a href="../pensions/index.html" class="underline"><span class="local">강원도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">평창</a>,
-  		  <a href="../pensions/index.html">흥천</a>,
-  		  <a href="../pensions/index.html">양양</a>,
-  		  <a href="../pensions/index.html">강릉</a>,
-  		  <a href="../pensions/index.html">춘천</a>,
-  		  <a href="../pensions/index.html">속초</a>,
-  		  <a href="../pensions/index.html">남이섬</a>
-  		</td>
-    </tr>
-	  <tr>
-	    <td>
-		    <a href="../pensions/index.html" class="underline"><span class="local">경기도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">가평</a>,
-  		  <a href="../pensions/index.html">양평</a>,
-  		  <a href="../pensions/index.html">포천</a>,
-  		  <a href="../pensions/index.html">제부도</a>,
-  		  <a href="../pensions/index.html">대부도</a>,
-  		  <a href="../pensions/index.html">용인</a>,
-  		  <a href="../pensions/index.html">남양주</a>
-  		</td>
-		  <td>
-  		  <a href="../pensions/index.html" class="underline"><span class="local">강원도</span> <span class="num">(1988)</span></a>
-  		  <br />
-  		  <a href="../pensions/index.html">평창</a>,
-  		  <a href="../pensions/index.html">흥천</a>,
-  		  <a href="../pensions/index.html">양양</a>,
-  		  <a href="../pensions/index.html">강릉</a>,
-  		  <a href="../pensions/index.html">춘천</a>,
-  		  <a href="../pensions/index.html">속초</a>,
-  		  <a href="../pensions/index.html">남이섬</a>
-  		</td>
-    </tr>
+    <% end %>
 	</table>    
 </div>
 
@@ -149,20 +51,5 @@
   <% @spots.each do |spot| %>
     <li><%= link_to spot.title, spot %>(<%= spot.pensions_count %>)</li>
   <% end %>
-  </ul>
-</div>
-
-<div id="area_list">
-  <ul>
-    <% @addrs.each do |addr| %>
-    <li>
-      <h3><%= link_to addr, pensions_path(:addr1 => addr) %>(<%= Pension.by_addr1(addr).count %>개)<h3>
-        <p>
-          <% Pension.sub_addrs(addr).each do |sub_addr| %>
-          <%= link_to sub_addr, pensions_path(:addr1 => addr, :addr2 => sub_addr) %>
-          <% end %>
-        </p>
-    </li>
-    <% end %>
   </ul>
 </div>

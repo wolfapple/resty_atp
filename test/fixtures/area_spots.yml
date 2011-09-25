@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  area_id: 2
+  sub_area_id: 9 
+  spot: jara
+
+two:
+  area_id: 1
+  sub_area_id: 1
+  spot: morning

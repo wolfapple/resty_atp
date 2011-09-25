@@ -8,6 +8,7 @@ class CreateSpotReviews < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :spot_reviews, :user_id
     add_index :spot_reviews, :spot_id
   end
 end

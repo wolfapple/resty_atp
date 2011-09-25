@@ -6,7 +6,7 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="<%= params[:controller].parameterize %>_controller">
   <div id="header">
     <div id="title" class="wrapper">
       <%= link_to image_tag('header_logo.png', :class => 'logo'), root_url %>

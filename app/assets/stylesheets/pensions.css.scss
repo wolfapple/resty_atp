@@ -209,4 +209,145 @@
 			height: 10px;
 		}
 	}
+	#pension-list {
+		position: relative;
+    float: right;
+    width: 707px;
+    margin: 10px 10px 50px 0px;
+		a:hover {
+			color: #2ab07b;
+		}
+		.sort {
+			height: 30px;
+			.popular-order {
+				position: relative;
+				float: right;
+				background-image: url("/assets/list_pension_icon_popular.png");
+				background-repeat: no-repeat;
+				height: 30px;
+				line-height: 30px;
+				text-indent: 25px;
+				margin-right: 15px;
+			}
+			.like-order {
+				position: relative;
+				float: right;
+				background-image: url("/assets/list_pension_icon_good.png");
+				background-repeat: no-repeat;
+				height: 30px;
+				line-height: 30px;
+				text-indent: 25px;
+				margin-right: 30px;
+			}
+		}
+		.list {
+			.pension-item {
+				width: 707px;
+				height: 150px;
+			}
+			.pension-item:hover {
+				background-color: #f8fff8;
+			}
+			.must-visit {
+				background-image: url("/assets/list_pension_must_visit_bg.png");
+				background-repeat: no-repeat;
+				width: 707px;
+				height: 150px;
+			}
+			.must-visit-mark {
+				text-indent: -9999px;
+				position: absolute;
+				background-image: url("/assets/list_pension_must_visit_mark.png");
+				background-repeat: no-repeat;
+				width: 70px;
+				height: 70px;
+				margin: 1px 0px 0px 1px;
+				z-index: 2;
+			}
+			.left {
+				position: absolute;
+				float: left;
+				width: 470px;
+				height: 150px;
+			}
+			.right {
+				position: absolute;
+				float: right;
+				background-image: url("/assets/list_pension_info_bg.png");
+				background-repeat: no-repeat;
+				width: 237px;
+				height: 150px;
+				right: 0px;
+				margin-top: 16px;
+			}
+			.pension-thumbnail {
+				position: relative;
+				float: left;
+				background-image: url("/assets/list_pension_image_shadow.png");
+				background-repeat: no-repeat;
+				width: 161px;
+				height: 106px;
+				margin: 20px 10px 30px 20px;
+			}
+			.pension-thumbnail img {
+				position: absolute;
+				width: 157px;
+				height: 102px;
+				margin: 1px 0px 0px 1px;
+				z-index: 0;
+			}
+			.pension-name {
+				a {
+					color: #339966;
+					font-weight: bold;
+				}
+				margin-top: 25px;
+			}
+			.pension-addr {
+				background-image: url("/assets/list_pension_icon_address.png");
+				background-repeat: no-repeat;
+				margin: 0px 20px 0px 25px;
+				height: 25px;
+				padding: 6px 0px 0px 35px;
+			}
+			.pension-price {
+				background-image: url("/assets/list_pension_icon_price.png");
+				background-repeat: no-repeat;
+				margin: 10px 20px 0px 25px;
+				height: 25px;
+				padding: 6px 0px 0px 35px;
+			}
+			.pension-review {
+				background-image: url("/assets/list_pension_icon_review.png");
+				background-repeat: no-repeat;
+				margin: 10px 20px 0px 25px;
+				width: 200px;
+				height: 35px;
+			}
+			.pension-review > span.pension-review-count {
+				position: absolute;
+				margin: 0px;
+				width: 25px;
+				font-weight: bold;
+				text-align: center;
+			}
+			.pension-review > a {
+				position: absolute;
+				margin: 10px 0px 0px 33px;
+			}
+			.pension-review > span.pension-detail {
+				position: absolute;
+				background-image: url("/assets/list_pension_icon_detail.png");
+				background-repeat: no-repeat;
+				margin: 4px 0px 0px 100px;
+				width: 100px;
+				height: 25px;
+				padding: 6px 0px 0px 30px;
+			}
+		}
+		.line-dotted {
+			background-image: url("/assets/list_pension_info_dot.png");
+			height: 3px;
+		}
+	}
 }

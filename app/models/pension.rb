@@ -4,6 +4,9 @@ class Pension < ActiveRecord::Base
   has_many :rooms
   has_many :theme_pensions
   has_many :themes, :through => :theme_pensions
+  has_one :must_visit
+  belongs_to :area
+  belongs_to :sub_area
   
   scope :by_addr1, lambda { |addr| where(:addr1 => addr) }
   scope :by_addr2, lambda { |addr| where(:addr2 => addr) }

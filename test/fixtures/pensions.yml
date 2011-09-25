@@ -1,43 +1,60 @@
 # Pension Fixture
 
 gyeonggi1:
+  area_id: 1
+  sub_area_id: 1
   title: 가평펜션
   addr1: 경기도
   addr2: 가평
+  addr: 경기도 가평 블라블라
   min_price: 50000
   max_price: 150000
 
 gyeonggi2:
+  area_id: 1
+  sub_area_id: 2
   title: 양평펜션
   addr1: 경기도
   addr2: 양평
+  addr: 경기도 양평 블라블라
   min_price: 100000
   max_price: 200000
 
 gangwon1:
+  area_id: 2
+  sub_area_id: 14
   title: 춘천펜션
   addr1: 강원도
   addr2: 춘천
+  addr: 강원도 춘천 블라블라
   min_price: 100000
   max_price: 300000
 
 gangwon2:
+  area_id: 2
+  sub_area_id: 13
   title: 속초펜션
   addr1: 강원도
   addr2: 속초
+  addr: 강원도 속초 블라블라
   min_price: 150000
   max_price: 300000
   
 gangwon3:
+  area_id: 2
   title: 평창펜션
   addr1: 강원도
   addr2: 평창
+  addr: 강원도 평창 블라블라
   min_price: 50000
   max_price: 200000
   
 jeju1:
+  area_id: 9
+  sub_area_id: 65
   title: 서귀포펜션
   addr1: 제주도
   addr2: 서귀포
+  addr: 제주도 서귀포 블라블라
   min_price: 200000
   max_price: 300000

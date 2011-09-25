@@ -1,0 +1,51 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+ggd:
+  id: 1
+  title: 경기도
+  pensions_count: 1
+
+gwd:
+  id: 2
+  title: 강원도
+  pensions_count: 1
+
+ccnd:
+  id: 3
+  title: 충청남도
+  pensions_count: 1
+
+ccbd:
+  id: 4
+  title: 충청북도
+  pensions_count: 1
+    
+gsnd:
+  id: 5
+  title: 경상남도
+  pensions_count: 1
+    
+gsbd:
+  id: 6
+  title: 경상북도
+  pensions_count: 1
+
+jlnd:
+  id: 7
+  title: 전라남도
+  pensions_count: 1
+    
+jlbd:
+  id: 8
+  title: 전라북도
+  pensions_count: 1
+  
+jeju:
+  id: 9
+  title: 제주도
+  pensions_count: 1
+
+etc:
+  id: 10
+  title: 인천/기타
+  pensions_count: 1
