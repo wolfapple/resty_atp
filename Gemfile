@@ -5,6 +5,7 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+gem 'therubyracer'
 gem 'mysql2'
 gem 'kaminari'
 gem 'sorcery'
@@ -12,6 +13,8 @@ gem 'pry', :group => :development
 gem 'nokogiri'
 gem 'koala'
 gem 'high_voltage'
+gem 'activeadmin'
+gem 'meta_search', '>= 1.1.0.pre'
 
 # Gems used only for assets and not required
 # in production environments by default.

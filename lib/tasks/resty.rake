@@ -106,6 +106,18 @@ namespace :resty do
     ActiveRecord::Base.connection.execute("TRUNCATE #{Pension.table_name}")
   end
   
+  desc 'update pensions_count'
+  task :update_pensions_count => :environment do
+    Area.update_all :pensions_count => 0
+    SubArea.update_all :pensions_count => 0
+    Area.all.each do |area|
+      area.update_attributes({:pensions_count => area.pensions.count})
+    end
+    SubArea.all.each do |sub_area|
+      sub_area.update_attributes({:pensions_count => sub_area.pensions.count})
+    end
+  end
+  
   task :all_reset => [:reset_rooms, :reset_pensions]
   task :insert_data => [:insert_pensions, :insert_rooms]
   task :insert_data_reset => [:all_reset, :insert_data]

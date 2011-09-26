@@ -13,7 +13,7 @@ class CreatePensions < ActiveRecord::Migration
       t.string :email
       t.string :manager
       t.integer :rating
-      t.string :summary
+      t.text :summary
       t.string :rooms_count
       t.string :room_structure
       t.integer :min_price

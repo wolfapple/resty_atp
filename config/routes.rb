@@ -1,5 +1,9 @@
 # -*- encoding : utf-8 -*-
 RestyAtp::Application.routes.draw do  
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   # login, logout
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

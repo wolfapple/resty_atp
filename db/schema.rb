@@ -11,7 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110925075055) do
+ActiveRecord::Schema.define(:version => 20110926164625) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.integer  "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "admin_users", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
+  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "area_spots", :force => true do |t|
     t.integer  "area_id"
@@ -53,6 +86,60 @@ ActiveRecord::Schema.define(:version => 20110925075055) do
   add_index "pension_reviews", ["pension_id"], :name => "index_pension_reviews_on_pension_id"
   add_index "pension_reviews", ["user_id"], :name => "index_pension_reviews_on_user_id"
 
+  create_table "pensionchamber", :force => true do |t|
+    t.integer "pensiondataid",                   :null => false
+    t.string  "name",            :limit => 200,  :null => false
+    t.string  "type",            :limit => 200
+    t.string  "area",            :limit => 1000
+    t.string  "price",           :limit => 1000
+    t.string  "priceadditional", :limit => 1000
+    t.string  "facilities01",    :limit => 1000
+    t.string  "facilities02",    :limit => 1000
+    t.string  "number",          :limit => 200
+    t.string  "description01",   :limit => 1000
+    t.string  "description02",   :limit => 1000
+    t.string  "seasoninfo",      :limit => 1000
+    t.string  "imageurl",        :limit => 1000
+  end
+
+  create_table "pensiondata", :force => true do |t|
+    t.integer   "pensionsetid",                    :null => false
+    t.string    "crawlertype",     :limit => 100,  :null => false
+    t.timestamp "regdate",                         :null => false
+    t.string    "name",            :limit => 1000, :null => false
+    t.string    "url",             :limit => 1000, :null => false
+    t.string    "address01",       :limit => 1000
+    t.string    "address02",       :limit => 1000
+    t.string    "mobile",          :limit => 200
+    t.string    "telephone01",     :limit => 200
+    t.string    "telephone02",     :limit => 200
+    t.string    "email",           :limit => 200
+    t.string    "manager",         :limit => 200
+    t.string    "evaluation",      :limit => 200
+    t.string    "summary",         :limit => 2000
+    t.string    "roomcount",       :limit => 1000
+    t.string    "roomstructure",   :limit => 1000
+    t.string    "roomprice",       :limit => 4000
+    t.string    "seasoninfo",      :limit => 2000
+    t.string    "checkinout",      :limit => 200
+    t.string    "servicecharge",   :limit => 200
+    t.string    "includetax",      :limit => 200
+    t.string    "location",        :limit => 200
+    t.string    "locationx",       :limit => 200
+    t.string    "locationy",       :limit => 200
+    t.string    "locationextra",   :limit => 1000
+    t.string    "creditcard",      :limit => 200
+    t.string    "pet",             :limit => 200
+    t.string    "breakfast",       :limit => 200
+    t.string    "foreignlanguage", :limit => 200
+    t.string    "pickupservice",   :limit => 200
+    t.string    "parking",         :limit => 200
+    t.string    "facilities01",    :limit => 1000
+    t.string    "facilities02",    :limit => 1000
+    t.string    "foodcourt",       :limit => 200
+    t.string    "babycarriage",    :limit => 200
+  end
+
   create_table "pensions", :force => true do |t|
     t.integer  "area_id"
     t.integer  "sub_area_id"
@@ -72,8 +159,8 @@ ActiveRecord::Schema.define(:version => 20110925075055) do
     t.integer  "max_price"
     t.string   "season_info"
     t.string   "checkin"
-    t.boolean  "service_charge"
-    t.boolean  "tax_include"
+    t.string   "service_charge"
+    t.string   "tax_include"
     t.string   "lat"
     t.string   "lng"
     t.string   "credit_card"
