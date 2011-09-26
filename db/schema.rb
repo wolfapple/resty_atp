@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# -*- encoding : utf-8 -*-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -57,16 +57,37 @@ ActiveRecord::Schema.define(:version => 20110925075055) do
     t.integer  "area_id"
     t.integer  "sub_area_id"
     t.string   "title"
-    t.string   "addr1"
-    t.string   "addr2"
+    t.string   "url"
     t.string   "addr"
+    t.string   "mobile"
     t.string   "phone"
-    t.string   "lat"
-    t.string   "lng"
+    t.string   "phone2"
+    t.string   "email"
+    t.string   "manager"
+    t.integer  "rating"
+    t.string   "summary"
+    t.string   "rooms_count"
+    t.string   "room_structure"
     t.integer  "min_price"
     t.integer  "max_price"
+    t.string   "season_info"
+    t.string   "checkin"
+    t.boolean  "service_charge"
+    t.boolean  "tax_include"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "credit_card"
+    t.string   "pet"
+    t.string   "breakfast"
+    t.string   "foreign_language"
+    t.string   "pickup"
+    t.string   "parking"
+    t.string   "facilities"
+    t.string   "facilities2"
+    t.string   "foodcourt"
+    t.string   "baby"
     t.integer  "like_count"
-    t.integer  "reviews_count", :default => 0
+    t.integer  "reviews_count",    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,6 +98,17 @@ ActiveRecord::Schema.define(:version => 20110925075055) do
   create_table "rooms", :force => true do |t|
     t.integer  "pension_id"
     t.string   "title"
+    t.string   "type"
+    t.string   "area"
+    t.string   "price"
+    t.string   "additional_price"
+    t.string   "facilities"
+    t.string   "facilities2"
+    t.string   "number"
+    t.string   "desc"
+    t.string   "desc2"
+    t.string   "season_info"
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

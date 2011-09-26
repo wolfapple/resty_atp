@@ -1,10 +1,11 @@
-<div id="sidebar">
-  <%= render 'sidebar' %>
+<div id="list-sidebar">
+  <%= render 'list_sidebar' %>
 </div>
 
 <div id="main_content">
   <div class="header">
     <%= render 'header' %>
+    <%= render 'map' %>
   </div>
   <%= content_tag :h2, "#{@theme.title} 테마의 펜션" if @theme %>
   <%= content_tag :h2, "#{@spot.title} 주변의 펜션" if @spot %>

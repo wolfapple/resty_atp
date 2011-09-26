@@ -1,13 +1,13 @@
 // Place all the styles related to the pensions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#sidebar {
+#list-sidebar {
 	position: relative;
 	float: left;
 	width: 228px;
 	margin: 22px 27px 0px 10px;
 	h3 {
-		width: 228;
+		width: 228px;
 		height: 46px;
 		text-indent: -5000px;
 		white-space: nowrap;
@@ -101,6 +101,121 @@
 	}
 	.facilities_box li {
 		padding-left: 20px;
+	}
+}
+
+#show-sidebar {
+  position: relative;
+  float: left;
+  width: 228px;
+  margin: 22px 27px 0px 10px;
+	h3 {
+	  width: 228px;
+	  height: 46px;
+	  text-indent: -5000px;
+	  white-space: nowrap;
+	  margin: 0px;
+	}
+	ul {
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
+	}
+	.friends-activities-box {
+		h3 {
+			background-image: url("/assets/show_side_friends_activities_header.png");
+			background-repeat: no-repeat;
+	    margin: 15px 0px 0px 0px;
+		}
+		li {
+			background-image: url("/assets/show_side_friends_activities_body.png");
+	    height: 48px;
+	    padding-left: 15px;
+		}
+		img {
+	  	width: 36px;
+	  	height: 38px;
+			margin-top: 5px;
+		}
+		span {
+			position: absolute;
+			margin-top: 5px;
+			line-height: 38px;
+			padding-left: 10px;
+		}
+		.footer {
+			background-image: url("/assets/show_side_box_body.png");
+		  width: 228px;
+		  height: 20px;
+		}
+	}
+	.near-pensions-box {
+		h3 {
+			background-image: url("/assets/show_side_near_pensions_header.png");
+			background-repeat: no-repeat;
+		}
+		li {
+			background-image: url("/assets/show_side_near_pensions_body.png");
+	    height: 73px;
+	    padding-left: 15px;
+		}
+		a.name {
+			position: absolute;
+			font-weight: bold;
+			margin-top: 10px;
+		}
+		span.like {
+			position: absolute;
+			margin-top: 10px;
+			margin-left: 140px;
+		}
+		a.review {
+			position: absolute;
+			background-image: url("/assets/show_side_near_pensions_review_bg.png");
+		  width: 60px;
+			height: 18px;
+			margin-top: 33px;
+			margin-left: 140px;
+			padding: 1px 0px 0px 0px;
+			text-align: center;
+			color: #fff;
+		}
+		span {
+			position: absolute;
+			margin-top: 35px;
+		}
+		.footer {
+			background-image: url("/assets/show_side_box_footer.png");
+			background-repeat: no-repeat;
+		  width: 228px;
+    	height: 14px;
+			margin-top: -2px;
+		}
+	}
+	.must-visit-banner {
+		position: relative;
+		background-image: url("/assets/list_side_must_visit_bg.png");
+		background-repeat: no-repeat;
+		width: 229px;
+		height: 183px;
+		margin: 20px 0px 30px 0px;
+		h3 {
+			psosition: absolute;
+			background-image: url("/assets/list_side_must_visit_watermark.png");
+			background-repeat: no-repeat;
+			width: 123px;
+			height: 124px;
+			margin: 30px 0px 0px 50px;
+			filter: alpha(opacity=80);
+		  opacity: 0.8;
+		  -moz-opacity: 0.8;	
+			z-index: 1;
+		}
+		img {
+			position: absolute;
+			margin: 1px 0px 0px 1px;
+			z-index: 0;
+		}
 	}
 }
 
@@ -350,4 +465,329 @@
 			height: 3px;
 		}
 	}
+	#pension-show {
+		clear: both;
+    width: 707px;
+    margin: 10px 10px 20px 0px;
+		.title {
+			padding: 10px;
+			h2 {
+				font-size: 1.2em;
+				display: inline;
+			}
+			a {
+				position: relative;
+				float: right;
+				font-weight: bold;
+				margin-top: 5px;
+			}
+			a:hover {
+				color: #2ab07b;
+			}
+		}
+		.line-green {
+			background-image: url("/assets/show_title_line_bg.png");
+			width: 707px;
+			height: 3px;
+		}
+		.body {
+			.pension-photo {
+				float: left;
+				position: relative;
+				background-color: #ccc;
+				width: 260px;
+				height: 265px;
+				margin: 20px 0px 15px 20px;
+				img {
+					position: absolute;
+					width: 260px;
+					height: 265px;
+					margin: -3px 0px 0px -3px;
+					border: solid 1px #ccc;
+				}
+			}
+			.pension-detail {
+				position: relative;
+				float: right;
+				width: 410px;
+				#pension-info-type {
+					position: absolute;
+					background-image: url("/assets/show_pension_info_type_bg.png");
+					background-repeat: no-repeat;
+					height: 20px;
+					margin-top: 20px;
+					padding: 25px 0px 0px 2px;
+				}
+				#pension-info-faci {
+					position: absolute;
+					background-image: url("/assets/show_pension_info_faci_bg.png");
+					background-repeat: no-repeat;
+					height: 20px;
+					margin-top: 75px;
+					padding: 25px 0px 0px 2px;
+				}
+				#pension-info-theme {
+					position: absolute;
+					background-image: url("/assets/show_pension_info_theme_bg.png");
+					background-repeat: no-repeat;
+					height: 20px;
+					margin-top: 130px;
+					padding: 25px 0px 0px 2px;
+				}
+				#pension-info-start {
+					position: absolute;
+					background-image: url("/assets/show_pension_info_start_bg.png");
+					background-repeat: no-repeat;
+					height: 20px;
+					margin-top: 185px;
+					padding: 25px 0px 0px 2px;
+					#findway-box {
+						background-image: url("/assets/show_pension_info_find_way_bg.png");
+						background-repeat: no-repeat;
+						border: 0px;
+						width: 314px;
+						height: 26px;
+						margin: 8px 0px 0px 0px;
+						padding: 0px;
+					}
+					#findway-word {
+						border: none;
+						height: 16px;
+						line-height: 18px;
+						width: 275px;
+						margin: 5px 10px;
+						font-size: 1em;
+					}
+					#findway-button {
+						position: absolute;
+						right: 10px;
+						border: 0px;
+						width: 18px;
+						height: 18px;
+						margin-top: 5px;
+					}
+				}
+				#pension-info-phone {
+					position: absolute;
+					background-image: url("/assets/show_reserv_phone_bg.png");
+					background-repeat: no-repeat;
+					width: 185px;
+					height: 20px;
+					margin-top: 255px;
+					padding: 6px 0px 0px 0px;
+					text-indent: 85px;
+					color: #fff;
+				}
+				#pension-info-room {
+					position: absolute;
+					background-image: url("/assets/show_room_info_button.png");
+					background-repeat: no-repeat;
+					width: 110px;
+					height: 26px;
+					margin: 255px 0px 0px 206px;
+				}
+				#pension-info-addr {
+					background-image: url("/assets/list_pension_icon_address.png");
+					background-repeat: no-repeat;
+					border-bottom: 3px solid #ccc;
+					position: relative;
+					float: right;
+					height: 17px;
+					margin-top: 15px;
+					padding: 7px 10px 7px 10px;
+					text-indent: 20px;
+				}
+				#pension-info-price {
+					background-image: url("/assets/list_pension_icon_price.png");
+					background-repeat: no-repeat;
+					border-bottom: 3px solid #ccc;
+					position: relative;
+					float: right;
+					height: 17px;
+					margin-top: 60px;
+					margin-right: -172px;
+					padding: 7px 10px 7px 10px;
+					text-indent: 20px;
+				}
+			}
+		}
+	}
+}
+
+#pension-show #show-footer {
+	clear: both;
+}
+
+#pension-show #navi-map {
+    width: 705px;
+    height: 65px;
+    margin: 0px 0px 0px 1px;
+}
+
+#pension-show #map {
+	position: absolute;
+    width: 705px;
+    height: 65px;
+}
+
+#pension-show #map-rect {
+    width: 705px;
+    height: 10px;
+}
+
+#pension-show #map-toggle {
+	position: absolute;
+	float: top;
+	background-image: url("../../assets/images/list_map_button.png");
+	background-repeat: no-repeat;
+    width: 705px;
+    height: 65px;
+    margin: 0px;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    -moz-opacity: 0.7;
+}
+
+#pension-show #map-toggle.open {
+	position: absolute;
+	float: top;
+	background-image: url("../../assets/images/list_map_button_.png");
+	background-repeat: no-repeat;
+    width: 705px;
+    height: 10px;
+    margin: 0px;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+    -moz-opacity: 0.7;
+}
+
+
+#pension-show #pension-review #pension-review-title {
+	background-image: url("../../assets/images/show_pension_review_title.png");
+	background-repeat: no-repeat;
+	width: 705px;
+	height: 35px;
+	margin-top: 40px;
+}
+
+#pension-show #pension-review #input_review {
+	background-color: #f3f3f3;
+	margin-top: 16px;
+	width: 490px;
+	border: 0px;
+}
+
+#pension-show input[type="checkbox"] {
+    display: none;
+}
+
+#pension-show .checkbox {
+    padding-left: 20px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+#pension-show .checked {
+	background-image: url("../../assets/images/list_side_facilities_check_on.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 18px;
+	padding-top: 3px;
+}
+
+#pension-show .unchecked {
+	background-image: url("../../assets/images/list_side_facilities_check_off.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 18px;
+	padding-top: 3px;
+}
+
+#pension-show #pension-review #commit_review {
+	float: right;
+	width: 120px;
+	margin-top: 30px;
+}
+
+#pension-show #pension-review #submit-review {
+	margin-top: 15px;
+}
+
+#pension-show #pension-review #pension-review-list ul {
+	list-style: none;
+	padding: 0px;
+}
+
+#pension-show #pension-review #pension-review-list li {
+	position: relative;
+	background-image: url("../../assets/images/show_pension_review_dot.png");
+	background-repeat: repeat-x;
+	width: 705px;
+	margin: 0px;
+	float: right;
+}
+
+#pension-review-list .reply_icon {
+	float: left;
+	background-image: url("../../assets/images/show_pension_review_reply_icon.png");
+	background-repeat: no-repeat;
+	width: 20px;
+	height: 18px;
+	margin: 30px 20px;
+}
+
+#pension-review .face {
+	float: left;
+	background-color: #ccc;
+	width: 45px;
+	height: 47px;
+	margin: 18px 15px;
+}
+
+#pension-review .face img {
+	width: 45px;
+	height: 47px;
+	margin: -2px 0px 0px -2px;
+}
+
+#pension-review-list .content {
+	float: left;
+	width: 490px;
+	margin-top: 17px;
+	padding: 0px 10px 20px 0px;
+}
+
+#pension-review-list .content_fb {
+	float: left;
+	background-image: url("../../assets/images/show_pension_review_content_bg.png");
+	background-repeat: no-repeat;
+	width: 490px;
+	margin-top: 17px;
+	padding: 30px 10px 20px 0px;
+}
+
+#pension-review-list .like {
+	float: right;
+	width: 70px;
+	margin-top: 17px;
+	padding: 30px 0px 0px 0px;
+}
+
+#pension-review-more {
+	clear: both;
+	background-image: url("../../assets/images/show_pension_review_more_button.png");
+	background-repeat: no-repeat;
+	width: 707px;
+	height: 24px;
+	
+}
+
+#pension-review-more > span {
+	float: right;
+	color: #fff;
+	margin: 3px 330px 0px 0px;
+}
+
+#pension-review-list ul li.hide {
+    display: none;
 }

@@ -1,28 +1,72 @@
-<div id="sidebar">
-  <%= render 'sidebar' %>
+<div id="show-sidebar">
+  <%= render 'show_sidebar' %>
 </div>
 
 <div id="main_content">
   <div class="header">
     <%= render 'header' %>
   </div>
-  <h1><%= @pension.title %></h1>
-  <p>펜션 설명 블라블라블라...</p>
-  <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
-  <%= link_to '객실정보', pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
+  <div id="pension-show">
+    <div class="title">
+      <h2><%= @pension.title %></h2>
+      <span>좋아요</span>
+      <%= link_to '펜션 바로가기', @pension.url %>
+    </div>
+    <div class="line-green"></div>
+    <div class="body">
+      <div class="pension-photo">
+        <%= image_tag 'pension_01.jpg' %>
+      </div>
+      <div class="pension-detail">
+        <div id="pension-info-type">커플, 가족, 모임, 워크샵</div>
+        <div id="pension-info-faci">노래방, 월풀/스파, 수영장, 세마나실, 족구장</div>
+        <div id="pension-info-theme">애완동물 이용가능, 바닷가 인접, 계곡 인접</div>
+        <div id="pension-info-start">
+          <form>
+            <div id="findway-box">
+              <input type="text" value="1박 2일 추월산 펜션까지의 길을 찾아드립니다." name="findway" id="findway-word">
+              <input type="image" src="/assets/header_searchbox_button.png" id="findway-button">
+            </div>
+          </form>
+        </div>
+        <div id="pension-info-addr">전남 담양군 용면 월계리</div>
+        <div id="pension-info-price">10 ~ 20 만원</div>
+        <div id="pension-info-phone">031-454-5484</div>
+        <div id="pension-info-room"></div>
+      </div>
+    </div>
 
-  <h2>펜션 후기</h2>
-  <div id="review">
-    <%= render 'review' %>
-  </div>
+    <div id="show-footer">
+      <div id="navi-map">
+        <div id="openCloseIdentifier"></div>
+        <div id="map"></div>
+        <div id="map-toggle"></div>
+      </div>
+      <div id="map-rect"></div>
 
-  <h2>블로그 후기</h2>
-  <div>
-    <ul>
-    <% @blog_reviews.each do |item| %>
-      <li><%= link_to raw(item.title), item.link, :target => :blank %></li>
-    <% end %>
-    </ul>
-    <%= paginate @blog_reviews %>
+      <script type="text/javascript">inputMarker(37.5708277, 128.4099873, "pension");</script>
+      <div class="line_green"></div>
+    </div>
+    <div id="pension-review">
+      <%= render 'review' %>
+    </div>
+
+    <div id="blog-review">
+      <div id="blog-review-title"></div>
+      <div id="blog-review-list">
+        <ul>
+        <% @blog_reviews.each do |item| %>
+          <li><%= link_to raw(item.title), item.link, :target => :blank %></li>
+        <% end %>
+        </ul>
+        <%= paginate @blog_reviews %>
+      </div>
+    </div>
+          
+  
+    <h1><%= @pension.title %></h1>
+    <p>펜션 설명 블라블라블라...</p>
+    <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
+    <%= link_to '객실정보', pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
   </div>
 </div>

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateSubAreas < ActiveRecord::Migration
   def change
     create_table :sub_areas do |t|

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class BlogSearch
   attr_reader :results
   
