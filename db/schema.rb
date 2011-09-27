@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -86,60 +86,6 @@ ActiveRecord::Schema.define(:version => 20110926164625) do
   add_index "pension_reviews", ["pension_id"], :name => "index_pension_reviews_on_pension_id"
   add_index "pension_reviews", ["user_id"], :name => "index_pension_reviews_on_user_id"
 
-  create_table "pensionchamber", :force => true do |t|
-    t.integer "pensiondataid",                   :null => false
-    t.string  "name",            :limit => 200,  :null => false
-    t.string  "type",            :limit => 200
-    t.string  "area",            :limit => 1000
-    t.string  "price",           :limit => 1000
-    t.string  "priceadditional", :limit => 1000
-    t.string  "facilities01",    :limit => 1000
-    t.string  "facilities02",    :limit => 1000
-    t.string  "number",          :limit => 200
-    t.string  "description01",   :limit => 1000
-    t.string  "description02",   :limit => 1000
-    t.string  "seasoninfo",      :limit => 1000
-    t.string  "imageurl",        :limit => 1000
-  end
-
-  create_table "pensiondata", :force => true do |t|
-    t.integer   "pensionsetid",                    :null => false
-    t.string    "crawlertype",     :limit => 100,  :null => false
-    t.timestamp "regdate",                         :null => false
-    t.string    "name",            :limit => 1000, :null => false
-    t.string    "url",             :limit => 1000, :null => false
-    t.string    "address01",       :limit => 1000
-    t.string    "address02",       :limit => 1000
-    t.string    "mobile",          :limit => 200
-    t.string    "telephone01",     :limit => 200
-    t.string    "telephone02",     :limit => 200
-    t.string    "email",           :limit => 200
-    t.string    "manager",         :limit => 200
-    t.string    "evaluation",      :limit => 200
-    t.string    "summary",         :limit => 2000
-    t.string    "roomcount",       :limit => 1000
-    t.string    "roomstructure",   :limit => 1000
-    t.string    "roomprice",       :limit => 4000
-    t.string    "seasoninfo",      :limit => 2000
-    t.string    "checkinout",      :limit => 200
-    t.string    "servicecharge",   :limit => 200
-    t.string    "includetax",      :limit => 200
-    t.string    "location",        :limit => 200
-    t.string    "locationx",       :limit => 200
-    t.string    "locationy",       :limit => 200
-    t.string    "locationextra",   :limit => 1000
-    t.string    "creditcard",      :limit => 200
-    t.string    "pet",             :limit => 200
-    t.string    "breakfast",       :limit => 200
-    t.string    "foreignlanguage", :limit => 200
-    t.string    "pickupservice",   :limit => 200
-    t.string    "parking",         :limit => 200
-    t.string    "facilities01",    :limit => 1000
-    t.string    "facilities02",    :limit => 1000
-    t.string    "foodcourt",       :limit => 200
-    t.string    "babycarriage",    :limit => 200
-  end
-
   create_table "pensions", :force => true do |t|
     t.integer  "area_id"
     t.integer  "sub_area_id"
@@ -152,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20110926164625) do
     t.string   "email"
     t.string   "manager"
     t.integer  "rating"
-    t.string   "summary"
+    t.text     "summary"
     t.string   "rooms_count"
     t.string   "room_structure"
     t.integer  "min_price"
@@ -185,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20110926164625) do
   create_table "rooms", :force => true do |t|
     t.integer  "pension_id"
     t.string   "title"
-    t.string   "type"
+    t.string   "room_type"
     t.string   "area"
     t.string   "price"
     t.string   "additional_price"
