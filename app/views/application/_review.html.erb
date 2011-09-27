@@ -1,77 +1,35 @@
 <div id="pension-review-title"></div>
 <div id="pension-review-write">
-  <div class="face">
-    <img src="../../assets/images/show_side_friend_id0000_face.png" alt="" title="김풍기" />
-  </div>
-  <textarea id="input_review" name="input_review" rows="5">관광지에 대한 리뷰를 작성해주세요.</textarea>
-  <div id="commit_review">
-    <span class="checkbox"><label>페이스북 게시</label><input type="checkbox" /></span>
-    <input type="image" value="" src="../../assets/images/show_pension_review_submit_button.png" id="submit-review" />
-  </div>
+  <%= form_tag '/reviews', :method => :post do %>
+    <%= hidden_field_tag "review[#{params[:controller].singularize}_id]", params[:id] %>
+    <div class="face">
+      <img src="/assets/show_side_friend_id0000_face.png" alt="" title="김풍기" />
+    </div>
+    <textarea id="input_review" name="review[content]" rows="5">관광지에 대한 리뷰를 작성해주세요.</textarea>
+    <div id="commit_review">
+      <span class="checkbox"><label>페이스북 게시</label><input type="checkbox" name="facebook" /></span>
+      <%= image_submit_tag 'show_pension_review_submit_button.png', :id => 'submit-review' %>
+    </div>
+  <% end %>
 </div>
 <div id="pension-review-list">
   <ul>
+  <% @reviews.each do |review| %>
     <li>
       <div class="reply_icon"></div>
       <div class="face">
-        <img src="../../assets/images/show_side_friend_id0000_face.png" alt="" title="김풍기" />
+        <img src="/assets/show_side_friend_id0000_face.png" alt="" title="김풍기" />
       </div>
-      <div class="content">1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.</div>
+      <div class="content">
+        <%= review.content %>
+        <%= content_tag :span, "#{time_ago_in_words(review.created_at)} 전" %>
+        <%= link_to 'x', review_path(review, :type => params[:controller].singularize), :method => :delete %>
+      </div>
       <div class="like">좋아요</div>
     </li>
-    <li>
-      <div class="reply_icon"></div>
-      <div class="face">
-        <img src="../../assets/images/show_side_friend_id0000_face.png" alt="" title="김풍기" />
-      </div>
-      <div class="content_fb">1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.</div>
-      <div class="like">좋아요</div>
-    </li>
-    <li class="reviews hide">
-      <div class="reply_icon"></div>
-      <div class="face">
-        <img src="../../assets/images/show_side_friend_id0000_face.png" alt="" title="김풍기" />
-      </div>
-      <div class="content">1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.</div>
-      <div class="like">좋아요</div>
-    </li>
-    <li class="reviews hide">
-      <div class="reply_icon"></div>
-      <div class="face">
-        <img src="../../assets/images/show_side_friend_id0000_face.png" alt="" title="김풍기" />
-      </div>
-      <div class="content">1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.1박2일 추월산 괜찮습니다.</div>
-      <div class="like">좋아요</div>
-    </li>
-    <li class="reviews hide">
-      <div class="reply_icon"></div>
-      <div class="face">
-        <img src="../../assets/images/show_side_friend_id0000_face.png" alt="" title="김풍기" />
-      </div>
-      <div class="content">1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.<br/>1박2일 추월산 괜찮습니다.</div>
-      <div class="like">좋아요</div>
-    </li>
+  <% end %>
   </ul>
 </div>
 <div id="pension-review-more"><span>21개 더보기</span></div>
-
-<%= form_tag '/reviews', :method => :post do %>
-  <%= hidden_field_tag "review[#{params[:controller].singularize}_id]", params[:id] %>
-  <%= text_area_tag 'review[content]' %>
-  <% if graph %>
-    <%= check_box_tag 'facebook', true, :checked => true %>facebook
-  <% end %>
-  <%= submit_tag "등록" %>
-<% end %>
-
-<ul id="review_list">
-<% @reviews.each do |review| %>
-  <li class="review">
-    <%= content_tag :span, "#{time_ago_in_words(review.created_at)} 전" %>
-    <%= review.content %>
-    <%= link_to 'x', review_path(review, :type => params[:controller].singularize), :method => :delete %>
-  </li>
-<% end %>
-</ul>
 <%= paginate @reviews, :remote => true,
 :params => {:controller => :reviews, :action => :index, :type => params[:controller]} %>

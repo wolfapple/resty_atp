@@ -3,7 +3,7 @@ namespace :resty do
   desc 'Insert into data from pensiondata to pensions'
   task :insert_pensions => :environment do
     PensionData.all.each do |pension|
-      Pension.create({
+      new_pension = Pension.create({
         :title => pension.name,
         :url => pension.url,
         :addr => pension.address01,
@@ -32,26 +32,23 @@ namespace :resty do
         :foodcourt => pension.foodcourt,
         :baby => pension.babycarriage
       })
-    end
-  end
-
-  desc 'Insert into data from pensionchamber to room'
-  task :insert_rooms => :environment do
-    PensionChamber.all.each do |room|
-      Room.create({
-        :title => room.name,
-        :type => room.type,
-        :area => room.area,
-        :price => room.price,
-        :additional_price => room.priceadditional,
-        :facilities => room.facilities01,
-        :facilities2 => room.facilities02,
-        :number => room.number,
-        :desc => room.description01,
-        :desc2 => room.description02,
-        :season_info => room.seasoninfo,
-        :image => room.imageurl
-      })
+      pension.rooms.each do |room|
+        Room.create({
+          :pension_id => new_pension.id,
+          :title => room.name,
+          :type => room.type,
+          :area => room.area,
+          :price => room.price,
+          :additional_price => room.priceadditional,
+          :facilities => room.facilities01,
+          :facilities2 => room.facilities02,
+          :number => room.number,
+          :desc => room.description01,
+          :desc2 => room.description02,
+          :season_info => room.seasoninfo,
+          :image => room.imageurl
+        })
+      end
     end
   end
   
@@ -96,13 +93,9 @@ namespace :resty do
     end
   end
   
-  desc 'truncate rooms'
-  task :reset_rooms => :environment do
+  desc 'truncate tables'
+  task :truncate => :environment do
     ActiveRecord::Base.connection.execute("TRUNCATE #{Room.table_name}")
-  end
-  
-  desc 'truncate pensions'
-  task :reset_pensions => :environment do
     ActiveRecord::Base.connection.execute("TRUNCATE #{Pension.table_name}")
   end
   
@@ -118,7 +111,5 @@ namespace :resty do
     end
   end
   
-  task :all_reset => [:reset_rooms, :reset_pensions]
-  task :insert_data => [:insert_pensions, :insert_rooms]
-  task :insert_data_reset => [:all_reset, :insert_data]
+  task :all => [:truncate, :insert_pensions, :area_match, :update_pensions_count]
 end

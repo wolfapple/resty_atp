@@ -1,4 +1,4 @@
-<div id="show-sidebar">
+<div id="sidebar">
   <%= render 'show_sidebar' %>
 </div>
 
@@ -33,19 +33,14 @@
         <div id="pension-info-price">10 ~ 20 만원</div>
         <div id="pension-info-phone">031-454-5484</div>
         <div id="pension-info-room"></div>
+        <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
+        <%= link_to '객실정보', pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
       </div>
     </div>
 
     <div id="show-footer">
-      <div id="navi-map">
-        <div id="openCloseIdentifier"></div>
-        <div id="map"></div>
-        <div id="map-toggle"></div>
-      </div>
-      <div id="map-rect"></div>
-
-      <script type="text/javascript">inputMarker(37.5708277, 128.4099873, "pension");</script>
-      <div class="line_green"></div>
+      <%= render 'map' %>
+      <div class="line-green"></div>
     </div>
     <div id="pension-review">
       <%= render 'review' %>
@@ -62,11 +57,5 @@
         <%= paginate @blog_reviews %>
       </div>
     </div>
-          
-  
-    <h1><%= @pension.title %></h1>
-    <p>펜션 설명 블라블라블라...</p>
-    <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
-    <%= link_to '객실정보', pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
   </div>
 </div>

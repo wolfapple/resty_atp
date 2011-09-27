@@ -1,13 +1,11 @@
 // Place all the styles related to the pensions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#list-sidebar {
-	position: relative;
+#sidebar {
 	float: left;
 	width: 228px;
 	margin: 22px 27px 0px 10px;
 	h3 {
-		width: 228px;
 		height: 46px;
 		text-indent: -5000px;
 		white-space: nowrap;
@@ -16,27 +14,20 @@
 	}
 	.themes_box h3 {
 		background-image: url("/assets/list_side_themes_header.png");
-		background-repeat: no-repeat;
 	}
 	.prices_box h3 {
 		background-image: url("/assets/list_side_prices_header.png");
-		background-repeat: no-repeat;
 	}
 	.facilities_box h3 {
 		background-image: url("/assets/list_side_facilities_header.png");
-		background-repeat: no-repeat;
 	}
 	.must_visit_banner {
-		position: relative;
 		background-image: url("/assets/list_side_must_visit_bg.png");
-		background-repeat: no-repeat;
-		width: 229px;
 		height: 183px;
 		margin: 20px 0px 30px 0px;
 		h3 {
 			position: absolute;
 			background-image: url("/assets/list_side_must_visit_watermark.png");
-			background-repeat: no-repeat;
 			width: 123px;
 			height: 124px;
 			margin: 30px 0px 0px 50px;
@@ -53,8 +44,6 @@
 	}
 	.box_footer {
 		background-image: url("/assets/list_side_box_footer.png");
-		background-repeat: no-repeat;
-		width: 228;
 		height: 8px;
 	}
 	ul {
@@ -63,8 +52,7 @@
 		list-style: none;
 	}
 	ul li {
-		width: 228;
-		height: 28x;
+		height: 28px;
 		padding-left: 40px;
 		line-height: 28px;
 	}
@@ -81,14 +69,12 @@
 	}
 	.checked{
 		background-image: url("/assets/list_side_facilities_check_on.png");
-		background-repeat: no-repeat;
 		width: 16px;
 		height: 18px;
 		padding-top: 3px;
 	}
 	.unchecked{
 		background-image: url("/assets/list_side_facilities_check_off.png");
-		background-repeat: no-repeat;
 		width: 16px;
 		height: 18px;
 		padding-top: 3px;
@@ -102,29 +88,9 @@
 	.facilities_box li {
 		padding-left: 20px;
 	}
-}
-
-#show-sidebar {
-  position: relative;
-  float: left;
-  width: 228px;
-  margin: 22px 27px 0px 10px;
-	h3 {
-	  width: 228px;
-	  height: 46px;
-	  text-indent: -5000px;
-	  white-space: nowrap;
-	  margin: 0px;
-	}
-	ul {
-		padding: 0px;
-		margin: 0px;
-		list-style: none;
-	}
 	.friends-activities-box {
 		h3 {
 			background-image: url("/assets/show_side_friends_activities_header.png");
-			background-repeat: no-repeat;
 	    margin: 15px 0px 0px 0px;
 		}
 		li {
@@ -145,14 +111,13 @@
 		}
 		.footer {
 			background-image: url("/assets/show_side_box_body.png");
-		  width: 228px;
 		  height: 20px;
 		}
 	}
 	.near-pensions-box {
 		h3 {
 			background-image: url("/assets/show_side_near_pensions_header.png");
-			background-repeat: no-repeat;
+			margin: 0px;
 		}
 		li {
 			background-image: url("/assets/show_side_near_pensions_body.png");
@@ -192,33 +157,7 @@
 			margin-top: -2px;
 		}
 	}
-	.must-visit-banner {
-		position: relative;
-		background-image: url("/assets/list_side_must_visit_bg.png");
-		background-repeat: no-repeat;
-		width: 229px;
-		height: 183px;
-		margin: 20px 0px 30px 0px;
-		h3 {
-			psosition: absolute;
-			background-image: url("/assets/list_side_must_visit_watermark.png");
-			background-repeat: no-repeat;
-			width: 123px;
-			height: 124px;
-			margin: 30px 0px 0px 50px;
-			filter: alpha(opacity=80);
-		  opacity: 0.8;
-		  -moz-opacity: 0.8;	
-			z-index: 1;
-		}
-		img {
-			position: absolute;
-			margin: 1px 0px 0px 1px;
-			z-index: 0;
-		}
-	}
 }
-
 #main_content {
 	float: right;
 	width: 720px;
@@ -285,44 +224,44 @@
 			background-repeat: no-repeat;
 			padding-left: 15px;
 		}
-		.map {
+	}
+	.map {
+		width: 705px;
+		height: 65px;
+		margin: 20px 0px 0px 1px;
+		#map {
+			position: absolute;
 			width: 705px;
 			height: 65px;
-			margin: 20px 0px 0px 1px;
-			#map {
-				position: absolute;
-				width: 705px;
-				height: 65px;
-			}
-			#map_toggle {
+		}
+		#map_toggle {
+			position: absolute;
+			float: top;
+			background-image: url("/assets/list_map_button.png");
+			background-repeat: no-repeat;
+			width: 705px;
+			height: 65px;
+			margin: 0px;
+			filter: alpha(opacity=70);
+			opacity: 0.7;
+			-moz-opacity: 0.7;
+			.open {
 				position: absolute;
 				float: top;
-				background-image: url("/assets/list_map_button.png");
+				background-image: url("/assets/list_map_button_.png");
 				background-repeat: no-repeat;
 				width: 705px;
-				height: 65px;
+				height: 10px;
 				margin: 0px;
 				filter: alpha(opacity=70);
 				opacity: 0.7;
 				-moz-opacity: 0.7;
-				.open {
-					position: absolute;
-					float: top;
-					background-image: url("/assets/list_map_button_.png");
-					background-repeat: no-repeat;
-					width: 705px;
-					height: 10px;
-					margin: 0px;
-					filter: alpha(opacity=70);
-					opacity: 0.7;
-					-moz-opacity: 0.7;
-				}
 			}
 		}
-		.map_rect {
-			width: 705px;
-			height: 10px;
-		}
+	}
+	#map_rect {
+		width: 705px;
+		height: 10px;
 	}
 	#pension-list {
 		position: relative;
@@ -611,59 +550,18 @@
 				}
 			}
 		}
+		#show-footer {
+			clear: both;
+		}
+		#pension-review {
+			
+		}
 	}
-}
-
-#pension-show #show-footer {
-	clear: both;
-}
-
-#pension-show #navi-map {
-    width: 705px;
-    height: 65px;
-    margin: 0px 0px 0px 1px;
-}
-
-#pension-show #map {
-	position: absolute;
-    width: 705px;
-    height: 65px;
-}
-
-#pension-show #map-rect {
-    width: 705px;
-    height: 10px;
-}
-
-#pension-show #map-toggle {
-	position: absolute;
-	float: top;
-	background-image: url("../../assets/images/list_map_button.png");
-	background-repeat: no-repeat;
-    width: 705px;
-    height: 65px;
-    margin: 0px;
-    filter: alpha(opacity=70);
-    opacity: 0.7;
-    -moz-opacity: 0.7;
-}
-
-#pension-show #map-toggle.open {
-	position: absolute;
-	float: top;
-	background-image: url("../../assets/images/list_map_button_.png");
-	background-repeat: no-repeat;
-    width: 705px;
-    height: 10px;
-    margin: 0px;
-    filter: alpha(opacity=70);
-    opacity: 0.7;
-    -moz-opacity: 0.7;
 }
 
 
 #pension-show #pension-review #pension-review-title {
-	background-image: url("../../assets/images/show_pension_review_title.png");
+	background-image: url("/assets/show_pension_review_title.png");
 	background-repeat: no-repeat;
 	width: 705px;
 	height: 35px;
@@ -688,7 +586,7 @@
 }
 
 #pension-show .checked {
-	background-image: url("../../assets/images/list_side_facilities_check_on.png");
+	background-image: url("/assets/list_side_facilities_check_on.png");
 	background-repeat: no-repeat;
 	width: 16px;
 	height: 18px;
@@ -696,7 +594,7 @@
 }
 
 #pension-show .unchecked {
-	background-image: url("../../assets/images/list_side_facilities_check_off.png");
+	background-image: url("/assets/list_side_facilities_check_off.png");
 	background-repeat: no-repeat;
 	width: 16px;
 	height: 18px;
@@ -720,7 +618,7 @@
 
 #pension-show #pension-review #pension-review-list li {
 	position: relative;
-	background-image: url("../../assets/images/show_pension_review_dot.png");
+	background-image: url("/assets/show_pension_review_dot.png");
 	background-repeat: repeat-x;
 	width: 705px;
 	margin: 0px;
@@ -729,7 +627,7 @@
 
 #pension-review-list .reply_icon {
 	float: left;
-	background-image: url("../../assets/images/show_pension_review_reply_icon.png");
+	background-image: url("/assets/show_pension_review_reply_icon.png");
 	background-repeat: no-repeat;
 	width: 20px;
 	height: 18px;
@@ -759,7 +657,7 @@
 
 #pension-review-list .content_fb {
 	float: left;
-	background-image: url("../../assets/images/show_pension_review_content_bg.png");
+	background-image: url("/assets/show_pension_review_content_bg.png");
 	background-repeat: no-repeat;
 	width: 490px;
 	margin-top: 17px;
@@ -775,7 +673,7 @@
 
 #pension-review-more {
 	clear: both;
-	background-image: url("../../assets/images/show_pension_review_more_button.png");
+	background-image: url("/assets/show_pension_review_more_button.png");
 	background-repeat: no-repeat;
 	width: 707px;
 	height: 24px;
@@ -790,4 +688,12 @@
 
 #pension-review-list ul li.hide {
     display: none;
+}
+
+#blog-review-title {
+	background-image: url("/assets/show_blog_review_title.png");
+	background-repeat: no-repeat;
+	width: 705px;
+	height: 35px;
+	margin-top: 40px;
 }
