@@ -36,7 +36,7 @@ namespace :resty do
         Room.create({
           :pension_id => new_pension.id,
           :title => room.name,
-          :type => room.type,
+          :room_type => room.type,
           :area => room.area,
           :price => room.price,
           :additional_price => room.priceadditional,

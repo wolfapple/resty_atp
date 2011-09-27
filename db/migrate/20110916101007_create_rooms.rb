@@ -4,7 +4,7 @@ class CreateRooms < ActiveRecord::Migration
     create_table :rooms do |t|
       t.references :pension
       t.string :title
-      t.string :type
+      t.string :room_type
       t.string :area
       t.string :price
       t.string :additional_price
