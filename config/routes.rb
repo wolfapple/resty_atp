@@ -1,9 +1,9 @@
 # -*- encoding : utf-8 -*-
 RestyAtp::Application.routes.draw do  
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-
+  # ActiveAdmin.routes(self)
+    
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  
   # login, logout
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
@@ -30,9 +30,9 @@ RestyAtp::Application.routes.draw do
   end
   resources :areas do
     resources :pensions
-    resources :sub_areas do
-      resources :pensions
-    end
+  end
+  resources :sub_areas do
+    resources :pensions
   end
   resources :spots
   resources :reviews

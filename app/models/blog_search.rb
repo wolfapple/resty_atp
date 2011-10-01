@@ -4,10 +4,18 @@ class BlogSearch
   
   KEY = "c62d07d4a31a2879995b51ac4f0af84f"
   
-  def initialize(query, total)
-    url = "http://openapi.naver.com/search?key=#{BlogSearch::KEY}&query=#{URI.escape(query)}&display=#{total}&start=1&target=blog&sort=sim"
-    require 'open-uri'
-    doc = Nokogiri::XML(open(url))
+  def initialize(query, total, cache_key)
+    begin
+      cache = "tmp/cache/blog_xml/#{cache_key}.xml"
+      doc = Nokogiri::XML(open(cache))
+    rescue
+      url = "http://openapi.naver.com/search?key=#{BlogSearch::KEY}&query=#{URI.escape(query)}&display=#{total}&start=1&target=blog&sort=sim"
+      require 'open-uri'
+      doc = Nokogiri::XML(open(url))
+      cache = File.new("tmp/cache/blog_xml/#{cache_key}.xml", "w")
+      cache.write(doc.to_xml)
+      cache.close
+    end
     @results = doc.xpath('//item').map do |i|
       BlogItem.new(i.xpath('title').inner_text, i.xpath('link').inner_text, i.xpath('description'))
     end

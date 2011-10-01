@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/thedarkone/rails-dev-boost.git
+  revision: 216de40f33fe794e19c492c283d69d4911cab741
+  specs:
+    rails-dev-boost (0.1.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -199,6 +205,7 @@ DEPENDENCIES
   nokogiri
   pry
   rails (= 3.1.0)
+  rails-dev-boost!
   sass-rails (~> 3.1.0)
   sorcery
   therubyracer

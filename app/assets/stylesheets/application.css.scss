@@ -1,11 +1,16 @@
 @import "main";
 @import "pensions";
+@import "jquery-ui/jquery-ui-1.8.16.custom";
+@import "colorbox";
 
 body, form, div {
 	font-family: Tahoma,Dotum;
 	font-size: 9pt;
 	color: #333;
 	margin: 0px;
+}
+img {
+	border: none;
 }
 a {
 	text-decoration: none;

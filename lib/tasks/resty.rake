@@ -1,57 +1,5 @@
 # -*- encoding : utf-8 -*-
-namespace :resty do
-  desc 'Insert into data from pensiondata to pensions'
-  task :insert_pensions => :environment do
-    PensionData.all.each do |pension|
-      new_pension = Pension.create({
-        :title => pension.name,
-        :url => pension.url,
-        :addr => pension.address01,
-        :mobile => pension.mobile,
-        :phone => pension.telephone01,
-        :phone2 => pension.telephone02,
-        :email => pension.email,
-        :manager => pension.manager,
-        :rating => (pension.evaluation[5..6].to_i if pension.evaluation),
-        :summary => pension.summary,
-        :rooms_count => pension.roomcount,
-        :room_structure => pension.roomstructure,
-        :season_info => pension.seasoninfo,
-        :checkin => pension.checkinout,
-        :service_charge => pension.servicecharge,
-        :tax_include => pension.includetax,
-        :lat => pension.locationx,
-        :lng => pension.locationy,
-        :credit_card => pension.creditcard,
-        :pet => pension.pet,
-        :breakfast => pension.breakfast,
-        :foreign_language => pension.foreignlanguage,
-        :pickup => pension.pickupservice,
-        :facilities => pension.facilities01,
-        :facilities2 => pension.facilities02,
-        :foodcourt => pension.foodcourt,
-        :baby => pension.babycarriage
-      })
-      pension.rooms.each do |room|
-        Room.create({
-          :pension_id => new_pension.id,
-          :title => room.name,
-          :room_type => room.room_type,
-          :area => room.area,
-          :price => room.price,
-          :additional_price => room.priceadditional,
-          :facilities => room.facilities01,
-          :facilities2 => room.facilities02,
-          :number => room.number,
-          :desc => room.description01,
-          :desc2 => room.description02,
-          :season_info => room.seasoninfo,
-          :image => room.imageurl
-        })
-      end
-    end
-  end
-  
+namespace :resty do  
   desc 'add area_id to pension'
   task :area_match => :environment do
     Area.all.each do |area|
@@ -93,12 +41,6 @@ namespace :resty do
     end
   end
   
-  desc 'truncate tables'
-  task :truncate => :environment do
-    ActiveRecord::Base.connection.execute("TRUNCATE #{Room.table_name}")
-    ActiveRecord::Base.connection.execute("TRUNCATE #{Pension.table_name}")
-  end
-  
   desc 'update pensions_count'
   task :update_pensions_count => :environment do
     Area.update_all :pensions_count => 0
@@ -110,6 +52,4 @@ namespace :resty do
       sub_area.update_attributes({:pensions_count => sub_area.pensions.count})
     end
   end
-  
-  task :all => [:truncate, :insert_pensions, :area_match, :update_pensions_count]
 end

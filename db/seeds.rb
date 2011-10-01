@@ -10,3 +10,5 @@ require 'active_record/fixtures'
   
 Fixtures.create_fixtures("#{Rails.root}/test/fixtures", "areas")
 Fixtures.create_fixtures("#{Rails.root}/test/fixtures", "sub_areas")
+Fixtures.create_fixtures("#{Rails.root}/test/fixtures", "themes")
+Fixtures.create_fixtures("#{Rails.root}/test/fixtures", "facilities")

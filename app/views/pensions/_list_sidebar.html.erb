@@ -1,14 +1,29 @@
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#sidebar h3').click(function() {
+      $(this).toggleClass('hide');
+      $(this).next('ul').children('.toggle-list').toggleClass('hide');
+    });
+
+    $(".checkbox").click(function() {
+  		if($(this).children('input').attr('checked')) {
+  		  $(this).children('input').attr('checked', '');
+  		} else {
+  		  $(this).children('input').attr('checked', 'checked');
+  		}
+  		$(this).toggleClass('unchecked');
+  		$(this).toggleClass('checked');
+    });
+  });
+</script>
 <div class="themes_box">
   <h3>테마</h3>
   <ul>
-    <% Theme.all.each do |theme| %>
-      <li class="<%= cycle('odd', 'even') %>"><%= link_to theme.title, theme_pensions_path(theme) %>
+    <% Theme.all.each_with_index do |theme, idx| %>
+      <li class="<%= cycle('odd', 'even') %><%= ' toggle-list hide' if idx > 4 %>">
+        <%= link_to theme.title, theme_pensions_path(theme) %>
+      </li>
     <% end %>
-    <li class="li_even hide">산 근처</li>
-    <li class="li_odd hide">자전거 펜션</li>
-    <li class="li_even hide">1박 2일 펜션</li>
-    <li class="li_odd hide">수련회, 워크샵</li>
-    <li class="li_even hide">축제</li>
   </ul>
   <div class="box_footer"></div>
 </div>
@@ -27,11 +42,11 @@
 <div class="facilities_box">
   <h3 id="facilities">시설</h3>
   <ul>
-    <li class="odd"><span class="checkbox"><label>스파, 월풀</label><input type="checkbox" /></span></li>
-    <li class="even"><span class="checkbox"><label>수영장</label><input type="checkbox" /></span></li>
-    <li class="odd"><span class="checkbox"><label>프로젝터</label><input type="checkbox" /></span></li>
-    <li class="even hide"><span class="checkbox"><label>세미나실</label><input type="checkbox" /></span></li>
-    <li class="odd hide"><span class="checkbox"><label>조식</label><input type="checkbox" /></span></li>
+  <% Facility.all.each_with_index do |facility, idx| %>
+    <li class="<%= cycle('odd', 'even') %><%= ' toggle-list hide' if idx > 4 %>">
+      <span class="checkbox unchecked"><label><%= facility.title %></label><input type="checkbox" /></span>
+    </li>
+  <% end %>
   </ul>
   <div class="box_footer"></div>
 </div>

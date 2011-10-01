@@ -9,3 +9,8 @@ two:
   area_id: 1
   sub_area_id: 1
   spot: morning
+
+three:
+  area_id: 1
+  sub_area_id: 3
+  spot: kyungpo

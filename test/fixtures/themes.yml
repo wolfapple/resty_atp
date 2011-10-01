@@ -1,13 +1,81 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
 
 spa:
-  title: 스파
+  id: 1
+  title: 스파/월풀
   pensions_count: 2
 
-pet:
-  title: 애견
+mountain:  
+  id: 2
+  title: 휴양림
+  pensions_count: 1
+  
+sea:
+  id: 3
+  title: 바다근처
+  pensions_count: 1
+  
+festival:
+  id: 4
+  title: 축제
   pensions_count: 1
 
+pet:
+  id: 5
+  title: 애견/애묘
+  pensions_count: 1
+  
+breakfast:
+  id: 6
+  title: 조식
+  pensions_count: 1
+  
+bike:
+  id: 7
+  title: 자전거
+  pensions_count: 1
+  
+sleep:
+  id: 8
+  title: 1박2일
+  pensions_count: 1
+
+family:
+  id: 9
+  title: 가족
+  pensions_count: 1
+  
+couple:
+  id: 10
+  title: 커플
+  pensions_count: 1
+  
+trans:
+  id: 11
+  title: 대중교통
+  pensions_count: 1
+
+cheap:
+  id: 12
+  title: 10만원이하
+  pensions_count: 1
+  
+old:
+  id: 13
+  title: 고택
+  pensions_count: 1
+  
+swim:
+  id: 14
+  title: 수영장
+  pensions_count: 1
+  
 workshop:
-  title: 워크샵
+  id: 15
+  title: 수련회
   pensions_count: 2
+  
+seoul:
+  id: 16
+  title: 서울펜션
+  pensions_count: 1

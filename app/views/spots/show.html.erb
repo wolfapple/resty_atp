@@ -1,19 +1,31 @@
 <div id="sidebar">
-  <%= render 'sidebar' %>
+  <%= render 'show_sidebar' %>
 </div>
 
 <div id="main_content">
   <div class="header">
     <%= render 'header' %>
   </div>
-  <h1><%= @spot.title %></h1>
-  <p><%= @spot.desc %></p>
-  <h2>리뷰</h2>
-  <div>
-    <%= render 'review' %>
+  <div id="show-content">
+    <div class="title">
+      <h2><%= @spot.title %></h2>
+      <span>좋아요</span>
+    </div>
+    <div class="line-green"></div>
+    <div class="body">
+      <h1><%= @spot.title %></h1>
+      <p><%= @spot.desc %></p>
+    </div>
+    <div id="show-footer">
+      <%= render 'map' %>
+      <div class="line-green"></div>
+    </div>
+    <div id="show-review">
+      <%= render 'review' %>
+    </div>
   </div>
   <h2>펜션</h2>
-  <div id="pension_list">
+  <div id="pension-list">
     <%= render 'pension_list' %>
   </div>
 </div>

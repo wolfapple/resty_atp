@@ -54,6 +54,9 @@
 	background-repeat: no-repeat;
 	width: 361px;
 	height: 250px;
+	&.fb-logout {
+		background-image: url("/assets/main_fb_activities_logout_bg.png");
+	}
 }
 
 #main-facebook-activities ul {
@@ -68,6 +71,9 @@
 	width: 361px;
 	height: 212px;
 	margin: 0px;
+	&.fb-logout {
+		background-image: url("/assets/main_fb_landmarks_logout_bg.png");
+	}
 }
 
 #main-landmarks {
@@ -105,6 +111,33 @@
 	background-repeat: no-repeat;
 	width: 323px;
 	height: 293px;
+	ul {
+		padding: 45px 0px 0px 10px;
+		margin: 0px;
+		list-style: none;
+		li {
+			float: left;
+		}
+	}
+	a {
+		div {
+			background-repeat: no-repeat;
+			width: 51px;
+			height: 52px;
+			margin: 4px 13px;
+			text-indent: -9999px;
+		}
+		@for $i from 1 through 16 {
+			.theme_#{$i} {
+				background-image: url("/assets/main_themes_icon_#{$i}.png");
+			}
+			&:hover {
+				.theme_#{$i} {
+					background-image: url("/assets/main_themes_icon_#{$i}_over.png");
+				}
+			}
+		}
+	}
 }
 
 #main-must-visit-title {

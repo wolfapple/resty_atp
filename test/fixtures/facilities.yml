@@ -1,0 +1,101 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  title: 스파/월풀
+  pensions_count: 1
+
+two:
+  id: 2
+  title: 수영장
+  pensions_count: 1
+
+three:
+  id: 3
+  title: 인터넷
+  pensions_count: 1
+
+four:
+  id: 4
+  title: 에어컨
+  pensions_count: 1 
+
+five:
+  id: 5
+  title: TV
+  pensions_count: 1
+  
+six:
+  id: 6
+  title: 카페
+  pensions_count: 1
+  
+seven:
+  id: 7
+  title: 자전거
+  pensions_count: 1
+  
+eight:
+  id: 8
+  title: 찜질방
+  pensions_count: 1
+
+nine:
+  id: 9
+  title: 족구장
+  pensions_count: 1
+
+ten:
+  id: 10
+  title: 바베큐
+  pensions_count: 1
+  
+eleven:
+  id: 11
+  title: 노래방
+  pensions_count: 1
+  
+twelve:
+  id: 12
+  title: 컴퓨터
+  pensions_count: 1
+  
+thirteen:
+  id: 13
+  title: 빔프로젝터
+  pensions_count: 1
+
+fourteen:
+  id: 14
+  title: 세미나
+  pensions_count: 1
+  
+fifteen:
+  id: 15
+  title: 벽난로
+  pensions_count: 1
+  
+sixteen:
+  id: 16
+  title: 그네
+  pensions_count: 1
+  
+seventeen:
+  id: 17
+  title: 매점
+  pensions_count: 1
+  
+eighteen:
+  id: 18
+  title: 산책로
+  pensions_count: 1
+  
+nineteen:
+  id: 19
+  title: 보드게임대여
+  pensions_count: 1
+  
+twenty:
+  id: 20
+  title: 카드결제
+  pensions_count: 1

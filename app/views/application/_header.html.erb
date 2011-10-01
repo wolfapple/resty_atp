@@ -1,10 +1,12 @@
 <div class="crumbs">
-  <%= link_to '전국', pensions_path %>
+  <%= link_to @theme.title, theme_pensions_path(@theme) if @theme %>
+  <%= link_to @spot.title, spot_pensions_path(@spot) if @spot %>
+  <%= link_to '전국', pensions_path unless @theme or @spot %>
 	<% if @area %>
-		> <%= @area.title %>
+		> <%= link_to @area.title, area_pensions_path(@area) %>
 	<% end %>
 	<% if @sub_area %>
-		> <%= @sub_area.title %>
+		> <%= link_to @sub_area.title, sub_area_pensions_path(@sub_area) %>
 	<% end %>
 </div>
 
@@ -22,26 +24,32 @@
   </div>
   <div class="addr2">
     <ul>
-    <% @area.sub_areas.each do |sub_area| %>
-      <% if @sub_area == sub_area %>
-        <%= content_tag :li, sub_area.title, :class => 'selected' %>
-      <% else %>
-        <%= content_tag :li, link_to(sub_area.title, area_sub_area_pensions_path(@area, sub_area)), :class => 'dot' %>
+    <% if @area %>
+      <% @area.sub_areas.each do |sub_area| %>
+        <% if @sub_area == sub_area %>
+          <%= content_tag :li, sub_area.title, :class => 'selected' %>
+        <% else %>
+          <%= content_tag :li, link_to(sub_area.title, sub_area_pensions_path(sub_area)), :class => 'dot' %>
+        <% end %>
       <% end %>
     <% end %>
     </ul>
   </div>
 </div>
-  
+
+<% if @area %>
 <div class="spots">
   <h3>주요 관광지</h3>
   <ul>
-  <% @area.spots.each do |spot| %>
-    <% if @spot == spot %>
-      <%= content_tag :li, content_tag(:strong, spot.title) %>
-    <% else %>
-      <%= content_tag :li, link_to(spot.title, spot) %>
+  <% if @area %>
+    <% @area.spots.each do |spot| %>
+      <% if @spot == spot %>
+        <%= content_tag :li, content_tag(:strong, spot.title) %>
+      <% else %>
+        <%= content_tag :li, link_to(spot.title, spot) %>
+      <% end %>
     <% end %>
   <% end %>
 	</ul>
 </div>
+<% end %>

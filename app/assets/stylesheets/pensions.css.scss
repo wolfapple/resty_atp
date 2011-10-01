@@ -14,12 +14,21 @@
 	}
 	.themes_box h3 {
 		background-image: url("/assets/list_side_themes_header.png");
+		&.hide {
+			background-image: url("/assets/list_side_themes_header_.png");
+		}
 	}
 	.prices_box h3 {
 		background-image: url("/assets/list_side_prices_header.png");
+		&.hide {
+			background-image: url("/assets/list_side_prices_header_.png");
+		}
 	}
 	.facilities_box h3 {
 		background-image: url("/assets/list_side_facilities_header.png");
+		&.hide {
+			background-image: url("/assets/list_side_facilities_header_.png");
+		}
 	}
 	.must_visit_banner {
 		background-image: url("/assets/list_side_must_visit_bg.png");
@@ -69,12 +78,14 @@
 	}
 	.checked{
 		background-image: url("/assets/list_side_facilities_check_on.png");
+		background-repeat: no-repeat;
 		width: 16px;
 		height: 18px;
 		padding-top: 3px;
 	}
 	.unchecked{
 		background-image: url("/assets/list_side_facilities_check_off.png");
+		background-repeat: no-repeat;
 		width: 16px;
 		height: 18px;
 		padding-top: 3px;
@@ -173,6 +184,7 @@
 			height: 38px;
 			line-height: 38px;
 			padding-left: 20px;
+			font-weight: bold;
 		}
 		.nav {
 			background-image: url("/assets/list_navigator_bg_2.png");
@@ -234,7 +246,8 @@
 			width: 705px;
 			height: 65px;
 		}
-		#map_toggle {
+		#map-toggle {
+			cursor: pointer;
 			position: absolute;
 			float: top;
 			background-image: url("/assets/list_map_button.png");
@@ -245,7 +258,7 @@
 			filter: alpha(opacity=70);
 			opacity: 0.7;
 			-moz-opacity: 0.7;
-			.open {
+			&.open {
 				position: absolute;
 				float: top;
 				background-image: url("/assets/list_map_button_.png");
@@ -259,7 +272,7 @@
 			}
 		}
 	}
-	#map_rect {
+	#map-rect {
 		width: 705px;
 		height: 10px;
 	}
@@ -404,7 +417,7 @@
 			height: 3px;
 		}
 	}
-	#pension-show {
+	#show-content {
 		clear: both;
     width: 707px;
     margin: 10px 10px 20px 0px;
@@ -553,147 +566,123 @@
 		#show-footer {
 			clear: both;
 		}
-		#pension-review {
-			
+		#show-review {
+			#pension-review-title {
+				background-image: url("/assets/show_pension_review_title.png");
+				background-repeat: no-repeat;
+				width: 705px;
+				height: 35px;
+				margin-top: 40px;
+			}
+			#input_review {
+				background-color: #f3f3f3;
+				margin-top: 16px;
+				width: 490px;
+				border: 0px;
+			}
+			input[type="checkbox"] {
+			    display: none;
+			}
+			.checkbox {
+			    padding-left: 20px;
+			    margin: 0px;
+			    cursor: pointer;
+			}
+			.checked {
+				background-image: url("/assets/list_side_facilities_check_on.png");
+				background-repeat: no-repeat;
+				width: 16px;
+				height: 18px;
+				padding-top: 3px;
+			}
+			.unchecked {
+				background-image: url("/assets/list_side_facilities_check_off.png");
+				background-repeat: no-repeat;
+				width: 16px;
+				height: 18px;
+				padding-top: 3px;
+			}
+			#commit_review {
+				float: right;
+				width: 120px;
+				margin-top: 30px;
+			}
+			#submit-review {
+				margin-top: 15px;
+			}
+			#pension-review-list {
+				ul {
+					list-style: none;
+					padding: 0px;
+				}
+				li {
+					position: relative;
+					background-image: url("/assets/show_pension_review_dot.png");
+					background-repeat: repeat-x;
+					width: 705px;
+					margin: 0px;
+					float: right;
+				}
+				.reply_icon {
+					float: left;
+					background-image: url("/assets/show_pension_review_reply_icon.png");
+					background-repeat: no-repeat;
+					width: 20px;
+					height: 18px;
+					margin: 30px 20px;
+				}
+			}
+			.face {
+				float: left;
+				background-color: #ccc;
+				width: 45px;
+				height: 47px;
+				margin: 18px 15px;
+				img {
+					width: 45px;
+					height: 47px;
+					margin: -2px 0px 0px -2px;
+				}
+			}
+			.content {
+				float: left;
+				width: 490px;
+				margin-top: 17px;
+				padding: 0px 10px 20px 0px;
+			}
+			.content_fb {
+				float: left;
+				background-image: url("/assets/show_pension_review_content_bg.png");
+				background-repeat: no-repeat;
+				width: 490px;
+				margin-top: 17px;
+				padding: 30px 10px 20px 0px;
+			}
+			.like {
+				float: right;
+				width: 70px;
+				margin-top: 17px;
+				padding: 30px 0px 0px 0px;
+			}
+		}
+		#pension-review-more {
+			clear: both;
+			background-image: url("/assets/show_pension_review_more_button.png");
+			background-repeat: no-repeat;
+			width: 707px;
+			height: 24px;
+		}
+		#pension-review-more > span {
+			float: right;
+			color: #fff;
+			margin: 3px 330px 0px 0px;
+		}
+		#blog-review-title {
+			background-image: url("/assets/show_blog_review_title.png");
+			background-repeat: no-repeat;
+			width: 705px;
+			height: 35px;
+			margin-top: 40px;
 		}
 	}
-}
-
-
-#pension-show #pension-review #pension-review-title {
-	background-image: url("/assets/show_pension_review_title.png");
-	background-repeat: no-repeat;
-	width: 705px;
-	height: 35px;
-	margin-top: 40px;
-}
-
-#pension-show #pension-review #input_review {
-	background-color: #f3f3f3;
-	margin-top: 16px;
-	width: 490px;
-	border: 0px;
-}
-
-#pension-show input[type="checkbox"] {
-    display: none;
-}
-
-#pension-show .checkbox {
-    padding-left: 20px;
-    margin: 0px;
-    cursor: pointer;
-}
-
-#pension-show .checked {
-	background-image: url("/assets/list_side_facilities_check_on.png");
-	background-repeat: no-repeat;
-	width: 16px;
-	height: 18px;
-	padding-top: 3px;
-}
-
-#pension-show .unchecked {
-	background-image: url("/assets/list_side_facilities_check_off.png");
-	background-repeat: no-repeat;
-	width: 16px;
-	height: 18px;
-	padding-top: 3px;
-}
-
-#pension-show #pension-review #commit_review {
-	float: right;
-	width: 120px;
-	margin-top: 30px;
-}
-
-#pension-show #pension-review #submit-review {
-	margin-top: 15px;
-}
-
-#pension-show #pension-review #pension-review-list ul {
-	list-style: none;
-	padding: 0px;
-}
-
-#pension-show #pension-review #pension-review-list li {
-	position: relative;
-	background-image: url("/assets/show_pension_review_dot.png");
-	background-repeat: repeat-x;
-	width: 705px;
-	margin: 0px;
-	float: right;
-}
-
-#pension-review-list .reply_icon {
-	float: left;
-	background-image: url("/assets/show_pension_review_reply_icon.png");
-	background-repeat: no-repeat;
-	width: 20px;
-	height: 18px;
-	margin: 30px 20px;
-}
-
-#pension-review .face {
-	float: left;
-	background-color: #ccc;
-	width: 45px;
-	height: 47px;
-	margin: 18px 15px;
-}
-
-#pension-review .face img {
-	width: 45px;
-	height: 47px;
-	margin: -2px 0px 0px -2px;
-}
-
-#pension-review-list .content {
-	float: left;
-	width: 490px;
-	margin-top: 17px;
-	padding: 0px 10px 20px 0px;
-}
-
-#pension-review-list .content_fb {
-	float: left;
-	background-image: url("/assets/show_pension_review_content_bg.png");
-	background-repeat: no-repeat;
-	width: 490px;
-	margin-top: 17px;
-	padding: 30px 10px 20px 0px;
-}
-
-#pension-review-list .like {
-	float: right;
-	width: 70px;
-	margin-top: 17px;
-	padding: 30px 0px 0px 0px;
-}
-
-#pension-review-more {
-	clear: both;
-	background-image: url("/assets/show_pension_review_more_button.png");
-	background-repeat: no-repeat;
-	width: 707px;
-	height: 24px;
-	
-}
-
-#pension-review-more > span {
-	float: right;
-	color: #fff;
-	margin: 3px 330px 0px 0px;
-}
-
-#pension-review-list ul li.hide {
-    display: none;
-}
-
-#blog-review-title {
-	background-image: url("/assets/show_blog_review_title.png");
-	background-repeat: no-repeat;
-	width: 705px;
-	height: 35px;
-	margin-top: 40px;
 }
