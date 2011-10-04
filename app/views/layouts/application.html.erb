@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>새로운 펜션 검색, 레스티</title>
+  <title><%= title %></title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta property="fb:app_id" content="267286263291604"/>
 </head>
 <body id="<%= params[:controller].parameterize %>_controller">
+  <div id="fb-root"></div>
+  <script src="http://connect.facebook.net/ko_KR/all.js"></script>
+  <script>
+     FB.init({appId:'267286263291604', status:true, xfbml:true});
+  </script>
   <div id="header">
     <div id="title" class="wrapper">
       <%= link_to image_tag('header_logo.png', :class => 'logo'), root_url %>
@@ -15,15 +21,13 @@
       <% if current_user %>
         <div id="logout">
           <%= image_tag graph.get_picture('me') if graph %>
+          <%= current_user.email %>님 환영합니다.
           <%= link_to 'My Resty', current_user %> |
           <%= link_to 'Logout', :logout %>
         </div>
       <% else %>
         <div id="login_fb">
           <%= link_to image_tag('header_login_facebook.png'), auth_at_provider_path(:provider => :facebook) %>
-        </div>
-        <div id="login_resty">
-          <%= link_to image_tag('header_login_button.png'), :login %>
         </div>
       <% end %>
       </div>

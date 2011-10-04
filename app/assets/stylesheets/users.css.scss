@@ -1,3 +1,364 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+/* my menu */
+#mymenu-box ul li {
+	background-image: url("/assets/mymenu_side_box_body.png");
+	height: 43px;
+	line-height: 43px;
+}
+
+#mymenu-box ul li span {
+	font-weight: bold;
+	color: #396;
+}
+
+#mymenu-box > h3 {
+	background-image: url("/assets/mymenu_side_header.png");
+	background-repeat: no-repeat;
+}
+
+#myresty {
+    position: relative;
+    float: right;
+    margin: 37px 10px 0px 0px;
+}
+
+#myresty ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#myresty ul li {
+    padding: 20px;
+    margin: 0px;
+    border-top: solid 1px #ccc;
+}
+
+#myresty ul li.odd{
+    background-color: #f8f8f8;
+}
+
+#favorite-resty {
+    margin-bottom: 80px;
+}
+
+#favorite-resty-title {
+	position: relative;
+}
+
+#favorite-resty-title > h3 {
+	background-image: url("/assets/mymenu_myresty_favorite_resty_title.png");
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 24px;
+    padding: 0px;
+    margin: 4px 0px;
+    text-indent: -5000px;
+}
+
+#favorite-resty-title .category {
+    position: absolute;
+    float: top right;
+    right: 0px;
+    top: 0px;
+    line-height: 24px;
+}
+
+#favorite-resty-page {
+    position: relative;
+    float: right;
+    margin-top: 10px;
+}
+
+#favorite-resty-page > a {
+    padding: 10px;
+}
+
+#favorite-resty-page > span {
+    padding: 10px;
+    font-weight: bold;
+}
+
+#click-pension {
+    margin-bottom: 80px;
+}
+
+#click-pension-title {
+	position: relative;
+}
+
+#click-pension-title > h3 {
+	background-image: url("/assets/mymenu_myresty_click_pension_title.png");
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 24px;
+    padding: 0px;
+    margin: 4px 0px;
+    text-indent: -5000px;
+}
+
+#click-pension-title .category {
+    position: absolute;
+    float: top right;
+    right: 0px;
+    top: 0px;
+    line-height: 24px;
+}
+
+#click-pension-page {
+    position: relative;
+    float: right;
+    margin-top: 10px;
+}
+
+#click-pension-page > a {
+    padding: 10px;
+}
+
+#click-pension-page > span {
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+#travel-map {
+    position: relative;
+    float: right;
+    margin: 37px 10px 0px 0px;
+}
+
+#travel-map ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#travel-map ul li {
+	height: 65px;
+    padding: 10px;
+    margin: 0px;
+    border-top: solid 1px #ccc;
+}
+
+#travel-map ul li.odd{
+    background-color: #f8f8f8;
+}
+
+#travel-map ul li .date {
+    float: left;
+    width: 120px;
+	padding: 15px;
+}   
+
+
+#travel-map ul li img {
+    float: left;
+    width: 90px;
+    height: 65px;
+	margin-right: 20px;
+}
+
+#travel-map ul li .memo {
+    float: left;
+	padding: 13px;
+	line-height: 20px;
+}
+
+#travel-map ul li .address {
+    float: right;    
+	padding: 15px;
+}
+
+
+#my-travel-map {
+    margin-bottom: 80px;
+}
+
+#my-travel-map-title > h3 {
+	background-image: url("/assets/mymenu_travel_map_title.png");
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 24px;
+    padding: 0px;
+    margin: 4px 0px;
+    text-indent: -5000px;
+}
+
+#my-travel-map-title .category {
+    position: absolute;
+    float: top right;
+    right: 0px;
+    top: 0px;
+    margin: 4px;
+    line-height: 24px;
+}
+
+#my-travel-map-page {
+    position: relative;
+    float: right;
+    margin-top: 10px;
+}
+
+#my-travel-map-page > a {
+    padding: 10px;
+}
+
+#my-travel-map-page > span {
+    padding: 10px;
+    font-weight: bold;
+}
+
+#my-travel-map #map {
+    width: 707px;
+    height: 420px;
+    margin-bottom: 30px;
+}
+
+
+#myinfo {
+    position: relative;
+    float: right;
+    margin: 37px 10px 0px 0px;
+}
+
+#myinfo .subject {
+	float: left;
+	width: 80px;
+	height: 22px;
+	line-height: 22px;
+	text-align: right;
+	padding: 1px 20px 0px 0px;
+}
+
+#myinfo input[type="radio"] {
+    display: none;
+}
+
+#myinfo input[type="text"] {
+	border: solid 1px #ccc;
+	height: 22px;
+	line-height: 22px;
+	padding: 0px;
+	margin: 0px;
+}
+
+#myinfo .radio {
+    padding: 1px 20px;
+	height: 22px;
+	line-height: 22px;
+    margin: 0px;
+    cursor: pointer;
+}
+
+#myinfo .checked {
+	background-image: url("/assets/show_review_check_on.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 18px;
+	padding-top: 3px;
+}
+
+#myinfo .unchecked {
+	background-image: url("/assets/show_review_check_off.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 18px;
+	padding-top: 3px;
+}
+
+#private-info {
+    margin-bottom: 50px;
+}
+
+#private-info-title {
+	position: relative;
+}
+
+#private-info-title > h3 {
+	background-image: url("/assets/mymenu_private_info_title.png");
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 24px;
+    padding: 0px;
+    margin: 4px 0px;
+    text-indent: -5000px;
+}
+
+#private-info-body > div {
+	padding: 10px;
+}
+
+#service-connect-body {
+	padding: 20px 40px;
+}
+
+#etc-info-body > div {
+	padding: 10px;
+}
+
+#service-connect {
+	width: 300px;
+    margin-bottom: 60px;
+}
+
+#service-connect-title {
+	position: relative;
+}
+
+#service-connect-title > h3 {
+	background-image: url("/assets/mymenu_service_connect_title.png");
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 24px;
+    padding: 0px;
+    margin: 4px 0px;
+    text-indent: -5000px;
+}
+
+#service-connect-body > div {
+	height: 40px;
+}
+
+#service-connect-body input[type="checkbox"] {
+    display: none;
+}
+
+#service-connect-body .checkbox {
+	float: right;
+	margin-top: 5px;
+    cursor: pointer;
+}
+
+#service-connect-body .checked {
+	background-image: url("/assets/mymenu_service_connect_on.png");
+	background-repeat: no-repeat;
+	width: 45px;
+	height: 19px;
+}
+
+#service-connect-body .unchecked {
+	background-image: url("/assets/mymenu_service_connect_off.png");
+	background-repeat: no-repeat;
+	width: 54px;
+	height: 19px;
+}
+
+#etc-info {
+    margin-bottom: 80px;
+}
+
+#etc-info-title {
+	position: relative;
+}
+
+#etc-info-title > h3 {
+	background-image: url("/assets/mymenu_etc_info_title.png");
+	background-repeat: no-repeat;
+	width: 200px;
+	height: 24px;
+    padding: 0px;
+    margin: 4px 0px;
+    text-indent: -5000px;
+}

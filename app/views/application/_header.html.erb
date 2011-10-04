@@ -1,7 +1,5 @@
 <div class="crumbs">
-  <%= link_to @theme.title, theme_pensions_path(@theme) if @theme %>
-  <%= link_to @spot.title, spot_pensions_path(@spot) if @spot %>
-  <%= link_to '전국', pensions_path unless @theme or @spot %>
+  <%= link_to '전국', pensions_path %>
 	<% if @area %>
 		> <%= link_to @area.title, area_pensions_path(@area) %>
 	<% end %>
@@ -14,42 +12,32 @@
   <div class="addr1">
     <ul>
     <% Area.all.each do |area| %>
-      <% if @area == area %>
-        <%= content_tag :li, area.title, :class => 'selected' %>
-      <% else %>
-        <%= content_tag :li, link_to(area.title, area_pensions_path(area)) %>
-      <% end %>
+      <li<%= " class=selected" if @area == area %>>
+        <%= link_to_unless @area == area, area.title, area_pensions_path(area, params.merge(:sub_area_id => nil)) %>
+      </li>
     <% end %>
     </ul>
   </div>
   <div class="addr2">
-    <ul>
     <% if @area %>
+      <ul>
       <% @area.sub_areas.each do |sub_area| %>
-        <% if @sub_area == sub_area %>
-          <%= content_tag :li, sub_area.title, :class => 'selected' %>
-        <% else %>
-          <%= content_tag :li, link_to(sub_area.title, sub_area_pensions_path(sub_area)), :class => 'dot' %>
-        <% end %>
+        <li class="dot<%= ' selected' if @sub_area == sub_area %>">
+          <%= link_to_unless @sub_area == sub_area, sub_area.title, sub_area_pensions_path(sub_area, params.merge(:area_id => nil)) %>
+        </li>
       <% end %>
+      </ul>
     <% end %>
-    </ul>
   </div>
 </div>
 
-<% if @area %>
-<div class="spots">
-  <h3>주요 관광지</h3>
-  <ul>
-  <% if @area %>
-    <% @area.spots.each do |spot| %>
-      <% if @spot == spot %>
-        <%= content_tag :li, content_tag(:strong, spot.title) %>
-      <% else %>
-        <%= content_tag :li, link_to(spot.title, spot) %>
-      <% end %>
+<% if @spots %>
+  <div class="spots">
+    <h3>주요 관광지</h3>
+    <ul>
+    <% @spots.each do |spot| %>
+      <li><%= link_to_unless @spot == spot, spot.title, spot %></li>
     <% end %>
-  <% end %>
-	</ul>
-</div>
+  	</ul>
+  </div>
 <% end %>

@@ -13,17 +13,19 @@ RestyAtp::Application.routes.draw do
   end
   match 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
   # auth
-  resources :users do
-    get :map, :on => :member
-  end
   resources :user_sessions
   resources :password_resets
   #etc
-  resources :pensions do
-    resources :rooms
+  resources :users do
+    get :map, :on => :member
   end
   resources :themes do
     resources :pensions
+  end
+  resources :pensions do
+    resources :rooms
+    get :update_like_count, :on => :collection
+    get :update_comments_count, :on => :collection
   end
   resources :spots do
     resources :pensions

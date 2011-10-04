@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreateFacilities < ActiveRecord::Migration
   def change
     create_table :facilities do |t|

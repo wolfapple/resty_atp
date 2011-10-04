@@ -9,7 +9,7 @@
   <div id="show-content">
     <div class="title">
       <h2><%= @pension.title %></h2>
-      <span>좋아요</span>
+      <div class="fb-like" data-href="<%= request.url %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
       <%= link_to '펜션 바로가기', @pension.url, :target => '_blank' %>
     </div>
     <div class="line-green"></div>
@@ -45,7 +45,23 @@
       <div class="line-green"></div>
     </div>
     <div id="show-review">
-      <%= render 'review' %>
+      <fb:comments-count href=<%= request.url %>/></fb:comments-count>개의 댓글
+      <div class="fb-comments" data-href="<%= request.url %>" data-num-posts="5" data-width="709"></div>
+      <script type="text/javascript" charset="utf-8">
+        FB.Event.subscribe('comment.create', function(response) {
+          $.get('/pensions/update_comments_count', {id:<%= @pension.id %>});
+        });
+        FB.Event.subscribe('comment.remove', function(response) {
+          $.get('/pensions/update_comments_count', {id:<%= @pension.id %>, remove:true});
+        });
+        FB.Event.subscribe('edge.create', function(response) {
+          $.get('/pensions/update_like_count', {id:<%= @pension.id %>});
+        });
+        FB.Event.subscribe('edge.remove', function(response) {
+          $.get('/pensions/update_like_count', {id:<%= @pension.id %>, remove:true});
+        });
+      </script>
+      <%#= render 'review' %>
     </div>
 
     <div id="blog-review">

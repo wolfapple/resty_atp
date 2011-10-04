@@ -1,4 +1,4 @@
-# encoding: UTF-8
+# -*- encoding : utf-8 -*-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928064118) do
+ActiveRecord::Schema.define(:version => 20111004090340) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -94,66 +94,83 @@ ActiveRecord::Schema.define(:version => 20110928064118) do
   add_index "pension_reviews", ["user_id"], :name => "index_pension_reviews_on_user_id"
 
   create_table "pensions", :force => true do |t|
-    t.integer  "area_id"
-    t.integer  "sub_area_id"
-    t.string   "title"
-    t.string   "url"
-    t.string   "addr"
-    t.string   "mobile"
-    t.string   "phone"
-    t.string   "phone2"
-    t.string   "email"
-    t.string   "manager"
-    t.integer  "rating"
-    t.text     "summary"
-    t.string   "rooms_count"
-    t.string   "room_structure"
-    t.integer  "min_price"
-    t.integer  "max_price"
-    t.string   "season_info"
-    t.string   "checkin"
-    t.string   "service_charge"
-    t.string   "tax_include"
-    t.string   "lat"
-    t.string   "lng"
-    t.string   "credit_card"
-    t.string   "pet"
-    t.string   "breakfast"
-    t.string   "foreign_language"
-    t.string   "pickup"
-    t.string   "parking"
-    t.string   "facilities"
-    t.string   "facilities2"
-    t.string   "foodcourt"
-    t.string   "baby"
-    t.integer  "like_count"
-    t.integer  "reviews_count",    :default => 0
+    t.integer   "area_id",                                        :null => false
+    t.integer   "sub_area_id",                                    :null => false
+    t.integer   "pensionsetid",                                   :null => false
+    t.string    "crawlertype",     :limit => 100,                 :null => false
+    t.timestamp "regdate",                                        :null => false
+    t.string    "title",           :limit => 1000,                :null => false
+    t.string    "url",             :limit => 1000,                :null => false
+    t.string    "addr",            :limit => 1000
+    t.string    "address02",       :limit => 1000
+    t.string    "mobile",          :limit => 200
+    t.string    "telephone01",     :limit => 200
+    t.string    "telephone02",     :limit => 200
+    t.string    "email",           :limit => 200
+    t.string    "manager",         :limit => 200
+    t.string    "evaluation",      :limit => 200
+    t.text      "summary"
+    t.string    "summary_naver",   :limit => 1000,                :null => false
+    t.string    "summary_daum",    :limit => 1000,                :null => false
+    t.string    "roomcount",       :limit => 1000
+    t.string    "roomstructure",   :limit => 1000
+    t.text      "roomprice"
+    t.string    "seasoninfo",      :limit => 2000
+    t.string    "checkinout",      :limit => 200
+    t.string    "servicecharge",   :limit => 200
+    t.string    "includetax",      :limit => 200
+    t.string    "location",        :limit => 200
+    t.string    "locationx",       :limit => 200
+    t.string    "locationy",       :limit => 200
+    t.string    "locationextra",   :limit => 1000
+    t.string    "creditcard",      :limit => 200
+    t.string    "pet",             :limit => 200
+    t.string    "breakfast",       :limit => 200
+    t.string    "foreignlanguage", :limit => 200
+    t.string    "pickupservice",   :limit => 200
+    t.string    "parking",         :limit => 200
+    t.string    "facilities01",    :limit => 1000
+    t.string    "facilities02",    :limit => 1000
+    t.string    "foodcourt",       :limit => 200
+    t.string    "babycarriage",    :limit => 200
+    t.string    "thumbnail",       :limit => 500
+    t.string    "thumbnail_naver", :limit => 500,                 :null => false
+    t.string    "thumbnail_daum",  :limit => 500,                 :null => false
+    t.string    "mark",            :limit => 45
+    t.integer   "like_count",                      :default => 0, :null => false
+    t.integer   "comments_count",                  :default => 0, :null => false
+    t.integer   "min_price",                       :default => 0, :null => false
+    t.integer   "max_price",                       :default => 0, :null => false
+  end
+
+  add_index "pensions", ["area_id", "sub_area_id"], :name => "area_id"
+
+  create_table "price_ranges", :force => true do |t|
+    t.integer  "min"
+    t.integer  "max"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "pensions", ["area_id"], :name => "index_pensions_on_area_id"
-  add_index "pensions", ["sub_area_id"], :name => "index_pensions_on_sub_area_id"
 
   create_table "rooms", :force => true do |t|
-    t.integer  "pension_id"
-    t.string   "title"
-    t.string   "room_type"
-    t.string   "area"
-    t.string   "price"
-    t.string   "additional_price"
-    t.string   "facilities"
-    t.string   "facilities2"
-    t.string   "number"
-    t.string   "desc"
-    t.string   "desc2"
-    t.string   "season_info"
-    t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer "pension_id",                      :null => false
+    t.integer "pensionsetid",                    :null => false
+    t.integer "pensiondataid",                   :null => false
+    t.string  "name",            :limit => 200,  :null => false
+    t.string  "room_type",       :limit => 200
+    t.string  "area",            :limit => 1000
+    t.string  "price",           :limit => 1000
+    t.string  "priceadditional", :limit => 1000
+    t.string  "facilities01",    :limit => 1000
+    t.string  "facilities02",    :limit => 1000
+    t.string  "number",          :limit => 200
+    t.string  "description01",   :limit => 1000
+    t.string  "description02",   :limit => 1000
+    t.string  "seasoninfo",      :limit => 1000
+    t.string  "imageurl",        :limit => 1000
   end
 
-  add_index "rooms", ["pension_id"], :name => "index_rooms_on_pension_id"
+  add_index "rooms", ["pension_id"], :name => "pension_id"
 
   create_table "spot_pensions", :force => true do |t|
     t.integer  "spot_id"

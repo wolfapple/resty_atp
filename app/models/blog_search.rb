@@ -6,13 +6,14 @@ class BlogSearch
   
   def initialize(query, total, cache_key)
     begin
-      cache = "tmp/cache/blog_xml/#{cache_key}.xml"
+      cache = "#{Rails.root}/tmp/cache/blog_xml/#{cache_key}.xml"
+      binding.pry
       doc = Nokogiri::XML(open(cache))
     rescue
       url = "http://openapi.naver.com/search?key=#{BlogSearch::KEY}&query=#{URI.escape(query)}&display=#{total}&start=1&target=blog&sort=sim"
       require 'open-uri'
       doc = Nokogiri::XML(open(url))
-      cache = File.new("tmp/cache/blog_xml/#{cache_key}.xml", "w")
+      cache = File.new("#{Rails.root}/tmp/cache/blog_xml/#{cache_key}.xml", "w")
       cache.write(doc.to_xml)
       cache.close
     end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  min: 0
+  max: 10
+
+two:
+  min: 10
+  max: 15
+  
+three:
+  min: 15
+  max: 20

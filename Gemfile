@@ -15,6 +15,7 @@ gem 'koala'
 gem 'high_voltage'
 gem 'activeadmin'
 gem 'meta_search', '>= 1.1.0.pre'
+gem 'progressbar'
 
 group :development do
   gem 'pry'

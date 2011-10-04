@@ -1,5 +1,6 @@
 @import "main";
 @import "pensions";
+@import "users";
 @import "jquery-ui/jquery-ui-1.8.16.custom";
 @import "colorbox";
 
@@ -60,6 +61,7 @@ a {
 	margin: 30px 0px 8px;
 }
 #logout {
+	border: 1px solid red;
 	position: relative;
 	bottom: 48px;
 	height: 50px;
@@ -68,14 +70,8 @@ a {
 #login_fb {
 	position: absolute;
 	float: right;
-	right: 150px;
-	width: 180px;
-	height: 27px;
-}
-#login_resty {
-	position: absolute;
-	float: right;
 	right: 0px;
+	width: 180px;
 	height: 27px;
 }
 #search_bar {

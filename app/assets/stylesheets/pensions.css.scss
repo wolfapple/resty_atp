@@ -68,13 +68,9 @@
 	ul li.hide {
 		display: none;
 	}
-	input[type="checkbox"] {
-		display: none;
-	}
 	.checkbox{
 		padding-left: 20px;
 		margin: 0px;
-		cursor: pointer;
 	}
 	.checked{
 		background-image: url("/assets/list_side_facilities_check_on.png");
@@ -172,6 +168,23 @@
 #main_content {
 	float: right;
 	width: 720px;
+	.filters {
+	  margin-bottom: 15px;
+	}
+	.filter {
+	  border: solid 1px #999;
+	  border-radius: 10px;
+	  -webkit-border-radius: 10px;
+	  -moz-border-radius: 10px;
+	  background-color: #DDD;
+	  padding: 5px 10px;
+	  margin-bottom: 10px;
+	  font-size: 12px;
+	}
+	.filter a {
+		color: #207E59;
+	  padding-left: 5px;
+	}
 	.header {
 		position: relative;
 		float: right;

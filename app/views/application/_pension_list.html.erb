@@ -1,12 +1,25 @@
+<% if params[:must_visit] %>
+  <div>Must Visit 블라블라블라</div>
+<% end %>
+
 <div class="sort">
-  <span class="like-order"><a href="#">좋아요순</a></span>
-  <span class="popular-order"><a href="#">인기도순</a></span>
+  <% if @theme %>
+    <span class="filter"><%= @theme.title %> <%= link_to "x", params.merge(:theme_id => nil, :page => nil) %></span>
+  <% end %>
+  <% if params[:must_visit] %>
+    <span class="filter">Must Visit <%= link_to "x", params.merge(:must_visit => nil) %></span>
+  <% end %>
+  <% if @price %>
+    <span class="filter"><%= @price.to_s %> <%= link_to "x", params.merge(:price_id => nil) %></span>
+  <% end %>
+  <span class="like-order"><%= link_to '좋아요순', params.merge(:order_by => 'like_count') %></span>
+  <span class="popular-order"><%= link_to '인기도순', params.merge(:order_by => nil) %></span>
 </div>
 
 <div class="list">
 <% @pensions.each do |pension| %>
-  <div id="pension-<%= pension.id %>" class="pension-item<%= ' must-visit' if pension.must_visit %>">
-    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if pension.must_visit %>
+  <div id="pension-<%= pension.id %>" class="pension-item<%= ' must-visit' if !params[:must_visit] and pension.must_visit %>">
+    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if !params[:must_visit] and pension.must_visit %>
   	<div class="line-dotted"></div>
   	<div class="left">
   		<div class="pension-thumbnail">
@@ -24,7 +37,7 @@
   		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
   		</div>
   		<div class="pension-review">
-  			<span class="pension-review-count"><%= pension.reviews_count %></span>
+  			<span class="pension-review-count">111<%#= pension.reviews_count %></span>
   			<a href="#">리뷰/후기</a>
   			<span class="pension-detail">
   				<%= link_to '상세보기', pension %>

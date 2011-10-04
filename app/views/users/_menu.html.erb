@@ -1,3 +1,9 @@
-<%= link_to 'my resty', @user %>
-<%= link_to 'map', map_user_path(@user) %>
-<%= link_to 'edit', edit_user_path(@user) %>
+<div id="mymenu-box">
+	<h3 id="mymenu">MY MENU</h3>
+	<ul>
+	    <li><%= link_to 'my resty', @user %></li>
+	    <li><%= link_to '나의 여행지도', map_user_path(@user) %></a></li>
+	    <li><%= link_to '개인정보관리', edit_user_path(@user) %></li>
+	</ul>
+	<div class="box_footer"></div>
+</div>

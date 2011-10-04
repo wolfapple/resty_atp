@@ -5,7 +5,7 @@
       $(this).next('ul').children('.toggle-list').toggleClass('hide');
     });
 
-    $(".checkbox").click(function() {
+    /*$(".checkbox").click(function() {
   		if($(this).children('input').attr('checked')) {
   		  $(this).children('input').attr('checked', '');
   		} else {
@@ -13,7 +13,8 @@
   		}
   		$(this).toggleClass('unchecked');
   		$(this).toggleClass('checked');
-    });
+  		params = $(':checked').map(function(){return $(this).val()}).get().join(",")
+    });*/
   });
 </script>
 <div class="themes_box">
@@ -21,7 +22,7 @@
   <ul>
     <% Theme.all.each_with_index do |theme, idx| %>
       <li class="<%= cycle('odd', 'even') %><%= ' toggle-list hide' if idx > 4 %>">
-        <%= link_to theme.title, theme_pensions_path(theme) %>
+        <%= link_to_unless params[:theme_id].to_i == theme.id, theme.title, params.merge(:theme_id => theme.id, :page => nil) %>
       </li>
     <% end %>
   </ul>
@@ -31,10 +32,11 @@
 <div class="prices_box">
   <h3 id="prices">가격대</h3>
   <ul>
-    <li class="odd">10만원 이하</li>
-    <li class="even">10만원 ~ 15만원</li>
-    <li class="odd">15만원 ~ 20만원</li>
-    <li class="even hide">20만원 ~ 25만원</li>
+  <% PriceRange.order('min').each do |price| %>
+    <li class="<%= cycle('odd', 'even') %>">
+      <%= link_to_unless params[:price_id].to_i == price.id, price.to_s, params.merge(:price_id => price.id) %>
+    </li>
+  <% end %>
   </ul>
   <div class="box_footer"></div>
 </div>
@@ -44,7 +46,15 @@
   <ul>
   <% Facility.all.each_with_index do |facility, idx| %>
     <li class="<%= cycle('odd', 'even') %><%= ' toggle-list hide' if idx > 4 %>">
-      <span class="checkbox unchecked"><label><%= facility.title %></label><input type="checkbox" /></span>
+      <% if @facilities.include?(facility.id) %>
+        <span class="checkbox checked">
+          <%= link_to facility.title, remove_facility(facility.id) %>
+        </span>
+      <% else %>
+        <span class="checkbox unchecked">
+          <%= link_to facility.title, merge_facility(facility.id) %>
+        </span>
+      <% end %>
     </li>
   <% end %>
   </ul>
