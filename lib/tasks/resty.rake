@@ -23,7 +23,7 @@ namespace :resty do
         Pension.where("addr like '%#{sub_area.title}%'").update_all :sub_area_id => sub_area.id
       end
     end
-    Pension.where(:area_id => nil).where('sub_area_id is not null').each do |pension|
+    Pension.where(:area_id => 0).where('sub_area_id > 0').each do |pension|
       pension.update_attributes({:area_id => pension.sub_area.area.id})
     end
     Area.update_all :pensions_count => 0

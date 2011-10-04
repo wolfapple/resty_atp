@@ -8,7 +8,7 @@ class Pension < ActiveRecord::Base
   belongs_to :area
   belongs_to :sub_area
   
-  scope :uncategorized, where('area_id is null or sub_area_id is null')
+  scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
   scope :by_addr1, lambda { |addr| where(:addr1 => addr) }
   scope :by_addr2, lambda { |addr| where(:addr2 => addr) }
   
