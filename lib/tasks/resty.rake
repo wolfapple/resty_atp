@@ -15,12 +15,9 @@ namespace :resty do
     SubArea.all.each do |sub_area|
       if sub_area.title.index('(')
         like = sub_area.title[0...sub_area.title.index('(')]
-        Pension.where("addr like '%#{like}%'").update_all :sub_area_id => sub_area.id
-      elsif sub_area.title.rindex('도')
-        like = sub_area.title[0...sub_area.title.rindex('도')]
-        Pension.where("addr like '%#{like}%'").update_all :sub_area_id => sub_area.id
+        Pension.where(:area_id => sub_area.area.id).where("addr like '%#{like}%'").update_all :sub_area_id => sub_area.id
       else
-        Pension.where("addr like '%#{sub_area.title}%'").update_all :sub_area_id => sub_area.id
+        Pension.where(:area_id => sub_area.area.id).where("addr like '%#{sub_area.title}%'").update_all :sub_area_id => sub_area.id
       end
     end
     Pension.where(:area_id => 0).where('sub_area_id > 0').each do |pension|

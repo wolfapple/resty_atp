@@ -4,4 +4,6 @@ class MustVisit < ActiveRecord::Base
   
   validates_presence_of :pension_id
   validates_uniqueness_of :pension_id
+  
+  scope :main, order('rand()').limit(10)
 end

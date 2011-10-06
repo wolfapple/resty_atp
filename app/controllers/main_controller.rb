@@ -4,6 +4,6 @@ class MainController < ApplicationController
     @areas = Area.all
     @spots = Spot.main
     @themes = Theme.all
-    @must_visits = MustVisit.all
+    @must_visits = MustVisit.main
   end
 end
