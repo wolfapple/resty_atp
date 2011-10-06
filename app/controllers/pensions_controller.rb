@@ -38,7 +38,9 @@ class PensionsController < ApplicationController
     end
     # get facilities
     if params[:facilities]
-      @facilities = params[:facilities].split(',').map {|x| x.to_i}
+      @facilities = params[:facilities].split(',').map {|x| Facility.find(x)}
+      like = @facilities.collect {|x| "facilities01 like '%#{x.title}%'"}.join(' and ')
+      @pensions = @pensions.where(like)
     else
       @facilities = []
     end

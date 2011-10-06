@@ -7,7 +7,7 @@
 	      <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
 	      <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
   		  <br />
-  		  <% area.sub_areas.each_with_index do |sub_area, idx| %>
+  		  <% area.sub_areas.main.each_with_index do |sub_area, idx| %>
   		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.size - 1 %>
   		  <% end %>
 		  </td>
@@ -16,7 +16,7 @@
 		    <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
 		    <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
   		  <br />
-  		  <% area.sub_areas.each_with_index do |sub_area, idx| %>
+  		  <% area.sub_areas.main.each_with_index do |sub_area, idx| %>
   		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.size - 1 %>
   		  <% end %>
   		</td>

@@ -46,7 +46,7 @@
   <ul>
   <% Facility.all.each_with_index do |facility, idx| %>
     <li class="<%= cycle('odd', 'even') %><%= ' toggle-list hide' if idx > 4 %>">
-      <% if @facilities.include?(facility.id) %>
+      <% if @facilities.include?(facility) %>
         <span class="checkbox checked">
           <%= link_to facility.title, remove_facility(facility.id) %>
         </span>

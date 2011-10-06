@@ -11,6 +11,12 @@ ActiveAdmin.register Pension do
     column 'URL', :url
     column '주소', :addr
     column '랭킹', :ranking
+    column 'must' do |pension|
+      link_to 'must', new_admin_must_visit_path('must_visit[pension_id]' => pension.id) unless pension.must_visit
+    end
+    column 'theme' do |pension|
+      link_to 'theme', new_admin_theme_pension_path('theme_pension[pension_id]' => pension.id)
+    end
     default_actions
   end
 end

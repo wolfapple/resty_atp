@@ -1,5 +1,8 @@
 # -*- encoding : utf-8 -*-
 class PriceRange < ActiveRecord::Base
+  validates_presence_of :min, :max
+  validates_numericality_of :min, :max
+  
   def to_s
     if self.min == 0
       price_str = "#{self.max}만원 이하"
