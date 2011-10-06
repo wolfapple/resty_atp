@@ -4,6 +4,7 @@ class CreateSubAreas < ActiveRecord::Migration
     create_table :sub_areas do |t|
       t.references :area
       t.string :title
+      t.boolean :is_main, :default => false
       t.integer :pensions_count
 
       t.timestamps

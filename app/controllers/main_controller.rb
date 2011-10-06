@@ -2,7 +2,7 @@
 class MainController < ApplicationController
   def index
     @areas = Area.all
-    @spots = Spot.all
+    @spots = Spot.main
     @themes = Theme.all
     @must_visits = MustVisit.all
   end

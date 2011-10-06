@@ -7,4 +7,5 @@ class Spot < ActiveRecord::Base
   belongs_to :sub_area
   
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
+  scope :main, where(:is_main => true)
 end

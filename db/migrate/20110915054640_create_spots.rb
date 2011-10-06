@@ -2,10 +2,14 @@
 class CreateSpots < ActiveRecord::Migration
   def change
     create_table :spots do |t|
+      t.references :area
+      t.references :sub_area
       t.string :title
-      t.text :desc
-      t.integer :lat
-      t.integer :lng
+      t.string :addr
+      t.string :phone
+      t.text :description
+      t.string :url
+      t.boolean :is_main, :default => false
       t.integer :pensions_count, :default => 0
       t.integer :reviews_count, :default => 0
 

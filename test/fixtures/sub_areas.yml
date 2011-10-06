@@ -317,12 +317,12 @@ jlbd_eight:
 jeju_one:
   id: 63
   area_id: 9
-  title: 제주(애월)
+  title: 애월
   
 jeju_two:
   id: 64
   area_id: 9
-  title: 제주(한림)
+  title: 한림
   
 jeju_three:
   id: 65
@@ -332,7 +332,7 @@ jeju_three:
 jeju_four:
   id: 66
   area_id: 9
-  title: 제주(조천)
+  title: 조천
   
 jeju_five:
   id: 67
