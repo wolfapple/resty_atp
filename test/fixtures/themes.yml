@@ -17,7 +17,7 @@ sea:
   
 festival:
   id: 4
-  title: 축제
+  title: 황토
   pensions_count: 1
 
 pet:
@@ -37,12 +37,12 @@ bike:
   
 sleep:
   id: 8
-  title: 1박2일
+  title: 스키장
   pensions_count: 1
 
 family:
   id: 9
-  title: 가족
+  title: 산 근처
   pensions_count: 1
   
 couple:
@@ -52,7 +52,7 @@ couple:
   
 trans:
   id: 11
-  title: 대중교통
+  title: 카페
   pensions_count: 1
 
 cheap:
@@ -72,10 +72,10 @@ swim:
   
 workshop:
   id: 15
-  title: 수련회
+  title: 워크샵
   pensions_count: 2
   
 seoul:
   id: 16
-  title: 서울펜션
+  title: 이벤트가능
   pensions_count: 1

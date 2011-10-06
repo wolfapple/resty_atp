@@ -11,6 +11,7 @@ ActiveAdmin.register Spot do
     column '전화번호', :phone
     column '주소', :addr
     column 'URL', :url
+    column '메인노출', :is_main
     default_actions
   end
 end

@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -46,18 +46,6 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
-  create_table "area_spots", :force => true do |t|
-    t.integer  "area_id"
-    t.integer  "sub_area_id"
-    t.integer  "spot_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "area_spots", ["area_id"], :name => "index_area_spots_on_area_id"
-  add_index "area_spots", ["spot_id"], :name => "index_area_spots_on_spot_id"
-  add_index "area_spots", ["sub_area_id"], :name => "index_area_spots_on_sub_area_id"
-
   create_table "areas", :force => true do |t|
     t.string   "title"
     t.integer  "pensions_count"
@@ -93,84 +81,12 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
   add_index "pension_reviews", ["pension_id"], :name => "index_pension_reviews_on_pension_id"
   add_index "pension_reviews", ["user_id"], :name => "index_pension_reviews_on_user_id"
 
-  create_table "pensions", :force => true do |t|
-    t.integer   "area_id",                                        :null => false
-    t.integer   "sub_area_id",                                    :null => false
-    t.integer   "pensionsetid",                                   :null => false
-    t.string    "crawlertype",     :limit => 100,                 :null => false
-    t.timestamp "regdate",                                        :null => false
-    t.string    "title",           :limit => 1000,                :null => false
-    t.string    "url",             :limit => 1000,                :null => false
-    t.string    "addr",            :limit => 1000
-    t.string    "address02",       :limit => 1000
-    t.string    "mobile",          :limit => 200
-    t.string    "telephone01",     :limit => 200
-    t.string    "telephone02",     :limit => 200
-    t.string    "email",           :limit => 200
-    t.string    "manager",         :limit => 200
-    t.string    "evaluation",      :limit => 200
-    t.text      "summary"
-    t.string    "summary_naver",   :limit => 1000,                :null => false
-    t.string    "summary_daum",    :limit => 1000,                :null => false
-    t.string    "roomcount",       :limit => 1000
-    t.string    "roomstructure",   :limit => 1000
-    t.text      "roomprice"
-    t.string    "seasoninfo",      :limit => 2000
-    t.string    "checkinout",      :limit => 200
-    t.string    "servicecharge",   :limit => 200
-    t.string    "includetax",      :limit => 200
-    t.string    "location",        :limit => 200
-    t.string    "locationx",       :limit => 200
-    t.string    "locationy",       :limit => 200
-    t.string    "locationextra",   :limit => 1000
-    t.string    "creditcard",      :limit => 200
-    t.string    "pet",             :limit => 200
-    t.string    "breakfast",       :limit => 200
-    t.string    "foreignlanguage", :limit => 200
-    t.string    "pickupservice",   :limit => 200
-    t.string    "parking",         :limit => 200
-    t.string    "facilities01",    :limit => 1000
-    t.string    "facilities02",    :limit => 1000
-    t.string    "foodcourt",       :limit => 200
-    t.string    "babycarriage",    :limit => 200
-    t.string    "thumbnail",       :limit => 500
-    t.string    "thumbnail_naver", :limit => 500,                 :null => false
-    t.string    "thumbnail_daum",  :limit => 500,                 :null => false
-    t.string    "mark",            :limit => 45
-    t.integer   "like_count",                      :default => 0, :null => false
-    t.integer   "comments_count",                  :default => 0, :null => false
-    t.integer   "min_price",                       :default => 0, :null => false
-    t.integer   "max_price",                       :default => 0, :null => false
-  end
-
-  add_index "pensions", ["area_id", "sub_area_id"], :name => "area_id"
-
   create_table "price_ranges", :force => true do |t|
     t.integer  "min"
     t.integer  "max"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "rooms", :force => true do |t|
-    t.integer "pension_id",                      :null => false
-    t.integer "pensionsetid",                    :null => false
-    t.integer "pensiondataid",                   :null => false
-    t.string  "name",            :limit => 200,  :null => false
-    t.string  "room_type",       :limit => 200
-    t.string  "area",            :limit => 1000
-    t.string  "price",           :limit => 1000
-    t.string  "priceadditional", :limit => 1000
-    t.string  "facilities01",    :limit => 1000
-    t.string  "facilities02",    :limit => 1000
-    t.string  "number",          :limit => 200
-    t.string  "description01",   :limit => 1000
-    t.string  "description02",   :limit => 1000
-    t.string  "seasoninfo",      :limit => 1000
-    t.string  "imageurl",        :limit => 1000
-  end
-
-  add_index "rooms", ["pension_id"], :name => "pension_id"
 
   create_table "spot_pensions", :force => true do |t|
     t.integer  "spot_id"
@@ -195,10 +111,14 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
   add_index "spot_reviews", ["user_id"], :name => "index_spot_reviews_on_user_id"
 
   create_table "spots", :force => true do |t|
+    t.integer  "area_id"
+    t.integer  "sub_area_id"
     t.string   "title"
-    t.text     "desc"
-    t.integer  "lat"
-    t.integer  "lng"
+    t.string   "addr"
+    t.string   "phone"
+    t.text     "description"
+    t.string   "url"
+    t.boolean  "is_main",        :default => false
     t.integer  "pensions_count", :default => 0
     t.integer  "reviews_count",  :default => 0
     t.datetime "created_at"
@@ -208,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
   create_table "sub_areas", :force => true do |t|
     t.integer  "area_id"
     t.string   "title"
+    t.boolean  "is_main",        :default => false
     t.integer  "pensions_count"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -242,19 +163,12 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                           :null => false
+    t.string   "email",            :null => false
     t.string   "username"
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remember_me_token"
-    t.datetime "remember_me_token_expires_at"
-    t.string   "reset_password_token"
-    t.datetime "reset_password_token_expires_at"
-    t.datetime "reset_password_email_sent_at"
   end
-
-  add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
 
 end
