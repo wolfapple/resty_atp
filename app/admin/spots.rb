@@ -2,6 +2,8 @@
 ActiveAdmin.register Spot do
   menu :label => '여행지'
   
+  scope '미분류', :uncategorized
+  
   index do
     column '지역1', :area, :sortable => :area_id
     column '지역2', :sub_area, :sortable => :sub_area_id

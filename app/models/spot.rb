@@ -5,4 +5,6 @@ class Spot < ActiveRecord::Base
   has_many :reviews, :class_name => "SpotReview"
   belongs_to :area
   belongs_to :sub_area
+  
+  scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
 end
