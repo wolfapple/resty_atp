@@ -5,8 +5,10 @@ class SpotsController < ApplicationController
     @title = @spot.title
     @area = @spot.area
     @sub_area = @spot.sub_area
+    @spots = @sub_area.spots
     @reviews = @spot.reviews.page(params[:page]).per(5)
-    @pensions = @spot.pensions.page(params[:page]).per(3)
+    @near_by_pensions = @spot.near_by_pensions
+    @pensions = @spot.pensions.page(params[:page]).per(10)
   end
   
   def update_like_count

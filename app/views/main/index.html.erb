@@ -1,3 +1,10 @@
+<script type="text/javascript" src="/assets/flux.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+  	window.myFlux = new flux.slider('#slider', {pagination:false});
+  });
+</script>
+
 <div id="main-category">
   <table>
     <% 0.upto(@areas.size / 2 - 1) do |i| %>
@@ -31,11 +38,11 @@
 
 <div id="main-must-visit">
   <div id="main-must-visit-title"></div>
-  <ul>
+  <div id="slider">
   <% @must_visits.each do |mv| %>
-    <li><%= link_to mv.pension.title, pension_path(mv.pension) %></li>
+    <%= link_to image_tag("http://www.joelambert.co.uk/flux/img/avatar.jpg"), pension_path(mv.pension) %>
   <% end %>
-  </ul>
+  </div>
 </div>
 
 <div id="main-themes">

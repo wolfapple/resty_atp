@@ -28,13 +28,13 @@
   		<div class="pension-name"><%= link_to pension.title, pension %></div>
   		<span class="fb_like">좋아요</span>
   		<div class="pension-type">커플, 가족, 모임, 워크샵</div>
-  		<div class="pension-theme">테마</div>
-  		<div class="pension-faci"><%= pension.facilities01 %></div>
+  		<div class="pension-theme"><%= pension.themes.collect {|x| x.title}.join(',') %></div>
+  		<div class="pension-faci"><%= pension.facilities %></div>
   	</div>
   	<div class="right">
-  		<div class="pension-addr"><%= pension.addr %></div>
+  		<div class="pension-addr"><%= pension.short_addr %></div>
   		<div class="pension-price">
-  		  <%#= number_with_delimiter(pension.min_price) %>원 ~ <%#= number_with_delimiter(pension.max_price) %>원
+  		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
   		</div>
   		<div class="pension-review">
   			<span class="pension-review-count">111<%#= pension.reviews_count %></span>

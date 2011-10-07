@@ -63,5 +63,5 @@
 
 <div class="must_visit_banner">
   <h3>Must Visit By Resty</h3>
-  <%= image_tag 'pension_01.jpg' %>
+  <%= link_to image_tag('pension_01.jpg'), params.merge(:must_visit => true) %>
 </div>

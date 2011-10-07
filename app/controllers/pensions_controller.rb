@@ -4,12 +4,12 @@ class PensionsController < ApplicationController
     # get area and spot
     if params[:area_id]
       @area = Area.find(params[:area_id])
-      @spots = @area.spots
+      @spots = @area.spots.by_area
       @pensions = @area.pensions
     elsif params[:sub_area_id]
       @sub_area = SubArea.find(params[:sub_area_id])
       @area = @sub_area.area
-      @spots = @sub_area.spots
+      @spots = @sub_area.spots.by_sub_area
       @pensions = @sub_area.pensions
     end
     # get spot
@@ -17,7 +17,7 @@ class PensionsController < ApplicationController
       @spot = Spot.find(params[:spot_id])
       @sub_area = @spot.sub_area
       @area = @sub_area.area
-      @spots = @sub_area.spots
+      @spots = @sub_area.spots.by_sub_area
       @pensions = @spot.pensions
     end
     # get pensions
@@ -31,9 +31,9 @@ class PensionsController < ApplicationController
     if params[:price_id]
       @price = PriceRange.find(params[:price_id])
       if @price.max == 0
-        @pensions = @pensions.where("min_price >= ?", @price.min_price)
+        @pensions = @pensions.where("min_price >= ?", @price.min)
       else
-        @pensions = @pensions.where("min_price between ? and ?", @price.min_price, @price.max_price)
+        @pensions = @pensions.where("min_price between ? and ?", @price.min, @price.max)
       end
     end
     # get facilities
@@ -58,7 +58,8 @@ class PensionsController < ApplicationController
     @title = @pension.title
     @area = @pension.area
     @sub_area = @pension.sub_area
-    @pensions = @sub_area.pensions.limit(3)
+    @spots = @sub_area.spots
+    @near_by_pensions = @pension.near_by
     @reviews = @pension.reviews.page(params[:page]).per(5)
     @blog_search = BlogSearch.new("#{@sub_area.title} #{@pension.title}", 100, "#{@sub_area.id}_#{@pension.id}")
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(10)

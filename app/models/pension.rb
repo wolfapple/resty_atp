@@ -8,15 +8,15 @@ class Pension < ActiveRecord::Base
   belongs_to :area
   belongs_to :sub_area
   
+  default_scope order('ranking desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
-  scope :by_addr1, lambda { |addr| where(:addr1 => addr) }
-  scope :by_addr2, lambda { |addr| where(:addr2 => addr) }
   
-  def self.addrs
-    self.select('DISTINCT(addr1)').order('addr1').map { |addr| addr.addr1 }
+  def near_by
+    pensions = self.sub_area.pensions.where("id <> ?", self.id).where("addr like '#{self.addr.split(' ')[2]}'").limit(3)
+    pensoins = pensions + self.sub_area.pensions.where("id <> ?", self.id).limit(3-pensions.count) if pensions.count < 3
   end
   
-  def self.sub_addrs(addr)
-    self.where(:addr1 => addr).select('DISTINCT(addr2)').order('addr2').map { |addr| addr.addr2 }
+  def short_addr
+    self.addr.split(' ')[0..2].join(' ')
   end
 end

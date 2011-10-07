@@ -14,12 +14,12 @@
 <div class="near-pensions-box">
   <h3>근처의 다른 펜션</h3>
   <ul>
-  <% @pensions.each do |pension| %>
+  <% @near_by_pensions.each do |pension| %>
     <li>
       <%= link_to pension.title, pension, :class => 'name' %>
       <span class="like">좋아요</span>
-      <span><%= pension.addr %></span>
-      <a href="#" class="review">리뷰<%#= pension.reviews_count %></a>
+      <span><%= pension.short_addr %></span>
+      <a href="#" class="review">리뷰100<%#= pension.reviews_count %></a>
     </li>
   <% end %>
   </ul>

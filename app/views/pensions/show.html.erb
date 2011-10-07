@@ -1,3 +1,5 @@
+<script type="text/javascript" src="/assets/jquery.colorbox-min.js"></script>
+
 <div id="sidebar">
   <%= render 'show_sidebar' %>
 </div>
@@ -19,8 +21,8 @@
       </div>
       <div class="pension-detail">
         <div id="pension-info-type">커플, 가족, 모임, 워크샵</div>
-        <div id="pension-info-faci">노래방, 월풀/스파, 수영장, 세마나실, 족구장</div>
-        <div id="pension-info-theme">애완동물 이용가능, 바닷가 인접, 계곡 인접</div>
+        <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') %></div>
+        <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>
         <div id="pension-info-start">
           <form>
             <div id="findway-box">
@@ -29,8 +31,8 @@
             </div>
           </form>
         </div>
-        <div id="pension-info-addr">전남 담양군 용면 월계리</div>
-        <div id="pension-info-price">10 ~ 20 만원</div>
+        <div id="pension-info-addr"><%= @pension.addr %></div>
+        <div id="pension-info-price"><%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원</div>
         <div id="pension-info-phone">031-454-5484</div>
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>

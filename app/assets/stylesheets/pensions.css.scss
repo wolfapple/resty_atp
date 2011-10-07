@@ -132,29 +132,34 @@
 	    padding-left: 15px;
 		}
 		a.name {
-			position: absolute;
+			position: relative;
+			float: left;
 			font-weight: bold;
 			margin-top: 10px;
 		}
 		span.like {
-			position: absolute;
+			position: relative;
+			float: right;
+			width: 60px;
 			margin-top: 10px;
-			margin-left: 140px;
+			right: 10px;
 		}
 		a.review {
-			position: absolute;
+			position: relative;
+			float: right;
 			background-image: url("/assets/show_side_near_pensions_review_bg.png");
 		  width: 60px;
 			height: 18px;
-			margin-top: 33px;
-			margin-left: 140px;
-			padding: 1px 0px 0px 0px;
+			line-height: 17px;
+			margin-top: 9px;
+			right: 10px;
 			text-align: center;
-			color: #fff;
+			color: #ffffff;
 		}
 		span {
-			position: absolute;
-			margin-top: 35px;
+			position: relative;
+			float: left;
+			margin-top: 10px;
 		}
 		.footer {
 			background-image: url("/assets/show_side_box_footer.png");
@@ -200,18 +205,28 @@
 			font-weight: bold;
 		}
 		.nav {
-			background-image: url("/assets/list_navigator_bg_2.png");
-			background-repeat: no-repeat;
-			width: 705px;
-			height: 76px;
-			line-height: 38px;
-			padding-left: 78px;
-			margin: 0px 0px 0px 1px;
+			.addr1 {
+				background-image: url("/assets/list_navigator_bg_2.png");
+				background-repeat: no-repeat;
+				width: 705px;
+				height: 38px;
+				line-height: 38px;
+				padding-left: 78px;
+				margin: 0px 0px 0px 1px;
+			}
 			.addr2 {
-				clear: both;
+				background: #207E59;
+				float: left;
+				width: 705px;
+				margin: 0px 0px 0px 1px;
+				ul {
+					padding-right: 10px;
+					line-height: 30px;
+				}
 			}
 		}
 		.spots {
+			clear: both;
 			background-image: url("/assets/list_navigator_bg_1.png");
 			background-repeat: no-repeat;
 			width: 707px;
