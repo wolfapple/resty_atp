@@ -1,6 +1,20 @@
-<h1>객실정보</h1>
-<ul class="unstyled">
-<% @rooms.each do |room| %>
-  <li><%= room.title %></li>
-<% end %>
-</ul>
+<div id="pension-title"><%= @pension.title %></div>
+<div id="room-list">
+  <ul>
+  <% @rooms.each do |room| %>
+  	<li>
+  	<div class="left">
+  		<div class="room-photo"><%= image_tag 'pension_01.jpg' %></div>
+  	</div>
+  	<div class="right">
+  		<div class="left">硫댁쟻 : 14��(36m)</div>
+  		<div>�숇컯�몄썝 湲곗�(理쒕�) : 4紐� (6紐�)</div>
+  		<div>鍮꾩닔湲� �붽툑 : 7留뚯썝 ~ 10留뚯썝</div>
+  		<div>�깆닔湲� �붽툑 : 11留뚯썝 ~ 14留뚯썝</div>
+  		<div class="faci">�쒖꽕 : �몃옒諛�, �뷀�/�ㅽ뙆, �섏쁺��, �몃��섏떎, 議깃뎄��, 痍⑥궗�⑺뭹, �쒕씪�닿린</div>
+  	</div>
+  	<div class="line_dotted clear"></div>
+  	</li>
+  <% end %>
+  </ul>
+</div>

@@ -1,7 +1,3 @@
-<% if params[:must_visit] %>
-  <div>Must Visit 블라블라블라</div>
-<% end %>
-
 <div class="sort">
   <% if @theme %>
     <span class="filter"><%= @theme.title %> <%= link_to "x", params.merge(:theme_id => nil, :page => nil) %></span>

@@ -1,3 +1,85 @@
 // Place all the styles related to the rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#pension-title {
+	font-family: dotum;
+	font-weight: bold;
+	font-size: 1.2em;
+	text-decoration: underline;
+}
+
+#room-list ul {
+	list-style: none;
+	padding: 0px;
+}
+
+#room-list li {
+	height: 150px;
+	padding: 15px;
+}
+
+#room-list .left {
+	float: left;
+}
+
+#room-list .right {
+	width: 350px;
+	float: left;
+	margin: 0px 0px 0px 15px;
+	padding: 0px 0px 0px 5px;
+	border-left: 1px solid #ddd;
+}
+
+#room-list .room-photo {
+	position: relative;
+	float: left;
+	background-image: url("/assets/footer_bgcolor.png");
+	width: 162px;
+	height: 127px;
+	margin-top: 10px;
+	margin-bottom: 15px;
+}
+
+#room-list .room-photo img {
+	position: absolute;
+	width: 162px;
+	height: 127px;
+	margin: -2px 0px 0px -2px;
+	z-index: 0;
+}
+
+#room-list .right > div {
+	float: left;
+	background-image: url("/assets/pension_room_list_dot.png");
+	background-repeat: no-repeat;
+	padding: 0px;
+	margin-left: 10px;
+	line-height: 28px;
+	text-indent: 10px;
+}
+
+#room-list .right > div.faci {
+	padding-left: 45px;
+	text-indent: -35px;
+}
+
+.clear {
+	clear: both;
+}
+
+.line_green {
+	background-image: url("/assets/show_title_line_bg.png");
+	width: 707px;
+	height: 3px;
+}
+
+.line_gray {
+	background-color: #ccc;
+	width: 707px;
+	height: 2px;
+}
+
+.line_dotted {
+	background-image: url("/assets/list_pension_info_dot.png");
+	height: 3px;
+}
