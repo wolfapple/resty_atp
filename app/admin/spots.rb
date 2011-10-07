@@ -12,6 +12,7 @@ ActiveAdmin.register Spot do
     column '주소', :addr
     column 'URL', :url
     column '메인노출', :is_main
+    column '펜션수', :pensions_count
     default_actions
   end
 end

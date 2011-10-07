@@ -4,7 +4,6 @@ class CreateSpotPensions < ActiveRecord::Migration
     create_table :spot_pensions do |t|
       t.references :spot
       t.references :pension
-      t.integer :reviews_count
 
       t.timestamps
     end
