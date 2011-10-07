@@ -5,5 +5,6 @@ ActiveAdmin.register Theme do
   index do
     column :title
     column '펜션수', :pensions_count
+    default_actions
   end
 end
