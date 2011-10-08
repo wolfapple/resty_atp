@@ -30,7 +30,6 @@
       <div id="login">
       <% if current_user %>
         <div id="logout">
-          <%= image_tag graph.get_picture('me') if graph %>
           <%= current_user.email %>님 환영합니다.
           <%= link_to 'My Resty', current_user %> |
           <%= link_to 'Logout', :logout %>

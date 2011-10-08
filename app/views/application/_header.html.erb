@@ -16,7 +16,7 @@
         <% if params[:action] == 'show' %>
           <%= link_to_unless @area == area, area.title, area_pensions_path(area) %>
         <% else %>
-          <%= link_to_unless @area == area, area.title, area_pensions_path(area, params.merge(:sub_area_id => nil)) %>
+          <%= link_to_unless @area == area, area.title, area_pensions_path(area, params.merge(:sub_area_id => nil, :page => nil)) %>
         <% end %>
       </li>
     <% end %>
@@ -30,7 +30,7 @@
           <% if params[:action] == 'show' %>
             <%= link_to_unless @sub_area == sub_area, sub_area.title, sub_area_pensions_path(sub_area) %>
           <% else %>
-            <%= link_to_unless @sub_area == sub_area, sub_area.title, sub_area_pensions_path(sub_area, params.merge(:area_id => nil)) %>
+            <%= link_to_unless @sub_area == sub_area, sub_area.title, sub_area_pensions_path(sub_area, params.merge(:area_id => nil, :page => nil)) %>
           <% end %>
         </li>
       <% end %>
@@ -43,7 +43,7 @@
   <div class="spots">
     <h3>주요 관광지</h3>
     <ul>
-    <% @spots.each do |spot| %>
+    <% @spots.limit(5).each do |spot| %>
       <li><%= link_to_unless @spot == spot, spot.title, spot %></li>
     <% end %>
   	</ul>

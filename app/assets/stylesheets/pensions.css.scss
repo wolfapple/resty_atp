@@ -343,12 +343,6 @@
 			.pension-item:hover {
 				background-color: #f8fff8;
 			}
-			.must-visit {
-				background-image: url("/assets/list_pension_must_visit_bg.png");
-				background-repeat: no-repeat;
-				width: 707px;
-				height: 150px;
-			}
 			.must-visit-mark {
 				text-indent: -9999px;
 				position: absolute;
@@ -459,7 +453,7 @@
 				position: relative;
 				float: right;
 				font-weight: bold;
-				margin-top: 5px;
+				bottom: 10px;
 			}
 			a:hover {
 				color: #2ab07b;

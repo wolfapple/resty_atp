@@ -50,12 +50,12 @@
 #main-facebook-activities {
 	position: relative;
 	float: left;
-	//background-image: url("/assets/main_fb_activities_bg.png");
+	background-image: url("/assets/main_fb_activities_bg.png");
 	background-repeat: no-repeat;
 	width: 361px;
 	height: 250px;
 	&.fb-login {
-		padding-top: 22px;
+		padding-top: 60px;
 	}
 	&.fb-logout {
 		background-image: url("/assets/main_fb_activities_logout_bg.png");
@@ -104,6 +104,7 @@
 				width: 50px;
 				height: 18px;
 				text-indent: -9999px;
+				display: inline-block;
 			}
 		}
 	}

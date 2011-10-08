@@ -8,7 +8,7 @@
 	      <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
   		  <br />
   		  <% area.sub_areas.main.each_with_index do |sub_area, idx| %>
-  		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.size - 1 %>
+  		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.main.count - 1 %>
   		  <% end %>
 		  </td>
 		  <td style="width:297px;">
@@ -17,7 +17,7 @@
 		    <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
   		  <br />
   		  <% area.sub_areas.main.each_with_index do |sub_area, idx| %>
-  		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.size - 1 %>
+  		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.main.count - 1 %>
   		  <% end %>
   		</td>
     </tr>
@@ -25,19 +25,27 @@
 	</table>    
 </div>
 
-<% if !current_user %>
-<div id="main-facebook-activities" class="fb-login"><fb:activity site="resty.co.kr" app_id="267286263291604" header="true" border_color="white" width="350" height="220"></fb:activity></div>
+<% if current_user %>
+<div id="main-facebook-activities" class="fb-login"><fb:activity site="www.resty.co.kr" app_id="267286263291604" header="false" border_color="white" width="350" height="250"></fb:activity></div>
 <div id="main-facebook-landmarks" class="fb-login"></div>
 <% else %>
 <div id="main-facebook-activities" class="fb-logout"></div>
 <div id="main-facebook-landmarks" class="fb-logout"></div>
 <% end %>
 
+<script type="text/javascript" charset="utf-8" src="/assets/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+  	$('#slider').nivoSlider({
+  	  controlNav: false
+  	});
+  });
+</script>
 <div id="main-must-visit">
   <div id="main-must-visit-title"></div>
-  <div id="slider">
+  <div id="slider" class="nivoSlider" style="width:352px;height:265px;">
   <% @must_visits.each do |mv| %>
-    <%= link_to mv.pension.title, pension_path(mv.pension) %>
+    <%= link_to image_tag(mv.pension.thumbnail, :title => "title test"), pension_path(mv.pension) %>
   <% end %>
   </div>
 </div>
@@ -55,7 +63,7 @@
   <% @spots.each do |spot| %>
     <li>
       <%= "[#{spot.sub_area.title}]" %> <%= link_to spot.title, spot %> (<%= spot.pensions_count %>)
-      <span class="season">season</span>
+      <%= content_tag :span, 'season', :class => 'season' if spot.is_season %>
     </li>
   <% end %>
   </ul>

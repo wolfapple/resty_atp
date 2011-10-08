@@ -14,7 +14,7 @@
 
 <div class="list">
 <% @pensions.each do |pension| %>
-  <div id="pension-<%= pension.id %>" class="pension-item<%= ' must-visit' if !params[:must_visit] and pension.must_visit %>">
+  <div id="pension-<%= pension.id %>" class="pension-item">
     <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if !params[:must_visit] and pension.must_visit %>
   	<div class="line-dotted"></div>
   	<div class="left">
@@ -34,14 +34,14 @@
   		</div>
   		<div class="pension-review">
   			<span class="pension-review-count">111<%#= pension.reviews_count %></span>
-  			<a href="#">리뷰/후기</a>
+  			<%= link_to '리뷰/후기', pension %>
   			<span class="pension-detail">
   				<%= link_to '상세보기', pension %>
   			</span>
   		</div>
   	</div>
   </div>
-  <script type="text/javascript">inputMarker(37.5708277, 128.4099873, "pension", 1, "1박2일 추월산 펜션", "pension_01.jpg", "커플, 가족, 모임, 워크샵", "노래방, 월풀\/스파, 수영장, 세마나실, 족구장", "애완동물 이용가능, 바닷가 인접, 계곡 인접", "전남 담양군 용면 월계리", "10 ~ 20 만원", "031-454-5484");</script>
+  <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension", 1, "1박2일 추월산 펜션", "pension_01.jpg", "커플, 가족, 모임, 워크샵", "노래방, 월풀\/스파, 수영장, 세마나실, 족구장", "애완동물 이용가능, 바닷가 인접, 계곡 인접", "전남 담양군 용면 월계리", "10 ~ 20 만원", "031-454-5484");</script>
 <% end %>
 </div>
 <div class="line-dotted"></div>
