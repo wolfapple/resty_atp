@@ -1,0 +1,16 @@
+<style>
+.pagination{padding:.3em;margin:.3em; font: 13.34px helvetica,arial,freesans,clean,sans-serif;}
+.pagination a{padding:.1em .3em;margin:.2em;border:1px solid #2AB07B;text-decoration:none;color:#2AB07B;}
+.pagination a:hover,.pagination a:active{border:2px solid #2AB07B;color:#000;}
+.pagination span.current{padding:.1em .3em;margin:.2em;border:1px solid #369;font-weight:bold;background-color:#2AB07B;color:#FFF;}
+.pagination span.disabled{padding:.1em .3em;margin:.2em;border:1px solid #eee;color:#ddd;}
+</style>
+<%= paginator.render do -%>
+<table class="pagination" style="border-collapse:collapse;text-align:left;direction:ltr;margin:17px auto 0"><tbody><tr valign="top">
+<td class="b"><%= prev_page_tag -%></td>
+<% each_page.select(&:inside_window?).each do |page| %><%= page_tag page -%><% end %>
+<td class="b"><%= next_page_tag -%></td>
+</tr></tbody></table>
+<% end %>
+
+

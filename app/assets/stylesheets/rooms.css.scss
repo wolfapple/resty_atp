@@ -1,6 +1,11 @@
 // Place all the styles related to the rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body, form, div {
+	font-family: Tahoma,Dotum;
+	font-size: 9pt;
+	color: #333;
+}
 #pension-title {
 	font-family: dotum;
 	font-weight: bold;
@@ -25,7 +30,7 @@
 #room-list .right {
 	width: 350px;
 	float: left;
-	margin: 0px 0px 0px 15px;
+	margin: 10px 0px 0px 15px;
 	padding: 0px 0px 0px 5px;
 	border-left: 1px solid #ddd;
 }

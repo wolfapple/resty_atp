@@ -25,9 +25,13 @@
 	</table>    
 </div>
 
+<% if !current_user %>
+<div id="main-facebook-activities" class="fb-login"><fb:activity site="resty.co.kr" app_id="267286263291604" header="true" border_color="white" width="350" height="220"></fb:activity></div>
+<div id="main-facebook-landmarks" class="fb-login"></div>
+<% else %>
 <div id="main-facebook-activities" class="fb-logout"></div>
-
 <div id="main-facebook-landmarks" class="fb-logout"></div>
+<% end %>
 
 <div id="main-must-visit">
   <div id="main-must-visit-title"></div>
@@ -49,7 +53,10 @@
 <div id="main-landmarks">
   <ul>
   <% @spots.each do |spot| %>
-    <li><%= "[#{spot.sub_area.title}]" %> <%= link_to spot.title, spot %> (<%= spot.pensions_count %>)</li>
+    <li>
+      <%= "[#{spot.sub_area.title}]" %> <%= link_to spot.title, spot %> (<%= spot.pensions_count %>)
+      <span class="season">season</span>
+    </li>
   <% end %>
   </ul>
 </div>

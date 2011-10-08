@@ -20,7 +20,7 @@
         <%= image_tag 'pension_01.jpg' %>
       </div>
       <div class="pension-detail">
-        <div id="pension-info-type">커플, 가족, 모임, 워크샵</div>
+        <div id="pension-info-type"><%= @pension.roomstructure %></div>
         <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') %></div>
         <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>
         <div id="pension-info-start">
@@ -42,7 +42,7 @@
     <div id="show-footer">
       <%= render 'map' %>
       <script type="text/javascript" charset="utf-8">
-        inputMarker(37.5994131, 128.3098562, "landmark");
+        inputMarker(<%= @pension.locationx %>, <%= @pension.locationy %>, "landmark");
       </script>
       <div class="line-green"></div>
     </div>
@@ -71,7 +71,10 @@
       <div id="blog-review-list">
         <ul>
         <% @blog_reviews.each do |item| %>
-          <li><%= link_to raw(item.title), item.link, :target => :blank %></li>
+          <li>
+            <%= link_to raw(item.title), item.link, :target => :blank %>
+            <p><%= raw item.desc %></p>
+          </li>
         <% end %>
         </ul>
         <%= paginate @blog_reviews %>

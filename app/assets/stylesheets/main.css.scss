@@ -50,10 +50,13 @@
 #main-facebook-activities {
 	position: relative;
 	float: left;
-	background-image: url("/assets/main_fb_activities_bg.png");
+	//background-image: url("/assets/main_fb_activities_bg.png");
 	background-repeat: no-repeat;
 	width: 361px;
 	height: 250px;
+	&.fb-login {
+		padding-top: 22px;
+	}
 	&.fb-logout {
 		background-image: url("/assets/main_fb_activities_logout_bg.png");
 	}
@@ -83,25 +86,27 @@
 	background-repeat: no-repeat;
 	width: 306px;
 	height: 293px;
-}
-
-#main-landmarks ul {
-	padding: 60px 0px 0px 0px;
-	margin: 0px;
-	list-style: none;
-}
-
-#main-landmarks ul li {
-	height: 28px;
-	padding-left: 30px;
-}
-
-#main-landmarks ul li a {
-	font-weight: bold;
-}
-
-#main-landmarks ul li a:hover{
-	color: #2ab07b;
+	ul {
+		padding: 60px 0px 0px 0px;
+		margin: 0px;
+		list-style: none;
+		li {
+			height: 28px;
+			padding-left: 30px;
+			a {
+				font-weight: bold;
+				&:hover {
+					color: #2ab07b;
+				}
+			}
+			.season {
+				background-image: url("/assets/main_landmarks_season_button.png");
+				width: 50px;
+				height: 18px;
+				text-indent: -9999px;
+			}
+		}
+	}
 }
 
 #main-themes {

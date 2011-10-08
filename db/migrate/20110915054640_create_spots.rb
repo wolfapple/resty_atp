@@ -10,6 +10,7 @@ class CreateSpots < ActiveRecord::Migration
       t.text :description
       t.string :url
       t.boolean :is_main, :default => false
+      t.boolean :is_season, :default => false
       t.integer :pensions_count, :default => 0
       t.integer :reviews_count, :default => 0
 

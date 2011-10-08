@@ -17,7 +17,7 @@ class BlogSearch
       cache.close
     end
     @results = doc.xpath('//item').map do |i|
-      BlogItem.new(i.xpath('title').inner_text, i.xpath('link').inner_text, i.xpath('description'))
+      BlogItem.new(i.xpath('title').inner_text, i.xpath('link').inner_text, i.xpath('description').inner_text)
     end
   end
 end

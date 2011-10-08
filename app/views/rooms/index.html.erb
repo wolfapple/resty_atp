@@ -7,11 +7,12 @@
   		<div class="room-photo"><%= image_tag 'pension_01.jpg' %></div>
   	</div>
   	<div class="right">
-  		<div class="left">硫댁쟻 : 14��(36m)</div>
-  		<div>�숇컯�몄썝 湲곗�(理쒕�) : 4紐� (6紐�)</div>
-  		<div>鍮꾩닔湲� �붽툑 : 7留뚯썝 ~ 10留뚯썝</div>
-  		<div>�깆닔湲� �붽툑 : 11留뚯썝 ~ 14留뚯썝</div>
-  		<div class="faci">�쒖꽕 : �몃옒諛�, �뷀�/�ㅽ뙆, �섏쁺��, �몃��섏떎, 議깃뎄��, 痍⑥궗�⑺뭹, �쒕씪�닿린</div>
+  	  <div class="left"><%= room.title %></div>
+  		<div>면적 : <%= room.area %></div>
+  		<div>숙박인원 : <%= room.number %></div>
+  		<div class="clear">요금 : <%= room.price %></div>
+  		<div class="faci"><%= room.facilities01 %></div>
+  		<div class="faci"><%#= room.facilities02 %></div>
   	</div>
   	<div class="line_dotted clear"></div>
   	</li>
