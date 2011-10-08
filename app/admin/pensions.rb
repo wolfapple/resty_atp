@@ -33,6 +33,7 @@ ActiveAdmin.register Pension do
       f.input :max_price
       f.input :facilities
       f.input :thumbnail, :as => :file
+      f.input :remove_thumbnail, :as => :boolean
       f.input :ranking
     end
     f.buttons

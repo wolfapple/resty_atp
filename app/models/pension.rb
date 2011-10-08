@@ -28,6 +28,18 @@ class Pension < ActiveRecord::Base
       if self.thumbnail.url.index('http:/')
         'http://' + self.thumbnail.url.split('http:/')[1]
       else
+        self.thumbnail.thumb.url
+      end
+    end
+  end
+  
+  def show_img
+    if self.thumbnail.url.blank?
+      'show_pension_photo_noimage.jpg'
+    else
+      if self.thumbnail.url.index('http:/')
+        'http://' + self.thumbnail.url.split('http:/')[1]
+      else
         self.thumbnail.url
       end
     end
