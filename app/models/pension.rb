@@ -20,4 +20,16 @@ class Pension < ActiveRecord::Base
   def short_addr
     self.addr.split(' ')[0..2].join(' ')
   end
+  
+  def list_img
+    if self.thumbnail.url.blank?
+      'list_pension_photo_noimage.jpg'
+    else
+      if self.thumbnail.url.index('http:/')
+        'http://' + self.thumbnail.url.split('http:/')[1]
+      else
+        self.thumbnail.url
+      end
+    end
+  end
 end
