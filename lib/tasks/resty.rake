@@ -172,4 +172,10 @@ namespace :resty do
     end
     pbar.finish
   end
+  
+  task :update_ranking => :environment do
+    puts "ranking..."
+    pbar = ProgressBar.new("ranking", Pension.count)
+    Pension.update_all :ranking, 0
+  end
 end

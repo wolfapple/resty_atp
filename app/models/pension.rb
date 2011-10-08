@@ -7,6 +7,7 @@ class Pension < ActiveRecord::Base
   has_one :must_visit
   belongs_to :area
   belongs_to :sub_area
+  #mount_uploader :thumbnail, PensionUploader
   
   default_scope order('ranking desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')

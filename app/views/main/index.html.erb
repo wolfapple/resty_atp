@@ -45,7 +45,7 @@
   <div id="main-must-visit-title"></div>
   <div id="slider" class="nivoSlider" style="width:352px;height:265px;">
   <% @must_visits.each do |mv| %>
-    <%= link_to image_tag(mv.pension.thumbnail, :title => "title test"), pension_path(mv.pension) %>
+    <%= link_to image_tag(mv.img.to_s, :title => "title test"), pension_path(mv.pension) %>
   <% end %>
   </div>
 </div>

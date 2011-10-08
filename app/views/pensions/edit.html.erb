@@ -1,0 +1,6 @@
+<%= image_tag @pension.thumbnail.to_s %>
+
+<%= form_for @pension, :html => {:multipart => true} do |f| %>
+  <%= f.file_field :thumbnail %>
+  <%= f.submit %>
+<% end %>

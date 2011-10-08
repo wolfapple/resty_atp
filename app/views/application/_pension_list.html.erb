@@ -15,7 +15,7 @@
 <div class="list">
 <% @pensions.each do |pension| %>
   <div id="pension-<%= pension.id %>" class="pension-item">
-    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if !params[:must_visit] and pension.must_visit %>
+    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if params[:must_visit] or pension.must_visit %>
   	<div class="line-dotted"></div>
   	<div class="left">
   		<div class="pension-thumbnail">

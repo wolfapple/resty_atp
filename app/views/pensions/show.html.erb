@@ -33,7 +33,7 @@
         </div>
         <div id="pension-info-addr"><%= @pension.addr %></div>
         <div id="pension-info-price"><%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원</div>
-        <div id="pension-info-phone">031-454-5484</div>
+        <div id="pension-info-phone"><%= @pension.mobile %></div>
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
       </div>

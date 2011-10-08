@@ -19,4 +19,23 @@ ActiveAdmin.register Pension do
     end
     default_actions
   end
+  
+  form :html => {:multipart => true} do |f|
+    f.inputs "pension details" do
+      f.input :area
+      f.input :sub_area
+      f.input :title
+      f.input :url
+      f.input :addr
+      f.input :mobile
+      f.input :roomstructure
+      f.input :facilities
+      f.input :thumbnail, :as => :file
+      f.input :thumbnail
+      f.input :ranking
+      f.input :min_price
+      f.input :max_price
+    end
+    f.buttons
+  end
 end

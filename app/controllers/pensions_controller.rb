@@ -84,4 +84,15 @@ class PensionsController < ApplicationController
     end
     render :json => @pension.comments_count
   end
+  
+  def edit
+    @pension = Pension.find(params[:id])
+  end
+  
+  def update
+    @pension = Pension.find(params[:id])
+    #@pension.remove_thumbnail!
+    @pension.update_attributes(params[:pension])
+    redirect_to edit_pension_path(@pension)
+  end
 end
