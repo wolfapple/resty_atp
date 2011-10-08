@@ -51,7 +51,7 @@
 	bottom:5px;
 	background:#000;
 	color:#fff;
-	opacity:0.5; /* Overridden by captionOpacity setting */
+	opacity:0.3; /* Overridden by captionOpacity setting */
 	width:100%;
 	z-index:8;
 }
@@ -75,6 +75,9 @@
 	background: url("/assets/arrows.png") no-repeat;
 	text-indent: -9999px;
 	border: 0;
+}
+.nivo-directionNav a.nivo-nextNav {
+	background-position: -30px 0;
 }
 .nivo-prevNav {
 	left:0px;

@@ -29,12 +29,11 @@ ActiveAdmin.register Pension do
       f.input :addr
       f.input :mobile
       f.input :roomstructure
-      f.input :facilities
-      f.input :thumbnail, :as => :file
-      f.input :thumbnail
-      f.input :ranking
       f.input :min_price
       f.input :max_price
+      f.input :facilities
+      f.input :thumbnail, :as => :file
+      f.input :ranking
     end
     f.buttons
   end
