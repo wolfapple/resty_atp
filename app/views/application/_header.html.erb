@@ -43,7 +43,7 @@
   <div class="spots">
     <h3>주요 관광지</h3>
     <ul>
-    <% @spots.limit(5).each do |spot| %>
+    <% @spots.each do |spot| %>
       <li><%= link_to_unless @spot == spot, spot.title, spot %></li>
     <% end %>
   	</ul>

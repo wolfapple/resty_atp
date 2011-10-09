@@ -31,7 +31,7 @@ class SearchController < ApplicationController
     sub_areas = SubArea.where("title like ?", like).map do |sub_area|
       {:id => sub_area.id, :label => "#{sub_area.area.title}>#{sub_area.title}", :category => "지역", :class => 'SubArea'}
     end
-    pensions = Pension.where("title like ?", like).map do |pension|
+    pensions = Pension.where("title like ?", like).order('ranking desc').limit(10).map do |pension|
       {:id => pension.id, :label => pension.title, :category => '펜션', :class => 'Pension'}
     end
     spots = Spot.where("title like ?", like).map do |spot|
