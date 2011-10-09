@@ -26,19 +26,19 @@ class SearchController < ApplicationController
   def autocomplete
     like = params[:term].concat("%")
     areas = Area.where("title like ?", like).map do |area|
-      {:id => area.id, :label => "#{area.title}", :category => "지역", :class => 'Area'}
+      {:id => area.id, :label => "#{area.title}", :category => "지역", :search_class => 'Area'}
     end
     sub_areas = SubArea.where("title like ?", like).map do |sub_area|
-      {:id => sub_area.id, :label => "#{sub_area.area.title}>#{sub_area.title}", :category => "지역", :class => 'SubArea'}
+      {:id => sub_area.id, :label => "#{sub_area.area.title}>#{sub_area.title}", :category => "지역", :search_class => 'SubArea'}
     end
     pensions = Pension.where("title like ?", like).order('ranking desc').limit(10).map do |pension|
-      {:id => pension.id, :label => pension.title, :category => '펜션', :class => 'Pension'}
+      {:id => pension.id, :label => pension.title, :category => '펜션', :search_class => 'Pension'}
     end
     spots = Spot.where("title like ?", like).map do |spot|
-      {:id => spot.id, :label => spot.title, :category => '관광지', :class => 'Spot'}
+      {:id => spot.id, :label => spot.title, :category => '관광지', :search_class => 'Spot'}
     end
     themes = Theme.where("title like ?", like).map do |theme|
-      {:id => theme.id, :label => theme.title, :category => '테마', :class => 'Theme'}
+      {:id => theme.id, :label => theme.title, :category => '테마', :search_class => 'Theme'}
     end
     render :json => areas + sub_areas + pensions + spots + themes
   end

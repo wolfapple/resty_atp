@@ -44,8 +44,8 @@ $(function(){
 			});
 		},
 		select: function(event,ui) {
-			$('#search_class').val(ui.item.attr('class'));
-			$('#search_id').val(ui.item.attr('id'))
+			$('#search_class').val(ui.item.search_class);
+			$('#search_id').val(ui.item.id);
 		}
 	});
 });

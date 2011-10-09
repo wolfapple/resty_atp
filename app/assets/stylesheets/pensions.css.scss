@@ -791,5 +791,31 @@
 			height: 35px;
 			margin-top: 40px;
 		}
+		#blog-review-list {
+			ul {
+				list-style: none;
+				padding: 0px;
+				li {
+					background-image: url("/assets/list_pension_info_dot.png");
+					background-repeat: repeat-x;
+					background-position: bottom;
+					padding: 10px;
+					a {
+						background-image: url("/assets/mymenu_travel_map_icon_pension.png");
+						background-repeat: no-repeat;
+						font-size: 1.2em;
+						font-weight: bold;
+						padding-left: 25px;
+						color: #375;
+					}
+				}
+			}
+			p {
+				padding-left: 5px;
+				margin-top: 5px;
+				color: #666;
+			}
+		}
 	}
 }
+
