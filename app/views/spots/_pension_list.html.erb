@@ -1,15 +1,5 @@
 <div class="sort">
-  <% if @theme %>
-    <span class="filter"><%= @theme.title %> <%= link_to "x", params.merge(:theme_id => nil, :page => nil) %></span>
-  <% end %>
-  <% if params[:must_visit] %>
-    <span class="filter">Must Visit <%= link_to "x", params.merge(:must_visit => nil) %></span>
-  <% end %>
-  <% if @price %>
-    <span class="filter"><%= @price.to_s %> <%= link_to "x", params.merge(:price_id => nil) %></span>
-  <% end %>
-  <span class="like-order"><%= link_to '좋아요순', params.merge(:order_by => 'like_count') %></span>
-  <span class="popular-order"><%= link_to '인기도순', params.merge(:order_by => nil) %></span>
+  <span class="more-pensions"><%= link_to "#{@spot.title} 주변 펜션 더보기...", spot_pensions_path(@spot) %></span>
 </div>
 
 <div class="list">

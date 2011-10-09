@@ -29,7 +29,7 @@
         <div id="pension-info-start">
           <form>
             <div id="findway-box">
-              <input type="text" value="<%= @pension.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word">
+              <input type="text" value="<%= @pension.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word" onclick="this.value='';">
               <input type="image" src="/assets/header_searchbox_button.png" id="findway-button" class="<%= 'searchByAddress' if @pension.locationx.blank? %><%= 'searchByGPS' unless @pension.locationx.blank? %>" />
             </div>
           </form>
@@ -43,6 +43,7 @@
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
       </div>
+      <div style="clear:both;"></div>
     </div>
 
     <div id="show-footer">

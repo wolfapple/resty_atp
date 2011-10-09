@@ -19,25 +19,37 @@
       <div id="spot-info-phone"><%= @spot.phone %></div>
       <div id="spot-info-start">
         <div id="findway-box">
-          <input type="text" value="<%= @spot.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word" />
+          <input type="text" value="<%= @spot.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word" onclick="this.value='';"/>
           <input type="image" value="" src="/assets/header_searchbox_button.png" id="findway-button" class="searchByAddress" />
-            </div>
-          </form>
         </div>
       </div>
-
       <div id="spot-info-source">출처 : 한국관광공사</div>
     </div>
-    <script type="text/javascript">inputMarkerFromAddress(<%= @spot.addr %>, "landmark");</script>
     <div id="show-footer">
-		<%= render 'map' %>
+      <script type="text/javascript">inputMarkerByAddress("<%= @spot.addr %>", "landmark");</script>
+	    <%= render 'map' %>
       <div class="line-green"></div>
     </div>
     <div id="show-review">
-      <%= render 'review' %>
+      <div id="spot-review-title"></div>
+      <fb:comments-count href="<%= request.url %>"></fb:comments-count>개의 댓글
+      <fb:comments href="<%= request.url %>" num-posts="5" width="709"></fb:comments>
+      <script type="text/javascript" charset="utf-8">
+        FB.Event.subscribe('comment.create', function(response) {
+          $.get('/spots/update_comments_count', {id:<%= @spot.id %>});
+        });
+        FB.Event.subscribe('comment.remove', function(response) {
+          $.get('/spots/update_comments_count', {id:<%= @spot.id %>, remove:true});
+        });
+        FB.Event.subscribe('edge.create', function(response) {
+          $.get('/spots/update_like_count', {id:<%= @spot.id %>});
+        });
+        FB.Event.subscribe('edge.remove', function(response) {
+          $.get('/spots/update_like_count', {id:<%= @spot.id %>, remove:true});
+        });
+      </script>
     </div>
   </div>
-  <h2>펜션</h2>
   <div id="pension-list">
     <%= render 'pension_list' %>
   </div>

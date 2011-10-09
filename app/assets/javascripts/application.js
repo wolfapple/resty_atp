@@ -84,7 +84,7 @@ function inputMarkerByAddress(address, icon, hasHtml, name, itemid)
 {
 	geocoder = new GClientGeocoder();
 
-	if(sAddress != "") {
+	if(address != "") {
 		// GPS 좌표 지정
 		if (geocoder) {
 			geocoder.getLatLng(
@@ -194,7 +194,7 @@ function showPathMapFromAddress(sAddress, eAddress, sText, eText){
 $(document).ready(function() {
 
 	// 라디오버튼 모양 변경
-	$("span[class='radio']").addClass("unchecked");
+	/*$("span[class='radio']").addClass("unchecked");
 	$("input[checked='checked'][type='radio']").parent().addClass("checked");
 	$("input[checked='checked'][type='radio']").parent().removeClass("unchecked");
 
@@ -227,13 +227,13 @@ $(document).ready(function() {
 			$(this).removeClass("unchecked");
 			$(this).addClass("checked");
 		}
-	});
+	});*/
 
 	// 사이드바 more/less
 	$('#sidebar h3').click(function() {
 		$(this).toggleClass('hide');
 		$(this).next('ul').children('.toggle-list').toggleClass('hide');
-    });
+	});
 
 	// navi-landmarks 페이징 관련
 	var nCountList = $(".spots-body > ul li").length;
@@ -294,7 +294,7 @@ $(document).ready(function() {
 
 
 	// review 더보기 관련
-	$("#review-more").click(function() {
+	/*$("#review-more").click(function() {
 		if ($(".reviews").hasClass("hide")) {
 			$(".reviews").removeClass("hide");
 			$(this).addClass("open");
@@ -302,7 +302,7 @@ $(document).ready(function() {
 			$(".reviews").addClass("hide");
 			$(this).removeClass("open");
 		}
-	});
+	});*/
 
 	// spot 더보기 관련
 	$("#spot-info-more").click(function() {

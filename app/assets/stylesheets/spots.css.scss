@@ -5,7 +5,13 @@
 	#show-content {
 		#title, #show-footer {
 			background-image: url("/assets/show_detail_bgcolor.png");
-			
+		}
+		#spot-review-title {
+			background-image: url("/assets/show_spot_review_title.png");
+			background-repeat: no-repeat;
+			width: 705px;
+			height: 35px;
+			margin-top: 40px;
 		}
 		#spot-info-sum {
 			position: relative;

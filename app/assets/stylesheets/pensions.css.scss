@@ -127,14 +127,14 @@
 			background-image: url("/assets/show_side_near_pensions_header.png");
 			margin: 0px;
 		}
-		ul 
-		li {
+		ul li {
 			background-image: url("/assets/show_side_near_pensions_body.png");
 	    	height: 73px;
 	    	padding: 0px 0px 0px 15px;
 	    	margin: 0px;
 		}
 		a.name {
+			width: 140px;
 			position: relative;
 			float: left;
 			font-weight: bold;
@@ -391,6 +391,15 @@
 				line-height: 30px;
 				text-indent: 25px;
 				margin-right: 30px;
+			}
+			.more-pensions {
+				position: relative;
+				float: right;
+				height: 30px;
+				line-height: 30px;
+				text-indent: 25px;
+				margin-right: 30px;
+				font-weight: bold;
 			}
 		}
 		.list {
