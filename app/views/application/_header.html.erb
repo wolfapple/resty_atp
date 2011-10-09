@@ -42,10 +42,15 @@
 <% if @spots %>
   <div class="spots">
     <h3>주요 관광지</h3>
-    <ul>
-    <% @spots.limit(5).each do |spot| %>
-      <li><%= link_to_unless @spot == spot, spot.title, spot %></li>
-    <% end %>
-  	</ul>
+    <div class="spots-body">
+    	<ul>
+    	<% @spots.each do |spot| %>
+     	<li><%= link_to_unless @spot == spot, spot.title, spot %></li>
+    	<% end %>
+  		</ul>
+  		<ul class="next hidden"></ul>
+		<ul class="prev hidden"></ul>
+  	</div>
+	
   </div>
 <% end %>

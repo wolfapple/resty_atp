@@ -12,12 +12,18 @@
 
 #main-category table {
 	width: 629px;
-	padding: 0px 20px;
-	margin-top: 55px;
+	padding: 0px;
+	margin: 55px 0px 0px 0px;
 }
 
 #main-category table tr {
 	height: 78px;
+}
+
+#main-category table tr td {
+	width: 280px;
+	padding: 0px 8px 0px 10px;
+	margin: 0px;
 }
 
 #main-category .local {

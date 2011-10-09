@@ -2,7 +2,7 @@
   <table>
     <% 0.upto(@areas.size / 2 - 1) do |i| %>
 	  <tr>
-	    <td style="width:297px;">
+	    <td>
 	      <% area = @areas[i*2] %>
 	      <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
 	      <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
@@ -11,7 +11,7 @@
   		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.main.count - 1 %>
   		  <% end %>
 		  </td>
-		  <td style="width:297px;">
+		  <td>
 		    <% area = @areas[i*2+1] %>
 		    <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
 		    <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>

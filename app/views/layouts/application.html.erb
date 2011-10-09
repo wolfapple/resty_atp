@@ -59,7 +59,12 @@
   <div id="content" class="wrapper">
     <%= yield %>
   </div>
-  
+
+	<div id="mask"></div>
+	<div class="window">
+		<iframe src="" scrolling="no" name="_resultpath" class="path-map" /></iframe>
+		<input type="button" href="#" class="close" value="x"/>
+	</div>  
   <div id="footer">
     <div class="wrapper">
       <%= link_to image_tag('footer_logo.png', :class => 'logo'), root_url %>

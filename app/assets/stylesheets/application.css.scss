@@ -161,3 +161,26 @@ li.autocomplete_category {
 	font-weight: bold;
 	color: #339966;
 }
+
+#mask {
+	position: absolute;
+	z-index: 9000;
+	background-color: #396;
+	display: none;
+	left: 0;
+	top: 0;
+}
+
+.window {
+	display: none;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 10000;
+}
+
+.path-map {
+	width: 1024px;
+	height: 768px;
+	border: 1px solid;
+}

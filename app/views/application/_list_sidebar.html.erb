@@ -1,5 +1,5 @@
 <div class="themes_box">
-  <h3>테마</h3>
+  <h3 id="themes" class="more">테마</h3>
   <ul>
     <% Theme.all.each_with_index do |theme, idx| %>
       <li class="<%= cycle('odd', 'even') %><%= ' toggle-list hide' if idx > 4 %>">
@@ -23,7 +23,7 @@
 </div>
 
 <div class="facilities_box">
-  <h3 id="facilities">시설</h3>
+  <h3 id="facilities" class="more">시설</h3>
   <ul>
   <% Facility.all.each_with_index do |facility, idx| %>
     <li class="<%= cycle('odd', 'even') %><%= ' toggle-list hide' if idx > 4 %>">
