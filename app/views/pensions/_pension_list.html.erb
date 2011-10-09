@@ -33,7 +33,7 @@
   		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
   		</div>
   		<div class="pension-review">
-  			<span class="pension-review-count">111<%#= pension.reviews_count %></span>
+        <span class="pension-review-count"><%= pension.comments_count %></span>
   			<%= link_to '리뷰/후기', pension %>
   			<span class="pension-detail">
   				<%= link_to '상세보기', pension %>

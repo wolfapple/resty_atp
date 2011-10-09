@@ -28,7 +28,7 @@
   		<div class="pension-faci"><%= pension.facilities %></div>
   	</div>
   	<div class="right">
-  		<div class="pension-addr"><%= pension.short_addr %></div>
+  		<div class="pension-addr" title="<%= pension.addr %>"><%= pension.short_addr %></div>
   		<div class="pension-price">
   		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
   		</div>
