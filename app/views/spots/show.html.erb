@@ -1,3 +1,12 @@
+<% content_for :og_meta do  %>
+  <meta property="fb:app_id"      content="267286263291604">
+  <meta property="og:type"        content="resty_atp:spot">
+  <meta property="og:url"         content="<%= request.url %>">
+  <meta property="og:title"       content="<%= @spot.title %>">
+  <meta property="og:description" content="<%= @spot.addr %>">
+  <meta property="og:image"       content="http://www.resty.co.kr/assets/pension_photo_noimage.jpg">
+<% end %>
+
 <div id="sidebar">
   <%= render 'show_sidebar' %>
 </div>
@@ -26,8 +35,8 @@
       <div id="spot-info-source">출처 : 한국관광공사</div>
     </div>
     <div id="show-footer">
-      <script type="text/javascript">inputMarkerByAddress("<%= @spot.addr %>", "landmark");</script>
 	    <%= render 'map' %>
+	    <script type="text/javascript">inputMarkerByAddress("<%= @spot.addr %>", "landmark");</script>
       <div class="line-green"></div>
     </div>
     <div id="show-review">

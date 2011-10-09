@@ -55,30 +55,54 @@ var gpsY1 = 40.0;
 var gpsX2 = 0.0;
 var gpsY2 = 0.0;
 var markers = '';
+var markersPrev = '';
 var countMarkers = 0;
 
-function inputMarker(lng, lat, icon, hasHtml, name, itemid)
-{
+function inputMarker(lng, lat, icon, hasHtml, name, itemid) {
+	markers = markersPrev;
 	var comma = '';
 	if (markers != '')
 	comma = ', ';
 
-	if (gpsX1 >= lng)	gpsX1 = lng;
-	if (gpsY1 >= lat)	gpsY1 = lat;
-	if (gpsX2 <= lng)	gpsX2 = lng;
-	if (gpsY2 <= lat)	gpsY2 = lat;
+	if (gpsX1 >= lng) gpsX1 = lng;
+	if (gpsY1 >= lat) gpsY1 = lat;
+	if (gpsX2 <= lng) gpsX2 = lng;
+	if (gpsY2 <= lat) gpsY2 = lat;
 
 	if (hasHtml) {
-		var content = "<h3 style=\'margin-top: 0px;\'>" + name + "<\/h3><a href=\'#pension-" + itemid + "\'>리스트로 바로가기<\/a>";
+
+	 var content = "<h3 style=\'margin-top: 0px;\'>" + name + "<\/h3><a href=\'#pension-" + itemid + "\'>리스트로 바로가기<\/a>";
 	}
 
 	if (!content) {
-		markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46],	"infowindowanchor": [12, 0] } }';
+	 markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46], "infowindowanchor": [12, 0] } }';
 	} else {
-		markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46],	"infowindowanchor": [12, 0] }, "html": "' + content + '" }';
+	 markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46], "infowindowanchor": [12, 0] }, "html": "' + content + '" }';
 	}
 	countMarkers++;
-};
+
+	markersPrev = markers;
+	if (countMarkers == 1) {
+	 markers = markers + ', ' + markers;
+	}
+	markers = '[' + markers + ']';
+
+	var jsonObj = jsonParse(markers);
+	var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
+	var rev = (gpsY2-gpsY1)*0.5;
+	if (rev == 0) {
+	 zoom = -2;
+	 rev = 0.015;
+	}
+
+	$("#map").gMap({
+	 markers: jsonObj,
+	 icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
+	 latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
+	 longitude: gpsX1 + (gpsX2-gpsX1)/2,
+	 zoom: 11 - zoom
+	});
+}
 
 function inputMarkerByAddress(address, icon, hasHtml, name, itemid)
 {
@@ -97,7 +121,7 @@ function inputMarkerByAddress(address, icon, hasHtml, name, itemid)
 			);
 		}
 	}
-};
+}
 
 // 검은 막 관련
 function showPathMap(sAddress, elng, elat, sText, eText){
@@ -192,43 +216,6 @@ function showPathMapFromAddress(sAddress, eAddress, sText, eText){
 }
 
 $(document).ready(function() {
-
-	// 라디오버튼 모양 변경
-	/*$("span[class='radio']").addClass("unchecked");
-	$("input[checked='checked'][type='radio']").parent().addClass("checked");
-	$("input[checked='checked'][type='radio']").parent().removeClass("unchecked");
-
-	$(".radio").click(function() {
-		$("input[name='"+$(this).children("input").attr("name")+"']").attr({checked: ""});
-		$("input[name='"+$(this).children("input").attr("name")+"']").parent().addClass("unchecked");
-		if ($(this).children("input").attr("checked")) {
-			$(this).children("input").attr({checked: ""});
-			$(this).removeClass("checked");
-			$(this).addClass("unchecked");
-		} else {
-			$(this).children("input").attr({checked: "checked"});
-			$(this).removeClass("unchecked");
-			$(this).addClass("checked");
-		}
-	});
-
-	// 체크박스 모양 변경
-	$("span[class='checkbox']").addClass("unchecked");
-	$("input[checked='checked'][type='checkbox']").parent().addClass("checked");
-	$("input[checked='checked'][type='checkbox']").parent().removeClass("unchecked");
-
-	$(".checkbox").click(function() {
-		if($(this).children("input").attr("checked")) {
-			$(this).children("input").attr({checked: ""});
-			$(this).removeClass("checked");
-			$(this).addClass("unchecked");
-		} else {
-			$(this).children("input").attr({checked: "checked"});
-			$(this).removeClass("unchecked");
-			$(this).addClass("checked");
-		}
-	});*/
-
 	// 사이드바 more/less
 	$('#sidebar h3').click(function() {
 		$(this).toggleClass('hide');
@@ -292,18 +279,6 @@ $(document).ready(function() {
 		$(".p"+nCurr, ".spots-body").removeClass("hidden");
 	});
 
-
-	// review 더보기 관련
-	/*$("#review-more").click(function() {
-		if ($(".reviews").hasClass("hide")) {
-			$(".reviews").removeClass("hide");
-			$(this).addClass("open");
-		} else {
-			$(".reviews").addClass("hide");
-			$(this).removeClass("open");
-		}
-	});*/
-
 	// spot 더보기 관련
 	$("#spot-info-more").click(function() {
 		$("#spot-info-sum").addClass("hide");
@@ -313,40 +288,6 @@ $(document).ready(function() {
 		$("#spot-info-sum").removeClass("hide");
 		$("#spot-info-all").addClass("hide");
 	});
-
-
-	// 지도 관련
-	if (countMarkers > 0) {
-		if (countMarkers == 1) {
-			markers = markers + ', ' + markers;
-		}
-		markers = '[' + markers + ']';
-
-		var jsonObj = jsonParse(markers);
-		var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
-		var rev = (gpsY2-gpsY1)*0.5;
-		if (rev == 0) {
-			zoom = -2;
-			rev = 0.015;
-		}
-		
-		$("#map").gMap({
-			markers: jsonObj,
-			icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46],	infowindowanchor: [9, 2] },
-			latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
-			longitude: gpsX1 + (gpsX2-gpsX1)/2,
-			zoom: 11 - zoom
-		});
-	}
-	else {
-		if ($("#map").length > 0) {
-			$("#map").gMap({
-				icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46],	infowindowanchor: [9, 2] },
-				latitude: 37.3404259,
-				longitude: 127.1081021,
-				zoom: 16 });
-		}
-	}
 
 	$("#map-toggle").click( function() {
 		if ($("#openCloseIdentifier").is(":hidden")) {
@@ -379,12 +320,12 @@ $(document).ready(function() {
 
 	$(".searchByGPS").click(function(e) {
 		e.preventDefault();
-		showPathMap($("#findway-word").attr("value"), $("#info-gps-x").text(), $("#info-gps-y").text(), $("#findway-word").attr("value"), $("h2"));
+		showPathMap($("#findway-word").attr("value"), $("#info-gps-x").text(), $("#info-gps-y").text(), $("#findway-word").attr("value"), $("h2").text());
 	}); 
 	
 	$(".searchByAddress").click(function(e) {
 		e.preventDefault();
-		showPathMapFromAddress($("#findway-word").attr("value"), $("#spot-info-addr, #pension-info-addr").text(), $("#findway-word").attr("value"), $("h2"));
+		showPathMapFromAddress($("#findway-word").attr("value"), $("#spot-info-addr, #pension-info-addr").text(), $("#findway-word").attr("value"), $("h2").text());
 	}); 
 	
 	$(".window .close").click(function(e) {
@@ -398,4 +339,3 @@ $(document).ready(function() {
 	});
 
 });
-
