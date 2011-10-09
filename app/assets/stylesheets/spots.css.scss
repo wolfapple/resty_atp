@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #main_content {
 	#show-content {
+		#title, #show-footer {
+			background-image: url("/assets/show_detail_bgcolor.png");
+			
+		}
 		#spot-info-sum {
 			position: relative;
 			float: left;

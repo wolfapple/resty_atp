@@ -21,6 +21,7 @@
 #myresty {
     position: relative;
     float: right;
+    width: 707px;
     margin: 37px 10px 0px 0px;
 }
 
@@ -361,4 +362,58 @@
     padding: 0px;
     margin: 4px 0px;
     text-indent: -5000px;
+}
+
+
+#email-allow {
+    margin-bottom: 50px;
+}
+
+#email-allow-title {
+	position: relative;
+}
+
+#email-allow-title > h3 {
+	background-image: url("/assets/mymenu_private_info_email_allow_title.png");
+	background-repeat: no-repeat;
+	width: 220px;
+	height: 24px;
+    padding: 0px;
+    margin: 4px 0px;
+    text-indent: -5000px;
+}
+
+#email-allow-body > div {
+	padding: 15px 30px;
+}
+
+#email-allow-body input[type="checkbox"] {
+    display: none;
+}
+
+#email-allow-body .checkbox {
+    padding-left: 20px;
+	margin-top: 5px;
+    cursor: pointer;
+}
+
+#email-allow-body .checked {
+	background-image: url("/assets/check_on.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 18px;
+	padding-top: 3px;
+}
+
+#email-allow-body .unchecked {
+	background-image: url("/assets/check_off.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 18px;
+	padding-top: 3px;
+}
+
+#myinfo-footer {
+	margin-left: 200px;
+	margin-bottom: 50px;
 }
