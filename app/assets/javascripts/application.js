@@ -7,6 +7,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.nivo.slider.pack
+//= require jquery.colorbox-min
 $.widget( "custom.catcomplete", $.ui.autocomplete, {
 	_renderMenu: function( ul, items ) {
 		var self = this,
@@ -148,29 +150,6 @@ $(document).ready(function() {
 		$(this).next('ul').children('.toggle-list').toggleClass('hide');
     });
 
-	/*
-	$(".themes h3").click(function() {
-		if ($(".themes h3").hasClass("hide")) {
-			$(".themes h3").removeClass("hide");
-			$(this).addClass("hide");
-		} else {
-			$(".themes h3").addClass("hide");
-			$(this).removeClass("hide");
-		}
-		alert($(".themes").html());
-	});
-
-	$(".facilities h3").click(function() {
-		if ($(".facilities h3").hasClass("hide")) {
-			$(".facilities h3").removeClass("hide");
-			$(this).addClass("hide");
-		} else {
-			$(".facilities h3").addClass("hide");
-			$(this).removeClass("hide");
-		}
-		alert($(".themes").html());
-	});
-	*/
 	// navi-landmarks 페이징 관련
 	var nCountList = $(".spots-body > ul li").length;
 	var len = 0;

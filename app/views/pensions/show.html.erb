@@ -1,4 +1,6 @@
-<script type="text/javascript" src="/assets/jquery.colorbox-min.js"></script>
+<% unless @pension.locationx.blank? or @pension.locationy.blank? %>
+  <script type="text/javascript">inputMarker(<%= @pension.locationx %>, <%= @pension.locationy %>, "pension");</script>
+<% end %>
 
 <div id="sidebar">
   <%= render 'show_sidebar' %>
