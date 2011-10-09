@@ -359,6 +359,9 @@
 		width: 705px;
 		height: 10px;
 	}
+	#info-gps-x, #info-gps-y {
+		display: none;
+	}
 	#pension-list {
 		position: relative;
     float: right;
@@ -467,6 +470,7 @@
 				position: absolute;
 				float: right;
 				right: 5px;
+				width: 270px;
 				margin-top: 110px;
 			}
 			.pension-addr {
@@ -671,6 +675,8 @@
 			}
 		}
 		#show-footer {
+			background-image: url("/assets/show_detail_bgcolor.png");
+			background-repeat: repeat;
 			clear: both;
 		}
 		#show-review {

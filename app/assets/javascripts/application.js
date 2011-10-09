@@ -57,7 +57,7 @@ var gpsY2 = 0.0;
 var markers = '';
 var countMarkers = 0;
 
-function inputMarker(lng, lat, icon, hasHtml, name)
+function inputMarker(lng, lat, icon, hasHtml, name, itemid)
 {
 	var comma = '';
 	if (markers != '')
@@ -69,7 +69,7 @@ function inputMarker(lng, lat, icon, hasHtml, name)
 	if (gpsY2 <= lat)	gpsY2 = lat;
 
 	if (hasHtml) {
-		var content = "<h3 style=\'margin-top: 0px;\'>" + name + "<\/h3>";
+		var content = "<h3 style=\'margin-top: 0px;\'>" + name + "<\/h3><a href=\'#pension-" + itemid + "\'>리스트로 바로가기<\/a>";
 	}
 
 	if (!content) {
@@ -80,27 +80,115 @@ function inputMarker(lng, lat, icon, hasHtml, name)
 	countMarkers++;
 };
 
-// 검은 막 관련
-function showPathMap(slng, slat, elng, elat, sText, eText){
-	var dlevel = 4;
-	//화면의 높이와 너비를 구한다.
-	if ($(".window").outerHeight() < $(document).height() )
-		$(".window").css("margin-top", "-" + $(".window").outerHeight()/2+"px");
-	else
-		$(".window").css("top", "0px");
-	if ($(".window").outerWidth() < $(document).width() )
-		$(".window").css("margin-left", "-" + $(".window").outerWidth()/2+"px");
-	else
-		$(".window").css("left", "0px");
+function inputMarkerByAddress(address, icon, hasHtml, name, itemid)
+{
+	geocoder = new GClientGeocoder();
 
-	var maskHeight = $(document).height();
-	var maskWidth = $(window).width();
+	if(sAddress != "") {
+		// GPS 좌표 지정
+		if (geocoder) {
+			geocoder.getLatLng(
+				address,
+				function(point) {
+					if (point) {
+						inputMarker(point.lng(), point.lat(), icon, hasHtml, name, itemid)
+					}
+				}
+			);
+		}
+	}
+};
+
+// 검은 막 관련
+function showPathMap(sAddress, elng, elat, sText, eText){
+	geocoder = new GClientGeocoder();
+
+	if(sAddress != "") {
+		// GPS 좌표 지정
+		if (geocoder) {
+			geocoder.getLatLng(
+				sAddress,
+				function(point) {
+					if (!point) {
+						alert("'"+sText + "'의 좌표를 찾지 못했습니다.");
+					} else {
+						var dlevel = 4;
+						//화면의 높이와 너비를 구한다.
+						if ($(".window").outerHeight() < $(document).height() )
+							$(".window").css("margin-top", "-" + $(".window").outerHeight()/2+"px");
+						else
+							$(".window").css("top", "0px");
+						if ($(".window").outerWidth() < $(document).width() )
+							$(".window").css("margin-left", "-" + $(".window").outerWidth()/2+"px");
+						else
+							$(".window").css("left", "0px");
+
+						var maskHeight = $(document).height();
+						var maskWidth = $(window).width();
 	
-	$("#mask").css({"width": maskWidth, "height": maskHeight});
-	$("#mask").fadeTo("slow", 0.8);
+						$("#mask").css({"width": maskWidth, "height": maskHeight});
+						$("#mask").fadeTo("slow", 0.8);
 	
-	$(".window").show();
-	$(".path-map").attr("src", "http://map.naver.com/?dlevel="+dlevel+"&lat=&lng=&slng="+slng+"&slat="+slat+"&elng="+elng+"&elat="+elat+"&pathType=0&dtPathType=2&menu=route&mapMode=0&sText="+sText+"&eText="+eText+"&");
+						$(".window").show();
+						$(".path-map").attr("src", "http://map.naver.com/?dlevel="+dlevel+"&lat=&lng=&slng="+point.lng()+"&slat="+point.lat()+"&elng="+elng+"&elat="+elat+"&pathType=0&dtPathType=2&menu=route&mapMode=0&sText="+sText+"&eText="+eText+"&");
+					}
+				}
+			);
+		}
+	}
+}
+
+
+function showPathMapFromAddress(sAddress, eAddress, sText, eText){
+	geocoder = new GClientGeocoder();
+	geocoder2 = new GClientGeocoder();
+
+	if(sAddress != "") {
+		// GPS 좌표 지정
+		if (geocoder) {
+			geocoder.getLatLng(
+				sAddress,
+				function(point) {
+					if (!point) {
+						alert("'"+sText + "'의 좌표를 찾지 못했습니다.");
+					} else {
+						geocoder2.getLatLng(
+							eAddress,
+							function(point2) {
+								if (!point2) {
+									alert("'"+eText + "'의 좌표를 찾지 못했습니다.");
+								} else {
+															
+									var dlevel = 4;
+									//화면의 높이와 너비를 구한다.
+									if ($(".window").outerHeight() < $(document).height() )
+										$(".window").css("margin-top", "-" + $(".window").outerHeight()/2+"px");
+									else
+										$(".window").css("top", "0px");
+									if ($(".window").outerWidth() < $(document).width() )
+										$(".window").css("margin-left", "-" + $(".window").outerWidth()/2+"px");
+									else
+										$(".window").css("left", "0px");
+
+									var maskHeight = $(document).height();
+									var maskWidth = $(window).width();
+									
+									$("#mask").css({"width": maskWidth, "height": maskHeight});
+									$("#mask").fadeTo("slow", 0.8);
+									
+									$(".window").show();
+									$(".path-map").attr("src", "http://map.naver.com/?dlevel="+dlevel+"&lat=&lng=&slng="+point.lng()+"&slat="+point.lat()+"&elng="+point2.lng()+"&elat="+point2.lat()+"&pathType=0&dtPathType=2&menu=route&mapMode=0&sText="+sText+"&eText="+eText+"&");
+								}
+							}
+						);						
+					}
+				}
+			);
+		}
+	}
+	else {
+		alert("출발지를 입력해 주세요!");
+	}
 }
 
 $(document).ready(function() {
@@ -236,7 +324,7 @@ $(document).ready(function() {
 
 		var jsonObj = jsonParse(markers);
 		var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
-		var rev = (gpsY2-gpsY1)*0.7;
+		var rev = (gpsY2-gpsY1)*0.5;
 		if (rev == 0) {
 			zoom = -2;
 			rev = 0.015;
@@ -264,7 +352,7 @@ $(document).ready(function() {
 		if ($("#openCloseIdentifier").is(":hidden")) {
 			$(this).removeClass("open");
 			$(this).animate({height: "65px"}, 0 );
-			$(this).animate({marginTop: "210px"}, 0 );
+			$(this).animate({marginTop: "310px"}, 0 );
 			$("#map").animate({height: "65px"}, 300 );
 			$(this).animate({marginTop: "0px"}, 300 );
 			$("#map-rect").animate({height: "10px"}, 300 );
@@ -272,9 +360,9 @@ $(document).ready(function() {
 		} else {
 			$(this).animate({height: "10px"}, 0 );
 			$(this).animate({marginTop: "60px"}, 0 );
-			$("#map").animate({height: "265px"}, 300 );
-			$(this).animate({marginTop: "255px"}, 300 );
-			$("#map-rect").animate({height: "210px"}, 300 );
+			$("#map").animate({height: "365px"}, 300 );
+			$(this).animate({marginTop: "355px"}, 300 );
+			$("#map-rect").animate({height: "310px"}, 300 );
 			$("#openCloseIdentifier").hide();
 			$(this).addClass("open");
 		}
@@ -289,9 +377,14 @@ $(document).ready(function() {
 		$(".window").animate({"top" : $(".window").height()/2+$(window).scrollTop()+20+"px"}, 0);
 	});
 
-	$(".openMask").click(function(e) {
+	$(".searchByGPS").click(function(e) {
 		e.preventDefault();
-		showPathMap(127.1089935, 37.3398399, 126.3430618, 36.5068456, "오리역 분당선", "안면도펜션");
+		showPathMap($("#findway-word").attr("value"), $("#info-gps-x").text(), $("#info-gps-y").text(), $("#findway-word").attr("value"), $("h2"));
+	}); 
+	
+	$(".searchByAddress").click(function(e) {
+		e.preventDefault();
+		showPathMapFromAddress($("#findway-word").attr("value"), $("#spot-info-addr, #pension-info-addr").text(), $("#findway-word").attr("value"), $("h2"));
 	}); 
 	
 	$(".window .close").click(function(e) {

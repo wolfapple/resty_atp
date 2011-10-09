@@ -14,7 +14,7 @@
 
 <div class="list">
 <% @pensions.each do |pension| %>
-  <div id="pension-<%= pension.id %>" class="pension-item">
+  <div id="pension-<%= pension.id %>" class="pension-item"><a name="pension-<%= pension.id %>"></a>
     <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if params[:must_visit] or pension.must_visit %>
   	<div class="line-dotted"></div>
   	<div class="left">
@@ -42,7 +42,9 @@
   	</div>
   </div>
   <% unless pension.locationx.blank? or pension.locationy.blank? %>
-    <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension", 1, "<%= pension.title %>");</script>
+    <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>    
+  <% else %>
+    <script type="text/javascript">inputMarkerFromAddress(<%= pension.addr %>, "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>    
   <% end %>
 <% end %>
 </div>
