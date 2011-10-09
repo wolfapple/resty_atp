@@ -172,4 +172,26 @@ namespace :resty do
     end
     pbar.finish
   end
+  
+  task :update_ranking => :environment do
+    puts "ranking..."
+    pbar = ProgressBar.new("ranking", Pension.count)
+    Pension.update_all :ranking => 0
+    Pension.all.each do |pension|
+      pension.increment! :ranking if pension.themes.count > 0
+      if pension.facilities
+        pension.increment! :ranking if pension.facilities.index('수영장')
+        pension.increment! :ranking if pension.facilities.index('스파/월풀')
+        pension.increment! :ranking if pension.facilities.index('카페')
+        pension.increment! :ranking if pension.facilities.index('스파/월풀')
+      end
+      pension.increment! :ranking, 3 if pension.must_visit
+      pension.increment! :ranking if pension.min_price > 0
+      pension.increment! :ranking, pension.foreignlanguage.to_i if [1, 3, 5, -3, -5].include? pension.foreignlanguage.to_i
+      pension.decrement! :ranking if pension.url and (pension.url.index('blog') or pension.url.index('cafe') or pension.url.index('visitkorea') or pension.url.index('huepension') or pension.url.index('kbs1'))
+      pension.decrement! :ranking if pension.mobile.blank?
+      pbar.inc
+    end
+    pbar.finish
+  end
 end

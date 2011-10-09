@@ -1,0 +1,47 @@
+<div class="sort">
+  <% if @theme %>
+    <span class="filter"><%= @theme.title %> <%= link_to "x", params.merge(:theme_id => nil, :page => nil) %></span>
+  <% end %>
+  <% if params[:must_visit] %>
+    <span class="filter">Must Visit <%= link_to "x", params.merge(:must_visit => nil) %></span>
+  <% end %>
+  <% if @price %>
+    <span class="filter"><%= @price.to_s %> <%= link_to "x", params.merge(:price_id => nil) %></span>
+  <% end %>
+  <span class="like-order"><%= link_to '좋아요순', params.merge(:order_by => 'like_count') %></span>
+  <span class="popular-order"><%= link_to '인기도순', params.merge(:order_by => nil) %></span>
+</div>
+
+<div class="list">
+<% @pensions.each do |pension| %>
+  <div id="pension-<%= pension.id %>" class="pension-item">
+    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if params[:must_visit] or pension.must_visit %>
+  	<div class="line-dotted"></div>
+  	<div class="left">
+  		<div class="pension-thumbnail">
+  		  <%= link_to image_tag(pension.list_img), pension %>
+  		</div>
+  		<div class="pension-name"><%= link_to pension.title, pension %></div>
+  		<span class="fb_like">좋아요</span>
+  		<div class="pension-type">커플, 가족, 모임, 워크샵</div>
+  		<div class="pension-theme"><%= pension.themes.collect {|x| x.title}.join(',') %></div>
+  		<div class="pension-faci"><%= pension.facilities %></div>
+  	</div>
+  	<div class="right">
+  		<div class="pension-addr"><%= pension.short_addr %></div>
+  		<div class="pension-price">
+  		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
+  		</div>
+  		<div class="pension-review">
+  			<span class="pension-review-count">111<%#= pension.reviews_count %></span>
+  			<%= link_to '리뷰/후기', pension %>
+  			<span class="pension-detail">
+  				<%= link_to '상세보기', pension %>
+  			</span>
+  		</div>
+  	</div>
+  </div>
+  <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension", 1, "1박2일 추월산 펜션", "pension_01.jpg", "커플, 가족, 모임, 워크샵", "노래방, 월풀\/스파, 수영장, 세마나실, 족구장", "애완동물 이용가능, 바닷가 인접, 계곡 인접", "전남 담양군 용면 월계리", "10 ~ 20 만원", "031-454-5484");</script>
+<% end %>
+</div>
+<div class="line-dotted"></div>

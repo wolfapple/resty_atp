@@ -15,11 +15,11 @@
 <div class="list">
 <% @pensions.each do |pension| %>
   <div id="pension-<%= pension.id %>" class="pension-item">
-    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if !params[:must_visit] and pension.must_visit %>
+    <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if params[:must_visit] or pension.must_visit %>
   	<div class="line-dotted"></div>
   	<div class="left">
   		<div class="pension-thumbnail">
-  		  <%= link_to image_tag('pension_01.jpg'), pension %>
+  		  <%= link_to image_tag(pension.list_img), pension %>
   		</div>
   		<div class="pension-name"><%= link_to pension.title, pension %></div>
   		<span class="fb_like">좋아요</span>

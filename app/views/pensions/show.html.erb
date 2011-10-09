@@ -17,11 +17,11 @@
     <div class="line-green"></div>
     <div class="body">
       <div class="pension-photo">
-        <%= image_tag 'pension_01.jpg' %>
+        <%= image_tag @pension.show_img %>
       </div>
       <div class="pension-detail">
         <div id="pension-info-type"><%= @pension.roomstructure %></div>
-        <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') %></div>
+        <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') unless @pension.facilities.blank? %></div>
         <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>
         <div id="pension-info-start">
           <form>
@@ -33,7 +33,7 @@
         </div>
         <div id="pension-info-addr"><%= @pension.addr %></div>
         <div id="pension-info-price"><%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원</div>
-        <div id="pension-info-phone">031-454-5484</div>
+        <div id="pension-info-phone"><%= @pension.mobile %></div>
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
       </div>

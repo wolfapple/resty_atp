@@ -17,6 +17,8 @@ gem 'activeadmin'
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'progressbar'
 gem 'sass-rails', "  ~> 3.1.0"
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development do
   gem 'pry'

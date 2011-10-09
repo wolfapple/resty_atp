@@ -4,12 +4,12 @@ class PensionsController < ApplicationController
     # get area and spot
     if params[:area_id]
       @area = Area.find(params[:area_id])
-      @spots = @area.spots.by_area
+      @spots = @area.spots
       @pensions = @area.pensions
     elsif params[:sub_area_id]
       @sub_area = SubArea.find(params[:sub_area_id])
       @area = @sub_area.area
-      @spots = @sub_area.spots.by_sub_area
+      @spots = @sub_area.spots
       @pensions = @sub_area.pensions
     end
     # get spot
@@ -17,7 +17,7 @@ class PensionsController < ApplicationController
       @spot = Spot.find(params[:spot_id])
       @sub_area = @spot.sub_area
       @area = @sub_area.area
-      @spots = @sub_area.spots.by_sub_area
+      @spots = @sub_area.spots
       @pensions = @spot.pensions
     end
     # get pensions

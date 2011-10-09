@@ -7,6 +7,7 @@ class Pension < ActiveRecord::Base
   has_one :must_visit
   belongs_to :area
   belongs_to :sub_area
+  mount_uploader :thumbnail, PensionImageUploader
   
   default_scope order('ranking desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
@@ -18,5 +19,21 @@ class Pension < ActiveRecord::Base
   
   def short_addr
     self.addr.split(' ')[0..2].join(' ')
+  end
+  
+  def list_img
+    if self.thumbnail.url.index('http:/')
+      'http://' + self.thumbnail.url.split('http:/')[1]
+    else
+      self.thumbnail.thumb.url
+    end
+  end
+  
+  def show_img
+    if self.thumbnail.url.index('http:/')
+      'http://' + self.thumbnail.url.split('http:/')[1]
+    else
+      self.thumbnail.url
+    end
   end
 end
