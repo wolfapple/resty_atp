@@ -17,11 +17,11 @@
     <div class="line-green"></div>
     <div class="body">
       <div class="pension-photo">
-        <%= image_tag 'pension_01.jpg' %>
+        <%= image_tag @pension.show_img %>
       </div>
       <div class="pension-detail">
         <div id="pension-info-type"><%= @pension.roomstructure %></div>
-        <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') %></div>
+        <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') unless @pension.facilities.blank? %></div>
         <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>
         <div id="pension-info-start">
           <form>
