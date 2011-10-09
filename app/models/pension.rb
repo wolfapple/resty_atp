@@ -36,4 +36,12 @@ class Pension < ActiveRecord::Base
       self.thumbnail.url
     end
   end
+  
+  def og_img
+    if self.thumbnail.url.index('http:/')
+      'http://' + self.thumbnail.url.split('http:/')[1]
+    else
+      'http://www.resty.co.kr' + self.thumbnail.url
+    end
+  end
 end
