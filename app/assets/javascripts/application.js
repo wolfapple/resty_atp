@@ -7,8 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require jquery.nivo.slider.pack
-//= require jquery.colorbox-min
 $.widget( "custom.catcomplete", $.ui.autocomplete, {
 	_renderMenu: function( ul, items ) {
 		var self = this,
@@ -46,12 +44,11 @@ $(function(){
 			});
 		},
 		select: function(event,ui) {
-			$('#search_class').val(ui.item.class);
-			$('#search_id').val(ui.item.id)
+			$('#search_class').val(ui.item.attr('class'));
+			$('#search_id').val(ui.item.attr('id'))
 		}
 	});
 });
-
 
 var gpsX1 = 130.0;
 var gpsY1 = 40.0;
