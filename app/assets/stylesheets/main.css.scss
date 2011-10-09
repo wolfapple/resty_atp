@@ -56,12 +56,12 @@
 #main-facebook-activities {
 	position: relative;
 	float: left;
-	background-image: url("/assets/main_fb_activities_bg.png");
-	background-repeat: no-repeat;
+//	background-image: url("/assets/main_fb_activities_bg.png");
+//	background-repeat: no-repeat;
 	width: 361px;
-	height: 250px;
+	height: 225px;
 	&.fb-login {
-		padding-top: 60px;
+		margin-top: 25px;
 	}
 	&.fb-logout {
 		background-image: url("/assets/main_fb_activities_logout_bg.png");
@@ -75,8 +75,8 @@
 #main-facebook-landmarks {
 	position: relative;
 	float: left;
-	background-image: url("/assets/main_fb_landmarks_bg.png");
-	background-repeat: no-repeat;
+//	background-image: url("/assets/main_fb_landmarks_bg.png");
+//	background-repeat: no-repeat;
 	width: 361px;
 	height: 212px;
 	margin: 0px;

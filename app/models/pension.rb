@@ -2,9 +2,9 @@
 class Pension < ActiveRecord::Base
   has_many :reviews, :class_name => "PensionReview"
   has_many :rooms
-  has_many :theme_pensions
+  has_many :theme_pensions, :dependent => :destroy
   has_many :themes, :through => :theme_pensions
-  has_one :must_visit
+  has_one :must_visit, :dependent => :destroy
   belongs_to :area
   belongs_to :sub_area
   mount_uploader :thumbnail, PensionImageUploader

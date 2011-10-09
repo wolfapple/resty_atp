@@ -84,7 +84,7 @@
         <ul>
         <% @blog_reviews.each do |item| %>
           <li>
-            <%= link_to raw(item.title), item.link, :target => :blank %>
+            <%= link_to raw(truncate_html(item.title, :length => 50, :word_boundary => true)), item.link, :target => :blank %>
             <p><%= raw item.desc %></p>
           </li>
         <% end %>

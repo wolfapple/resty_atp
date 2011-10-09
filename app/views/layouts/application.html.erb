@@ -32,7 +32,7 @@
       <% if current_user %>
         <div id="logout">
           <%= current_user.email %>님 환영합니다.
-          <%= link_to 'My Resty', current_user %> |
+          <%#= link_to 'My Resty', current_user %> |
           <%= link_to 'Logout', :logout %>
         </div>
       <% else %>

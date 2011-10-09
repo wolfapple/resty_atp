@@ -39,7 +39,7 @@ Rails.application.config.sorcery.configure do |config|
   # 
   config.facebook.key = "267286263291604"
   config.facebook.secret = "1fb51f7950c691f32a6ccd3e70da19be"
-  if ENV["RAILS_ENV"] == "development"
+  if Rails.env == "development"
     config.facebook.callback_url = "http://local.resty.co.kr:3000/oauth/callback?provider=facebook"
   else
     config.facebook.callback_url = "http://www.resty.co.kr/oauth/callback?provider=facebook"

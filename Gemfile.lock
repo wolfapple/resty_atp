@@ -182,6 +182,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    truncate_html (0.5.1)
     turn (0.8.2)
       ansi (>= 1.2.2)
     tzinfo (0.3.29)
@@ -218,6 +219,7 @@ DEPENDENCIES
   sass-rails (~> 3.1.0)
   sorcery
   therubyracer
+  truncate_html
   turn
   uglifier
   unicorn
