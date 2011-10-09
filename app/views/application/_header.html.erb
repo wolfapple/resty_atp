@@ -14,9 +14,9 @@
     <% Area.all.each do |area| %>
       <li<%= " class=selected" if @area == area %>>
         <% if params[:action] == 'show' %>
-          <%= link_to_unless @area == area, area.title, area_pensions_path(area) %>
+          <%= link_to area.title, area_pensions_path(area) %>
         <% else %>
-          <%= link_to_unless @area == area, area.title, area_pensions_path(area, params.merge(:sub_area_id => nil, :page => nil)) %>
+          <%= link_to area.title, area_pensions_path(area, params.merge(:sub_area_id => nil, :page => nil)) %>
         <% end %>
       </li>
     <% end %>
@@ -28,9 +28,9 @@
       <% @area.sub_areas.each do |sub_area| %>
         <li class="dot<%= ' selected' if @sub_area == sub_area %>">
           <% if params[:action] == 'show' %>
-            <%= link_to_unless @sub_area == sub_area, sub_area.title, sub_area_pensions_path(sub_area) %>
+            <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %>
           <% else %>
-            <%= link_to_unless @sub_area == sub_area, sub_area.title, sub_area_pensions_path(sub_area, params.merge(:area_id => nil, :page => nil)) %>
+            <%= link_to sub_area.title, sub_area_pensions_path(sub_area, params.merge(:area_id => nil, :page => nil)) %>
           <% end %>
         </li>
       <% end %>

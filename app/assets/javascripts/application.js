@@ -58,7 +58,7 @@ var gpsY2 = 0.0;
 var markers = '';
 var countMarkers = 0;
 
-function inputMarker(lat, lng, icon, hasHtml, name)
+function inputMarker(lng, lat, icon, hasHtml, name)
 {
 	var comma = '';
 	if (markers != '')
