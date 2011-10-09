@@ -33,7 +33,7 @@
   		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
   		</div>
   		<div class="pension-review">
-  			<span class="pension-review-count">111<%#= pension.reviews_count %></span>
+  			<span class="pension-review-count"><%= pension.comments_count %></span>
   			<%= link_to '리뷰/후기', pension %>
   			<span class="pension-detail">
   				<%= link_to '상세보기', pension %>
@@ -41,7 +41,6 @@
   		</div>
   	</div>
   </div>
-  <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension", 1, "1박2일 추월산 펜션", "pension_01.jpg", "커플, 가족, 모임, 워크샵", "노래방, 월풀\/스파, 수영장, 세마나실, 족구장", "애완동물 이용가능, 바닷가 인접, 계곡 인접", "전남 담양군 용면 월계리", "10 ~ 20 만원", "031-454-5484");</script>
 <% end %>
 </div>
 <div class="line-dotted"></div>

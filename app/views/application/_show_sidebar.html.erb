@@ -18,7 +18,7 @@
     <li>
       <%= link_to pension.title, pension, :class => 'name' %>
       <span class="like">좋아요</span>
-      <span><%= pension.short_addr %></span>
+      <span title="<%= pension.addr %>"><%= pension.short_addr %></span>
       <a href="#" class="review">리뷰100<%#= pension.reviews_count %></a>
     </li>
   <% end %>
