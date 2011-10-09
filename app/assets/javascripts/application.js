@@ -74,9 +74,9 @@ function inputMarker(lat, lng, icon, hasHtml, name)
 	}
 
 	if (!content) {
-		markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "../../assets/images/map_pin_' + icon + '.png", "iconanchor": [12, 46],	"infowindowanchor": [12, 0] } }';
+		markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46],	"infowindowanchor": [12, 0] } }';
 	} else {
-		markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "../../assets/images/map_pin_' + icon + '.png", "iconanchor": [12, 46],	"infowindowanchor": [12, 0] }, "html": "' + content + '" }';
+		markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46],	"infowindowanchor": [12, 0] }, "html": "' + content + '" }';
 	}
 	countMarkers++;
 };
@@ -268,7 +268,7 @@ $(document).ready(function() {
 		
 		$("#map").gMap({
 			markers: jsonObj,
-			icon: { image: "../../assets/images/map_pin_pension.png", iconanchor: [12, 46],	infowindowanchor: [9, 2] },
+			icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46],	infowindowanchor: [9, 2] },
 			latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
 			longitude: gpsX1 + (gpsX2-gpsX1)/2,
 			zoom: 11 - zoom
@@ -277,7 +277,7 @@ $(document).ready(function() {
 	else {
 		if ($("#map").length > 0) {
 			$("#map").gMap({
-				icon: { image: "../../assets/images/map_pin_pension.png", iconanchor: [12, 46],	infowindowanchor: [9, 2] },
+				icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46],	infowindowanchor: [9, 2] },
 				latitude: 37.3404259,
 				longitude: 127.1081021,
 				zoom: 16 });

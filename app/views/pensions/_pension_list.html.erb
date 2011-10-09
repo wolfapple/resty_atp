@@ -41,7 +41,9 @@
   		</div>
   	</div>
   </div>
-  <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension");</script>
+  <% unless pension.locationx.blank? or pension.locationy.blank? %>
+    <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension", 1, "<%= pension.title %>");</script>
+  <% end %>
 <% end %>
 </div>
 <div class="line-dotted"></div>

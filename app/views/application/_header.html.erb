@@ -39,18 +39,17 @@
   </div>
 </div>
 
-<% if @spots %>
-  <div class="spots">
-    <h3>주요 관광지</h3>
-    <div class="spots-body">
+<div class="spots">
+  <h3>주요 관광지</h3>
+  <div class="spots-body">
+    <% if @spots %>
     	<ul>
     	<% @spots.each do |spot| %>
-     	<li><%= link_to_unless @spot == spot, spot.title, spot %></li>
+     	  <li><%= link_to_unless @spot == spot, spot.title, spot %></li>
     	<% end %>
   		</ul>
-  		<ul class="next hidden"></ul>
-		<ul class="prev hidden"></ul>
-  	</div>
-	
-  </div>
-<% end %>
+		<% end %>
+		<ul class="next hidden"></ul>
+	  <ul class="prev hidden"></ul>
+	</div>
+</div>
