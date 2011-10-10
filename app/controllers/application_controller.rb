@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
-  http_basic_authenticate_with :name => "resty", :password => "resty0808"
+  # http_basic_authenticate_with :name => "resty", :password => "resty0808"
   protect_from_forgery
   
   helper_method :graph
