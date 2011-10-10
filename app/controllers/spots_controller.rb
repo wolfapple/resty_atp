@@ -8,7 +8,12 @@ class SpotsController < ApplicationController
     @spots = @sub_area.spots
     @reviews = @spot.reviews.page(params[:page]).per(5)
     @near_by_pensions = @spot.near_by_pensions
-    @pensions = @spot.pensions.limit(10)
+    if @spot.pensions_count <= 10
+      @pensions = @sub_area.pensions.limit(10)
+    else
+      @pensions = @spot.pensions.limit(10)
+    end
+    @activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
   end
   
   def update_like_count

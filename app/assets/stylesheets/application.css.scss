@@ -2,6 +2,7 @@
 @import "pensions";
 @import "spots";
 @import "users";
+@import "search";
 @import "jquery-ui/jquery-ui-1.8.16.custom";
 @import "colorbox";
 @import "nivo-slider";
@@ -66,6 +67,7 @@ a {
 	color: white;
 	text-align: right;
 	position: relative;
+	margin-top: 15px;
 	a {
 		color: white;
 		&:hover {
@@ -141,6 +143,11 @@ a {
 	margin: 20px 10px;
 	font-size: 0.9em;
 	padding: 0px;
+}
+#footer .info {
+	margin-top: 20px;
+	font-size: 11px;
+	float: right;
 }
 #footer ul li {
 	display: inline;

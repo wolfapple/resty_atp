@@ -1,33 +1,27 @@
-<h1>'<%= params[:search_input] %>' 검색 결과</h1>
+<div id="search-result">
+  <h1>'<%= params[:search_input] %>' <span>검색 결과입니다.</span></h1>
+  
+  <h2>지역 (<%= @areas.size + @sub_areas.size %>)</h2>
+  <ul>
+  <% @areas.each do |area| %>
+    <li><%= link_to area.title, area_pensions_path(area), :class => 'area' %></li>
+  <% end %>
+  <% @sub_areas.each do |sub_area| %>
+    <li><%= link_to "#{sub_area.area.title}>#{sub_area.title}", sub_area_pensions_path(sub_area.area, sub_area), :class  => 'area' %></li>
+  <% end %>
+  </ul>
 
-<h2>지역(<%= @areas.size + @sub_areas.size %>)</h2>
-<ul>
-<% @areas.each do |area| %>
-  <li><%= link_to area.title, area_pensions_path(area) %></li>
-<% end %>
-<% @sub_areas.each do |sub_area| %>
-  <li><%= link_to "#{sub_area.area.title}>#{sub_area.title}", area_sub_area_pensions_path(sub_area.area, sub_area) %></li>
-<% end %>
+  <h2>펜션 (<%= @pensions.size %>)</h2>
+  <ul>
+  <% @pensions.each do |pension| %>
+    <li><%= link_to pension.title, pension, :class => 'pension' %></li>
+  <% end %>
+  </ul>
 
-</ul>
-
-<h2>펜션(<%= @pensions.size %>)</h2>
-<ul>
-<% @pensions.each do |pension| %>
-  <li><%= link_to pension.title, pension %></li>
-<% end %>
-</ul>
-
-<h2>여행지(<%= @spots.size %>)</h2>
-<ul>
-<% @spots.each do |spot| %>
-  <li><%= link_to spot.title, spot %></li>
-<% end %>
-</ul>
-
-<h2>테마(<%= @themes.size %>)</h2>
-<ul>
-<% @themes.each do |theme| %>
-  <li><%= link_to theme.title, theme_pensions_path(theme) %></li>
-<% end %>
-</ul>
+  <h2>여행지 (<%= @spots.size %>)</h2>
+  <ul>
+  <% @spots.each do |spot| %>
+    <li><%= link_to spot.title, spot, :class => 'spot' %></li>
+  <% end %>
+  </ul>
+</div>

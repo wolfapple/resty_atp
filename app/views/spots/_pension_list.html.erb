@@ -11,11 +11,27 @@
   		<div class="pension-thumbnail">
   		  <%= link_to image_tag(pension.list_img), pension %>
   		</div>
-  		<div class="pension-name"><%= link_to pension.title, pension %></div>
-  		<span class="fb_like">좋아요</span>
-  		<div class="pension-type">커플, 가족, 모임, 워크샵</div>
-  		<div class="pension-theme"><%= pension.themes.collect {|x| x.title}.join(',') %></div>
-  		<div class="pension-faci"><%= pension.facilities %></div>
+  		<div class="pension-info">
+        <div class="pension-name">
+          <%= link_to pension.title, pension %>
+          <% if pension.like_count > 0 %>
+            <span class="fb_like"><%= image_tag('like_resty.png', :width => '20px') %> <%= pension.like_count %></span>
+          <% end %>
+        </div>
+        <% unless pension.roomstructure.blank? %>
+          <div class="pension-type"><strong>용도:</strong> <%= pension.roomstructure %></div>
+        <% end %>
+        <% if pension.themes.count > 0 %>
+          <div class="pension-theme">
+            <% pension.themes.each do |theme| %>
+              <%= image_tag("main_themes_icon_#{theme.id}.png", :width => '25px', :title => theme.title) %>
+            <% end %>
+          </div>
+        <% end %>
+        <% unless pension.facilities.blank? %>
+          <div class="pension-faci"><strong>시설:</strong> <%= pension.facilities %></div>
+        <% end %>
+  		</div>
   	</div>
   	<div class="right">
   		<div class="pension-addr" title="<%= pension.addr %>"><%= pension.short_addr %></div>

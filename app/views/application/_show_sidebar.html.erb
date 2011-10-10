@@ -1,11 +1,22 @@
 <div class="friends-activities-box">
   <h3>이 지역 친구들의 활동</h3>
-  <ul>
-  <% 1.upto 3 do %>
-    <li>
-      <%= image_tag 'show_side_friend_id0000_face.png' %>
-      <span>김풍기님이 고뱅이 펜션을..</span>
-    </li>
+  <% if @activities %>
+    <ul>
+    <% @activities.each do |activity| %>
+      <li>
+        <%= link_to image_tag(graph.get_picture(activity['from']['id'], :class => 'profile')), "http://www.facebook.com/profile.php?id=#{activity['from']['id']}", :target => '_blank' %>
+        <% if activity['message'].blank? %>
+          <%= link_to content_tag(:span, truncate(activity['caption'], :length => 35)), activity['link'], :target => '_blank' %>
+        <% else %>
+          <%= link_to content_tag(:span, truncate(activity['message'], :length => 35)), activity['link'], :target => '_blank' %>
+        <% end %>
+      </li>
+    <% end %>
+  <% else %>
+    <ul class="logout">
+      <li><%= link_to image_tag('header_login_facebook.png'), auth_at_provider_path(:provider => :facebook) %></li>
+      <li>페이스북으로 레스티에 로그인 하시면 친구들의 활동을 볼 수 있어요!</li>
+    </ul>
   <% end %>
   </ul>
   <div class="footer"></div>
@@ -19,7 +30,7 @@
       <table class="near-by-pensions">
         <tr>
           <td><%= link_to pension.title, pension, :class => 'name' %></td>
-          <td><span class="like">좋아요(<%= pension.like_count %>)</span></td>
+          <td><span class="like"><%= image_tag('like_resty.png', :width => '20px') %> (<%= pension.like_count %>)</span></td>
         </tr>
         <tr>
           <td><span title="<%= pension.addr %>"><%= pension.short_addr %></span></td>

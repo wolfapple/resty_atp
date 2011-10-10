@@ -6,6 +6,9 @@
 	<% if @sub_area %>
 		> <%= link_to @sub_area.title, sub_area_pensions_path(@sub_area) %>
 	<% end %>
+	<% if params[:controller] == 'pensoins' and params[:actoin] == 'index' %>
+	  <span class="count">(<%= number_with_delimiter @total %>개의 펜션)</span>
+	<% end %>
 </div>
 
 <div class="nav">

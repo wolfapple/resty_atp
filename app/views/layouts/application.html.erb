@@ -46,7 +46,7 @@
       <div class="content wrapper">
         <span class="title"><%= image_tag 'header_search_title.png', :cass => 'title' %></span>
         <div id="search_box">
-          <%= form_tag search_result_path do %>
+          <%= form_tag search_result_path, {:onsubmit => "if(!$('#search_input').val()){alert('검색어를 입력해 주세요.');}"} do %>
             <%= text_field_tag 'search_input' %>
             <%= hidden_field_tag 'search_class' %>
             <%= hidden_field_tag 'search_id' %>
@@ -70,12 +70,20 @@
     <div class="wrapper">
       <%= link_to image_tag('footer_logo.png', :class => 'logo'), root_url %>
       <ul>
-        <li><%= link_to '회사소개', page_path('about') %> | </li>
+        <li><%= link_to '회사소개', "http://restycorp.tistory.com" %> | </li>
         <li><%= link_to '이용약관', page_path('terms') %> | </li>
         <li><%= link_to '개인정보취급방침', page_path('privacy') %> | </li>
         <li><%= link_to '제휴문의', page_path('withus') %></li>
       </ul>
-      <p class="copyright">Copyright ⓒ Resty. All rights reserved.</p>
+      <p class="info">
+        (주)레스티 &nbsp; 대표이사: 김기풍, 임진석 &nbsp; 사업자등록번호 129-86-64731 &nbsp; 개인정보관리책임자: 임진석<br>
+        경기도 성남시 분당구 구미동 156 포스빌 286호<br>
+        TEL. 070-4193-1018&nbsp; |&nbsp; FAX. 031-711-1017&nbsp; |&nbsp; E-MAIL. help@resty.co.kr
+      </p>
+      <p class="copyright">
+        Copyright ⓒ Resty. All rights reserved.<br>
+        레스티는 펜션 예약에 직접 관여하지 않으며 예약 및 취소,환불의 의무와 책임은 각 펜션에 있습니다.
+      </p>
     </div>
   </div>
 </body>

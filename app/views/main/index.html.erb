@@ -5,7 +5,7 @@
 	    <td>
 	      <% area = @areas[i*2] %>
 	      <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
-	      <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
+	      <%= content_tag(:span, "(#{number_with_delimiter area.pensions_count})", :class => 'num') %>
   		  <br />
   		  <% area.sub_areas.main.each_with_index do |sub_area, idx| %>
   		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.main.count - 1 %>
@@ -14,7 +14,7 @@
 		  <td>
 		    <% area = @areas[i*2+1] %>
 		    <%= link_to content_tag(:span, area.title, :class => 'local'), area_pensions_path(area) %>
-		    <%= content_tag(:span, "(#{area.pensions_count})", :class => 'num') %>
+		    <%= content_tag(:span, "(#{number_with_delimiter area.pensions_count})", :class => 'num') %>
   		  <br />
   		  <% area.sub_areas.main.each_with_index do |sub_area, idx| %>
   		    <%= link_to sub_area.title, sub_area_pensions_path(sub_area) %><%= ',' if idx < area.sub_areas.main.count - 1 %>
@@ -41,12 +41,14 @@
 <script type="text/javascript" charset="utf-8">
   $(window).load(function() {
   	$('#slider').nivoSlider({
+  	  animSpeed: 700,
+  	  pauseTime: 4000,
   	  controlNav: false
   	});
   });
 </script>
 <div id="main-must-visit">
-  <div id="main-must-visit-title"></div>
+  <%= link_to content_tag(:div, '', :id => 'main-must-visit-title'), pensions_path(:must_visit => true) %>
   <div id="slider" class="nivoSlider" style="width:352px;height:265px;">
   <% @must_visits.each do |mv| %>
     <%= link_to image_tag(mv.img.to_s, :title => "[#{mv.pension.sub_area.title}] #{mv.pension.title}"), pension_path(mv.pension) %>
@@ -66,7 +68,7 @@
   <ul>
   <% @spots.each do |spot| %>
     <li>
-      <%= "[#{spot.sub_area.title}]" %> <%= link_to spot.title, spot %> (<%= spot.pensions_count %>)
+      <%= "[#{spot.sub_area.title}]" %> <%= link_to spot.title, spot %> (<%= spot.pensions_count <= 10? spot.sub_area.pensions_count : spot.pensions_count %>)
       <%= content_tag :span, 'season', :class => 'season' if spot.is_season %>
     </li>
   <% end %>
