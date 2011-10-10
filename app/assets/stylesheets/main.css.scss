@@ -56,12 +56,16 @@
 #main-facebook-activities {
 	position: relative;
 	float: left;
-//	background-image: url("/assets/main_fb_activities_bg.png");
-//	background-repeat: no-repeat;
 	width: 361px;
-	height: 225px;
+	height: 250px;
 	&.fb-login {
-		margin-top: 25px;
+		background-image: url("/assets/main_fb_activities_bg.png");
+		background-repeat: no-repeat;
+		div {
+			position: relative;
+			top: 58px;
+			left: 1px;
+		}
 	}
 	&.fb-logout {
 		background-image: url("/assets/main_fb_activities_logout_bg.png");
@@ -75,11 +79,18 @@
 #main-facebook-landmarks {
 	position: relative;
 	float: left;
-//	background-image: url("/assets/main_fb_landmarks_bg.png");
-//	background-repeat: no-repeat;
 	width: 361px;
 	height: 212px;
 	margin: 0px;
+	&.fb-login {
+		background-image: url("/assets/main_fb_landmarks_bg.png");
+		background-repeat: no-repeat;
+		div {
+			position: relative;
+			top: 52px;
+			left: 1px;
+		}
+	}
 	&.fb-logout {
 		background-image: url("/assets/main_fb_landmarks_logout_bg.png");
 	}

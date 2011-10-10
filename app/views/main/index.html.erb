@@ -25,12 +25,12 @@
 	</table>    
 </div>
 
-<% if current_user %>
+<% if !current_user %>
 <div id="main-facebook-activities" class="fb-login">
-  <div class="fb-activity" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="225" data-header="true" data-linktarget="_parent" data-border-color="#E0E0E0"></div>
+  <div class="fb-activity" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="216" data-header="false" data-linktarget="_parent" data-border-color="white"></div>
 </div>
 <div id="main-facebook-landmarks" class="fb-login">
-  <div class="fb-recommendations" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="212" data-header="true" data-linktarget="_parent" data-border-color="#E0E0E0"></div>
+  <div class="fb-recommendations" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="184" data-header="false" data-linktarget="_parent" data-border-color="#E0E0E0"></div>
 </div>
 <% else %>
 <div id="main-facebook-activities" class="fb-logout"></div>

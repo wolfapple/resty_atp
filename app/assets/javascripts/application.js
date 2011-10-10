@@ -58,6 +58,10 @@ var markers = '';
 var markersPrev = '';
 var countMarkers = 0;
 
+function highlight_pension(itemid) {
+	$('#pension-'+itemid).effect("highlight", {}, 3000);
+}
+
 function inputMarker(lng, lat, icon, hasHtml, name, itemid) {
 	markers = markersPrev;
 	var comma = '';
@@ -70,8 +74,7 @@ function inputMarker(lng, lat, icon, hasHtml, name, itemid) {
 	if (gpsY2 <= lat) gpsY2 = lat;
 
 	if (hasHtml) {
-
-	 var content = "<h3 style=\'margin-top: 0px;\'>" + name + "<\/h3><a href=\'#pension-" + itemid + "\'>리스트로 바로가기<\/a>";
+	 var content = "<h3 style=\'margin-top: 0px;\'>" + name + "<\/h3><a href=\'#pension-" + itemid + "\' onclick=\'highlight_pension("+itemid+")\'>리스트로 바로가기<\/a>";
 	}
 
 	if (!content) {
@@ -223,6 +226,7 @@ $(document).ready(function() {
 	});
 
 	// navi-landmarks 페이징 관련
+	$(".spots-body").show();
 	var nCountList = $(".spots-body > ul li").length;
 	var len = 0;
 	var nCurr = 0;
