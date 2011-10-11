@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 RestyAtp::Application.routes.draw do  
+  get "contacts/new"
+
   ActiveAdmin.routes(self)
     
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -37,7 +39,7 @@ RestyAtp::Application.routes.draw do
     resources :pensions
   end
   resources :spots
-  resources :reviews
+  resources :contacts
   #search'
   match 'search/autocomplete' => 'search#autocomplete'
   match 'search/result' => 'search#result'

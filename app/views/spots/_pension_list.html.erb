@@ -24,7 +24,7 @@
         <% if pension.themes.count > 0 %>
           <div class="pension-theme">
             <% pension.themes.each do |theme| %>
-              <%= image_tag("main_themes_icon_#{theme.id}.png", :width => '25px', :title => theme.title) %>
+              <%= image_tag("theme_icon_#{theme.id}.png", :width => '25px', :title => theme.title) %>
             <% end %>
           </div>
         <% end %>

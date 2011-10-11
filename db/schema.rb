@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111004090340) do
+ActiveRecord::Schema.define(:version => 20111011054616) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -53,6 +53,17 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
     t.datetime "updated_at"
   end
 
+  create_table "contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "title"
+    t.text     "content"
+    t.string   "pension_name"
+    t.string   "pension_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "facilities", :force => true do |t|
     t.string   "title"
     t.integer  "pensions_count"
@@ -81,12 +92,83 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
   add_index "pension_reviews", ["pension_id"], :name => "index_pension_reviews_on_pension_id"
   add_index "pension_reviews", ["user_id"], :name => "index_pension_reviews_on_user_id"
 
+  create_table "pensions", :force => true do |t|
+    t.integer   "area_id",                         :null => false
+    t.integer   "sub_area_id",                     :null => false
+    t.string    "crawlertype",     :limit => 100
+    t.timestamp "regdate",                         :null => false
+    t.string    "title",           :limit => 1000
+    t.string    "url",             :limit => 1000
+    t.string    "addr",            :limit => 1000
+    t.string    "address02",       :limit => 1000
+    t.string    "mobile",          :limit => 200
+    t.string    "telephone01",     :limit => 200
+    t.string    "telephone02",     :limit => 200
+    t.string    "email",           :limit => 200
+    t.string    "manager",         :limit => 200
+    t.string    "evaluation",      :limit => 200
+    t.text      "summary"
+    t.string    "summary_naver",   :limit => 1000
+    t.string    "summary_daum",    :limit => 1000
+    t.string    "roomcount",       :limit => 1000
+    t.string    "roomstructure",   :limit => 1000
+    t.text      "roomprice"
+    t.string    "seasoninfo",      :limit => 2000
+    t.string    "checkinout",      :limit => 200
+    t.string    "servicecharge",   :limit => 200
+    t.string    "includetax",      :limit => 200
+    t.string    "location",        :limit => 200
+    t.string    "locationx",       :limit => 200
+    t.string    "locationy",       :limit => 200
+    t.string    "locationextra",   :limit => 1000
+    t.string    "creditcard",      :limit => 200
+    t.string    "pet",             :limit => 200
+    t.string    "breakfast",       :limit => 200
+    t.string    "foreignlanguage", :limit => 200
+    t.string    "pickupservice",   :limit => 200
+    t.string    "parking",         :limit => 200
+    t.string    "facilities"
+    t.string    "facilities01",    :limit => 1000
+    t.string    "facilities02",    :limit => 1000
+    t.string    "foodcourt",       :limit => 200
+    t.string    "babycarriage",    :limit => 200
+    t.string    "thumbnail",       :limit => 500
+    t.string    "thumbnail_naver", :limit => 500
+    t.string    "thumbnail_daum",  :limit => 500
+    t.string    "mark",            :limit => 45
+    t.integer   "ranking",                         :null => false
+    t.integer   "min_price",                       :null => false
+    t.integer   "max_price",                       :null => false
+    t.integer   "comments_count",                  :null => false
+    t.integer   "like_count",                      :null => false
+  end
+
+  add_index "pensions", ["area_id", "sub_area_id"], :name => "area_id"
+
   create_table "price_ranges", :force => true do |t|
     t.integer  "min"
     t.integer  "max"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "rooms", :force => true do |t|
+    t.integer "pension_id",                      :null => false
+    t.string  "title",           :limit => 200,  :null => false
+    t.string  "room_type",       :limit => 200
+    t.string  "area",            :limit => 1000
+    t.string  "price",           :limit => 1000
+    t.string  "priceadditional", :limit => 1000
+    t.string  "facilities01",    :limit => 1000
+    t.string  "facilities02",    :limit => 1000
+    t.string  "number",          :limit => 200
+    t.string  "description01",   :limit => 1000
+    t.string  "description02",   :limit => 1000
+    t.string  "seasoninfo",      :limit => 1000
+    t.string  "imageurl",        :limit => 1000
+  end
+
+  add_index "rooms", ["pension_id"], :name => "pension_id"
 
   create_table "spot_pensions", :force => true do |t|
     t.integer  "spot_id"
@@ -120,7 +202,8 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
     t.boolean  "is_main",        :default => false
     t.boolean  "is_season",      :default => false
     t.integer  "pensions_count", :default => 0
-    t.integer  "reviews_count",  :default => 0
+    t.integer  "comments_count", :default => 0
+    t.integer  "like_count",                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -167,6 +250,17 @@ ActiveRecord::Schema.define(:version => 20111004090340) do
     t.string   "username"
     t.string   "crypted_password"
     t.string   "salt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "withus", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "title"
+    t.text     "content"
+    t.string   "pension_name"
+    t.string   "pension_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

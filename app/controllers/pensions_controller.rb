@@ -68,7 +68,7 @@ class PensionsController < ApplicationController
     @reviews = @pension.reviews.page(params[:page]).per(5)
     @blog_search = BlogSearch.new("#{@sub_area.title} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(5)
-    @activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
+    #@activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
   end
   
   def update_like_count

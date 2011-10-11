@@ -1,0 +1,23 @@
+<div id="contact-form">
+  <%= form_for(@contact) do |f| %>
+    <h1>등록 및 제휴 문의</h1>
+    <p>펜션정보 등록 및 제휴와 관련하여 문의 사항이 있으시면 무엇이든 남겨주세요. 성실히 답변해 드리겠습니다.</p>
+    <% if @contact.errors.any? %>
+      <h3>*는 필수 입력 항목입니다.</h3>
+    <% end %>
+    <%= f.label '이름*' %>
+    <%= f.text_field :name %>
+    <%= f.label '이메일*' %>
+    <%= f.text_field :email %>
+    <%= f.label '제목*' %>
+    <%= f.text_field :title %>
+    <%= f.label '내용*' %>
+    <%= f.text_area :content %>
+    <%= f.label '펜션이름' %>
+    <%= f.text_field :pension_name %>
+    <%= f.label '펜션 URL' %>
+    <%= f.text_field :pension_url %>
+    <%= f.submit '보내기', :class => 'button' %>
+    <div class="spacer"></div>
+  <% end %>
+</div>

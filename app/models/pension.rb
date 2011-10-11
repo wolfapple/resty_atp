@@ -12,9 +12,9 @@ class Pension < ActiveRecord::Base
   default_scope order('ranking desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
   
-  def near_by
-    pensions = self.sub_area.pensions.where("id <> ?", self.id).where("addr like '#{self.addr.split(' ')[2]}'").limit(5)
-    pensoins = pensions + self.sub_area.pensions.where("id <> ?", self.id).limit(5-pensions.count) if pensions.count < 5
+  def near_by(limit=7)
+    pensions = self.sub_area.pensions.where("id <> ?", self.id).where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
+    pensoins = pensions + self.sub_area.pensions.where("id <> ?", self.id).limit(limit-pensions.count) if pensions.count < limit
   end
   
   def short_addr

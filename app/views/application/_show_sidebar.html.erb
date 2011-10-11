@@ -1,4 +1,4 @@
-<div class="friends-activities-box">
+<!-- <div class="friends-activities-box">
   <h3>이 지역 친구들의 활동</h3>
   <% if @activities %>
     <ul>
@@ -6,9 +6,9 @@
       <li>
         <%= link_to image_tag(graph.get_picture(activity['from']['id'], :class => 'profile')), "http://www.facebook.com/profile.php?id=#{activity['from']['id']}", :target => '_blank' %>
         <% if activity['message'].blank? %>
-          <%= link_to content_tag(:span, truncate(activity['caption'], :length => 35)), activity['link'], :target => '_blank' %>
+          <%= link_to content_tag(:span, truncate(activity['caption'], :length => 30)), activity['link'], :target => '_blank' %>
         <% else %>
-          <%= link_to content_tag(:span, truncate(activity['message'], :length => 35)), activity['link'], :target => '_blank' %>
+          <%= link_to content_tag(:span, truncate(activity['message'], :length => 30)), activity['link'], :target => '_blank' %>
         <% end %>
       </li>
     <% end %>
@@ -20,8 +20,7 @@
   <% end %>
   </ul>
   <div class="footer"></div>
-</div>
-
+</div> -->
 <div class="near-pensions-box">
   <h3>근처의 다른 펜션</h3>
   <ul>
@@ -30,7 +29,11 @@
       <table class="near-by-pensions">
         <tr>
           <td><%= link_to pension.title, pension, :class => 'name' %></td>
-          <td><span class="like"><%= image_tag('like_resty.png', :width => '20px') %> (<%= pension.like_count %>)</span></td>
+          <td>
+            <% if pension.like_count > 0 %>
+              <span class="like"><%= image_tag('like_resty.png', :width => '20px') %> <%= pension.like_count %></span>
+            <% end %>
+          </td>
         </tr>
         <tr>
           <td><span title="<%= pension.addr %>"><%= pension.short_addr %></span></td>

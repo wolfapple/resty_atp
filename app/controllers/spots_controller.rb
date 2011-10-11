@@ -13,7 +13,7 @@ class SpotsController < ApplicationController
     else
       @pensions = @spot.pensions.limit(10)
     end
-    @activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
+    #@activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
   end
   
   def update_like_count

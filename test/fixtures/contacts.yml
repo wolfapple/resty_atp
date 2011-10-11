@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  title: MyString
+  content: MyText
+  pension_name: MyString
+  pension_url: MyString
+
+two:
+  name: MyString
+  email: MyString
+  title: MyString
+  content: MyText
+  pension_name: MyString
+  pension_url: MyString

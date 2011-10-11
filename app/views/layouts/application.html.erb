@@ -31,7 +31,7 @@
       <div id="login">
       <% if current_user %>
         <div id="logout">
-          <%= current_user.email %>님 환영합니다.
+          <%= current_user.username %>님 환영합니다.
           <%#= link_to 'My Resty', current_user %> |
           <%= link_to 'Logout', :logout %>
         </div>
@@ -73,14 +73,12 @@
         <li><%= link_to '회사소개', "http://restycorp.tistory.com" %> | </li>
         <li><%= link_to '이용약관', page_path('terms') %> | </li>
         <li><%= link_to '개인정보취급방침', page_path('privacy') %> | </li>
-        <li><%= link_to '제휴문의', page_path('withus') %></li>
+        <li><%= link_to '등록 및 제휴문의', contacts_new_path %></li>
       </ul>
       <p class="info">
         (주)레스티 &nbsp; 대표이사: 김기풍, 임진석 &nbsp; 사업자등록번호 129-86-64731 &nbsp; 개인정보관리책임자: 임진석<br>
         경기도 성남시 분당구 구미동 156 포스빌 286호<br>
-        TEL. 070-4193-1018&nbsp; |&nbsp; FAX. 031-711-1017&nbsp; |&nbsp; E-MAIL. help@resty.co.kr
-      </p>
-      <p class="copyright">
+        TEL. 070-4193-1018&nbsp; |&nbsp; FAX. 031-711-1017&nbsp; |&nbsp; E-MAIL. help@resty.co.kr<br><br>
         Copyright ⓒ Resty. All rights reserved.<br>
         레스티는 펜션 예약에 직접 관여하지 않으며 예약 및 취소,환불의 의무와 책임은 각 펜션에 있습니다.
       </p>

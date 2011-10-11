@@ -154,7 +154,7 @@
 		}
 		@for $i from 1 through 16 {
 			.theme_#{$i} {
-				background-image: url("/assets/main_themes_icon_#{$i}.png");
+				background-image: url("/assets/theme_icon_#{$i}.png");
 			}
 			&:hover {
 				.theme_#{$i} {

@@ -12,8 +12,8 @@ class Spot < ActiveRecord::Base
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
   scope :main, where(:is_main => true)
     
-  def near_by_pensions
-    pensions = self.pensions.where("addr like '#{self.addr.split(' ')[2]}'").limit(5)
-    pensions = pensions + self.pensions.limit(5-pensions.count) if pensions.count < 5
+  def near_by_pensions(limit=7)
+    pensions = self.pensions.where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
+    pensions = pensions + self.pensions.limit(limit-pensions.count) if pensions.count < limit
   end
 end

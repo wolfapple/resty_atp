@@ -55,7 +55,6 @@ var gpsY1 = 40.0;
 var gpsX2 = 0.0;
 var gpsY2 = 0.0;
 var markers = '';
-var markersPrev = '';
 var countMarkers = 0;
 
 function highlight_pension(itemid) {
@@ -63,7 +62,6 @@ function highlight_pension(itemid) {
 }
 
 function inputMarker(lng, lat, icon, hasHtml, name, itemid) {
-	markers = markersPrev;
 	var comma = '';
 	if (markers != '')
 	comma = ', ';
@@ -83,28 +81,6 @@ function inputMarker(lng, lat, icon, hasHtml, name, itemid) {
 	 markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46], "infowindowanchor": [12, 0] }, "html": "' + content + '" }';
 	}
 	countMarkers++;
-
-	markersPrev = markers;
-	if (countMarkers == 1) {
-	 markers = markers + ', ' + markers;
-	}
-	markers = '[' + markers + ']';
-
-	var jsonObj = jsonParse(markers);
-	var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
-	var rev = (gpsY2-gpsY1)*0.5;
-	if (rev == 0) {
-	 zoom = -2;
-	 rev = 0.015;
-	}
-
-	$("#map").gMap({
-	 markers: jsonObj,
-	 icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
-	 latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
-	 longitude: gpsX1 + (gpsX2-gpsX1)/2,
-	 zoom: 11 - zoom
-	});
 }
 
 function inputMarkerByAddress(address, icon, hasHtml, name, itemid)
@@ -219,6 +195,7 @@ function showPathMapFromAddress(sAddress, eAddress, sText, eText){
 }
 
 $(document).ready(function() {
+	$("#map").gMap();
 	// 사이드바 more/less
 	$('#sidebar h3').click(function() {
 		$(this).toggleClass('hide');
@@ -295,6 +272,7 @@ $(document).ready(function() {
 
 	$("#map-toggle").click( function() {
 		if ($("#openCloseIdentifier").is(":hidden")) {
+			markers = markers.slice(1, markers.length-1);
 			$(this).removeClass("open");
 			$(this).animate({height: "65px"}, 0 );
 			$(this).animate({marginTop: "310px"}, 0 );
@@ -303,6 +281,26 @@ $(document).ready(function() {
 			$("#map-rect").animate({height: "10px"}, 300 );
 			$("#openCloseIdentifier").show();
 		} else {
+			if (countMarkers == 1) {
+			 markers = markers + ', ' + markers;
+			}
+			markers = '[' + markers + ']';
+
+			var jsonObj = jsonParse(markers);
+			var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
+			var rev = (gpsY2-gpsY1)*0.9;
+			if (rev == 0) {
+			 zoom = -4;
+			 rev = 0.005;
+			}
+
+			$("#map").gMap({
+			 markers: jsonObj,
+			 icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
+			 latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
+			 longitude: gpsX1 + (gpsX2-gpsX1)/2,
+			 zoom: 11 - zoom
+			});
 			$(this).animate({height: "10px"}, 0 );
 			$(this).animate({marginTop: "60px"}, 0 );
 			$("#map").animate({height: "365px"}, 300 );
