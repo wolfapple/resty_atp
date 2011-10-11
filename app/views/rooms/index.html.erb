@@ -4,7 +4,7 @@
   <% @rooms.each do |room| %>
   	<li>
   	<div class="left">
-  		<div class="room-photo"><%= image_tag 'pension_01.jpg' %></div>
+  		<div class="room-photo"><%= image_tag room.img %></div>
   	</div>
   	<div class="right">
   	  <div class="left"><%= room.title %></div>
@@ -12,7 +12,7 @@
   		<div>숙박인원 : <%= room.number %></div>
   		<div class="clear">요금 : <%= room.price %></div>
   		<div class="faci"><%= room.facilities01 %></div>
-  		<div class="faci"><%#= room.facilities02 %></div>
+  		<div class="faci"><%= room.facilities02 %></div>
   	</div>
   	<div class="line_dotted clear"></div>
   	</li>
