@@ -1,7 +1,7 @@
 <% content_for :og_meta do  %>
   <meta property="fb:app_id"      content="267286263291604">
   <meta property="og:type"        content="resty_atp:pension">
-  <meta property="og:url"         content="<%= request.url %>">
+  <meta property="og:url"         content="http://www.resty.co.kr/pensions/<%= @pension.id %>">
   <meta property="og:title"       content="<%= @pension.title %>">
   <meta property="og:description" content="<%= @pension.addr %>">
   <meta property="og:image"       content="<%= @pension.og_img %>">
@@ -19,7 +19,7 @@
   <div id="show-content">
     <div class="title">
       <h2><%= @pension.title %></h2>
-      <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+      <div class="fb-like" data-href="http://www.resty.co.kr/pensions/<%= @pension.id %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
       <%= link_to '펜션 바로가기', @pension.url, :target => '_blank' %>
     </div>
     <div class="line-green"></div>
@@ -58,7 +58,7 @@
     </div>
     <div id="show-review">
       <div id="pension-review-title"></div>
-      <fb:comments href="<%= request.url %>" num-posts="5" width="709"></fb:comments>
+      <fb:comments href="http://www.resty.co.kr/pensions/<%= @pension.id %>" num-posts="5" width="709"></fb:comments>
       <script type="text/javascript" charset="utf-8">
         FB.Event.subscribe('comment.create', function(response) {
           $.get('/pensions/update_comments_count', {id:<%= @pension.id %>});

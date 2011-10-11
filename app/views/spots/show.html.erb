@@ -1,7 +1,7 @@
 <% content_for :og_meta do  %>
   <meta property="fb:app_id"      content="267286263291604">
   <meta property="og:type"        content="resty_atp:spot">
-  <meta property="og:url"         content="<%= request.url %>">
+  <meta property="og:url"         content="http://www.resty.co.kr/spots/<%= @spot.id %>">
   <meta property="og:title"       content="<%= @spot.title %>">
   <meta property="og:description" content="<%= @spot.addr %>">
   <meta property="og:image"       content="http://www.resty.co.kr/logo.gif">
@@ -18,7 +18,7 @@
   <div id="show-content">
     <div class="title">
       <h2><%= @spot.title %></h2>
-      <div class="fb-like" data-href="<%= request.url %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+      <div class="fb-like" data-href="http://www.resty.co.kr/spots/<%= @spot.id %>" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
       <%= link_to '관련사이트 바로가기', @spot.url, :target => '_blank' %>
     </div>
     <div class="line-green"></div>
@@ -41,7 +41,7 @@
     </div>
     <div id="show-review">
       <div id="spot-review-title"></div>
-      <fb:comments href="<%= request.url %>" num-posts="5" width="709"></fb:comments>
+      <fb:comments href="http://www.resty.co.kr/spots/<%= @spot.id %>" num-posts="5" width="709"></fb:comments>
       <script type="text/javascript" charset="utf-8">
         FB.Event.subscribe('comment.create', function(response) {
           $.get('/spots/update_comments_count', {id:<%= @spot.id %>});
