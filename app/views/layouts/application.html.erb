@@ -44,7 +44,7 @@
     </div>
     <div id="search_bar">
       <div class="content wrapper">
-        <span class="title"><%= image_tag 'header_search_title.png', :cass => 'title' %></span>
+        <span class="title"><%= image_tag 'header_search_title_1.png', :cass => 'title' %></span>
         <div id="search_box">
           <%= form_tag search_result_path, {:onsubmit => "if(!$('#search_input').val()){alert('검색어를 입력해 주세요.');}"} do %>
             <%= text_field_tag 'search_input' %>
@@ -73,7 +73,7 @@
         <li><%= link_to '회사소개', "http://restycorp.tistory.com" %> | </li>
         <li><%= link_to '이용약관', page_path('terms') %> | </li>
         <li><%= link_to '개인정보취급방침', page_path('privacy') %> | </li>
-        <li><%= link_to '등록 및 제휴문의', contacts_new_path %></li>
+        <li><%= link_to '등록/제휴문의', contacts_new_path %></li>
       </ul>
       <p class="info">
         (주)레스티 &nbsp; 대표이사: 김기풍, 임진석 &nbsp; 사업자등록번호 129-86-64731 &nbsp; 개인정보관리책임자: 임진석<br>
