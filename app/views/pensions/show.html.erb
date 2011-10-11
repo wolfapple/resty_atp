@@ -32,12 +32,10 @@
         <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') unless @pension.facilities.blank? %></div>
         <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>
         <div id="pension-info-start">
-          <form>
-            <div id="findway-box">
-              <input type="text" value="<%= @pension.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word" onclick="this.value='';" onkeypress="if(event.keyCode==13){$('#findway-button').trigger('click');}">
-              <input type="image" src="/assets/header_searchbox_button.png" id="findway-button" class="<%= 'searchByAddress' if @pension.locationx.blank? %><%= 'searchByGPS' unless @pension.locationx.blank? %>">
-            </div>
-          </form>
+          <div id="findway-box">
+            <input type="text" value="<%= @pension.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word" onclick="this.value='';" onkeypress="if(event.keyCode==13){$('#findway-button').trigger('click');}">
+            <input type="image" src="/assets/header_searchbox_button.png" id="findway-button" class="<%= 'searchByAddress' if @pension.locationx.blank? %><%= 'searchByGPS' unless @pension.locationx.blank? %>">
+          </div>
         </div>
         <div id="pension-info-addr"><%= @pension.addr %></div>
         <div id="info-gps-x"><%= @pension.locationx %></div>
