@@ -27,7 +27,7 @@
   <div id="header">
     <div id="title" class="wrapper">
       <%= link_to image_tag('header_logo.png', :class => 'logo'), root_url %>
-      <%= limk_to image_tag('header_title.png', :class => 'title'), root_url %>
+      <%= link_to image_tag('header_title.png', :class => 'title'), root_url %>
       <div id="login">
       <% if current_user %>
         <div id="logout">
@@ -73,7 +73,7 @@
         <li><%= link_to '회사소개', "http://restycorp.tistory.com" %> | </li>
         <li><%= link_to '이용약관', page_path('terms') %> | </li>
         <li><%= link_to '개인정보취급방침', page_path('privacy') %> | </li>
-        <li><%= link_to '등록/제휴문의', contacts_new_path %></li>
+        <li><%= link_to '등록/제휴문의', new_contact_path %></li>
       </ul>
       <p class="info">
         (주)레스티 &nbsp; 대표이사: 김기풍, 임진석 &nbsp; 사업자등록번호 129-86-64731 &nbsp; 개인정보관리책임자: 임진석<br>

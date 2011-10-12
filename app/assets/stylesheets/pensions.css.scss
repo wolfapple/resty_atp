@@ -132,8 +132,8 @@
 	}
 	.near-pensions-box {
 		h3 {
-			background-image: url("/assets/show_side_near_pensions_header.png");
-			margin: 0px;
+			background-image: url("/assets/show_side_near_pensions_header_round.png");
+			margin-top: 15px;
 		}
 		ul li {
 			background-image: url("/assets/show_side_near_pensions_body.png");
@@ -552,12 +552,6 @@
 				display: inline;
 				margin-right: 10px;
 			}
-			a {
-				font-weight: bold;
-			}
-			a:hover {
-				color: #2ab07b;
-			}
 		}
 		.line-green {
 			background-image: url("/assets/show_title_line_bg.png");
@@ -567,14 +561,13 @@
 		.body {
 			background-image: url("/assets/show_detail_bgcolor.png");
 			background-repeat: repeat;
-			
 			.pension-photo {
 				float: left;
 				position: relative;
 				background-color: #ccc;
 				width: 260px;
 				height: 265px;
-				margin: 20px 0px 15px 20px;
+				margin: 20px 0px 65px 20px;
 				img {
 					position: absolute;
 					width: 260px;
@@ -587,6 +580,12 @@
 				position: relative;
 				float: right;
 				width: 410px;
+				a {
+					text-decoration: underline;
+				}
+				a:hover {
+					color: #2ab07b;
+				}
 				#pension-info-type {
 					position: absolute;
 					background-image: url("/assets/show_pension_info_type_bg.png");
@@ -614,12 +613,21 @@
 					margin-top: 130px;
 					padding: 25px 0px 0px 2px;
 				}
+				#pension-info-url {
+					position: absolute;
+					background-image: url("/assets/show_pension_sites.png");
+					background-repeat: no-repeat;
+					height: 20px;
+					width: 500px;
+					margin-top: 185px;
+					padding: 25px 0px 0px 2px;
+				}
 				#pension-info-start {
 					position: absolute;
 					background-image: url("/assets/show_pension_info_start_bg.png");
 					background-repeat: no-repeat;
 					height: 20px;
-					margin-top: 185px;
+					margin-top: 245px;
 					padding: 25px 0px 0px 2px;
 					#findway-box {
 						background-image: url("/assets/show_pension_info_find_way_bg.png");
@@ -654,7 +662,7 @@
 					width: 185px;
 					height: 26px;
 					line-height: 26px;
-					margin-top: 255px;
+					margin-top: 310px;
 					padding: 0px 3px;
 					text-indent: 85px;
 					color: #fff;
@@ -665,7 +673,7 @@
 					background-repeat: no-repeat;
 					width: 110px;
 					height: 26px;
-					margin: 255px 0px 0px 206px;
+					margin: 310px 0px 0px 206px;
 				}
 				#pension-info-addr {
 					background-image: url("/assets/list_pension_icon_address.png");
@@ -843,4 +851,3 @@
 		}
 	}
 }
-

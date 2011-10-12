@@ -54,7 +54,7 @@ class PensionsController < ApplicationController
     end
     # order
     @total = @pensions.count
-    @pensions = @pensions.order("#{params[:order_by]} desc") if params[:order_by]
+    @pensions = @pensions.unscoped.order("#{params[:order_by]} desc") if params[:order_by]
     @pensions = @pensions.page(params[:page]).per(10)
   end
   

@@ -11,6 +11,7 @@ class OauthsController < ApplicationController
     if @user = login_from(provider)
       redirect_to root_url
       session[:access_token] = @provider.get_access_token({:code => params[:code]}).token
+      @user.remember_me!
     else
       begin
         @user = create_from(provider)
@@ -18,6 +19,7 @@ class OauthsController < ApplicationController
         login_user(@user)
         redirect_to root_url
         session[:access_token] = @provider.get_access_token({:code => params[:code]}).token
+        @user.remember_me!
       rescue 
         redirect_to root_url, :alert => "로그인 실패"
       end      

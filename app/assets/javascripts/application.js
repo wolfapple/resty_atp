@@ -199,7 +199,7 @@ $(document).ready(function() {
 	// 사이드바 more/less
 	$('#sidebar h3').click(function() {
 		$(this).toggleClass('hide');
-		$(this).next('ul').children('.toggle-list').toggleClass('hide');
+		$(this).next('ul').children('.toggle-list').slideToggle(200);
 	});
 
 	// navi-landmarks 페이징 관련
