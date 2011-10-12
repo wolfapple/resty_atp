@@ -5,7 +5,7 @@ RestyAtp::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   # login, logout
-  match 'login' => 'user_sessions#new', :as => :login
+  # match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   # oauth
   resource :oauth do
