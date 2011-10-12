@@ -195,7 +195,6 @@ function showPathMapFromAddress(sAddress, eAddress, sText, eText){
 }
 
 $(document).ready(function() {
-	$("#map").gMap();
 	// 사이드바 more/less
 	$('#sidebar h3').click(function() {
 		$(this).toggleClass('hide');
