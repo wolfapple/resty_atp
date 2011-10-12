@@ -25,7 +25,7 @@
       <div id="spot-info-sum"><%= @spot.description %></div>
       <div id="spot-info-addr"><%= @spot.addr %></div>
       <div id="spot-info-phone"><%= @spot.phone %></div>
-      <div id="spot-info-url"><%= link_to truncate(@spot.url, :length => 50), @spot.url %></div>
+      <div id="spot-info-url"><%= link_to truncate(@spot.url, :length => 50), @spot.url, :target => '_blank' %></div>
       <div id="spot-info-start">
         <div id="findway-box">
           <input type="text" value="<%= @spot.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word" onclick="this.value='';" onkeypress="if(event.keyCode==13){$('#findway-button').trigger('click');}">
