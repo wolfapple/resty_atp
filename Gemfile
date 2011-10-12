@@ -20,6 +20,7 @@ gem 'sass-rails', "  ~> 3.1.0"
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'truncate_html'
+gem 'geocoder'
 
 group :development do
   gem 'pry'

@@ -52,6 +52,8 @@
   		<%= render 'map' %>
       <% unless @pension.locationx.blank? or @pension.locationy.blank? %>
         <script type="text/javascript">inputMarker(<%= @pension.locationx %>, <%= @pension.locationy %>, "pension");</script>
+      <% else %>
+        <script type="text/javascript">inputMarkerByAddress("<%= @pension.addr %>", "pension");</script>
       <% end %>
       <div class="line-green"></div>
     </div>

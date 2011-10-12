@@ -60,7 +60,7 @@
   <% unless pension.locationx.blank? or pension.locationy.blank? %>
     <script type="text/javascript">inputMarker(<%= pension.locationx %>, <%= pension.locationy %>, "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>    
   <% else %>
-    <script type="text/javascript">inputMarkerByAddress("<%= pension.addr %>", "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>    
+    <script type="text/javascript">inputMarkerByAddress("<%= pension.addr %>", "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>
   <% end %>
 <% end %>
 </div>

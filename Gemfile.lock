@@ -76,6 +76,7 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    geocoder (1.0.4)
     has_scope (0.5.1)
     high_voltage (1.0.1)
     hike (1.2.1)
@@ -204,6 +205,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.1.0)
   execjs
+  geocoder
   high_voltage
   jquery-rails
   kaminari
