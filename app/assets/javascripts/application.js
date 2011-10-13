@@ -271,7 +271,6 @@ $(document).ready(function() {
 
 	$("#map-toggle").click( function() {
 		if ($("#openCloseIdentifier").is(":hidden")) {
-			markers = markers.slice(1, markers.length-1);
 			$(this).removeClass("open");
 			$(this).animate({height: "65px"}, 0 );
 			$(this).animate({marginTop: "310px"}, 0 );
@@ -280,26 +279,26 @@ $(document).ready(function() {
 			$("#map-rect").animate({height: "10px"}, 300 );
 			$("#openCloseIdentifier").show();
 		} else {
-			if (countMarkers == 1) {
-			 markers = markers + ', ' + markers;
+			if(markers.charAt(0) != '[') {
+				if (countMarkers == 1) {
+				 markers = markers + ', ' + markers;
+				}
+				markers = '[' + markers + ']';
+				var jsonObj = jsonParse(markers);
+				var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
+				var rev = (gpsY2-gpsY1)*0.9;
+				if (rev == 0) {
+				 zoom = -4;
+				 rev = 0.005;
+				}
+				$("#map").gMap({
+				 markers: jsonObj,
+				 icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
+				 latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
+				 longitude: gpsX1 + (gpsX2-gpsX1)/2,
+				 zoom: 11 - zoom
+				});
 			}
-			markers = '[' + markers + ']';
-
-			var jsonObj = jsonParse(markers);
-			var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
-			var rev = (gpsY2-gpsY1)*0.9;
-			if (rev == 0) {
-			 zoom = -4;
-			 rev = 0.005;
-			}
-
-			$("#map").gMap({
-			 markers: jsonObj,
-			 icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
-			 latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
-			 longitude: gpsX1 + (gpsX2-gpsX1)/2,
-			 zoom: 11 - zoom
-			});
 			$(this).animate({height: "10px"}, 0 );
 			$(this).animate({marginTop: "60px"}, 0 );
 			$("#map").animate({height: "365px"}, 300 );
