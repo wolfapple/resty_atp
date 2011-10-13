@@ -7,8 +7,12 @@ class Pension < ActiveRecord::Base
   has_one :must_visit, :dependent => :destroy
   belongs_to :area
   belongs_to :sub_area
+  # upload
   mount_uploader :thumbnail, PensionImageUploader
-  
+  # geocode
+  geocoded_by :addr
+  after_validation :geocode, :if => :addr_changed?
+  # scope
   default_scope order('ranking desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
   

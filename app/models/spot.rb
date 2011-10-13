@@ -5,8 +5,11 @@ class Spot < ActiveRecord::Base
   has_many :reviews, :class_name => "SpotReview"
   belongs_to :area
   belongs_to :sub_area
-  
+  # validation
   validates_presence_of :title
+  # geocode
+  geocoded_by :addr
+  after_validation :geocode, :if => :addr_changed?
   
   default_scope order('pensions_count desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
