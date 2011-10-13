@@ -1,9 +1,6 @@
 class AddLatitudeAndLongitudeToPensions < ActiveRecord::Migration
   def change
-    add_column :pensions, :latitude, :string
-    add_column :pensions, :longitude, :string
-    Pension.all.each do |pension|
-      pension.update_attributes({:longitude => pension.locationx, :latitude => pension.locationy})
-    end
+    add_column :pensions, :latitude, :float
+    add_column :pensions, :longitude, :float
   end
 end
