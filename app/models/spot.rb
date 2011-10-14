@@ -18,6 +18,6 @@ class Spot < ActiveRecord::Base
   def near_by_pensions(limit=7)
     #pensions = self.pensions.where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
     #pensions = pensions + self.pensions.limit(limit-pensions.count) if pensions.count < limit
-    Pension.near([self.latitude, self.longitude], 10, {:units => :km, :order => :distance, :limit => 15})
+    Pension.unscoped.near([self.latitude, self.longitude], 10, {:units => :km, :order => :distance, :limit => 15})
   end
 end
