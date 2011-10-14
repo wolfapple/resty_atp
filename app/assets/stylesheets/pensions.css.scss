@@ -131,15 +131,21 @@
 		}
 	}
 	.near-pensions-box {
+		.no-pensions {
+			background-image: url("/assets/show_side_near_pensions_body.png");
+			text-align: center;
+			font-weight: bold;
+			padding: 20px 0px;
+		}
 		h3 {
 			background-image: url("/assets/show_side_near_pensions_header_round.png");
 			margin-top: 15px;
 		}
 		ul li {
 			background-image: url("/assets/show_side_near_pensions_body.png");
-	    	height: 73px;
-	    	padding: 0px 0px 0px 15px;
-	    	margin: 0px;
+	    height: 73px;
+	    padding: 0px 0px 0px 15px;
+	    margin: 0px;
 		}
 		a.name {
 			width: 140px;

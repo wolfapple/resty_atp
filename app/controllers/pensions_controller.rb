@@ -39,6 +39,7 @@ class PensionsController < ApplicationController
       else
         @pensions = @pensions.where("min_price between ? and ?", @price.min, @price.max)
       end
+      @pensions = @pensions.where("min_price <> 0")
     end
     # get facilities
     if params[:facilities]

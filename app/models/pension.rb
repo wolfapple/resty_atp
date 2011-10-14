@@ -17,8 +17,9 @@ class Pension < ActiveRecord::Base
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
   
   def near_by(limit=7)
-    pensions = self.sub_area.pensions.where("id <> ?", self.id).where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
-    pensoins = pensions + self.sub_area.pensions.where("id <> ?", self.id).limit(limit-pensions.count) if pensions.count < limit
+    #pensions = self.sub_area.pensions.where("id <> ?", self.id).where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
+    #pensoins = pensions + self.sub_area.pensions.where("id <> ?", self.id).limit(limit-pensions.count) if pensions.count < limit
+    Pension.unscoped.where("id <> ?", self.id).near(self, 10, {:units => :km, :order => :distance, :limit => 15})
   end
   
   def short_addr

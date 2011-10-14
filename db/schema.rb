@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012023659) do
+ActiveRecord::Schema.define(:version => 20111013071547) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -141,6 +141,8 @@ ActiveRecord::Schema.define(:version => 20111012023659) do
     t.integer   "max_price",                       :null => false
     t.integer   "comments_count",                  :null => false
     t.integer   "like_count",                      :null => false
+    t.float     "latitude"
+    t.float     "longitude"
   end
 
   add_index "pensions", ["area_id", "sub_area_id"], :name => "area_id"
@@ -206,6 +208,8 @@ ActiveRecord::Schema.define(:version => 20111012023659) do
     t.integer  "like_count",                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "sub_areas", :force => true do |t|

@@ -23,26 +23,30 @@
 </div> -->
 <div class="near-pensions-box">
   <h3>근처의 다른 펜션</h3>
-  <ul>
-  <% @near_by_pensions.each do |pension| %>
-    <li>
-      <table class="near-by-pensions">
-        <tr>
-          <td><%= link_to pension.title, pension, :class => 'name' %></td>
-          <td>
-            <% if pension.like_count > 0 %>
-              <span class="like"><%= image_tag('like_resty.png', :width => '20px') %> <%= pension.like_count %></span>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td><span title="<%= pension.addr %>"><%= pension.short_addr %></span></td>
-          <td><a href="#" class="review">리뷰<%= pension.comments_count %></a></td>
-        </tr>
-      </table>
-    </li>
+  <% if @near_by_pensions.length == 0 %>
+    <div class="no-pensions">10km이내에 펜션이 없습니다!</div>
+  <% else %>
+    <ul>
+    <% @near_by_pensions.each do |pension| %>
+      <li>
+        <table class="near-by-pensions">
+          <tr>
+            <td><%= link_to pension.title, pension, :class => 'name' %></td>
+            <td>
+              <% if pension.like_count > 0 %>
+                <span class="like"><%= image_tag('like_resty.png', :width => '20px') %> <%= pension.like_count %></span>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td><span title="<%= pension.addr %>"><%= pension.short_addr %></span></td>
+            <td><%= link_to "#{pension.distance.round(2)}km", pension, :class => 'review' %></td>
+          </tr>
+        </table>
+      </li>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
   <div class="footer"></div>
 </div>
 
