@@ -1,5 +1,15 @@
 # -*- encoding : utf-8 -*-
 class SearchController < ApplicationController
+  def map
+    @point = [params[:latitude].to_f, params[:longitude].to_f]
+    # @point = [37.8138087, 127.5202149]
+    @pensions = Pension.near(@point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
+    @pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
+    @spots = Spot.near(@point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
+    @spot_markers = @spots.collect {|x| {:key => "spot-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html, :icon => {:image => 'http://www.google.com/mapfiles/marker_green.png'}}}
+    @results = (@pension_markers + @spot_markers).to_json
+  end
+  
   def result
     if params[:search_id].blank?
       like = "#{params[:search_input]}%"

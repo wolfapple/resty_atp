@@ -38,9 +38,10 @@ RestyAtp::Application.routes.draw do
   end
   resources :spots
   resources :contacts 
-  #search'
+  #search
   match 'search/autocomplete' => 'search#autocomplete'
   match 'search/result' => 'search#result'
+  match 'search/map' => 'search#map'
   # main
   match 'main' => 'main#index'
   root :to => 'main#index'

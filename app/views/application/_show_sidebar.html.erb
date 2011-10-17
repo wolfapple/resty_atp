@@ -1,26 +1,3 @@
-<!-- <div class="friends-activities-box">
-  <h3>이 지역 친구들의 활동</h3>
-  <% if @activities %>
-    <ul>
-    <% @activities.each do |activity| %>
-      <li>
-        <%= link_to image_tag(graph.get_picture(activity['from']['id'], :class => 'profile')), "http://www.facebook.com/profile.php?id=#{activity['from']['id']}", :target => '_blank' %>
-        <% if activity['message'].blank? %>
-          <%= link_to content_tag(:span, truncate(activity['caption'], :length => 30)), activity['link'], :target => '_blank' %>
-        <% else %>
-          <%= link_to content_tag(:span, truncate(activity['message'], :length => 30)), activity['link'], :target => '_blank' %>
-        <% end %>
-      </li>
-    <% end %>
-  <% else %>
-    <ul class="logout">
-      <li><%= link_to image_tag('header_login_facebook.png'), auth_at_provider_path(:provider => :facebook) %></li>
-      <li>페이스북으로 레스티에 로그인 하시면 친구들의 활동을 볼 수 있어요!</li>
-    </ul>
-  <% end %>
-  </ul>
-  <div class="footer"></div>
-</div> -->
 <div class="near-pensions-box">
   <h3>근처의 다른 펜션</h3>
   <% if @near_by_pensions.length == 0 %>

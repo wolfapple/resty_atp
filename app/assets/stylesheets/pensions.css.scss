@@ -65,6 +65,10 @@
 		height: 28px;
 		padding-left: 40px;
 		line-height: 28px;
+		font-weight: bold;
+		a {
+			font-weight: normal;
+		}
 	}
 	ul li.hide {
 		display: none;
@@ -243,8 +247,10 @@
 				width: 705px;
 				height: 38px;
 				line-height: 38px;
-				padding-left: 78px;
 				margin: 0px 0px 0px 1px;
+				ul {
+					padding-left: 98px;
+				}
 			}
 			.addr2 {
 				background-image: url("/assets/list_navigator_bg_3.png");
@@ -253,7 +259,7 @@
 				margin: 0px 0px 0px 1px;
 				ul {
 					width: 587px;
-					padding-left: 118px;
+					padding-left: 98px;
 					line-height: 30px;
 				}
 			}
@@ -277,22 +283,20 @@
 			}
 			.spots-body {
 				float: left;
-				width: 620px;
+				width: 600px;
 				white-space: nowrap;
+				padding-left: 20px;
 				.hidden {
 					display: none;
 				}
 				
-			}
-			ul {
-				white-space: nowrap;
 			}
 			.next {
 				position: relative;
 				float: right;
 				background-image: url("/assets/slider_arrow_next_.png");
 				background-repeat: no-repeat;
-  				width: 17px;
+  			width: 17px;
 				height: 17px;
 				margin: 10px 0px 0px 3px;
 				padding: 0px;
@@ -315,7 +319,9 @@
 		}
 		ul {
 			list-style: none;
-			margin: 0px 0px 0px -19px;
+			margin: 0px;
+			padding: 0px;
+			white-space: nowrap;
 		}
 		ul li {
 			position: relative;

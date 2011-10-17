@@ -31,3 +31,41 @@
 		color: #666;
 	}
 }
+#search-list {
+	position: relative;
+	float: left;
+	width: 250px;
+	h3 {
+		margin-bottom: 0px;
+	}
+	ul li {
+		font-size: 13px;
+		height: 25px;
+		a:hover {
+			text-decoration: underline;
+		}
+		&.over {
+			background: #EFFAF6;
+		}
+	}
+	.search-pensions {
+		height: 400px;
+		overflow: auto;
+	}
+	.search-spots {
+		height: 200px;
+		overflow: auto;
+	}
+}
+#search-map {
+	float: right;
+	width: 740px;
+	margin-top: 20px;
+	h1 {
+		color: #1D7350;
+		display: inline;
+	}
+	span {
+		font-size: 15px;
+	}
+}

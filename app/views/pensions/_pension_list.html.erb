@@ -58,7 +58,7 @@
   	</div>
   </div>
   <% unless pension.longitude.blank? or pension.latitude.blank? %>
-    <script type="text/javascript">inputMarker(<%= pension.longitude %>, <%= pension.latitude %>, "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>    
+    <script type="text/javascript">inputMarker(<%= pension.longitude %>, <%= pension.latitude %>, "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>
   <% else %>
     <script type="text/javascript">inputMarkerByAddress("<%= pension.addr %>", "pension", 1, "<%= pension.title %>", <%= pension.id %>);</script>
   <% end %>

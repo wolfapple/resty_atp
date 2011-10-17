@@ -49,4 +49,8 @@ class Pension < ActiveRecord::Base
       'http://www.resty.co.kr' + self.thumbnail.url
     end
   end
+  
+  def html
+    "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a>"
+  end
 end

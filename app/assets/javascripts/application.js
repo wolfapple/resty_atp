@@ -7,49 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-$.widget( "custom.catcomplete", $.ui.autocomplete, {
-	_renderMenu: function( ul, items ) {
-		var self = this,
-			currentCategory = "";
-		$.each( items, function( index, item ) {
-			if ( item.category != currentCategory ) {
-				ul.append( "<li class='autocomplete_category'>" + item.category + "</li>" );
-				currentCategory = item.category;
-			}
-			self._renderItem( ul, item );
-		});
-	}
-});
-
-$(function(){
-	//한글 처리
-	$('#search_input').keydown(function() {
-		if(event.keyCode == '38' || event.keyCode == '40') {
-			;
-		}
-	});
-	var cache = {}, lastXhr;
-	$('#search_input').catcomplete({
-		source: function(request, response) {
-			var term = request.term;
-			if (term in cache) {
-				response(cache[term]);
-				return;
-			}
-			lastXhr = $.getJSON("/search/autocomplete", request, function(data, status, xhr) {
-				cache[term] = data;
-				if(xhr === lastXhr) {
-					response( data );
-				}
-			});
-		},
-		select: function(event,ui) {
-			$('#search_class').val(ui.item.search_class);
-			$('#search_id').val(ui.item.id);
-		}
-	});
-});
-
 var gpsX1 = 130.0;
 var gpsY1 = 40.0;
 var gpsX2 = 0.0;
@@ -76,92 +33,82 @@ function inputMarker(lng, lat, icon, hasHtml, name, itemid) {
 	}
 
 	if (!content) {
-	 markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46], "infowindowanchor": [12, 0] } }';
+	 //markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46], "infowindowanchor": [12, 0] } }';
+	markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + '}';
 	} else {
-	 markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46], "infowindowanchor": [12, 0] }, "html": "' + content + '" }';
+	 //markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "icon": { "image": "/assets/map_pin_' + icon + '.png", "iconanchor": [12, 46], "infowindowanchor": [12, 0] }, "html": "' + content + '" }';
+	markers += comma + '{ "latitude": ' + lat + ', "longitude": ' + lng + ', "html": "' + content + '" }';
 	}
 	countMarkers++;
 }
 
 function inputMarkerByAddress(address, icon, hasHtml, name, itemid)
 {
-	geocoder = new GClientGeocoder();
+	geocoder = new google.maps.Geocoder();
 
 	if(address != "") {
 		// GPS 좌표 지정
 		if (geocoder) {
-			geocoder.getLatLng(
-				address,
-				function(point) {
-					if (point) {
-						inputMarker(point.lng(), point.lat(), icon, hasHtml, name, itemid)
-					}
+			geocoder.geocode({'address':address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					inputMarker(results[0].geometry.location.lng(), results[0].geometry.location.lat(), icon, hasHtml, name, itemid);
 				}
-			);
+			});
 		}
 	}
 }
 
 // 검은 막 관련
 function showPathMap(sAddress, elng, elat, sText, eText){
-	geocoder = new GClientGeocoder();
+	geocoder = new google.maps.Geocoder();
 
 	if(sAddress != "") {
 		// GPS 좌표 지정
 		if (geocoder) {
-			geocoder.getLatLng(
-				sAddress,
-				function(point) {
-					if (!point) {
-						alert("'"+sText + "'의 좌표를 찾지 못했습니다.");
-					} else {
-						var dlevel = 4;
-						//화면의 높이와 너비를 구한다.
-						if ($(".window").outerHeight() < $(document).height() )
-							$(".window").css("margin-top", "-" + $(".window").outerHeight()/2+"px");
-						else
-							$(".window").css("top", "0px");
-						if ($(".window").outerWidth() < $(document).width() )
-							$(".window").css("margin-left", "-" + $(".window").outerWidth()/2+"px");
-						else
-							$(".window").css("left", "0px");
+			geocoder.geocode({'address':sAddress}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					var dlevel = 4;
+					//화면의 높이와 너비를 구한다.
+					if ($(".window").outerHeight() < $(document).height() )
+						$(".window").css("margin-top", "-" + $(".window").outerHeight()/2+"px");
+					else
+						$(".window").css("top", "0px");
+					if ($(".window").outerWidth() < $(document).width() )
+						$(".window").css("margin-left", "-" + $(".window").outerWidth()/2+"px");
+					else
+						$(".window").css("left", "0px");
 
-						var maskHeight = $(document).height();
-						var maskWidth = $(window).width();
-	
-						$("#mask").css({"width": maskWidth, "height": maskHeight});
-						$("#mask").fadeTo("slow", 0.8);
-	
-						$(".window").show();
-						$(".path-map").attr("src", "http://map.naver.com/?dlevel="+dlevel+"&lat=&lng=&slng="+point.lng()+"&slat="+point.lat()+"&elng="+elng+"&elat="+elat+"&pathType=0&dtPathType=2&menu=route&mapMode=0&sText="+sText+"&eText="+eText+"&");
-					}
+					var maskHeight = $(document).height();
+					var maskWidth = $(window).width();
+
+					$("#mask").css({"width": maskWidth, "height": maskHeight});
+					$("#mask").fadeTo("slow", 0.8);
+
+					$(".window").show();
+					$(".path-map").attr("src", "http://map.naver.com/?dlevel="+dlevel+"&lat=&lng=&slng="+results[0].geometry.location.lng()+"&slat="+results[0].geometry.location.lat()+"&elng="+elng+"&elat="+elat+"&pathType=0&dtPathType=2&menu=route&mapMode=0&sText="+sText+"&eText="+eText+"&");
 				}
-			);
+				else {
+					alert("'"+sText + "'의 좌표를 찾지 못했습니다.");
+				}
+			});
 		}
 	}
 }
 
 
 function showPathMapFromAddress(sAddress, eAddress, sText, eText){
-	geocoder = new GClientGeocoder();
-	geocoder2 = new GClientGeocoder();
+	geocoder = new google.maps.Geocoder();
+	geocoder2 = new google.maps.Geocoder();
 
 	if(sAddress != "") {
 		// GPS 좌표 지정
 		if (geocoder) {
-			geocoder.getLatLng(
-				sAddress,
-				function(point) {
-					if (!point) {
-						alert("'"+sText + "'의 좌표를 찾지 못했습니다.");
-					} else {
-						geocoder2.getLatLng(
-							eAddress,
-							function(point2) {
-								if (!point2) {
-									alert("'"+eText + "'의 좌표를 찾지 못했습니다.");
-								} else {
-															
+			geocoder.geocode({'address':sAddress},
+				function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						geocoder2.geocode({'address':eAddress},
+							function(results, status) {
+								if (status == google.maps.GeocoderStatus.OK) {
 									var dlevel = 4;
 									//화면의 높이와 너비를 구한다.
 									if ($(".window").outerHeight() < $(document).height() )
@@ -180,10 +127,16 @@ function showPathMapFromAddress(sAddress, eAddress, sText, eText){
 									$("#mask").fadeTo("slow", 0.8);
 									
 									$(".window").show();
-									$(".path-map").attr("src", "http://map.naver.com/?dlevel="+dlevel+"&lat=&lng=&slng="+point.lng()+"&slat="+point.lat()+"&elng="+point2.lng()+"&elat="+point2.lat()+"&pathType=0&dtPathType=2&menu=route&mapMode=0&sText="+sText+"&eText="+eText+"&");
+									$(".path-map").attr("src", "http://map.naver.com/?dlevel="+dlevel+"&lat=&lng=&slng="+results[0].geometry.location.lng()+"&slat="+results[0].geometry.location.lat()+"&elng="+point2.lng()+"&elat="+point2.lat()+"&pathType=0&dtPathType=2&menu=route&mapMode=0&sText="+sText+"&eText="+eText+"&");
+								}
+								else {
+									alert("'"+eText + "'의 좌표를 찾지 못했습니다.");
 								}
 							}
-						);						
+						);
+					}
+					else {
+						alert("'"+sText + "'의 좌표를 찾지 못했습니다.");
 					}
 				}
 			);
@@ -292,18 +245,21 @@ $(document).ready(function() {
 				 rev = 0.005;
 				}
 				$("#map").gMap({
-				 markers: jsonObj,
-				 icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
-				 latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
-				 longitude: gpsX1 + (gpsX2-gpsX1)/2,
-				 zoom: 11 - zoom
+					markers: jsonObj,
+					latitude: 'fit',
+					longitude: 'fit',
+					zoom: 11 - zoom
+				 //icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
+				 //latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
+				 //longitude: gpsX1 + (gpsX2-gpsX1)/2,
+				 //zoom: 11 - zoom
 				});
 			}
 			$(this).animate({height: "10px"}, 0 );
 			$(this).animate({marginTop: "60px"}, 0 );
 			$("#map").animate({height: "365px"}, 300 );
 			$(this).animate({marginTop: "355px"}, 300 );
-			$("#map-rect").animate({height: "310px"}, 300 );
+			$("#map-rect").animate({height: "310px"}, 300, function(){$('#map').gMap('fixAfterResize', true);});
 			$("#openCloseIdentifier").hide();
 			$(this).addClass("open");
 		}
@@ -337,5 +293,30 @@ $(document).ready(function() {
 		$(this).hide();
 		$(".window").hide();
 	});
-
+	// 지역 검색
+	$('#search_button').click(function() {
+		if(!$('#search_input').val()) {
+			alert('검색어를 입력해 주세요.');
+		}
+ 		else {
+			g = new google.maps.Geocoder();
+			addr = $('#search_input').val();
+			g.geocode({'address':addr}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					$('#address').val(addr);
+					$('#longitude').val(results[0].geometry.location.lng());
+					$('#latitude').val(results[0].geometry.location.lat());
+					$('#search_box form').submit();
+				}
+				else {
+					alert("'" + addr + '의 위치정보를 파악할 수 없습니다.');
+				}
+			});
+		}
+	});
+	$('#search_input').keydown(function(event) {
+		if(event.keyCode == '13') {
+			$('#search_button').trigger('click');
+		}
+	});
 });

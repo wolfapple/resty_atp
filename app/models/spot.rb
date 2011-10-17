@@ -20,4 +20,8 @@ class Spot < ActiveRecord::Base
     #pensions = pensions + self.pensions.limit(limit-pensions.count) if pensions.count < limit
     Pension.unscoped.near([self.latitude, self.longitude], 10, {:units => :km, :order => :distance, :limit => 15})
   end
+  
+  def html
+    "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/spots/#{self.id}' target='_blank'>여행지 바로가기</a>"
+  end
 end

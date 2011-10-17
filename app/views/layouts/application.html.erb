@@ -2,6 +2,7 @@
 <html>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# resty_atp: http://ogp.me/ns/fb/resty_atp#">
   <title><%= title %></title>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -46,12 +47,13 @@
       <div class="content wrapper">
         <span class="title"><%= image_tag 'header_search_title_1.png', :cass => 'title' %></span>
         <div id="search_box">
-          <%= form_tag search_result_path, {:onsubmit => "if(!$('#search_input').val()){alert('검색어를 입력해 주세요.');}"} do %>
-            <%= text_field_tag 'search_input' %>
-            <%= hidden_field_tag 'search_class' %>
-            <%= hidden_field_tag 'search_id' %>
-            <%= image_submit_tag 'header_searchbox_button.png', :id => 'search_button' %>
+          <%= form_tag search_map_path do %>
+            <%= hidden_field_tag 'address' %>
+            <%= hidden_field_tag 'longitude' %>
+            <%= hidden_field_tag 'latitude' %>
           <% end %>
+          <%= text_field_tag 'search_input', '지역이나 여행지명으로 검색하세요.', :onclick => "this.value=''" %>
+          <%= image_tag 'header_searchbox_button.png', :id => 'search_button' %>
         </div>
       </div>
     </div>
