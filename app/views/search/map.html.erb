@@ -5,7 +5,7 @@
   <div class="search-pensions">
     <ul>
     <% @pensions.each do |pension| %>
-      <li data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>"><%= link_to pension.title, pension, :target => '_blank' %></li>
+      <li data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>"><%= link_to pension.title, pension, :target => '_blank' %><%= " @#{pension.sub_area.title}" if params[:latitude].blank? or params[:longitude].blank? %></li>
     <% end %>
     </ul>
   </div>
@@ -19,13 +19,18 @@
   </div>
 </div>
 <div id="search-map">
-  <h1>'<%= params[:address] %>'</h1> <span>인근 펜션과 여행지 검색 결과입니다.</span>
+  <h1>'<%= params[:address] %>'</h1>
+  <span><%= "인근 펜션과 여행지" if !params[:longitude].blank? and !params[:latitude].blank? %> 검색 결과입니다.</span>
   <div id="map" style="height:645px"></div>
   <p><%= link_to 'powered by 야후! 거기', 'http://kr.gugi.yahoo.com/', :target => '_blank' %></p>
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  $('#map').gMap({markers:<%= raw @results %>, zoom: 12, latitude:<%= @point[0] %>, longitude:<%= @point[1] %>});
+  <% if params[:longitude].blank? or params[:latitude].blank? %>
+    $('#map').gMap({address:'대전', zoom:7});
+  <% else %>
+    $('#map').gMap({markers:<%= raw @results %>, zoom: 'fit', latitude:'fit', longitude:'fit'});
+  <% end %>
   $(function() {
     $('#search-list li').mouseenter(function() {
       $(this).addClass('over');

@@ -2,12 +2,18 @@
 class SearchController < ApplicationController
   def map
     SearchLog.create(:input => params[:address])
-    @point = [params[:latitude].to_f, params[:longitude].to_f]
-    @pensions = Pension.near(@point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
-    @pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
-    @spots = Spot.near(@point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
-    @spot_markers = @spots.collect {|x| {:key => "spot-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html, :icon => {:image => 'http://www.google.com/mapfiles/marker_green.png'}}}
-    @results = (@pension_markers + @spot_markers).to_json
+    if params[:latitude].blank? or params[:longitude].blank?
+      like = "#{params[:address]}%"
+      @pensions = Pension.where("title like ?", like)
+      @spots = Spot.where("title like ?", like)
+    else
+      point = [params[:latitude].to_f, params[:longitude].to_f]
+      @pensions = Pension.near(point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
+      @spots = Spot.near(point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
+    end
+    pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
+    spot_markers = @spots.collect {|x| {:key => "spot-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html, :icon => {:image => 'http://www.google.com/mapfiles/marker_green.png'}}}
+    @results = (pension_markers + spot_markers).to_json
   end
   
   def result
@@ -32,19 +38,19 @@ class SearchController < ApplicationController
   def autocomplete
     if params[:term].mb_chars.length >= 2
       like = params[:term].concat("%")
-      areas = Area.where("title like ?", like).map do |area|
-        {:id => area.id, :label => "#{area.title}", :category => "지역", :search_class => 'Area'}
-      end
-      sub_areas = SubArea.where("title like ?", like).map do |sub_area|
-        {:id => sub_area.id, :label => "#{sub_area.area.title}>#{sub_area.title}", :category => "지역", :search_class => 'SubArea'}
-      end
+      # areas = Area.where("title like ?", like).map do |area|
+      #   {:id => area.id, :label => "#{area.title}", :category => "지역", :search_class => 'Area'}
+      # end
+      # sub_areas = SubArea.where("title like ?", like).map do |sub_area|
+      #   {:id => sub_area.id, :label => "#{sub_area.area.title}>#{sub_area.title}", :category => "지역", :search_class => 'SubArea'}
+      # end
       pensions = Pension.where("title like ?", like).order('ranking desc').limit(10).map do |pension|
-        {:id => pension.id, :label => pension.title, :category => '펜션', :search_class => 'Pension'}
+        {:id => pension.id, :label => "#{pension.title} - #{pension.sub_area.title}", :category => '펜션', :search_class => 'pensions'}
       end
       spots = Spot.where("title like ?", like).map do |spot|
-        {:id => spot.id, :label => spot.title, :category => '관광지', :search_class => 'Spot'}
+        {:id => spot.id, :label => spot.title, :category => '관광지', :search_class => 'spots'}
       end
-      render :json => areas + sub_areas + pensions + spots
+      render :json => pensions + spots
     end
   end
 end

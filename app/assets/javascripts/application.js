@@ -323,9 +323,11 @@ $(document).ready(function() {
 						$('#search_box form').submit();
 					}
 					else {
-						alert("'" + addr + "'의 위치정보를 파악할 수 없습니다.");
+						$('#address').val(addr);
+						$('#search_box form').submit();
 					}
-				});
+				}
+			);
 		}
 	});
 	$('#search_input').keydown(function(event) {
