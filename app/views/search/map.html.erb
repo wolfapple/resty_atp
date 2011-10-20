@@ -26,7 +26,7 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  <% if params[:longitude].blank? or params[:latitude].blank? %>
+  <% if @pensions.size == 0 and @spots.size == 0 %>
     $('#map').gMap({address:'대전', zoom:7});
   <% else %>
     $('#map').gMap({markers:<%= raw @results %>, zoom: 'fit', latitude:'fit', longitude:'fit'});
