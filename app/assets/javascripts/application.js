@@ -299,19 +299,33 @@ $(document).ready(function() {
 			alert('검색어를 입력해 주세요.');
 		}
  		else {
-			g = new google.maps.Geocoder();
+			// g = new google.maps.Geocoder();
+			// g.geocode({'address':addr, 'region':'ko'}, function(results, status) {
+			// 	if (status == google.maps.GeocoderStatus.OK) {
+			// 		$('#address').val(addr);
+			// 		$('#longitude').val(results[0].geometry.location.lng());
+			// 		$('#latitude').val(results[0].geometry.location.lat());
+			// 		$('#search_box form').submit();
+			// 	}
+			// 	else {
+			// 		alert("'" + addr + '의 위치정보를 파악할 수 없습니다.');
+			// 	}
+			// });
 			addr = $('#search_input').val();
-			g.geocode({'address':addr}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					$('#address').val(addr);
-					$('#longitude').val(results[0].geometry.location.lng());
-					$('#latitude').val(results[0].geometry.location.lat());
-					$('#search_box form').submit();
-				}
-				else {
-					alert("'" + addr + '의 위치정보를 파악할 수 없습니다.');
-				}
-			});
+			key = 'SCZCvtrV34ErTv2a2ZdLauxFfsqApLenIVjl3Y.JdtAiB36Njp4Pv9VXHnbQ9fkNMg--'
+			$.getJSON('http://kr.open.gugi.yahoo.com/service/poi.php?callback=?',
+				{appid:key, q:addr, encoding:'utf-8', output:'json', results:1},
+				function(data) {
+					if(data.ResultSet.head.Error == 0) {
+						$('#address').val(addr);
+						$('#longitude').val(data.ResultSet.locations.item[0].longitude);
+						$('#latitude').val(data.ResultSet.locations.item[0].latitude);
+						$('#search_box form').submit();
+					}
+					else {
+						alert("'" + addr + '의 위치정보를 파악할 수 없습니다.');
+					}
+				});
 		}
 	});
 	$('#search_input').keydown(function(event) {

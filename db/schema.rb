@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013071547) do
+ActiveRecord::Schema.define(:version => 20111020031801) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -93,10 +93,10 @@ ActiveRecord::Schema.define(:version => 20111013071547) do
   add_index "pension_reviews", ["user_id"], :name => "index_pension_reviews_on_user_id"
 
   create_table "pensions", :force => true do |t|
-    t.integer   "area_id",                         :null => false
-    t.integer   "sub_area_id",                     :null => false
+    t.integer   "area_id",                                        :null => false
+    t.integer   "sub_area_id",                                    :null => false
     t.string    "crawlertype",     :limit => 100
-    t.timestamp "regdate",                         :null => false
+    t.timestamp "regdate",                                        :null => false
     t.string    "title",           :limit => 1000
     t.string    "url",             :limit => 1000
     t.string    "addr",            :limit => 1000
@@ -117,10 +117,6 @@ ActiveRecord::Schema.define(:version => 20111013071547) do
     t.string    "checkinout",      :limit => 200
     t.string    "servicecharge",   :limit => 200
     t.string    "includetax",      :limit => 200
-    t.string    "location",        :limit => 200
-    t.string    "locationx",       :limit => 200
-    t.string    "locationy",       :limit => 200
-    t.string    "locationextra",   :limit => 1000
     t.string    "creditcard",      :limit => 200
     t.string    "pet",             :limit => 200
     t.string    "breakfast",       :limit => 200
@@ -136,11 +132,11 @@ ActiveRecord::Schema.define(:version => 20111013071547) do
     t.string    "thumbnail_naver", :limit => 500
     t.string    "thumbnail_daum",  :limit => 500
     t.string    "mark",            :limit => 45
-    t.integer   "ranking",                         :null => false
-    t.integer   "min_price",                       :null => false
-    t.integer   "max_price",                       :null => false
-    t.integer   "comments_count",                  :null => false
-    t.integer   "like_count",                      :null => false
+    t.integer   "ranking",                                        :null => false
+    t.integer   "min_price",                                      :null => false
+    t.integer   "max_price",                                      :null => false
+    t.integer   "like_count",                      :default => 0, :null => false
+    t.integer   "comments_count",                  :default => 0, :null => false
     t.float     "latitude"
     t.float     "longitude"
   end
@@ -171,6 +167,13 @@ ActiveRecord::Schema.define(:version => 20111013071547) do
   end
 
   add_index "rooms", ["pension_id"], :name => "pension_id"
+
+  create_table "search_logs", :force => true do |t|
+    t.string   "input"
+    t.integer  "count",      :default => 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "spot_pensions", :force => true do |t|
     t.integer  "spot_id"
@@ -205,7 +208,7 @@ ActiveRecord::Schema.define(:version => 20111013071547) do
     t.boolean  "is_season",      :default => false
     t.integer  "pensions_count", :default => 0
     t.integer  "comments_count", :default => 0
-    t.integer  "like_count",                        :null => false
+    t.integer  "like_count",     :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "latitude"

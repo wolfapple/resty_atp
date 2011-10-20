@@ -1,8 +1,8 @@
 # -*- encoding : utf-8 -*-
 class SearchController < ApplicationController
   def map
+    SearchLog.create(:input => params[:address])
     @point = [params[:latitude].to_f, params[:longitude].to_f]
-    # @point = [37.8138087, 127.5202149]
     @pensions = Pension.near(@point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
     @pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
     @spots = Spot.near(@point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
