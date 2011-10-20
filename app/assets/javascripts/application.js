@@ -295,7 +295,7 @@ $(document).ready(function() {
 	});
 	// 지역 검색
 	$('#search_button').click(function() {
-		if(!$('#search_input').val()) {
+		if(!$('#search_input').val() || $('#search_input').val() == '지역,펜션,여행지명으로 검색하세요.') {
 			alert('검색어를 입력해 주세요.');
 		}
  		else {
