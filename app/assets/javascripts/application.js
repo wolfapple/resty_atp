@@ -316,14 +316,14 @@ $(document).ready(function() {
 			$.getJSON('http://kr.open.gugi.yahoo.com/service/poi.php?callback=?',
 				{appid:key, q:addr, encoding:'utf-8', output:'json', results:1},
 				function(data) {
-					if(data.ResultSet.head.Error == 0) {
+					if(data.ResultSet.head.Error == 0 && data.ResultSet.head.Found > 0) {
 						$('#address').val(addr);
 						$('#longitude').val(data.ResultSet.locations.item[0].longitude);
 						$('#latitude').val(data.ResultSet.locations.item[0].latitude);
 						$('#search_box form').submit();
 					}
 					else {
-						alert("'" + addr + '의 위치정보를 파악할 수 없습니다.');
+						alert("'" + addr + "'의 위치정보를 파악할 수 없습니다.");
 					}
 				});
 		}
