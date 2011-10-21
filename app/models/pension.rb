@@ -14,7 +14,7 @@ class Pension < ActiveRecord::Base
   after_validation :geocode, :if => :addr_changed?
   # scope
   default_scope order('ranking desc')
-  scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
+  scope :uncategorized, where(:address02 => 'N')
   
   def near_by(limit=7)
     #pensions = self.sub_area.pensions.where("id <> ?", self.id).where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
@@ -52,5 +52,14 @@ class Pension < ActiveRecord::Base
   
   def html
     "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a>"
+  end
+    
+  def admin_facilities
+    self.facilities.split(',')
+  end
+  
+  def admin_facilities=(facilities)
+    facilities.delete('')
+    self.update_attribute :facilities, facilities.join(',')
   end
 end
