@@ -160,13 +160,10 @@ $(document).ready(function() {
 	var len = 0;
 	var nCurr = 0;
 	var nPage = 1;
-	while(nCurr < nCountList)
-	{
-		for(i = nCurr; i < nCountList; i++)
-		{
+	while(nCurr < nCountList) {
+		for(i = nCurr; i < nCountList; i++) {
 			len += $("li:eq("+i+")", ".spots-body").width() + 10;
-			if (len > 570)
-			{
+			if (len > 570) {
 				nPage++;
 				len = 0;
 				break;
@@ -179,35 +176,28 @@ $(document).ready(function() {
 	}
 
 	nCurr = 1;
-	if (nPage > 1)
-	{
+	if (nPage > 1) {
 		$(".spots-body .next").removeClass("hidden");
 		$(".spots-body .prev").removeClass("hidden");
 	}
 
 	$(".spots-body .next").click(function() {
-		if (nCurr == nPage)
-		{
+		if (nCurr == nPage) {
 			nCurr = 1;
 		}
-		else
-		{
+		else {
 			nCurr++;
 		}
-
 		$("li", ".spots-body").addClass("hidden");
 		$(".p"+nCurr, ".spots-body").removeClass("hidden");
 	});
 	$(".spots-body .prev").click(function() {
-		if (nCurr == 1)
-		{
+		if (nCurr == 1) {
 			nCurr = nPage;
 		}
-		else
-		{
+		else {
 			nCurr--;
 		}
-
 		$("li", ".spots-body").addClass("hidden");
 		$(".p"+nCurr, ".spots-body").removeClass("hidden");
 	});
@@ -221,50 +211,7 @@ $(document).ready(function() {
 		$("#spot-info-sum").removeClass("hide");
 		$("#spot-info-all").addClass("hide");
 	});
-
-	$("#map-toggle").click( function() {
-		if ($("#openCloseIdentifier").is(":hidden")) {
-			$(this).removeClass("open");
-			$(this).animate({height: "65px"}, 0 );
-			$(this).animate({marginTop: "310px"}, 0 );
-			$("#map").animate({height: "65px"}, 300 );
-			$(this).animate({marginTop: "0px"}, 300 );
-			$("#map-rect").animate({height: "10px"}, 300 );
-			$("#openCloseIdentifier").show();
-		} else {
-			if(markers.charAt(0) != '[') {
-				if (countMarkers == 1) {
-				 markers = markers + ', ' + markers;
-				}
-				markers = '[' + markers + ']';
-				var jsonObj = jsonParse(markers);
-				var zoom = parseInt(Math.sqrt((gpsY2-gpsY1)*10));
-				var rev = (gpsY2-gpsY1)*0.9;
-				if (rev == 0) {
-				 zoom = -4;
-				 rev = 0.005;
-				}
-				$("#map").gMap({
-					markers: jsonObj,
-					latitude: 'fit',
-					longitude: 'fit',
-					zoom: 11 - zoom
-				 //icon: { image: "/assets/map_pin_pension.png", iconanchor: [12, 46], infowindowanchor: [9, 2] },
-				 //latitude: gpsY2 + (gpsY1-gpsY2)/2 + rev,
-				 //longitude: gpsX1 + (gpsX2-gpsX1)/2,
-				 //zoom: 11 - zoom
-				});
-			}
-			$(this).animate({height: "10px"}, 0 );
-			$(this).animate({marginTop: "60px"}, 0 );
-			$("#map").animate({height: "365px"}, 300 );
-			$(this).animate({marginTop: "355px"}, 300 );
-			$("#map-rect").animate({height: "310px"}, 300, function(){$('#map').gMap('fixAfterResize', true);});
-			$("#openCloseIdentifier").hide();
-			$(this).addClass("open");
-		}
-	});
-
+	
 	// 검은 막 띄우기 관련
 	$(window).resize(function() {
 		$("#mask").css({"width": $(window).width()});
@@ -299,18 +246,6 @@ $(document).ready(function() {
 			alert('검색어를 입력해 주세요.');
 		}
  		else {
-			// g = new google.maps.Geocoder();
-			// g.geocode({'address':addr, 'region':'ko'}, function(results, status) {
-			// 	if (status == google.maps.GeocoderStatus.OK) {
-			// 		$('#address').val(addr);
-			// 		$('#longitude').val(results[0].geometry.location.lng());
-			// 		$('#latitude').val(results[0].geometry.location.lat());
-			// 		$('#search_box form').submit();
-			// 	}
-			// 	else {
-			// 		alert("'" + addr + '의 위치정보를 파악할 수 없습니다.');
-			// 	}
-			// });
 			addr = $('#search_input').val();
 			key = 'SCZCvtrV34ErTv2a2ZdLauxFfsqApLenIVjl3Y.JdtAiB36Njp4Pv9VXHnbQ9fkNMg--'
 			$.getJSON('http://kr.open.gugi.yahoo.com/service/poi.php?callback=?',

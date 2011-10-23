@@ -14,10 +14,12 @@ class Spot < ActiveRecord::Base
   default_scope order('pensions_count desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
   scope :main, where(:is_main => true)
+  
+  def pensions
+    Pension.near([self.latitude, self.longitude], 10, {:units => :km})
+  end
     
-  def near_by_pensions(limit=7)
-    #pensions = self.pensions.where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
-    #pensions = pensions + self.pensions.limit(limit-pensions.count) if pensions.count < limit
+  def near_by_pensions
     Pension.unscoped.near([self.latitude, self.longitude], 10, {:units => :km, :order => :distance, :limit => 15})
   end
   

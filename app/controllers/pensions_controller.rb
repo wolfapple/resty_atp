@@ -18,11 +18,7 @@ class PensionsController < ApplicationController
       @sub_area = @spot.sub_area
       @area = @sub_area.area
       @spots = @sub_area.spots
-      if @spot.pensions_count
-        @pensions = @sub_area.pensions
-      else
-        @pensions = @spot.pensions
-      end
+      @pensions = @spot.pensions
     end
     # get pensions
     @pensions = Pension unless @pensions
@@ -57,6 +53,7 @@ class PensionsController < ApplicationController
     @total = @pensions.count
     @pensions = @pensions.unscoped.order("#{params[:order_by]} desc") if params[:order_by]
     @pensions = @pensions.page(params[:page]).per(10)
+    @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html_list}}.to_json
   end
   
   def show
@@ -70,6 +67,7 @@ class PensionsController < ApplicationController
     @blog_search = BlogSearch.new("#{@sub_area.title} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(5)
     #@activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
+    @markers = [{:latitude => @pension.latitude, :longitude => @pension.longitude}].to_json
   end
   
   def update_like_count

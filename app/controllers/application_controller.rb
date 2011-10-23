@@ -1,8 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
-  # http_basic_authenticate_with :name => "resty", :password => "resty0808"
   protect_from_forgery
-  
+  #before_filter :prepare_for_mobile
   helper_method :graph
   
   protected
@@ -16,5 +15,14 @@ class ApplicationController < ActionController::Base
   
   def not_authenticated
     redirect_to login_path, :alert => '로그인이 필요합니다.'
+  end
+  
+  private
+  def mobile_device?
+    request.user_agent =~ /Mobile|webOS/
+  end
+  
+  def prepare_for_mobile
+    request.format = :mobile if request.server_name[0] == 'm'
   end
 end

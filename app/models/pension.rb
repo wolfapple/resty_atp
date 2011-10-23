@@ -9,6 +9,7 @@ class Pension < ActiveRecord::Base
   belongs_to :sub_area
   # upload
   mount_uploader :thumbnail, PensionImageUploader
+  # mount_uploader :room_table, RoomTableUploader
   # geocode
   geocoded_by :addr
   after_validation :geocode, :if => :addr_changed?
@@ -16,9 +17,7 @@ class Pension < ActiveRecord::Base
   default_scope order('ranking desc')
   scope :uncategorized, where(:address02 => 'N')
   
-  def near_by(limit=7)
-    #pensions = self.sub_area.pensions.where("id <> ?", self.id).where("addr like '#{self.addr.split(' ')[2]}'").limit(limit)
-    #pensoins = pensions + self.sub_area.pensions.where("id <> ?", self.id).limit(limit-pensions.count) if pensions.count < limit
+  def near_by
     Pension.unscoped.where("id <> ?", self.id).near(self, 10, {:units => :km, :order => :distance, :limit => 15})
   end
   
@@ -52,6 +51,10 @@ class Pension < ActiveRecord::Base
   
   def html
     "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a>"
+  end
+  
+  def html_list
+    "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='#pension-#{self.id}' onclick='highlight_pension(#{self.id})'>리스트로 바로가기</a>"
   end
     
   def admin_facilities
