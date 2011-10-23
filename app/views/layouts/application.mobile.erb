@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
+  <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
+</head>
+<body>
+  <div data-role="header" data-add-back-btn="true">
+  	<h1><%= title %></h1>
+  	<div data-role="navbar">
+    	<ul>
+    		<li><a href="#">One</a></li>
+    		<li><a href="#">Two</a></li>
+    		<li><a href="#">Three</a></li>
+    	</ul>
+    </div>
+  </div>
+  <%= yield %>
+  <div data-role="footer">
+  	<h4>레스티 Footer</h4>
+  </div>
+</body>
+</html>
