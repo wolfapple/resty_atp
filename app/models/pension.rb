@@ -9,7 +9,7 @@ class Pension < ActiveRecord::Base
   belongs_to :sub_area
   # upload
   mount_uploader :thumbnail, PensionImageUploader
-  # mount_uploader :room_table, RoomTableUploader
+  mount_uploader :room_table, RoomTableUploader
   # geocode
   geocoded_by :addr
   after_validation :geocode, :if => :addr_changed?

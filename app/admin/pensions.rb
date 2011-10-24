@@ -37,8 +37,8 @@ ActiveAdmin.register Pension do
       f.input :max_price
       f.input :thumbnail, :as => :file
       f.input :remove_thumbnail, :as => :boolean
-      # f.input :room_table, :as => :file
-      # f.input :remove_room_table, :as => :boolean
+      f.input :room_table, :as => :file
+      f.input :remove_room_table, :as => :boolean
       f.input :ranking
     end
     f.inputs "시설 정보" do
