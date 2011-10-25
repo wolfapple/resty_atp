@@ -58,7 +58,11 @@ class Pension < ActiveRecord::Base
   end
     
   def admin_facilities
-    self.facilities.split(',')
+    if self.facilities.blank?
+      []
+    else
+      self.facilities.split(',')
+    end
   end
   
   def admin_facilities=(facilities)
