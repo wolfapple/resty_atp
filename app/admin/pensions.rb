@@ -42,7 +42,7 @@ ActiveAdmin.register Pension do
       f.input :ranking
     end
     f.inputs "시설 정보" do
-      f.input :admin_facilities, :as => :check_boxes, :collection => Facility.all.collect{|x| x.title}, :label => '시설'
+      f.input :facility_names, :as => :check_boxes, :collection => Facility.all.collect{|x| x.title}, :label => '시설'
     end
     f.inputs "테마 정보" do  
       f.input :themes, :as => :check_boxes, :collection => Theme.all, :label => '테마'

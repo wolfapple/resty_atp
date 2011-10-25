@@ -10,6 +10,8 @@ class Spot < ActiveRecord::Base
   # geocode
   geocoded_by :addr
   after_validation :geocode, :if => :addr_changed?
+  # pension count
+  after_validation :update_pensions_count, :if => :is_main
   
   default_scope order('pensions_count desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
@@ -25,5 +27,10 @@ class Spot < ActiveRecord::Base
   
   def html
     "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/spots/#{self.id}' target='_blank'>여행지 바로가기</a>"
+  end
+  
+  private
+  def update_pensions_count
+    self.pensions_count = self.pensions.length
   end
 end

@@ -7,6 +7,9 @@ class Pension < ActiveRecord::Base
   has_one :must_visit, :dependent => :destroy
   belongs_to :area
   belongs_to :sub_area
+  # facilities
+  attr_accessor :facility_names
+  after_validation :assign_facilities
   # upload
   mount_uploader :thumbnail, PensionImageUploader
   mount_uploader :room_table, RoomTableUploader
@@ -57,16 +60,20 @@ class Pension < ActiveRecord::Base
     "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='#pension-#{self.id}' onclick='highlight_pension(#{self.id})'>리스트로 바로가기</a>"
   end
     
-  def admin_facilities
-    if self.facilities.blank?
-      []
+  def facility_names
+    if facilities.blank?
+      temp = []
     else
-      self.facilities.split(',')
+      temp = facilities.split(',')
     end
+    @facility_names || temp
   end
   
-  def admin_facilities=(facilities)
-    facilities.delete('')
-    self.update_attribute :facilities, facilities.join(',')
+  private
+  def assign_facilities
+    if @facility_names
+      @facility_names.delete('')
+      self.facilities = @facility_names.join(',')
+    end
   end
 end
