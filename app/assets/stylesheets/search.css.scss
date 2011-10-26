@@ -34,27 +34,56 @@
 #search-list {
 	position: relative;
 	float: left;
-	width: 250px;
+	width: 228px;
 	h3 {
+		background-image: url("/assets/search_list_header.png");
 		margin-bottom: 0px;
+		height: 25px;
+		color: white;
+		padding-top: 10px;
+		padding-left: 15px;
+	}
+	ul {
+		padding: 0px;
+		margin: 0px;
+		list-style: none;
 	}
 	ul li {
+		height: 28px;
+		padding-left: 40px;
+		line-height: 28px;
 		font-size: 13px;
-		height: 25px;
 		a:hover {
 			text-decoration: underline;
 		}
-		&.over {
-			background: #EFFAF6;
+		&.odd {
+			background-image: url("/assets/list_side_box_body_1.png");
+		}
+		&.even {
+			background-image: url("/assets/list_side_box_body_2.png");
 		}
 	}
 	.search-pensions {
-		height: 400px;
-		overflow: auto;
+		background-image: url("/assets/search_list_bg.png");
+		padding-right: 5px;
+		padding-top: 5px;
+		.content {
+			height: 400px;
+			overflow: auto;
+		}
 	}
 	.search-spots {
-		height: 200px;
-		overflow: auto;
+		background-image: url("/assets/search_list_bg.png");
+		padding-right: 5px;
+		padding-top: 5px;
+		.content {
+			height: 200px;
+			overflow: auto;
+		}
+	}
+	.box_footer {
+		background-image: url("/assets/list_side_box_footer.png");
+		height: 8px;
 	}
 }
 #search-map {

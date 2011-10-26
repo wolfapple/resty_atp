@@ -1,26 +1,33 @@
 <script src="/assets/jquery.gmap.min.js" type="text/javascript"></script>
 
 <div id="search-list">
-  <h3><%= image_tag 'http://www.google.com/mapfiles/marker.png' %>주변 펜션 (<%= @pensions.size %>)</h3>
+  <h3><%#= image_tag 'http://www.google.com/mapfiles/marker.png', :height => '20px' %>주변 펜션 (<%= @pensions.size %>)</h3>
   <div class="search-pensions">
-    <ul>
-    <% @pensions.each do |pension| %>
-      <li data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>"><%= link_to pension.title, pension, :target => '_blank' %><%= " @#{pension.sub_area.title}" if params[:latitude].blank? or params[:longitude].blank? %></li>
-    <% end %>
-    </ul>
+    <div class="content">
+      <ul>
+      <% @pensions.each do |pension| %>
+        <li class="<%= cycle('odd', 'even') %>" data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>"><%= link_to pension.title, pension, :target => '_blank' %><%= " @#{pension.sub_area.title}" if params[:latitude].blank? or params[:longitude].blank? %></li>
+      <% end %>
+      </ul>
+    </div>
   </div>
-  <h3><%= image_tag 'http://www.google.com/mapfiles/marker_green.png' %>주변 여행지 (<%= @spots.size %>)</h3>
+  <div class="box_footer"></div>
+  <h3><%#= image_tag 'http://www.google.com/mapfiles/marker_green.png', :height => '20px' %>주변 여행지 (<%= @spots.size %>)</h3>
   <div class="search-spots">
-    <ul>
-    <% @spots.each do |spot| %>
-      <li data-id="spot-<%= spot.id %>" data-lat="<%= spot.latitude %>", data-lng="<%= spot.longitude %>"><%= link_to spot.title, spot, :target => '_blank' %></li>
-    <% end %>
-    </ul>
+    <div class="content">
+      <ul>
+      <% @spots.each do |spot| %>
+        <li class="<%= cycle('odd', 'even') %>" data-id="spot-<%= spot.id %>" data-lat="<%= spot.latitude %>", data-lng="<%= spot.longitude %>"><%= link_to spot.title, spot, :target => '_blank' %></li>
+      <% end %>
+      </ul>
+    </div>
   </div>
+  <div class="box_footer"></div>
 </div>
 <div id="search-map">
   <h1>'<%= params[:address] %>'</h1>
   <span><%= "인근 펜션과 여행지" if !params[:longitude].blank? and !params[:latitude].blank? %> 검색 결과입니다.</span>
+  <hr>
   <div id="map" style="height:645px"></div>
   <p><%= link_to 'powered by 야후! 거기', 'http://kr.gugi.yahoo.com/', :target => '_blank' %></p>
 </div>
