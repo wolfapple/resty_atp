@@ -99,8 +99,10 @@
 		height: 405px;
 		ul {
 			list-style-type: none;
-			margin-left: -15px;
+			list-style-position: outside;
+			margin-top: 15px;
 			li {
+				margin-left: -15px;
 				height: 25px;
 				padding-left: 10px;
 				&.odd {
@@ -113,7 +115,11 @@
 					background-repeat: no-repeat;
 					background-position: 0 .5em;
 				}
+				a {
+					float: left;
+				}
 				.disrate {
+					float: left;
 					width: 33px;
 					height: 18px;
 					background: url("/assets/discount_bg.png");

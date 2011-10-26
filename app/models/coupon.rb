@@ -55,7 +55,7 @@ class Coupon < ActiveRecord::Base
         self.create(coupon)
       else
         c = self.find_or_create_by_pension_id pension.id
-        c.update_attributes(coupon)
+        c.update_attributes(coupon) unless c.is_valid
       end
     end
   end
