@@ -8,12 +8,12 @@ class Notice
   end
   
   def self.recent
-    url = "http://restycorp.tistory.com/rss/xml"
+    url = "http://resty.tistory.com/rss/xml"
     require 'open-uri'
     doc = Nokogiri::XML(open(url))
     @results = doc.xpath('//item').map do |i|
       Notice.new(i.xpath('title').inner_text, i.xpath('link').inner_text)
     end
-    @results = @results[0...3]
+    @results = @results[0...4]
   end
 end

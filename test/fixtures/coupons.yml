@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  pension: 
+  disrate: 1
+  link: MyString
+  expiry: 2011-10-25 11:49:09
+
+two:
+  pension: 
+  disrate: 1
+  link: MyString
+  expiry: 2011-10-25 11:49:09

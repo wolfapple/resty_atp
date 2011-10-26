@@ -68,6 +68,7 @@ class PensionsController < ApplicationController
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(5)
     #@activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
     @markers = [{:latitude => @pension.latitude, :longitude => @pension.longitude}].to_json
+    @coupon = @pension.coupon
   end
   
   def update_like_count

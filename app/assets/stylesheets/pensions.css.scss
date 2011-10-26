@@ -446,6 +446,18 @@
 				margin: 1px 0px 0px 1px;
 				z-index: 2;
 			}
+			.discount-mark {
+				color: white;
+				padding-left: 11px;
+				padding-top: 10px;
+				position: absolute;
+				background-image: url("/assets/discount_tag.png");
+				background-repeat: no-repeat;
+				width: 47px;
+				height: 47px;
+				left: 423px;
+				margin-top: 15px;
+			}
 			.left {
 				position: absolute;
 				float: left;
@@ -711,6 +723,65 @@
 					margin-top: 60px;
 					padding: 7px 10px 7px 10px;
 					text-indent: 20px;
+				}
+				.discount-mark {
+					color: white;
+					padding-left: 11px;
+					padding-top: 10px;
+					position: absolute;
+					float: right;
+					width: 47px;
+					height: 47px;
+					right: 0px;
+					margin-top: 110px;
+					background-image: url("/assets/discount_tag.png");
+					background-repeat: no-repeat;
+				}
+			}
+		}
+		#coupon {
+			background: #FBFBF9;
+			margin-top: 20px;
+			.provider {
+				color: white;
+				background: #2AB07B;
+				position: relative;
+				float: right;
+				bottom: 22px;
+				padding: 3px;
+			}
+			.detail {
+				height: 145px;
+				padding: 15px;
+				img {
+					float: left;
+					width: 300px;
+				}
+				div {
+					width: 360px;
+					float: right;
+					a {
+						font-size: 14px;
+						font-weight: bold;
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+					.date {
+						font-size: 13px;
+					}
+					.price {
+						margin-top: 40px;
+						.org_price {
+							font-size: 15px;
+							text-decoration: line-through;
+						}
+						.dis_price {
+							font-size: 20px;
+							color: red;
+							margin-left: 10px;
+						}
+					}
 				}
 			}
 		}

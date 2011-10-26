@@ -5,5 +5,7 @@ class MainController < ApplicationController
     @spots = Spot.main
     @themes = Theme.all
     @must_visits = MustVisit.main
+    @notices = Notice.recent
+    @coupons = Coupon.main
   end
 end

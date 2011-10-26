@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddLatitudeAndLongitudeToSpots < ActiveRecord::Migration
   def change
     add_column :spots, :latitude, :float

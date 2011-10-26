@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111020031801) do
+ActiveRecord::Schema.define(:version => 20111025024909) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -63,6 +63,24 @@ ActiveRecord::Schema.define(:version => 20111020031801) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "coupons", :force => true do |t|
+    t.integer  "pension_id"
+    t.string   "provider"
+    t.string   "title"
+    t.string   "image"
+    t.string   "link"
+    t.integer  "org_price"
+    t.integer  "dis_price"
+    t.integer  "disrate"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.boolean  "is_valid",   :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "coupons", ["pension_id"], :name => "index_coupons_on_pension_id"
 
   create_table "facilities", :force => true do |t|
     t.string   "title"
@@ -129,8 +147,7 @@ ActiveRecord::Schema.define(:version => 20111020031801) do
     t.string    "foodcourt",       :limit => 200
     t.string    "babycarriage",    :limit => 200
     t.string    "thumbnail",       :limit => 500
-    t.string    "thumbnail_naver", :limit => 500
-    t.string    "thumbnail_daum",  :limit => 500
+    t.string    "room_table",      :limit => 500
     t.string    "mark",            :limit => 45
     t.integer   "ranking",                                        :null => false
     t.integer   "min_price",                                      :null => false

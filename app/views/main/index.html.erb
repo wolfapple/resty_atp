@@ -25,17 +25,37 @@
 	</table>    
 </div>
 
-<% if current_user %>
-  <div id="main-facebook-activities" class="fb-login">
-    <div class="fb-activity" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="216" data-header="false" data-border-color="white" data-filter="/pensions" data-linktarget="_top"></div>
+<div id="tabs" class="tab1">
+  <ul id="buttons">
+    <li><%= link_to '레스티 포커스', '#', :onclick => "tab1_click()", :class => 'tab1 over' %></li>
+    <li><%= link_to '친구들 활동', '#', :onclick => "tab2_click()", :class => 'tab2' %></li>
+  </ul>
+  <div id="resty-focus">
+    <ul class="notice">
+    <% @notices.each do |notice| %>
+      <li class="<%= cycle('odd', 'even') %>"><%= link_to truncate(notice.title, :length => 30), notice.link, :target => '_blank' %></li>
+    <% end %>
+    </ul>
+    <ul class="discount">
+    <% @coupons.each do |coupon| %>
+      <li class="<%= cycle('odd', 'even') %>">
+        <%= link_to truncate("[#{coupon.pension.sub_area.title}] #{coupon.pension.title}", :length => 20), coupon.pension %>
+        <span class="disrate"><%= coupon.disrate %>%</span>
+        <span class="expiry">~<%= "#{coupon.end_at.month}월 #{coupon.end_at.day}일" %></span>
+      </li>
+    <% end %>
+    </ul>
+    <div class="fb-like" data-href="www.resty.co.kr" data-send="false" data-width="340" data-show-faces="true"></div>
   </div>
-  <div id="main-facebook-landmarks" class="fb-login">
-    <div class="fb-activity" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="184" data-header="false" data-border-color="white" data-filter="/spots" data-linktarget="_top"></div>
+  <div id="activities">
+    <div class="pensions">
+      <div class="fb-activity" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="216" data-header="false" data-border-color="white" data-filter="/pensions" data-linktarget="_top"></div>
+    </div>
+    <div class="spots">
+      <div class="fb-activity" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="184" data-header="false" data-border-color="white" data-filter="/spots" data-linktarget="_top"></div>
+    </div>
   </div>
-<% else %>
-  <div id="main-facebook-activities" class="fb-logout"></div>
-  <div id="main-facebook-landmarks" class="fb-logout"></div>
-<% end %>
+</div>
 
 <script type="text/javascript" charset="utf-8" src="/assets/jquery.nivo.slider.pack.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -46,6 +66,22 @@
   	  controlNav: false
   	});
   });
+  function tab1_click() {
+    $('#resty-focus').show();
+    $('.tab1').addClass('over');
+    $('#activities').hide();
+    $('.tab2').removeClass('over');
+    $('#tabs').addClass('tab1');
+    $('#tabs').removeClass('tab2');
+  }
+  function tab2_click() {
+    $('#resty-focus').hide();
+    $('.tab1').removeClass('over');
+    $('#activities').show();
+    $('.tab2').addClass('over');
+    $('#tabs').addClass('tab2');
+    $('#tabs').removeClass('tab1');
+  }
 </script>
 <div id="main-must-visit">
   <%= link_to content_tag(:div, '', :id => 'main-must-visit-title'), pensions_path(:must_visit => true) %>

@@ -1,5 +1,10 @@
 # -*- encoding : utf-8 -*-
 namespace :resty do
+  desc 'social commerce'
+  task :get_coupons => :environment do
+    Coupon.get_today_deals
+  end
+  
   desc 'add area_id to pension'
   task :area_match => :environment do
     Pension.where("substr(addr, 1, 2) = '경기'").update_all(:area_id => Area.find_by_title('경기도').id)

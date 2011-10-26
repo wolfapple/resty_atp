@@ -55,46 +55,104 @@
 	color: #2ab07b;
 }
 
-#main-facebook-activities {
+#tabs {
 	position: relative;
 	float: left;
 	width: 361px;
-	height: 250px;
-	&.fb-login {
-		background-image: url("/assets/main_fb_activities_bg.png");
-		background-repeat: no-repeat;
-		div {
-			position: relative;
-			top: 58px;
-			left: 1px;
+	height: 462px;
+	&.tab1 {
+		background-image: url("/assets/resty_focus_bg.png");
+	}
+	&.tab2 {
+		background-image: url("/assets/activities_bg.png");
+	}
+	background-repeat: no-repeat;
+	#buttons {
+		margin: 0px;
+		padding-left: 0px;
+		height: 55px;
+		li {
+			display: inline;
+			list-style-type: none;
+			a {
+				display: inline-block;
+				height: 55px;
+				text-indent: -9999px;
+			}
+			.tab1 {
+				width: 176px;
+				background: url("/assets/resty_focus_tab.png");
+				&.over {
+					background: url("/assets/resty_focus_tab_over.png");
+				}
+			}
+			.tab2 {
+				width: 170px;
+				background: url("/assets/activities_tab.png");
+				&.over {
+					background: url("/assets/activities_tab_over.png");
+				}
+			}
 		}
 	}
-	&.fb-logout {
-		background-image: url("/assets/main_fb_activities_logout_bg.png");
-	}
-}
-
-#main-facebook-activities ul {
-	padding: 20px 0px 0px 0px;
-}
-
-#main-facebook-landmarks {
-	position: relative;
-	float: left;
-	width: 361px;
-	height: 212px;
-	margin: 0px;
-	&.fb-login {
-		background-image: url("/assets/main_fb_landmarks_bg.png");
-		background-repeat: no-repeat;
-		div {
-			position: relative;
-			top: 52px;
-			left: 1px;
+	#resty-focus {
+		height: 405px;
+		ul {
+			list-style-type: none;
+			margin-left: -15px;
+			li {
+				height: 25px;
+				padding-left: 10px;
+				&.odd {
+					background: url("/assets/main_bullet_odd.png");
+					background-repeat: no-repeat;
+					background-position: 0 .5em;
+				}
+				&.even {
+					background: url("/assets/main_bullet_even.png");
+					background-repeat: no-repeat;
+					background-position: 0 .5em;
+				}
+				.disrate {
+					width: 33px;
+					height: 18px;
+					background: url("/assets/discount_bg.png");
+					display: inline-block;
+					color: white;
+					text-align: center;
+					font-size: .9em;
+				}
+				.expiry {
+					float: right;
+					margin-right: 20px;
+				}
+			}
+		}
+		.notice {
+			height: 100px;
+		}
+		.discount {
+			margin-top: 45px;
+			height: 150px;
+		}
+		.fb-like {
+			margin-top: 10px;
+			padding-left: 10px;
 		}
 	}
-	&.fb-logout {
-		background-image: url("/assets/main_fb_landmarks_logout_bg.png");
+	#activities {
+		margin-top: 3px;
+		height: 405px;
+		display: none;
+		.pensions {
+			height: 190px;
+			overflow: hidden;
+		}
+		.spots {
+			margin-top: 55px;
+			height: 150px;
+			overflow: hidden;
+		}
 	}
 }
 

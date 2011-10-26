@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class SorceryRememberMe < ActiveRecord::Migration
   def self.up
     add_column :users, :remember_me_token, :string, :default => nil

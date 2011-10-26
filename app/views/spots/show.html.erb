@@ -36,11 +36,6 @@
     </div>
     <div id="show-footer">
 	    <%= render 'map' %>
-	    <% unless @spot.longitude.blank? or @spot.latitude.blank? %>
-	      <script type="text/javascript">inputMarker(<%= @spot.longitude %>, <%= @spot.latitude %>, "landmark");</script>
-	    <% else %>
-	      <script type="text/javascript">inputMarkerByAddress("<%= @spot.addr %>", "landmark");</script>
-	    <% end %>
       <div class="line-green"></div>
     </div>
     <div id="show-review">

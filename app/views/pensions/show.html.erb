@@ -42,19 +42,35 @@
         <div id="info-gps-y"><%= @pension.latitude %></div>
         <div id="pension-info-price"><%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원</div>
         <div id="pension-info-phone"><%= @pension.mobile %></div>
+        <%= content_tag :span, "#{@pension.coupon.disrate}%", :class => 'discount-mark' if @coupon %>
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
       </div>
       <div style="clear:both;"></div>
     </div>
+    
+    <!-- 소셜 커머스 -->
+    <% if @coupon %>
+    <div id="coupon">
+      <div class="line-green"></div>
+      <div class="detail">
+        <%= link_to image_tag(@coupon.image), @coupon.link, :target => '_blank' %>
+        <div>
+          <p><%= link_to @coupon.title, @coupon.link, :target => '_blank' %></p>
+          <p class="date"><%= @coupon.start_at.to_date %> ~ <%= (@coupon.end_at-1).to_date %></p>
+          <p class="price">
+            <span class="org_price"><%= number_with_delimiter @coupon.org_price %>원</span>
+            <span class="dis_price"><%= number_with_delimiter @coupon.dis_price %>원</span>
+          </p>
+        </div>
+      </div>
+      <span class="provider"><%= @coupon.provider %> 진행중</span>
+      <div class="line-green"></div>
+    </div>
+    <% end %>
 
     <div id="show-footer">
   		<%= render 'map' %>
-      <% unless @pension.longitude.blank? or @pension.latitude.blank? %>
-        <script type="text/javascript">inputMarker(<%= @pension.longitude %>, <%= @pension.latitude %>, "pension");</script>
-      <% else %>
-        <script type="text/javascript">inputMarkerByAddress("<%= @pension.addr %>", "pension");</script>
-      <% end %>
       <div class="line-green"></div>
     </div>
     <div id="show-review">
