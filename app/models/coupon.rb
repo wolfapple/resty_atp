@@ -2,7 +2,7 @@
 class Coupon < ActiveRecord::Base
   belongs_to :pension
   
-  scope :main, where(:is_valid => true).where("end_at > now()").order('end_at').limit(6)
+  scope :main, where(:is_valid => true).where("end_at > now()").order('rand()').limit(6)
   scope :invalid, where(:is_valid => false)
   
   def self.get_today_deals
