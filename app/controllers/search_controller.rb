@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   def map
     SearchLog.create(:input => params[:address])
     if params[:latitude].blank? or params[:longitude].blank?
-      like = "#{params[:address]}%"
+      like = "%#{params[:address]}%"
       @pensions = Pension.where("title like ?", like)
       @spots = Spot.where("title like ?", like)
     else
