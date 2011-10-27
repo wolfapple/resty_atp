@@ -49,6 +49,10 @@ class PensionsController < ApplicationController
     if params[:must_visit]
       @pensions = @pensions.joins(:must_visit)
     end
+    # social commerce
+    if params[:coupon]
+      @pensions = @pensions.joins(:coupon)
+    end
     # order
     @total = @pensions.count
     @pensions = @pensions.unscoped.order("#{params[:order_by]} desc") if params[:order_by]

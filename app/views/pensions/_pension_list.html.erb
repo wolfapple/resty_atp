@@ -5,6 +5,9 @@
   <% if params[:must_visit] %>
     <span class="filter">Must Visit <%= link_to "x", params.merge(:must_visit => nil) %></span>
   <% end %>
+  <% if params[:coupon] %>
+    <span class="filter">할인중 <%= link_to "x", params.merge(:coupon => nil) %></span>
+  <% end %>
   <% if @price %>
     <span class="filter"><%= @price.to_s %> <%= link_to "x", params.merge(:price_id => nil) %></span>
   <% end %>

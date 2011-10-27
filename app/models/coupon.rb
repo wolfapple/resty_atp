@@ -23,34 +23,37 @@ class Coupon < ActiveRecord::Base
     doc = Nokogiri::XML(open(url))
     doc.xpath("//deal[contains(title, '펜션')]").map do |i|
       {
-        :provider => provider,
-        :title => i.xpath('title').inner_text,
-        :image => i.css('image')[0].inner_text,
-        :link => i.xpath('url').inner_text,
+        :provider => provider.strip,
+        :title => i.xpath('title').inner_text.strip,
+        :image => i.css('image')[0].inner_text.strip,
+        :link => i.xpath('url').inner_text.strip,
         :org_price => i.xpath('original').inner_text.to_i,
         :dis_price => i.xpath('price').inner_text.to_i,
         :disrate => i.xpath('discount').inner_text.to_i,
         :start_at => i.xpath('start_at').inner_text,
         :end_at => i.xpath('end_at').inner_text,
-        :addr => i.css('shop_address').inner_text,
-        :phone => i.css('shop_tel').inner_text
+        :addr => i.css('shop_address').inner_text.strip,
+        :phone => i.css('shop_tel').inner_text.strip,
+        :shop_name => i.css('shop_name').inner_text.strip
       }
     end
   end
   
   def self.pension_matching(coupons)
     coupons.each do |coupon|
+      pension = Pension.where("replace(replace(title, ' ', ''), '펜션', '') = ?", coupon[:shop_name].gsub(' ', '').gsub('펜션', '')).near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first if pension.nil?
       pension = Pension.where('mobile = ? or telephone01 = ? or telephone02 = ?', coupon[:phone], coupon[:phone], coupon[:phone]).first
       pension = Pension.where("replace(replace(addr, ' ', ''), '번지', '') = ?", coupon[:addr].gsub(' ', '').gsub('번지', '')).first if pension.nil?
-      pension = Pension.where("replace(replace(title, ' ', ''), '펜션', '') = ?", coupon[:title].gsub(' ', '').gsub('펜션', '')).near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first if pension.nil?
       if pension.nil?
-        pension = Pension.unscoped.near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first
+        like = coupon[:shop_name].gsub('펜션', '')[0..2]
+        pension = Pension.unscoped.where("title like ?", "%#{like}%").near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first
         coupon[:is_valid] = false
       else
         coupon[:is_valid] = true
       end
       coupon.delete :addr
       coupon.delete :phone
+      coupon.delete :shop_name
       if pension.nil?
         self.create(coupon)
       else
