@@ -41,8 +41,8 @@ class Coupon < ActiveRecord::Base
   
   def self.pension_matching(coupons)
     coupons.each do |coupon|
-      pension = Pension.where("replace(replace(title, ' ', ''), '펜션', '') = ?", coupon[:shop_name].gsub(' ', '').gsub('펜션', '')).near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first if pension.nil?
       pension = Pension.where('mobile = ? or telephone01 = ? or telephone02 = ?', coupon[:phone], coupon[:phone], coupon[:phone]).first
+      pension = Pension.where("replace(replace(title, ' ', ''), '펜션', '') = ?", coupon[:shop_name].gsub(' ', '').gsub('펜션', '')).near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first if pension.nil?
       pension = Pension.where("replace(replace(addr, ' ', ''), '번지', '') = ?", coupon[:addr].gsub(' ', '').gsub('번지', '')).first if pension.nil?
       if pension.nil?
         like = coupon[:shop_name].gsub('펜션', '')[0..2]
