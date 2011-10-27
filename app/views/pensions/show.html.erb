@@ -55,7 +55,7 @@
       <div class="line-green"></div>
       <div class="detail">
         <%= link_to image_tag(@coupon.image), @coupon.link, :target => '_blank' %>
-        <div>
+        <div class="info">
           <p><%= link_to @coupon.title, @coupon.link, :target => '_blank' %></p>
           <p class="date"><%= @coupon.start_at.to_date %> ~ <%= (@coupon.end_at-1).to_date %></p>
           <p class="price">
@@ -63,6 +63,7 @@
             <span class="dis_price"><%= number_with_delimiter @coupon.dis_price %>원</span>
           </p>
         </div>
+        <p style="clear:both"></p>
       </div>
       <span class="provider"><%= @coupon.provider %> 진행중</span>
       <div class="line-green"></div>
