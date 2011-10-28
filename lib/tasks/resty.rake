@@ -5,6 +5,16 @@ namespace :resty do
     Coupon.get_today_deals
   end
   
+  desc 'update like count'
+  task :get_like_count => :environment do
+    require 'open-uri'
+    require 'json'
+    Pension.all.each do |pension|
+      result = JSON.parse(open("https://graph.facebook.com/http://www.resty.co.kr/pensions/#{pension.id}").read)
+      pension.update_attribute :like_count, result['likes'] + result['shares']
+    end
+  end
+  
   desc 'add area_id to pension'
   task :area_match => :environment do
     Pension.where("substr(addr, 1, 2) = '경기'").update_all(:area_id => Area.find_by_title('경기도').id)

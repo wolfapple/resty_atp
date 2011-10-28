@@ -17,9 +17,13 @@ class Pension < ActiveRecord::Base
   # geocode
   geocoded_by :addr
   after_validation :geocode, :if => :addr_changed?
+  # task
+  after_validation :task_done, :if => :addr_changed? or :mobile_changed? or :min_price_changed? or :max_price_changed? or :thumbnail_changed? or :room_table_changed? or :facility_names_changed?
   # scope
   default_scope order('ranking desc')
-  scope :uncategorized, where(:address02 => 'N')
+  scope :task1, where(:address02 => 'task1')
+  scope :task2, where(:address02 => 'task2')
+  scope :task3, where(:address02 => 'task3')
   
   def near_by
     Pension.unscoped.where("id <> ?", self.id).near(self, 10, {:units => :km, :order => :distance, :limit => 15})

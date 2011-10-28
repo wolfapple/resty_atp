@@ -2,7 +2,9 @@
 ActiveAdmin.register Pension do
   menu :label => '펜션'
   
-  scope 'ToDo', :uncategorized
+  scope 'task1', :task1
+  scope 'task2', :task2
+  scope 'task3', :task3
   
   index do
     column '지역1', :area, :sortable => :area_id
@@ -16,7 +18,11 @@ ActiveAdmin.register Pension do
     column '가격', :min_price
     column '전화번호', :mobile
     column '객실정보' do |pension|
-      pension.rooms.count > 0 ? 'O' : 'X'
+      if pension.rooms.count > 0 or !pension.room_table.file.nil?
+        'O'
+      else
+        'X'
+      end
     end
     column 'must' do |pension|
       link_to 'must', new_admin_must_visit_path('must_visit[pension_id]' => pension.id) unless pension.must_visit
