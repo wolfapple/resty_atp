@@ -249,7 +249,7 @@ $(document).ready(function() {
 			addr = $('#search_input').val();
 			key = 'SCZCvtrV34ErTv2a2ZdLauxFfsqApLenIVjl3Y.JdtAiB36Njp4Pv9VXHnbQ9fkNMg--'
 			$.getJSON('http://kr.open.gugi.yahoo.com/service/poi.php?callback=?',
-				{appid:key, q:addr, encoding:'utf-8', output:'json', results:1},
+				{appid:key, q:addr.replace('펜션', ''), encoding:'utf-8', output:'json', results:1},
 				function(data) {
 					if(data.ResultSet.head.Error == 0 && data.ResultSet.head.Found > 0) {
 						$('#address').val(addr);
