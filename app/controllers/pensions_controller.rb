@@ -55,7 +55,7 @@ class PensionsController < ApplicationController
     end
     # order
     @total = @pensions.count
-    @pensions = @pensions.unscoped.order("#{params[:order_by]} desc") if params[:order_by]
+    @pensions = @pensions.reorder("#{params[:order_by]} desc") if params[:order_by]
     @pensions = @pensions.page(params[:page]).per(10)
     @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html_list}}.to_json
   end
