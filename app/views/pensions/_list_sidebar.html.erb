@@ -41,7 +41,9 @@
   </ul>
   <div class="box_footer"></div>
 </div>
-
+<div class="coupon-banner">
+  <%= link_to image_tag('social_com_button.png'), pensions_path(params.merge(:coupon => true)) %>
+</div>
 <div class="must_visit_banner">
   <a href="<%= pensions_path(params.merge(:must_visit => true)) %>">
     <h3>Must Visit By Resty</h3>

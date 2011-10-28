@@ -40,9 +40,9 @@
 			background-image: url("/assets/list_side_must_visit_watermark.png");
 			width: 123px;
 			height: 124px;
-			margin: 30px 0px 0px 50px;
+			margin: 15px 0px 0px 50px;
 			filter: alpha(opacity=80);
-			opacity: 0.8;
+			opacity: 0.82;
 			-moz-opacity: 0.8;
 			z-index: 1;
 		}
@@ -51,6 +51,9 @@
 			margin: 1px 0px 0px 1px;
 			z-index: 0;
 		}
+	}
+	.coupon-banner {
+		margin-top: 15px;
 	}
 	.box_footer {
 		background-image: url("/assets/list_side_box_footer.png");
