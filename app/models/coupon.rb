@@ -41,12 +41,14 @@ class Coupon < ActiveRecord::Base
   
   def self.pension_matching(coupons)
     coupons.each do |coupon|
-      pension = Pension.where('mobile = ? or telephone01 = ? or telephone02 = ?', coupon[:phone], coupon[:phone], coupon[:phone]).first
-      pension = Pension.where("replace(replace(title, ' ', ''), '펜션', '') = ?", coupon[:shop_name].gsub(' ', '').gsub('펜션', '')).near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first if pension.nil?
-      pension = Pension.where("replace(replace(addr, ' ', ''), '번지', '') = ?", coupon[:addr].gsub(' ', '').gsub('번지', '')).first if pension.nil?
+      title = coupon[:shop_name].gsub('펜션', '').gsub('팬션', '').gsub(' ', '').gsub('(', '').gsub(')', '')
+      like = title[0..2].strip
+      rlike = title[-3..-1] ? title[-3..-1] : title
+      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where('mobile = ? or telephone01 = ? or telephone02 = ?', coupon[:phone], coupon[:phone], coupon[:phone]).first
+      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("replace(replace(addr, ' ', ''), '번지', '') = ?", coupon[:addr].gsub(' ', '').gsub('번지', '')).first if pension.nil?
+      pension = Pension.unscoped.where("replace(replace(title, ' ', ''), '펜션', '') = ?", title).near(coupon[:addr], 5, {:units => :km, :order => :distance}).first if pension.nil?
       if pension.nil?
-        like = coupon[:shop_name].gsub('펜션', '')[0..2]
-        pension = Pension.unscoped.where("title like ?", "%#{like}%").near(coupon[:addr], 1, {:units => :km, :order => :distance, :limit => 1}).first
+        pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").near(coupon[:addr], 5, {:units => :km, :order => :distance}).first
         coupon[:is_valid] = false
       else
         coupon[:is_valid] = true
@@ -57,7 +59,7 @@ class Coupon < ActiveRecord::Base
       if pension.nil?
         self.create(coupon)
       else
-        c = self.find_or_create_by_pension_id pension.id
+        c = self.find_or_create_by_pension_id_and_start_at_and_end_at pension.id, coupon[:start_at], coupon[:end_at]
         c.update_attributes(coupon) unless c.is_valid
       end
     end

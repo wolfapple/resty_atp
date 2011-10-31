@@ -1,5 +1,19 @@
 # -*- encoding : utf-8 -*-
 namespace :resty do
+  desc 'task1'
+  task :task1 => :environment do
+    Pension.all.each do |pension|
+      pension.update_attribute :address02, 'task1' if pension.addr.split(' ').last.scan(/\d/).count == 0
+    end
+  end
+  
+  desc 'task2'
+  task :task2 => :environment do
+    Pension.all.each do |pension|
+      pension.update_attribute :address02, 'task2' if pension.address02 != 'task1' and pension.thumbnail.blank?
+    end
+  end
+  
   desc 'social commerce'
   task :get_coupons => :environment do
     Coupon.get_today_deals
