@@ -2,9 +2,9 @@
 ActiveAdmin.register Pension do
   menu :label => '펜션'
   
-  scope 'task1', :task1
-  scope 'task2', :task2
-  scope 'task3', :task3
+  1.upto 48 do |num|
+    scope "task#{num}", "task#{num}"
+  end
   
   index do
     column '지역1', :area, :sortable => :area_id
