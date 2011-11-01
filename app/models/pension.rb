@@ -8,9 +8,15 @@ class Pension < ActiveRecord::Base
   has_one :coupon, :dependent => :destroy, :conditions => ['is_valid = 1 and end_at > now()']
   belongs_to :area
   belongs_to :sub_area
-  # facilities
+  # facilities & roomstructure
   attr_accessor :facility_names
   after_validation :assign_facilities
+  attr_accessor :roomstructure_names
+  after_validation :assign_roomstructure
+  # auto theme add
+  after_update :auto_theme
+  # price fix
+  after_validation :price_fix
   # upload
   mount_uploader :thumbnail, PensionImageUploader
   mount_uploader :room_table, RoomTableUploader
@@ -72,11 +78,43 @@ class Pension < ActiveRecord::Base
     @facility_names || temp
   end
   
+  def roomstructure_names
+    if roomstructure.blank?
+      temp = []
+    else
+      temp = roomstructure.split(',').collect {|x| x.strip}
+    end
+    @roomstrucutre_names || temp
+  end
+  
   private
   def assign_facilities
     if @facility_names
       @facility_names.delete('')
       self.facilities = @facility_names.join(',')
     end
+  end
+  
+  def assign_roomstructure
+    if @roomstructure_names
+      @roomstructure_names.delete('')
+      self.roomstructure = @roomstructure_names.join(',')
+    end
+  end
+  
+  def auto_theme
+    room_arr = roomstructure.split(',').collect {|x| x.strip}
+    facility_arr = facilities.split(',').collect {|x| x.strip}
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('커플').id, self.id if room_arr.include? '커플'
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('워크샵').id, self.id if room_arr.include? '워크샵'
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('스파/월풀').id, self.id if facility_arr.include? '스파/월풀'
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('수영장').id, self.id if facility_arr.include? '수영장'
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('카페').id, self.id if facility_arr.include? '카페'
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('자전거').id, self.id if facility_arr.include? '자전거'
+  end
+  
+  def price_fix
+    self.min_price = min_price * 10000 if min_price < 1000
+    self.max_price = max_price * 10000 if max_price < 1000
   end
 end

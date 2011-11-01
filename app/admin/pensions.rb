@@ -10,10 +10,14 @@ ActiveAdmin.register Pension do
     column '지역1', :area, :sortable => :area_id
     column '지역2', :sub_area, :sortable => :sub_area_id
     column '썸네일' do |pension|
-      image_tag pension.list_img
+      link_to image_tag(pension.list_img), edit_admin_pension_path(pension), :target => '_blank'
     end
-    column '펜션명', :title
-    column 'URL', :url
+    column '펜션명' do |pension|
+      link_to pension.title, edit_admin_pension_path(pension), :target => '_blank'
+    end
+    column 'URL', do |pension|
+      link_to pension.url, pension.url, :target => '_blank'
+    end
     column '주소', :addr
     column '가격', :min_price
     column '전화번호', :mobile
@@ -38,7 +42,7 @@ ActiveAdmin.register Pension do
       f.input :url
       f.input :addr
       f.input :mobile
-      f.input :roomstructure
+      f.input :roomstructure_names, :as => :check_boxes, :collection => ['커플', '가족', '단체', '워크샵'], :label => 'roomstructure'
       f.input :min_price
       f.input :max_price
       f.input :thumbnail, :as => :file
