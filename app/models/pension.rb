@@ -118,7 +118,7 @@ class Pension < ActiveRecord::Base
   end
   
   def price_fix
-    self.min_price = min_price * 10000 if min_price < 1000
-    self.max_price = max_price * 10000 if max_price < 1000
+    self.min_price = min_price * 10000 if !min_price.blank? and min_price < 1000
+    self.max_price = max_price * 10000 if !max_price.blank? and max_price < 1000
   end
 end
