@@ -103,14 +103,18 @@ class Pension < ActiveRecord::Base
   end
   
   def auto_theme
-    room_arr = roomstructure.split(',').collect {|x| x.strip}
-    facility_arr = facilities.split(',').collect {|x| x.strip}
-    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('커플').id, self.id if room_arr.include? '커플'
-    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('워크샵').id, self.id if room_arr.include? '워크샵'
-    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('스파/월풀').id, self.id if facility_arr.include? '스파/월풀'
-    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('수영장').id, self.id if facility_arr.include? '수영장'
-    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('카페').id, self.id if facility_arr.include? '카페'
-    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('자전거').id, self.id if facility_arr.include? '자전거'
+    unless roomstructure.blank?
+      room_arr = roomstructure.split(',').collect {|x| x.strip}
+      ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('커플').id, self.id if room_arr.include? '커플'
+      ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('워크샵').id, self.id if room_arr.include? '워크샵'
+    end
+    unless facilities.blank?      
+      facility_arr = facilities.split(',').collect {|x| x.strip}
+      ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('스파/월풀').id, self.id if facility_arr.include? '스파/월풀'
+      ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('수영장').id, self.id if facility_arr.include? '수영장'
+      ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('카페').id, self.id if facility_arr.include? '카페'
+      ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('자전거').id, self.id if facility_arr.include? '자전거'
+    end
   end
   
   def price_fix
