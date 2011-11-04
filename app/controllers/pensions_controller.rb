@@ -51,13 +51,18 @@ class PensionsController < ApplicationController
     end
     # social commerce
     if params[:coupon]
-      @pensions = @pensions.joins(:coupon)
+      @pensions = @pensions.joins(:coupon).group("coupons.pension_id")
     end
     # order
     @total = @pensions.count
     @pensions = @pensions.reorder("#{params[:order_by]} desc") if params[:order_by]
     @pensions = @pensions.page(params[:page]).per(10)
-    @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html_list}}.to_json
+    if params[:map]
+      @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html(true)}}.to_json
+      render 'map' if params[:map]
+    else
+      @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html_list}}.to_json
+    end
   end
   
   def show
@@ -75,6 +80,11 @@ class PensionsController < ApplicationController
     @coupon = @pension.coupon
   end
   
+  def nearby
+    @pension = Pension.find(params[:id])
+    @pensions = @pension.near_by
+  end
+    
   def update_like_count
     @pension = Pension.find(params[:id])
     if params[:remove]
