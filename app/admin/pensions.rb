@@ -31,7 +31,7 @@ ActiveAdmin.register Pension do
     column 'must' do |pension|
       link_to 'must', new_admin_must_visit_path('must_visit[pension_id]' => pension.id) unless pension.must_visit
     end
-    default_actions
+    default_actions if current_admin_user.email == 'resty@resty.co.kr'
   end
   
   form :html => {:multipart => true} do |f|
