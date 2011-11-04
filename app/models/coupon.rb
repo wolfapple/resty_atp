@@ -2,6 +2,7 @@
 class Coupon < ActiveRecord::Base
   belongs_to :pension
   
+  scope :ing, where("end_at > now()")
   scope :main, where(:is_valid => true).where("end_at > now()").order('rand()').limit(6)
   scope :invalid, where(:is_valid => false)
   
@@ -15,6 +16,9 @@ class Coupon < ActiveRecord::Base
     coupons += self.make_hash("http://coozle.co.kr/rss/rss_couponmoa.php", '쿠즐')
     coupons += self.make_hash("http://www.ddnayo.com/PageSocial/rss/olcoo.ashx", '떠나요닷컴')
     coupons += self.make_hash("http://www.socialmanager.co.kr/Xml/Output/coupen/couponmoa.ga", '쿠펜')
+    coupons += self.make_hash("http://www.moapanda.com/xml/couponMoa.php", "모아판다")
+    coupons += self.make_hash("http://toursns.com/couponmoa.php", "소셜커머스여행")
+    coupons.compact!
     self.pension_matching(coupons)
   end
   
@@ -22,31 +26,37 @@ class Coupon < ActiveRecord::Base
     require 'open-uri'
     doc = Nokogiri::XML(open(url))
     doc.xpath("//deal[contains(title, '펜션')]").map do |i|
-      {
-        :provider => provider.strip,
-        :title => i.xpath('title').inner_text.strip,
-        :image => i.css('image')[0].inner_text.strip,
-        :link => i.xpath('url').inner_text.strip,
-        :org_price => i.xpath('original').inner_text.to_i,
-        :dis_price => i.xpath('price').inner_text.to_i,
-        :disrate => i.xpath('discount').inner_text.to_i,
-        :start_at => i.xpath('start_at').inner_text,
-        :end_at => i.xpath('end_at').inner_text,
-        :addr => i.css('shop_address').inner_text.strip,
-        :phone => i.css('shop_tel').inner_text.strip,
-        :shop_name => i.css('shop_name').inner_text.strip
-      }
+      begin
+        {
+          :provider => provider.strip,
+          :title => i.xpath('title').inner_text.strip,
+          :image => i.css('image')[0].inner_text.strip,
+          :link => i.xpath('url').inner_text.strip,
+          :org_price => i.xpath('original').inner_text.to_i,
+          :dis_price => i.xpath('price').inner_text.to_i,
+          :disrate => i.xpath('discount').inner_text.to_i,
+          :start_at => i.xpath('start_at').inner_text,
+          :end_at => i.xpath('end_at').inner_text,
+          :addr => i.css('shop_address').inner_text.strip,
+          :phone => i.css('shop_tel').inner_text.strip,
+          :shop_name => i.css('shop_name').inner_text.strip
+        }
+      rescue
+        next
+      end
     end
   end
   
   def self.pension_matching(coupons)
     coupons.each do |coupon|
-      title = coupon[:shop_name].gsub('펜션', '').gsub('팬션', '').gsub(' ', '').gsub('(', '').gsub(')', '')
+      title = coupon[:shop_name].split(' ').last.gsub('펜션', '').gsub('팬션', '').gsub(/\P{Word}/u, '')
       like = title[0..2].strip
       rlike = title[-3..-1] ? title[-3..-1] : title
-      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where('mobile = ? or telephone01 = ? or telephone02 = ?', coupon[:phone], coupon[:phone], coupon[:phone]).first
-      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("replace(replace(addr, ' ', ''), '번지', '') = ?", coupon[:addr].gsub(' ', '').gsub('번지', '')).first if pension.nil?
-      pension = Pension.unscoped.where("replace(replace(title, ' ', ''), '펜션', '') = ?", title).near(coupon[:addr], 5, {:units => :km, :order => :distance}).first if pension.nil?
+      phone = coupon[:phone].gsub(/\D/, '')
+      addr = coupon[:addr].partition(' ').last.gsub(/\P{Word}/u, '').gsub('번지', '')
+      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("REPLACE(REPLACE(mobile, ' ', ''), '-', '') = ? or REPLACE(REPLACE(telephone01, ' ', ''), '-', '') = ? or REPLACE(REPLACE(telephone02, ' ', ''), '-', '') = ?", phone, phone, phone).first
+      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("REPLACE(REPLACE(MID(addr, LOCATE(' ', addr), CHAR_LENGTH(addr)), ' ', ''), '-', '') = ?", addr).first if pension.nil?
+      pension = Pension.unscoped.where("REPLACE(REPLACE(REPLACE(title, ' ', ''), '펜션', ''), '팬션', '') = ?", title).near(coupon[:addr], 5, {:units => :km, :order => :distance}).first if pension.nil?
       if pension.nil?
         pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").near(coupon[:addr], 5, {:units => :km, :order => :distance}).first
         coupon[:is_valid] = false
@@ -56,12 +66,9 @@ class Coupon < ActiveRecord::Base
       coupon.delete :addr
       coupon.delete :phone
       coupon.delete :shop_name
-      if pension.nil?
-        self.create(coupon)
-      else
-        c = self.find_or_create_by_pension_id_and_start_at_and_end_at pension.id, coupon[:start_at], coupon[:end_at]
-        c.update_attributes(coupon) unless c.is_valid
-      end
+      coupon[:pension_id] = pension.id unless pension.nil?
+      c = self.find_or_create_by_link coupon[:link]
+      c.update_attributes(coupon) unless c.is_valid
     end
   end
 end

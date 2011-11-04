@@ -2,6 +2,7 @@
 ActiveAdmin.register Coupon do
   menu :label => '소셜커머스'
   
+  scope 'ing', :ing
   scope 'invalid', :invalid
   
   index do
