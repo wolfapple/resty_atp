@@ -45,7 +45,7 @@
       <li class="<%= cycle('odd', 'even') %>"><%= link_to truncate(notice.title, :length => 30), notice.link, :target => '_blank' %></li>
     <% end %>
     </ul>
-    <div class="more-coupon"><%= link_to '더보기', pensions_path(:coupon => true) %></div>
+    <div class="more-coupon"><%= link_to "더보기(#{Coupon.ing.count}개)", pensions_path(:coupon => true) %></div>
     <ul class="discount">
     <% @coupons.each do |coupon| %>
       <li class="<%= cycle('odd', 'even') %>">
