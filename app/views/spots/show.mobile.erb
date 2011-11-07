@@ -1,0 +1,14 @@
+<div id="show-info" data-role="collapsible" data-content-theme="c">
+  <h3><%= @spot.title %> 소개</h3>
+  <p><%= @spot.description %></p>
+</div>
+<div id="show-btn" class="align-center">
+  <%= link_to @spot.addr, "http://maps.google.com/maps?q=#{@spot.addr}@#{@spot.latitude},#{@spot.longitude}", 'data-role' => 'button', 'data-inline' => true, :class => 'addr-btn' %>
+  <%= link_to raw("전화걸기<hr>#{@spot.phone}"), "tel:#{@spot.phone.gsub('-','')}", 'data-role' => 'button', 'data-inline' => true, :class => 'phone-btn' %>
+</div>
+<div class="ui-bar">
+  <%= @spot.title %> 인근 펜션
+  <%= link_to '더보기', spot_pensions_path(@spot), 'data-icon' => 'home', :class => 'ui-btn-right' %>
+</div>
+<hr>
+<%= render 'pension_list' %>

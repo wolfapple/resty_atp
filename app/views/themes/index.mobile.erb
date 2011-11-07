@@ -1,0 +1,11 @@
+<ul data-role="listview" class="theme-list">
+<% @themes.each do |theme| %>
+  <li>
+    <%= image_tag "theme_icon_#{theme.id}.png" %>
+    <a href="<%= theme_pensions_path(theme) %>">
+      <%= content_tag :h3, theme.title %>
+      <%= content_tag :span, "#{theme.pensions_count}개", :class => 'ui-li-count' %>
+    </a>
+  </li>
+<% end %>
+</ul>

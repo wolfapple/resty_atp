@@ -1,0 +1,52 @@
+.ui-btn-inner {
+	white-space: normal;
+}
+ul.pension-list {
+	li {
+		height: 90px;
+	}
+	img.pension-thumbnail {
+		height: 100%;
+		float: left;
+	}
+	img.like-count {
+		position: absolute;
+		top: 40%;
+		right: 60px;
+	}
+}
+ul.theme-list {
+	img {
+		float: left;
+	}
+}
+.ui-select {
+	display: inline;
+}
+#paginator {
+	text-align: center;
+}
+.align-center {
+	text-align: center;
+}
+#main-btn {
+	a {
+		width: 45%;
+		div {
+			line-height: 2em;
+		}
+	}
+}
+#show-btn {
+	.addr-btn {
+		width: 50%;
+		font-size: .7em;
+	}
+	.phone-btn {
+		width: 40%;
+		font-size: .7em;
+	}
+}
+#show-info {
+	padding: 0 1em;
+}

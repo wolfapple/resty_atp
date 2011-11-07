@@ -8,8 +8,8 @@ class SearchController < ApplicationController
       @spots = Spot.where("title like ?", like)
     else
       point = [params[:latitude].to_f, params[:longitude].to_f]
-      @pensions = Pension.near(point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
-      @spots = Spot.near(point, 10, {:units => :km, :order => :distance, :select => 'longitude, latitude, title, id'})
+      @pensions = Pension.near(point, 10, {:units => :km, :order => :distance})
+      @spots = Spot.near(point, 10, {:units => :km, :order => :distance})
     end
     pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
     spot_markers = @spots.collect {|x| {:key => "spot-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html, :icon => {:image => 'http://www.google.com/mapfiles/marker_green.png'}}}

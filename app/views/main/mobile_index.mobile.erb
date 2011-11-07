@@ -1,0 +1,15 @@
+<div id="search_box">
+  <%= form_tag search_map_path, :method => :post, 'data-ajax' => false do %>
+    <%= hidden_field_tag 'address' %>
+    <%= hidden_field_tag 'longitude' %>
+    <%= hidden_field_tag 'latitude' %>
+  <% end %>
+  <input type="search" name="search_input" id="search_input" placeholder="지역,펜션,여행지명으로 검색하세요." />
+</div>
+<%= link_to '소셜커머스 펜션 보기', pensions_path(:coupon => true), 'data-role' => 'button', 'data-icon' => 'star' %>
+<div id="main-btn" class="align-center">
+  <%= link_to content_tag(:div, raw("지역별<br />펜션찾기")), areas_path, 'data-role' => 'button', 'data-inline' => true %>
+  <%= link_to content_tag(:div, raw('여행지별<br />펜션찾기')), areas_path(:search => 'spot'), 'data-role' => 'button', 'data-inline' => true %>
+  <%= link_to content_tag(:div, raw('테마별<br />펜션찾기')), themes_path, 'data-role' => 'button', 'data-inline' => true %>
+  <%= link_to content_tag(:div, raw('MUST VISIT<br />BY RESTY')), pensions_path(:must_visit => true), 'data-role' => 'button', 'data-inline' => true %>
+</div>

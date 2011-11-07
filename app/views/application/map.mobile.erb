@@ -1,0 +1,8 @@
+<script src="/assets/jquery.gmap.min.js" type="text/javascript"></script>
+<div id="map"></div>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#map').css('height', $(window).height()-$('#header').height()-$('#footer').height());
+    $('#map').gMap({markers:<%= raw @markers %>, zoom: 'fit', latitude:'fit', longitude:'fit'});
+  });
+</script>

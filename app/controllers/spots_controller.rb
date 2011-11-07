@@ -1,5 +1,22 @@
 # -*- encoding : utf-8 -*-
 class SpotsController < ApplicationController
+  def index
+    if params[:area_id]
+      @area = Area.find(params[:area_id])
+      @spots = @area.spots
+    elsif params[:sub_area_id]
+      @sub_area = SubArea.find(params[:sub_area_id])
+      @area = @sub_area.area
+      @spots = @sub_area.spots
+    else
+      @spots = Spot.all
+    end
+    if params[:map]
+      @markers = @spots.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html(true)}}.to_json
+      render 'map'
+    end
+  end
+  
   def show
     @spot = Spot.find(params[:id])
     @title = @spot.title

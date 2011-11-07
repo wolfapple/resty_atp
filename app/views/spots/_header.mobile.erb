@@ -1,0 +1,9 @@
+<div class="ui-bar ui-bar-b">
+	<%= select('area', 'id', Area.all.collect {|x| [x.title, area_spots_path(x, params.merge(:sub_area_id => nil))]},
+	  {:prompt => "지역", :selected => @area ? area_spots_path(@area, params.merge(:sub_area_id => nil)) : ''},
+	  {:onchange => "document.location.href = this.value"}) %>
+	<%= select('sub_area', 'id', @area.sub_areas.collect {|x| [x.title, sub_area_spots_path(x, params.merge(:area_id => nil))]},
+	  {:prompt => "지역", :selected => @sub_area ? sub_area_spots_path(@sub_area, params.merge(:area_id => nil)) : ''},
+	  {:onchange => "document.location.href = this.value"}) if @area %>
+	<%= link_to '지도보기', params.merge(:map => true) %>
+</div>

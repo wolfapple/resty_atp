@@ -1,0 +1,11 @@
+<ul data-role="listview">
+<% @sub_areas.each do |sub_area| %>
+  <li>
+    <a href="<%= sub_area_pensions_path(sub_area) %>">
+      <%= content_tag :h3, sub_area.title %>
+      <%= content_tag :p, sub_area.spots.limit(10).collect {|x| x.title}.join(',') %>
+      <%= content_tag :span, "#{sub_area.pensions_count}개", :class => 'ui-li-count' %>
+    </a>
+  </li>
+<% end %>
+</ul>

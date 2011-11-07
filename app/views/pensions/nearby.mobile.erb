@@ -1,0 +1,13 @@
+<ul data-role="listview" class="pension-list">
+<% @pensions.each do |pension| %>
+  <li>
+    <%= image_tag "http://www.resty.co.kr#{pension.list_img}", :class => 'pension-thumbnail' %>
+    <a href="<%= url_for pension %>">
+      <%= content_tag :h3, pension.title %>
+      <%= content_tag :p, pension.addr %>
+      <%= content_tag :p, "#{pension.distance.round(2)}km" %>
+      <%= content_tag :span, pension.like_count, :class => 'ui-li-count' %>
+    </a>
+  </li>
+<% end %>
+</ul>

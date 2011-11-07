@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  #before_filter :prepare_for_mobile
+  before_filter :prepare_for_mobile
   helper_method :graph
   
   protected
@@ -19,10 +19,16 @@ class ApplicationController < ActionController::Base
   
   private
   def mobile_device?
-    request.user_agent =~ /Mobile|webOS/
+    if session[:mobile_param]
+      session[:mobile_param] == "1"
+    else
+      request.user_agent =~ /Mobile|webOS/
+      false
+    end
   end
   
   def prepare_for_mobile
-    request.format = :mobile if request.server_name[0] == 'm'
+    session[:mobile_param] = params[:mobile] if params[:mobile]
+    request.format = :mobile if mobile_device?
   end
 end

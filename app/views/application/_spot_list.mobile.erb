@@ -1,0 +1,10 @@
+<ul data-role="listview" class="spot-list">
+<% @spots.each do |spot| %>
+  <li>
+    <a href="<%= url_for spot %>">
+      <%= content_tag :h3, spot.title %>
+      <%= content_tag :p, spot.addr %>
+    </a>
+  </li>
+<% end %>
+</ul>

@@ -8,4 +8,7 @@ class MainController < ApplicationController
     @notices = Notice.recent
     @coupons = Coupon.main
   end
+  
+  def mobile_index
+  end
 end

@@ -1,0 +1,19 @@
+<ul data-role="listview">
+<% @areas.each do |area| %>
+  <li>
+    <% if params[:search] == 'spot' %>
+      <a href="<%= area_spots_path(area) %>">
+        <%= content_tag :h3, area.title %>
+        <%= content_tag :p, area.sub_areas.collect {|x| x.title}.join(',') %>
+        <%= content_tag :span, "#{area.spots.count}개", :class => 'ui-li-count' %>
+      </a>
+    <% else %>
+      <a href="<%= area_sub_areas_path(area) %>">
+        <%= content_tag :h3, area.title %>
+        <%= content_tag :p, area.sub_areas.collect {|x| x.title}.join(',') %>
+        <%= content_tag :span, "#{area.pensions_count}개", :class => 'ui-li-count' %>
+      </a>
+    <% end %>
+  </li>
+<% end %>
+</ul>

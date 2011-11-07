@@ -2,25 +2,41 @@
 <html>
 <head>
   <title><%= title %></title>
-  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum=1.0, user-scalable=no" />
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
   <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <%= stylesheet_link_tag    "mobile/application" %>
+  <%= javascript_include_tag "mobile/application" %>
+  <%= csrf_meta_tags %>
 </head>
 <body>
-  <div data-role="header" data-add-back-btn="true">
-  	<h1><%= title %></h1>
-  	<div data-role="navbar">
-    	<ul>
-    		<li><a href="#">One</a></li>
-    		<li><a href="#">Two</a></li>
-    		<li><a href="#">Three</a></li>
-    	</ul>
+  <div data-role="page" data-add-back-btn="true" data-back-btn-text="이전">
+    <% unless params[:controller] == "main" %>
+    <div data-role="header" id="header">
+    	<h1><%= link_to "resty", mobile_path %></h1>
+    	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :onclick => "$('#search-bar').slideToggle('fast');" %>
     </div>
-  </div>
-  <%= yield %>
-  <div data-role="footer">
-  	<h4>레스티 Footer</h4>
+    <% end %>
+    <div id="search-bar" data-role="ui-bar" style="display:none">
+      <%= form_tag search_map_path, :method => :post, 'data-ajax' => false do %>
+        <%= hidden_field_tag 'address' %>
+        <%= hidden_field_tag 'longitude' %>
+        <%= hidden_field_tag 'latitude' %>
+      <% end %>
+      <input type="search" name="search_input" id="search_input" placeholder="지역,펜션,여행지명으로 검색하세요." />
+    </div>
+    <%= yield %>
+    <div data-role="footer" id="footer">
+      <div class="ui-bar align-center">
+        <%= link_to 'PC화면', root_url %>
+        <%= link_to '페이스북 로그인', auth_at_provider_path(:provider => :facebook) %>
+      </div>
+      <div class="ui-bar align-center">
+        &copy;resty inc.co
+      </div>
+    </div>
   </div>
 </body>
 </html>

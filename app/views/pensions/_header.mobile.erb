@@ -1,0 +1,42 @@
+<div class="ui-bar ui-bar-b">
+  <%= link_to '전국', pensions_path %>
+	<%= select('area', 'id', Area.all.collect {|x| [x.title, area_pensions_path(x, params.merge(:sub_area_id => nil, :spot_id => nil, :page => nil))]},
+	  {:prompt => "지역", :selected => @area ? area_pensions_path(@area, params.merge(:sub_area_id => nil, :spot_id =>nil, :page => nil)) : ''},
+	  {:onchange => "document.location.href = this.value"}) %>
+	<%= select('sub_area', 'id', @area.sub_areas.collect {|x| [x.title, sub_area_pensions_path(x, params.merge(:area_id => nil, :spot => nil, :page => nil))]},
+	  {:prompt => "지역", :selected => @sub_area ? sub_area_pensions_path(@sub_area, params.merge(:area_id => nil, :spot => nil, :page => nil)) : ''},
+	  {:onchange => "document.location.href = this.value"}) if @area %>
+	<%= select('spot', 'id', @spots.collect {|x| [x.title, spot_pensions_path(x, params.merge(:area_id => nil, :sub_area_id => nil, :page => nil))]},
+	  {:prompt => '여행지', :selected => @spot ? spot_pensions_path(@spot, params.merge(:area_id => nil, :sub_area_id => nil, :page => nil)) : ''},
+	  {:onchange => "document.location.href = this.value"}) if @spots %>
+	<%= link_to '지도보기', params.merge(:map => true) %>
+</div>
+
+<div class="ui-bar ui-bar-b">
+  <%= select('theme', 'id', Theme.all.collect {|x| [x.title, theme_pensions_path(x, params.merge(:theme_id => x.id, :page => nil))]},
+    {:prompt => '테마', :selected => @theme ? theme_pensions_path(@theme, params.merge(:theme_id => @theme.id, :page => nil)) : ''},
+    {:onchange => "document.location.href = this.value"}) %>
+  <%= select('price', 'id', PriceRange.order('min').collect {|x| [x.to_s, url_for(params.merge(:price_id => x.id, :page => nil))]},
+    {:prompt => '가격대', :selected => @price ? url_for(params.merge(:price_id => @price.id, :page => nil)) : ''},
+    {:onchange => "document.location.href = this.value"}) %>
+  <%= select('facility', 'id', Facility.all.collect {|x| [x.title, x.id]},
+    {:prompt => '시설', :selected => params[:facilities] ? params[:facilities].split(',') : ""},
+    {:multiple => 'multiple', 'data-native-menu' => false}) %>
+</div>
+
+<div class="ui-bar ui-bar-b">
+  <%= link_to 'Must Visit', params.merge(:must_visit => true), 'data-role' => 'button', 'data-inline' => 'true' unless params[:must_visit] %>
+  <%= link_to 'Must Visit', params.merge(:must_visit => nil), 'data-role' => 'button', 'data-inline' => 'true', 'data-theme' => 'c' if params[:must_visit] %>
+  <%= link_to '소셜커머스', params.merge(:coupon => true), 'data-role' => 'button', 'data-inline' => 'true' unless params[:coupon] %>
+  <%= link_to '소셜커머스', params.merge(:coupon => nil), 'data-role' => 'button', 'data-inline' => 'true', 'data-theme' => 'c' if params[:coupon] %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('a[data-icon=delete]').click(function() {
+      params = $.url(window.location).param();
+      params['facilities'] = $('#facility_id').val().join(',');
+      document.location.href = window.location.pathname + "?" + $.param(params);
+    });
+  });
+</script>

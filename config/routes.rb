@@ -26,23 +26,30 @@ RestyAtp::Application.routes.draw do
     resources :rooms
     get :update_like_count, :on => :collection
     get :update_comments_count, :on => :collection
+    get :nearby, :on => :member
+    get :map, :on => :member
   end
   resources :spots do
     resources :pensions
+    get :map, :on => :member
   end
   resources :areas do
     resources :pensions
+    resources :spots
+    resources :sub_areas
   end
   resources :sub_areas do
+    resources :spots
     resources :pensions
   end
   resources :spots
   resources :contacts 
   #search
-  match 'search/autocomplete' => 'search#autocomplete'
-  match 'search/result' => 'search#result'
-  match 'search/map' => 'search#map'
+  # match 'search/autocomplete' => 'search#autocomplete'
+  # match 'search/result' => 'search#result'
+  match 'search/map' => 'search#map', :via => :post
   # main
   match 'main' => 'main#index'
+  match 'mobile' => 'main#mobile_index'
   root :to => 'main#index'
 end

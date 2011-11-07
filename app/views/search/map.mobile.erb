@@ -1,0 +1,8 @@
+<div data-role="navbar" data-theme="b">
+  <ul>
+    <li><%= link_to "펜션 #{@pensions.size}개", '#', :onclick => "$('.pension-list').show();$('.spot-list').hide();", :class => 'ui-btn-active' %></li>
+    <li><%= link_to "여행지 #{@spots.size}개", '#', :onclick => "$('.pension-list').hide();$('.spot-list').show();" %></li>
+  </ul>
+</div>
+<%= render 'pension_list' %>
+<%= render 'spot_list' %>
