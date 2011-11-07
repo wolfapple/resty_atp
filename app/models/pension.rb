@@ -61,8 +61,12 @@ class Pension < ActiveRecord::Base
     end
   end
   
-  def html
-    "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a>"
+  def html(mobile=false)
+    if mobile
+      "<h4 style='margin-top: 0px'><a href='/pensions/#{self.id}'>#{self.title}</a></h4>"
+    else
+      "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a>"
+    end
   end
   
   def html_list
@@ -115,6 +119,7 @@ class Pension < ActiveRecord::Base
       ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('카페').id, self.id if facility_arr.include? '카페'
       ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('자전거').id, self.id if facility_arr.include? '자전거'
     end
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('10만원이하').id, self.id if min_price <= 100000
   end
   
   def price_fix
