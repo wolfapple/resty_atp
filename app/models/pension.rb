@@ -119,7 +119,7 @@ class Pension < ActiveRecord::Base
       ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('카페').id, self.id if facility_arr.include? '카페'
       ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('자전거').id, self.id if facility_arr.include? '자전거'
     end
-    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('10만원이하').id, self.id if min_price <= 100000
+    ThemePension.find_or_create_by_theme_id_and_pension_id Theme.find_by_title('10만원이하').id, self.id if min_price <= 100000 and min_price > 0
   end
   
   def price_fix
