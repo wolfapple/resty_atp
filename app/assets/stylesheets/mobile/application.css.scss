@@ -1,6 +1,5 @@
-.ui-btn-inner {
-	white-space: normal;
-}
+@import 'theme';
+
 ul.pension-list {
 	li {
 		height: 90px;
@@ -25,28 +24,117 @@ ul.theme-list {
 }
 #paginator {
 	text-align: center;
+	color: #fff;
+	background: #1d7351;
 }
 .align-center {
 	text-align: center;
 }
-#main-btn {
-	a {
-		width: 45%;
-		div {
-			line-height: 2em;
+.full-btn {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+#header {
+	border: none;
+	background: url('/assets/mobile/header_bg.png');
+	background-position: bottom center;
+	height: 70px;
+	div {
+		background: url('/assets/mobile/header.png');
+		background-repeat: no-repeat;
+		background-position: bottom center;
+		height: 70px;
+		img {
+			width: 100px;
+			margin-top: 15px;
+		}
+	}
+	.ui-btn {
+		margin-top: 15px;
+	}
+}
+#footer {
+	border: none;
+	background: url('/assets/mobile/footer_bg.png');
+	height: 72px;
+	div {
+		background: url('/assets/mobile/footer.png');
+		background-repeat: no-repeat;
+		background-position: center;
+		height: 72px;
+		.ui-btn {
+			margin-top: 10px;
 		}
 	}
 }
-#show-btn {
-	.addr-btn {
-		width: 50%;
-		font-size: .7em;
+#main-bg {
+	background: #228960;
+	.content {
+		overflow: hidden;
+		background: url('/assets/mobile/main_bg.png');
+		background-repeat: no-repeat;
+		background-position: center center;
 	}
-	.phone-btn {
-		width: 40%;
-		font-size: .7em;
+	.logo {
+		img {
+			width: 200px;
+		}
+		margin: 20px 0;
+	}
+	#main-btn {
+		width: 80%;
+		text-align: center;
+		margin: 30px auto;
+		td {
+			width: 50%;
+		}
+		a {
+			line-height: 2em;
+			.ui-btn-inner {
+				padding: 10px;
+			}
+		}
 	}
 }
 #show-info {
-	padding: 0 1em;
+	padding: 0px 22.5px;
+}
+#show-btn {
+	width: 100%;
+	text-align: center;
+	margin: 0px auto;
+	padding: 0px 7.5px;
+	a {
+		line-height: 2em;
+		.ui-btn-inner {
+			white-space: normal;
+			padding: 5px;
+			height: 50px;
+			hr {
+				color: #fff;
+				background: #fff;
+				height: 1px;
+				margin: 0px;
+			}
+		}
+	}
+	.addr-btn {
+		font-size: .9em;
+		width: 60%;
+	}
+	.phone-btn {
+		font-size: .7em;
+	}
+}
+.show-img {
+	width: 100%;
+}
+.ui-bar {
+	.ui-left {
+		margin-top: 10px;
+		float: left;
+	}
+	.ui-right {
+		float: right;
+	}
 }

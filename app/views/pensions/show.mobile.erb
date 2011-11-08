@@ -1,22 +1,35 @@
 <div class="align-center">
-  <%= image_tag "http://www.resty.co.kr" + @pension.show_img %>
+  <%= image_tag "http://www.resty.co.kr" + @pension.show_img, :class => 'show-img' %>
 </div>
-<div id="show-info">
-  <p>시설 : <%= @pension.facilities.split(',').join(', ') %></p>
-  <p>테마 : <%= @pension.themes.collect {|x| x.title}.join(', ') %></p>
-  <p>이용가격 : <%= @pension.min_price / 10000 %>만원 ~ <%= @pension.max_price / 10000%>만원</p>
+<div id="show-info" data-role="collapsible-set" data-theme="c" data-content-theme="d">
+  <div data-role="collapsible" data-collapsed="false">
+    <h3>시설</h3>
+    <p><%= @pension.facilities.split(',').join(', ') %></p>
+  </div>
+  <div data-role="collapsible">
+    <h3>테마</h3>
+    <p><%= @pension.themes.collect {|x| x.title}.join(', ') %></p>
+  </div>
+  <div data-role="collapsible">
+    <h3>이용가격</h3>
+    <p><%= @pension.min_price / 10000 %>만원 ~ <%= @pension.max_price / 10000%>만원</p>
+  </div>
 </div>
-<div id="show-btn" class="align-center">
-  <%= link_to @pension.addr, "http://maps.google.com/maps?q=#{@pension.addr}@#{@pension.latitude},#{@pension.longitude}", 'data-role' => 'button', 'data-inline' => true, :class => 'addr-btn' %>
-  <%= link_to raw("전화걸기<hr>#{@pension.mobile}"), "tel:#{@pension.mobile.gsub('-','')}", 'data-role' => 'button', 'data-inline' => true, :class => 'phone-btn' %>
-  <%= link_to '펜션 홈페이지 바로가기', @pension.url, 'data-role' => 'button', 'data-icon' => 'forward' %>
-</div>
+<table id="show-btn">
+  <tbody>
+    <tr>
+      <td class="addr-btn"><%= link_to @pension.addr, "http://maps.google.com/maps?q=#{@pension.addr}@#{@pension.latitude},#{@pension.longitude}", 'data-role' => 'button' %></td>
+      <td class="phone-btn"><%= link_to raw("전화걸기<hr>#{@pension.mobile}"), "tel:#{@pension.mobile.gsub('-','')}", 'data-role' => 'button', 'data-theme' => 'r' %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to '펜션 홈페이지 바로가기', @pension.url, 'data-role' => 'button', 'data-icon' => 'forward', :class => 'full-btn' %>
 <div id="pension-blog">
   <div class="ui-bar">
-    블로그 이용후기
-    <%= link_to '주변 펜션 더보기', nearby_pension_path(@pension), 'data-icon' => 'home' %>
+    <h4 class="ui-left">블로그 이용후기</h4>
+    <%= link_to '주변 펜션 더보기', nearby_pension_path(@pension), 'data-icon' => 'home', :class => 'green ui-right' %>
   </div>
-  <hr>
+  <hr class="green">
   <ul data-role="listview">
   <% @blog_reviews.each do |item| %>
     <li>

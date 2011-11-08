@@ -2,7 +2,7 @@
 <html>
 <head>
   <title><%= title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
   <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
@@ -10,17 +10,29 @@
   <%= stylesheet_link_tag    "mobile/application" %>
   <%= javascript_include_tag "mobile/application" %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25759647-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body>
   <div data-role="page" data-add-back-btn="true" data-back-btn-text="이전">
     <% unless params[:controller] == "main" %>
-    <div data-role="header" id="header">
-    	<h1><%= link_to "resty", mobile_path %></h1>
+    <div id="header" data-role="header" data-theme="r">
+      <div class="align-center">
+        <%= link_to image_tag('mobile/header_logo.png'), root_url %>
+      </div>
     	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :onclick => "$('#search-bar').slideToggle('fast');" %>
     </div>
     <% end %>
-    <div id="search-bar" data-role="ui-bar" style="display:none">
-      <%= form_tag search_map_path, :method => :post, 'data-ajax' => false do %>
+    <div id="search-bar" class="ui-bar" style="display:none">
+      <%= form_tag search_result_path, :method => :post, 'data-ajax' => false do %>
         <%= hidden_field_tag 'address' %>
         <%= hidden_field_tag 'longitude' %>
         <%= hidden_field_tag 'latitude' %>
@@ -28,13 +40,14 @@
       <input type="search" name="search_input" id="search_input" placeholder="지역,펜션,여행지명으로 검색하세요." />
     </div>
     <%= yield %>
-    <div data-role="footer" id="footer">
-      <div class="ui-bar align-center">
-        <%= link_to 'PC화면', root_url %>
-        <%= link_to '페이스북 로그인', auth_at_provider_path(:provider => :facebook) %>
-      </div>
-      <div class="ui-bar align-center">
-        &copy;resty inc.co
+    <div id="footer" data-role="footer" data-theme="r">
+      <div class="align-center">
+        <%= link_to 'PC화면', root_url(:mobile => 0), 'data-role' => 'button' %>
+        <% if current_user %>
+          <%= link_to '로그아웃', :logout, 'data-role' => 'button' %>
+        <% else %>
+          <%= link_to '페이스북 로그인', auth_at_provider_path(:provider => :facebook), 'data-role' => 'button' %>
+        <% end %>
       </div>
     </div>
   </div>

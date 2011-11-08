@@ -1,27 +1,58 @@
-<div id="search-result">
-  <h1>'<%= params[:search_input] %>' <span>검색 결과입니다.</span></h1>
-  
-  <h2>지역 (<%= @areas.size + @sub_areas.size %>)</h2>
-  <ul>
-  <% @areas.each do |area| %>
-    <li><%= link_to area.title, area_pensions_path(area), :class => 'area' %></li>
-  <% end %>
-  <% @sub_areas.each do |sub_area| %>
-    <li><%= link_to "#{sub_area.area.title}>#{sub_area.title}", sub_area_pensions_path(sub_area.area, sub_area), :class  => 'area' %></li>
-  <% end %>
-  </ul>
+<script src="/assets/jquery.gmap.min.js" type="text/javascript"></script>
 
-  <h2>펜션 (<%= @pensions.size %>)</h2>
-  <ul>
-  <% @pensions.each do |pension| %>
-    <li><%= link_to pension.title, pension, :class => 'pension' %></li>
-  <% end %>
-  </ul>
-
-  <h2>여행지 (<%= @spots.size %>)</h2>
-  <ul>
-  <% @spots.each do |spot| %>
-    <li><%= link_to spot.title, spot, :class => 'spot' %></li>
-  <% end %>
-  </ul>
+<div id="search-list">
+  <h3><%#= image_tag 'http://www.google.com/mapfiles/marker.png', :height => '20px' %>주변 펜션 (<%= @pensions.size %>)</h3>
+  <div class="search-pensions">
+    <div class="content">
+      <ul>
+      <% @pensions.each do |pension| %>
+        <li class="<%= cycle('odd', 'even') %>" data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>"><%= link_to pension.title, pension, :target => '_blank' %><%= " @#{pension.sub_area.title}" if params[:latitude].blank? or params[:longitude].blank? %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="box_footer"></div>
+  <h3><%#= image_tag 'http://www.google.com/mapfiles/marker_green.png', :height => '20px' %>주변 여행지 (<%= @spots.size %>)</h3>
+  <div class="search-spots">
+    <div class="content">
+      <ul>
+      <% @spots.each do |spot| %>
+        <li class="<%= cycle('odd', 'even') %>" data-id="spot-<%= spot.id %>" data-lat="<%= spot.latitude %>", data-lng="<%= spot.longitude %>"><%= link_to spot.title, spot, :target => '_blank' %></li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="box_footer"></div>
 </div>
+<div id="search-map">
+  <h1>'<%= params[:address] %>'</h1>
+  <span><%= "인근 펜션과 여행지" if !params[:longitude].blank? and !params[:latitude].blank? %> 검색 결과입니다.</span>
+  <hr>
+  <div id="map" style="height:645px"></div>
+  <p><%= link_to 'powered by 야후! 거기', 'http://kr.gugi.yahoo.com/', :target => '_blank' %></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  <% if @pensions.size == 0 and @spots.size == 0 %>
+    $('#map').gMap({address:'대전', zoom:7});
+  <% else %>
+    $('#map').gMap({markers:<%= raw @results %>, zoom: 'fit', latitude:'fit', longitude:'fit'});
+  <% end %>
+  $(function() {
+    $('#search-list li').mouseenter(function() {
+      $(this).addClass('over');
+      point = new google.maps.LatLng($(this).attr('data-lat'), $(this).attr('data-lng'));
+      $('#map').data('gmap').gmap.panTo(point);
+      $('#map').gMap('getMarker', $(this).attr('data-id')).setIcon('http://thydzik.com/thydzikGoogleMap/markerlink.php?text=X&color=5680FC');
+      //$('#map').data('gmap').gmap.setZoom(15);
+    });
+    $('.search-pensions li').mouseleave(function() {
+      $(this).removeClass('over');
+      $('#map').gMap('getMarker', $(this).attr('data-id')).setIcon('http://www.google.com/mapfiles/marker.png');
+    });
+    $('.search-spots li').mouseleave(function() {
+      $(this).removeClass('over');
+      $('#map').gMap('getMarker', $(this).attr('data-id')).setIcon('http://www.google.com/mapfiles/marker_green.png');
+    });
+  });
+</script>

@@ -12,4 +12,5 @@
     <%#= image_tag('like_resty.png', :width => '20px', :class => 'like-count') %>
   </li>
 <% end %>
+<%= content_tag :li, '펜션이 존재하지 않습니다.', :class => 'align-center' if @pensions.length == 0 %>
 </ul>
