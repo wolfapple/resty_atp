@@ -42,7 +42,7 @@
     <%= yield %>
     <div id="footer" data-role="footer" data-theme="r">
       <div class="align-center">
-        <%= link_to 'PC화면', root_url(:mobile => 0), 'data-role' => 'button' %>
+        <%= link_to 'PC화면', root_url(:mobile => 0), 'data-role' => 'button', 'data-ajax' => false %>
         <% if current_user %>
           <%= link_to '로그아웃', :logout, 'data-role' => 'button' %>
         <% else %>

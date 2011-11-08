@@ -47,7 +47,7 @@ RestyAtp::Application.routes.draw do
   #search
   # match 'search/autocomplete' => 'search#autocomplete'
   # match 'search/map' => 'search#map'
-  match 'search/result' => 'search#result'
+  match 'search/result' => 'search#result', :via => :post
   # main
   match 'main' => 'main#index'
   root :to => 'main#index'

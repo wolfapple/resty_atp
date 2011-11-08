@@ -26,6 +26,10 @@ class Coupon < ActiveRecord::Base
     require 'open-uri'
     doc = Nokogiri::XML(open(url))
     doc.xpath("//deal[contains(title, '펜션')]").map do |i|
+      addr = i.css('shop_address').inner_text.strip
+      phone = i.css('shop_tel').inner_text.strip
+      shop_name = i.css('shop_name').inner_text.strip
+      next if addr.blank? or phone.blank? or shop_name.blank?
       begin
         {
           :provider => provider.strip,
@@ -37,9 +41,9 @@ class Coupon < ActiveRecord::Base
           :disrate => i.xpath('discount').inner_text.to_i,
           :start_at => i.xpath('start_at').inner_text,
           :end_at => i.xpath('end_at').inner_text,
-          :addr => i.css('shop_address').inner_text.strip,
-          :phone => i.css('shop_tel').inner_text.strip,
-          :shop_name => i.css('shop_name').inner_text.strip
+          :addr => addr,
+          :phone => phone,
+          :shop_name => shop_name
         }
       rescue
         next
@@ -49,26 +53,28 @@ class Coupon < ActiveRecord::Base
   
   def self.pension_matching(coupons)
     coupons.each do |coupon|
-      title = coupon[:shop_name].split(' ').last.gsub('펜션', '').gsub('팬션', '').gsub(/\P{Word}/u, '')
-      like = title[0..2].strip
-      rlike = title[-3..-1] ? title[-3..-1] : title
-      phone = coupon[:phone].gsub(/\D/, '')
-      addr = coupon[:addr].partition(' ').last.gsub(/\P{Word}/u, '').gsub('번지', '')
-      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("REPLACE(REPLACE(mobile, ' ', ''), '-', '') = ? or REPLACE(REPLACE(telephone01, ' ', ''), '-', '') = ? or REPLACE(REPLACE(telephone02, ' ', ''), '-', '') = ?", phone, phone, phone).first
-      pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("REPLACE(REPLACE(MID(addr, LOCATE(' ', addr), CHAR_LENGTH(addr)), ' ', ''), '-', '') = ?", addr).first if pension.nil?
-      pension = Pension.unscoped.where("REPLACE(REPLACE(REPLACE(title, ' ', ''), '펜션', ''), '팬션', '') = ?", title).near(coupon[:addr], 5, {:units => :km, :order => :distance}).first if pension.nil?
-      if pension.nil?
-        pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").near(coupon[:addr], 5, {:units => :km, :order => :distance}).first
-        coupon[:is_valid] = false
-      else
-        coupon[:is_valid] = true
+      unless Coupon.find_by_link_and_is_valid(coupon[:link], true)
+        title = coupon[:shop_name].split(' ').last.gsub('펜션', '').gsub('팬션', '').gsub(/\P{Word}/u, '')
+        like = title[0..2].strip
+        rlike = title[-3..-1] ? title[-3..-1] : title
+        phone = coupon[:phone].gsub(/\D/, '')
+        addr = coupon[:addr].partition(' ').last.gsub(/\P{Word}/u, '').gsub('번지', '')
+        pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("REPLACE(REPLACE(mobile, ' ', ''), '-', '') = ? or REPLACE(REPLACE(telephone01, ' ', ''), '-', '') = ? or REPLACE(REPLACE(telephone02, ' ', ''), '-', '') = ?", phone, phone, phone).first
+        pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").where("REPLACE(REPLACE(MID(addr, LOCATE(' ', addr), CHAR_LENGTH(addr)), ' ', ''), '-', '') = ?", addr).first if pension.nil?
+        pension = Pension.unscoped.where("REPLACE(REPLACE(REPLACE(title, ' ', ''), '펜션', ''), '팬션', '') = ?", title).near(coupon[:addr], 5, {:units => :km, :order => :distance}).first if pension.nil?
+        if pension.nil?
+          pension = Pension.unscoped.where("title like ? or title like ?", "%#{like}%", "%#{rlike}%").near(coupon[:addr], 5, {:units => :km, :order => :distance}).first
+          coupon[:is_valid] = false
+        else
+          coupon[:is_valid] = true
+        end
+        coupon.delete :addr
+        coupon.delete :phone
+        coupon.delete :shop_name
+        coupon[:pension_id] = pension.id unless pension.nil?
+        c = self.find_or_create_by_link coupon[:link]
+        c.update_attributes(coupon) unless c.is_valid
       end
-      coupon.delete :addr
-      coupon.delete :phone
-      coupon.delete :shop_name
-      coupon[:pension_id] = pension.id unless pension.nil?
-      c = self.find_or_create_by_link coupon[:link]
-      c.update_attributes(coupon) unless c.is_valid
     end
   end
 end

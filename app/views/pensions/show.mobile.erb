@@ -1,5 +1,5 @@
 <div class="align-center">
-  <%= image_tag "http://www.resty.co.kr" + @pension.show_img, :class => 'show-img' %>
+  <%= image_tag @pension.show_img, :class => 'show-img' %>
 </div>
 <div id="show-info" data-role="collapsible-set" data-theme="c" data-content-theme="d">
   <div data-role="collapsible" data-collapsed="false">
@@ -23,7 +23,7 @@
     </tr>
   </tbody>
 </table>
-<%= link_to '펜션 홈페이지 바로가기', @pension.url, 'data-role' => 'button', 'data-icon' => 'forward', :class => 'full-btn' %>
+<%= link_to '펜션 홈페이지 바로가기', @pension.url, 'data-role' => 'button', 'data-icon' => 'forward', :class => 'full-btn', :target => '_blank' %>
 <div id="pension-blog">
   <div class="ui-bar">
     <h4 class="ui-left">블로그 이용후기</h4>
@@ -33,7 +33,7 @@
   <ul data-role="listview">
   <% @blog_reviews.each do |item| %>
     <li>
-      <a href="<%= item.link %>">
+      <a href="<%= item.link %>" target="_blank">
         <h3><%= raw item.title %></h3>
         <p><%= raw item.desc %></p>
       </a>

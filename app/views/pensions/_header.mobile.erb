@@ -39,7 +39,7 @@
     $('a[data-icon=delete]').click(function() {
       params = $.url(window.location).param();
       params['facilities'] = $('#facility_id').val().join(',');
-      document.location.href = window.location.pathname + "?" + $.param(params);
+      window.location.href = window.location.pathname + "?" + $.param(params);
     });
   });
 </script>
