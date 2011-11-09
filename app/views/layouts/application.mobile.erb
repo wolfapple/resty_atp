@@ -28,15 +28,12 @@
     	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :id => 'search-btn' %>
     </div>
     <% end %>
-    <div id="search-bar" style="display:none;">
-      <div class="ui-bar">
-        <%= form_tag search_result_path, :method => :post, 'data-ajax' => false do %>
-          <%= hidden_field_tag 'address' %>
-          <%= hidden_field_tag 'longitude' %>
-          <%= hidden_field_tag 'latitude' %>
-        <% end %>
-        <input type="search" name="search_input" id="search_input" placeholder="지역,펜션,여행지명으로 검색하세요." />
-      </div>
+    <div id="search-bar" class="ui-bar" style="display:none">
+      <%= form_tag search_result_path, :method => :post, 'data-ajax' => false, :id => 'search-form' do %>
+        <%= hidden_field_tag 'longitude', nil, :id => 'longitude-hidden' %>
+        <%= hidden_field_tag 'latitude', nil, :id => 'latitude-hidden' %>
+        <input type="search" name="address" id="search-input" placeholder="지역,펜션,여행지명으로 검색하세요." />
+      <% end %>
     </div>
     <%= yield %>
     <div id="footer" data-role="footer" data-theme="r">

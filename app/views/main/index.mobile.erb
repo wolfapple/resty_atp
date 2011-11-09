@@ -4,7 +4,7 @@
       <%= image_tag 'mobile/main_logo.png' %>
     </div>
     <div class="ui-bar" id="search_box">
-      <%= form_tag search_result_path, :method => :get, 'data-ajax' => false, :id => 'search-form' do %>
+      <%= form_tag search_result_path, :method => :post, 'data-ajax' => false, :id => 'search-form' do %>
         <%= hidden_field_tag 'longitude', nil, :id => 'longitude-hidden' %>
         <%= hidden_field_tag 'latitude', nil, :id => 'latitude-hidden' %>
         <input type="search" name="address" id="search-input" placeholder="지역,펜션,여행지명으로 검색하세요." />
