@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.css" />
   <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
   <script src="http://code.jquery.com/mobile/1.0rc2/jquery.mobile-1.0rc2.min.js"></script>
-  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <%= stylesheet_link_tag    "mobile/application" %>
   <%= javascript_include_tag "mobile/application" %>
   <%= csrf_meta_tags %>
@@ -25,17 +24,19 @@
   <div data-role="page" data-add-back-btn="true" data-back-btn-text="이전">
     <% unless params[:controller] == "main" %>
     <div id="header" data-role="header" data-theme="r">
-      <h1><%= header %></h1>
-    	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :onclick => "$('#search-bar').slideToggle('fast');" %>
+      <div class="align-center"><%= header %></div>
+    	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :id => 'search-btn' %>
     </div>
     <% end %>
-    <div id="search-bar" class="ui-bar" style="display:none">
-      <%= form_tag search_result_path, :method => :post, 'data-ajax' => false do %>
-        <%= hidden_field_tag 'address' %>
-        <%= hidden_field_tag 'longitude' %>
-        <%= hidden_field_tag 'latitude' %>
-      <% end %>
-      <input type="search" name="search_input" id="search_input" placeholder="지역,펜션,여행지명으로 검색하세요." />
+    <div id="search-bar" style="display:none;">
+      <div class="ui-bar">
+        <%= form_tag search_result_path, :method => :post, 'data-ajax' => false do %>
+          <%= hidden_field_tag 'address' %>
+          <%= hidden_field_tag 'longitude' %>
+          <%= hidden_field_tag 'latitude' %>
+        <% end %>
+        <input type="search" name="search_input" id="search_input" placeholder="지역,펜션,여행지명으로 검색하세요." />
+      </div>
     </div>
     <%= yield %>
     <div id="footer" data-role="footer" data-theme="r">

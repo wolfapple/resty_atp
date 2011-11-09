@@ -11,10 +11,6 @@ class SpotsController < ApplicationController
     else
       @spots = Spot.all
     end
-    if params[:map]
-      @markers = @spots.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html(true)}}.to_json
-      render 'map'
-    end
   end
   
   def show

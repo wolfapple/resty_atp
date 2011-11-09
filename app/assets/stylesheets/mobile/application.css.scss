@@ -1,17 +1,12 @@
 @import 'theme';
 
 ul.pension-list {
-	li {
-		height: 90px;
+	a {
+		height: 68px;
 	}
 	img.pension-thumbnail {
-		height: 100%;
+		height: 90px;
 		float: left;
-	}
-	img.like-count {
-		position: absolute;
-		top: 40%;
-		right: 60px;
 	}
 }
 ul.coupon-info {
@@ -20,7 +15,7 @@ ul.coupon-info {
 		margin-top: -1px;
 	}
 	img.pension-thumbnail {
-		height: 98%;
+		height: 90px;
 	}
 }
 ul.theme-list {
@@ -47,7 +42,7 @@ ul.theme-list {
 	background: url('/assets/mobile/header_bg.png');
 	background-position: bottom center;
 	height: 70px;
-	h1 {
+	div {
 		background: url('/assets/mobile/header.png');
 		background-repeat: no-repeat;
 		background-position: bottom center;
@@ -58,6 +53,7 @@ ul.theme-list {
 			margin-top: 15px;
 		}
 		span {
+			font-weight: bold;
 			position: relative;
 			top: 25px;
 		}

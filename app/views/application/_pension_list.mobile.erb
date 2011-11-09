@@ -1,7 +1,7 @@
 <ul data-role="listview" class="pension-list">
 <% @pensions.each do |pension| %>
   <li>
-    <%= image_tag pension.list_img, :class => 'pension-thumbnail' %>
+    <%= image_tag "http://www.resty.co.kr" + pension.list_img, :class => 'pension-thumbnail' %>
     <a href="<%= url_for pension %>">
       <%= content_tag :h3, pension.title %>
       <%= content_tag :p, pension.addr %>

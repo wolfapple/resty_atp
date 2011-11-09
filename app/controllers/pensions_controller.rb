@@ -2,18 +2,18 @@
 class PensionsController < ApplicationController
   def index
     # get area and spot
-    if params[:area_id]
-      @area = Area.find(params[:area_id])
-      @spots = @area.spots
-      @pensions = @area.pensions
-    elsif params[:sub_area_id]
+    if !params[:sub_area_id].blank?
       @sub_area = SubArea.find(params[:sub_area_id])
       @area = @sub_area.area
       @spots = @sub_area.spots
       @pensions = @sub_area.pensions
+    elsif !params[:area_id].blank?
+      @area = Area.find(params[:area_id])
+      @spots = @area.spots
+      @pensions = @area.pensions
     end
     # get spot
-    if params[:spot_id]
+    if !params[:spot_id].blank?
       @spot = Spot.find(params[:spot_id])
       @sub_area = @spot.sub_area
       @area = @sub_area.area
@@ -23,12 +23,12 @@ class PensionsController < ApplicationController
     # get pensions
     @pensions = Pension unless @pensions
     # get theme
-    if params[:theme_id]
+    if !params[:theme_id].blank?
       @theme = Theme.find(params[:theme_id])
       @pensions = @pensions.joins(:theme_pensions).where('theme_pensions.theme_id' => @theme.id)
     end
     # get price
-    if params[:price_id]
+    if !params[:price_id].blank?
       @price = PriceRange.find(params[:price_id])
       if @price.max == 0
         @pensions = @pensions.where("min_price >= ?", @price.min)
@@ -38,8 +38,12 @@ class PensionsController < ApplicationController
       @pensions = @pensions.where("min_price <> 0")
     end
     # get facilities
-    if params[:facilities]
-      @facilities = params[:facilities].split(',').map {|x| Facility.find(x)}
+    if !params[:facilities].blank?
+      if params[:facilities].kind_of? Array
+        @facilities = params[:facilities].map {|x| Facility.find(x)}
+      else
+        @facilities = params[:facilities].split(',').map {|x| Facility.find(x)}
+      end
       like = @facilities.collect {|x| "facilities like '%#{x.title}%'"}.join(' and ')
       @pensions = @pensions.where(like)
     else
@@ -57,12 +61,7 @@ class PensionsController < ApplicationController
     @total = @pensions.count
     @pensions = @pensions.reorder("#{params[:order_by]} desc") if params[:order_by]
     @pensions = @pensions.page(params[:page]).per(10)
-    if params[:map]
-      @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html(true)}}.to_json
-      render 'map' if params[:map]
-    else
-      @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html_list}}.to_json
-    end
+    @markers = @pensions.collect {|x| {:latitude => x.latitude, :longitude => x.longitude, :html => x.html_list}}.to_json
   end
   
   def show

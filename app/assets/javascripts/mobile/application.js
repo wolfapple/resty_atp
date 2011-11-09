@@ -6,30 +6,28 @@
 //
 //= require_tree .
 $(document).ready(function() {
-  $('#search_input').keydown(function() {
-    if(event.keyCode == '13') {
-      if(!$('#search_input').val()) {
-        alert('검색어를 입력해 주세요.');
-      }
-      else {
-        addr = $('#search_input').val();
-        key = 'SCZCvtrV34ErTv2a2ZdLauxFfsqApLenIVjl3Y.JdtAiB36Njp4Pv9VXHnbQ9fkNMg--'
-        $.getJSON('http://kr.open.gugi.yahoo.com/service/poi.php?callback=?',
-          {appid:key, q:addr.replace('펜션', ''), encoding:'utf-8', output:'json', results:1},
-          function(data) {
-            if(data.ResultSet.head.Error == 0 && data.ResultSet.head.Found > 0) {
-              $('#address').val(addr);
-              $('#longitude').val(data.ResultSet.locations.item[0].longitude);
-              $('#latitude').val(data.ResultSet.locations.item[0].latitude);
-              $('#search_box form').submit();
-            }
-            else {
-              $('#address').val(addr);
-              $('#search_box form').submit();
-            }
-          }
-        );
-      }
-    }
-  });
+	//검색버튼
+	$('#search-btn').click(function() {
+		$('#search-bar').slideToggle();
+	});
+	$('#search-form').submit(function() {
+		event.preventDefault();
+		addr = $('#search-input').val();
+		if(!addr) {
+	  	alert('검색어를 입력해 주세요.');
+	  }
+		else {
+			key = 'SCZCvtrV34ErTv2a2ZdLauxFfsqApLenIVjl3Y.JdtAiB36Njp4Pv9VXHnbQ9fkNMg--'
+			$.getJSON('http://kr.open.gugi.yahoo.com/service/poi.php?callback=?',
+				{appid:key, q:addr.replace('펜션', ''), encoding:'utf-8', output:'json', results:1},
+				function(data) {
+					if(data.ResultSet.head.Error == 0 && data.ResultSet.head.Found > 0) {
+						$('#longitude-hidden').val(data.ResultSet.locations.item[0].longitude);
+						$('#latitude-hidden').val(data.ResultSet.locations.item[0].latitude);
+					}
+				}
+			);
+			this.submit();
+		}
+	});
 });
