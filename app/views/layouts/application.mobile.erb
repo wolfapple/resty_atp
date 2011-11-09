@@ -25,9 +25,7 @@
   <div data-role="page" data-add-back-btn="true" data-back-btn-text="이전">
     <% unless params[:controller] == "main" %>
     <div id="header" data-role="header" data-theme="r">
-      <div class="align-center">
-        <%= link_to image_tag('mobile/header_logo.png'), root_url %>
-      </div>
+      <h1><%= header %></h1>
     	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :onclick => "$('#search-bar').slideToggle('fast');" %>
     </div>
     <% end %>
@@ -44,9 +42,9 @@
       <div class="align-center">
         <%= link_to 'PC화면', root_url(:mobile => 0), 'data-role' => 'button', 'data-ajax' => false %>
         <% if current_user %>
-          <%= link_to '로그아웃', :logout, 'data-role' => 'button' %>
+          <%= link_to '로그아웃', :logout, 'data-role' => 'button', 'data-ajax' => false %>
         <% else %>
-          <%= link_to '페이스북 로그인', auth_at_provider_path(:provider => :facebook), 'data-role' => 'button' %>
+          <%= link_to '페이스북 로그인', auth_at_provider_path(:provider => :facebook), 'data-role' => 'button', 'data-ajax' => false %>
         <% end %>
       </div>
     </div>

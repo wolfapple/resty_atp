@@ -7,9 +7,8 @@
       <%= content_tag :p, pension.addr %>
       <% facilities = pension.facilities ? pension.facilities.split(',') : [] %>
       <%= content_tag :p, (pension.themes.collect {|x| x.title} + facilities).uniq.join(',') %>
-      <%#= content_tag :span, "#{pension.like_count}", :class => 'ui-li-count' %>
+      <%= content_tag :span, "#{pension.coupon.disrate}% 할인중", :class => 'ui-li-count' if pension.coupon %>
     </a>
-    <%#= image_tag('like_resty.png', :width => '20px', :class => 'like-count') %>
   </li>
 <% end %>
 <%= content_tag :li, '펜션이 존재하지 않습니다.', :class => 'align-center' if @pensions.length == 0 %>

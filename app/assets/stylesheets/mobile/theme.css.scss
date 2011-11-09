@@ -15,6 +15,10 @@ hr.green {
 	background: #1f7c56;
 	margin: 0px;
 }
+.ui-bar-r {
+	color: #fff;
+	text-shadow: 0 /*{a-bup-shadow-x}*/ -1px /*{a-bup-shadow-y}*/ 1px /*{a-bup-shadow-radius}*/ #5da186 /*{a-bup-shadow-color}*/;
+}
 .ui-btn-up-r {
 	border: 1px solid 		#2a9a72 /*{a-bup-border}*/;
 	background: 			#1d7351 /*{a-bup-background-color}*/;

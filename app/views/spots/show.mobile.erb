@@ -6,7 +6,7 @@
   <tbody>
     <tr>
       <td class="addr-btn"><%= link_to @spot.addr, "http://maps.google.com/maps?q=#{@spot.addr}@#{@spot.latitude},#{@spot.longitude}", 'data-role' => 'button' %></td>
-      <td class="phone-btn"><%= link_to raw("전화걸기<hr>#{@spot.phone}"), "tel:#{@spot.phone.gsub('-','')}", 'data-role' => 'button', 'data-theme' => 'r' %></td>
+      <td class="phone-btn"><%= link_to raw("전화걸기<hr>#{@spot.phone}"), "tel:#{@spot.phone.gsub('-','') unless @spot.phone.blank?}", 'data-role' => 'button', 'data-theme' => 'r' %></td>
     </tr>
   </tbody>
 </table>

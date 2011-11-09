@@ -9,6 +9,14 @@ module ApplicationHelper
     end
   end
   
+  def header
+    if @title.nil?
+      link_to image_tag('mobile/header_logo.png'), root_url
+    else
+      content_tag :span, @title
+    end
+  end
+  
   def merge_facility(id)
     if params[:facilities]
       params.merge(:facilities => params[:facilities].split(',').push(id).join(','))

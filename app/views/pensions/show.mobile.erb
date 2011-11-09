@@ -4,7 +4,7 @@
 <div id="show-info" data-role="collapsible-set" data-theme="c" data-content-theme="d">
   <div data-role="collapsible" data-collapsed="false">
     <h3>시설</h3>
-    <p><%= @pension.facilities.split(',').join(', ') %></p>
+    <p><%= @pension.facilities.split(',').join(', ') unless @pension.facilities.blank? %></p>
   </div>
   <div data-role="collapsible">
     <h3>테마</h3>
@@ -15,11 +15,30 @@
     <p><%= @pension.min_price / 10000 %>만원 ~ <%= @pension.max_price / 10000%>만원</p>
   </div>
 </div>
+<% if @coupon %>
+<div class="ui-bar">
+  <h4><%= @coupon.provider %> 진행중</h4>
+</div>
+<ul data-role="listview" class="pension-list coupon-info">
+  <hr class="green">
+  <li>
+    <%= image_tag @coupon.image, :class => 'pension-thumbnail' %>
+    <a href="<%= @coupon.link %>" target="_blank">
+      <%= content_tag :h3, @coupon.title %>
+      <%= content_tag :p, "#{@coupon.start_at.to_date} ~ #{(@coupon.end_at-1).to_date}" %>
+      <span class="org_price"><%= number_with_delimiter @coupon.org_price %>원</span>
+      <span class="dis_price"><%= number_with_delimiter @coupon.dis_price %>원</span>
+      <%= content_tag :span, "#{@coupon.disrate}% 할인중", :class => 'ui-li-count' %>
+    </a>
+  </li>
+  <hr class="green">
+</ul>
+<% end %>
 <table id="show-btn">
   <tbody>
     <tr>
       <td class="addr-btn"><%= link_to @pension.addr, "http://maps.google.com/maps?q=#{@pension.addr}@#{@pension.latitude},#{@pension.longitude}", 'data-role' => 'button' %></td>
-      <td class="phone-btn"><%= link_to raw("전화걸기<hr>#{@pension.mobile}"), "tel:#{@pension.mobile.gsub('-','')}", 'data-role' => 'button', 'data-theme' => 'r' %></td>
+      <td class="phone-btn"><%= link_to raw("전화걸기<hr>#{@pension.mobile}"), "tel:#{@pension.mobile.gsub('-','') unless @pension.mobile.blank?}", 'data-role' => 'button', 'data-theme' => 'r' %></td>
     </tr>
   </tbody>
 </table>
