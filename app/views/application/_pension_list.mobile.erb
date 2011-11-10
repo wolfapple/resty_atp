@@ -1,13 +1,13 @@
 <ul data-role="listview" class="pension-list">
 <% @pensions.each do |pension| %>
   <li>
-    <%= image_tag "http://www.resty.co.kr" + pension.list_img, :class => 'pension-thumbnail' %>
+    <%= image_tag pension.list_img, :class => 'pension-thumbnail' %>
     <a href="<%= url_for pension %>">
       <%= content_tag :h3, pension.title %>
       <%= content_tag :p, pension.addr %>
       <% facilities = pension.facilities ? pension.facilities.split(',') : [] %>
       <%= content_tag :p, (pension.themes.collect {|x| x.title} + facilities).uniq.join(',') %>
-      <%= content_tag :span, "#{pension.coupon.disrate}% 할인중", :class => 'ui-li-count' if pension.coupon %>
+      <%= content_tag :span, raw("#{pension.coupon.disrate}% &darr;"), :class => 'ui-li-count' if pension.coupon %>
     </a>
   </li>
 <% end %>

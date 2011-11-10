@@ -7,5 +7,5 @@
     </a>
   </li>
 <% end %>
-<%= content_tag :li, '여행지가 존재하지 않습니다.', :class => 'align-center' if @spots.count == 0 %>
+<%= content_tag :li, '여행지가 존재하지 않습니다.', :class => 'align-center' if @spots.length == 0 %>
 </ul>

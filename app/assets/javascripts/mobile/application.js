@@ -7,8 +7,8 @@
 //= require_tree .
 $(document).ready(function() {
 	//검색버튼
-	$('#search-btn').click(function() {
-		$('#search-bar').slideToggle();
+	$('#search-btn').live('click', function() {
+		$('#search-bar h3').trigger('click');
 	});
 	$('#search-form').submit(function() {
 		event.preventDefault();
@@ -24,10 +24,13 @@ $(document).ready(function() {
 					if(data.ResultSet.head.Error == 0 && data.ResultSet.head.Found > 0) {
 						$('#longitude-hidden').val(data.ResultSet.locations.item[0].longitude);
 						$('#latitude-hidden').val(data.ResultSet.locations.item[0].latitude);
+						$('#search-form').submit();
+					}
+					else {
+						$('#search-form').submit();
 					}
 				}
 			);
-			this.submit();
 		}
 	});
 });

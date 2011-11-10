@@ -5,11 +5,13 @@
     <%= select_tag 'sub_area_id', options_from_collection_for_select(@area.sub_areas, 'id', 'title', @sub_area ? @sub_area.id : ''), :prompt => @sub_area ? '전체' : '지역', :onchange => "$('#pension-nav form').submit()" if @area %>
     <%= select_tag 'spot_id', options_from_collection_for_select(@spots, 'id', 'title', @spot ? @spot.id : ''), :prompt => @spot ? '전체' : '여행지', :onchange => "$('#pension-nav form').submit()" if @spots %>
   </div>
+  <hr class="gray">
   <div class="ui-bar">
     <%= select_tag 'theme_id', options_from_collection_for_select(Theme.all, 'id', 'title', @theme ? @theme.id : ''), :prompt => @theme ? '전체' : '테마', :onchange => "$('#pension-nav form').submit()" %>
     <%= select_tag 'price_id', options_from_collection_for_select(PriceRange.order('min'), 'id', 'to_s', @price ? @price.id : ''), :prompt => @price ? '전체' : '가격대', :onchange => "$('#pension-nav form').submit()" %>
     <%= select_tag 'facilities', options_from_collection_for_select(Facility.all, 'id', 'title', params[:facilities] ? params[:facilities] : ''), :prompt => '시설', :multiple => true, 'data-native-menu' => false %>
   </div>
+  <hr class="gray">
   <div class="ui-bar">
     <%= link_to 'Must Visit', params.merge(:must_visit => true), 'data-role' => 'button', 'data-inline' => 'true' unless params[:must_visit] %>
     <%= link_to 'Must Visit', params.merge(:must_visit => nil), 'data-role' => 'button', 'data-inline' => 'true', 'data-theme' => 'r' if params[:must_visit] %>

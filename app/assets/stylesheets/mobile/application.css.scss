@@ -11,7 +11,20 @@ ul.pension-list {
 ul.coupon-info {
 	margin: 0px 15px;
 	li {
+		height: 82px;
 		margin-top: -1px;
+		h3 {
+			font-size: .9em;
+			margin-top: 0px;
+		}
+		.org_price {
+			font-size: .8em;
+			text-decoration: line-through;
+		}
+		.dis_price {
+			color: red;
+			margin-left: 10px;
+		}
 	}
 	img.pension-thumbnail {
 		height: 90px;
@@ -60,6 +73,9 @@ ul.theme-list {
 	.ui-btn {
 		margin-top: 15px;
 	}
+}
+#search-bar {
+	margin: 0px;
 }
 #footer {
 	border: none;
@@ -145,12 +161,4 @@ ul.theme-list {
 	.ui-right {
 		float: right;
 	}
-}
-.org_price {
-	font-size: .8em;
-	text-decoration: line-through;
-}
-.dis_price {
-	color: red;
-	margin-left: 10px;
 }

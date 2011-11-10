@@ -21,20 +21,28 @@
   </script>
 </head>
 <body>
-  <div data-role="page" data-add-back-btn="true" data-back-btn-text="이전">
+  <div data-role="page">
     <% unless params[:controller] == "main" %>
     <div id="header" data-role="header" data-theme="r">
+      <% if request.headers['referer'].nil? %>
+        <%= link_to 'home', root_url, 'data-icon' => 'home' %>
+      <% else %>
+        <%= link_to '이전', :back, 'data-icon' => 'arrow-l' %>
+      <% end %>
       <div class="align-center"><%= header %></div>
     	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :id => 'search-btn' %>
     </div>
-    <% end %>
-    <div id="search-bar" class="ui-bar" style="display:none">
+    <div id="search-bar" data-role="collapsible">
+      <h3 style="display:none;">click</h3>
+      <div>
       <%= form_tag search_result_path, :method => :post, 'data-ajax' => false, :id => 'search-form' do %>
         <%= hidden_field_tag 'longitude', nil, :id => 'longitude-hidden' %>
         <%= hidden_field_tag 'latitude', nil, :id => 'latitude-hidden' %>
         <input type="search" name="address" id="search-input" placeholder="지역,펜션,여행지명으로 검색하세요." />
       <% end %>
+      </div>
     </div>
+    <% end %>
     <%= yield %>
     <div id="footer" data-role="footer" data-theme="r">
       <div class="align-center">

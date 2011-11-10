@@ -22,13 +22,12 @@
 <ul data-role="listview" class="pension-list coupon-info">
   <hr class="green">
   <li>
-    <%= image_tag @coupon.image, :class => 'pension-thumbnail' %>
     <a href="<%= @coupon.link %>" target="_blank">
+      <%= image_tag @coupon.image, :class => 'pension-thumbnail' %>
       <%= content_tag :h3, @coupon.title %>
       <%= content_tag :p, "#{@coupon.start_at.to_date} ~ #{(@coupon.end_at-1).to_date}" %>
       <span class="org_price"><%= number_with_delimiter @coupon.org_price %>원</span>
       <span class="dis_price"><%= number_with_delimiter @coupon.dis_price %>원</span>
-      <%= content_tag :span, "#{@coupon.disrate}% 할인중", :class => 'ui-li-count' %>
     </a>
   </li>
   <hr class="green">
