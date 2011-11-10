@@ -94,7 +94,6 @@ ul.theme-list {
 #main-bg {
 	background: #228960;
 	.content {
-		overflow: hidden;
 		background: url('/assets/mobile/main_bg.png');
 		background-repeat: no-repeat;
 		background-position: center center;
@@ -103,12 +102,13 @@ ul.theme-list {
 		img {
 			width: 200px;
 		}
-		margin: 20px 0;
+		padding-top: 20px;
 	}
 	#main-btn {
 		width: 80%;
 		text-align: center;
-		margin: 30px auto;
+		margin: 0px auto;
+		padding-bottom: 30px;
 		td {
 			width: 50%;
 		}
