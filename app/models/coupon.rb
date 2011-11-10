@@ -53,7 +53,13 @@ class Coupon < ActiveRecord::Base
   
   def self.pension_matching(coupons)
     coupons.each do |coupon|
-      unless Coupon.find_by_link_and_is_valid(coupon[:link], true)
+      c = find_by_link coupon[:link]
+      if c
+        coupon.delete :addr
+        coupon.delete :phone
+        coupon.delete :shop_name
+        c.update_attributes(coupon)
+      else
         title = coupon[:shop_name].split(' ').last.gsub('펜션', '').gsub('팬션', '').gsub(/\P{Word}/u, '')
         like = title[0..2].strip
         rlike = title[-3..-1] ? title[-3..-1] : title
@@ -72,8 +78,7 @@ class Coupon < ActiveRecord::Base
         coupon.delete :phone
         coupon.delete :shop_name
         coupon[:pension_id] = pension.id unless pension.nil?
-        c = self.find_or_create_by_link coupon[:link]
-        c.update_attributes(coupon) unless c.is_valid
+        create(coupon)
       end
     end
   end
