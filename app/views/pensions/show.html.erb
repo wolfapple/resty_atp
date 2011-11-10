@@ -44,7 +44,11 @@
         <div id="pension-info-phone"><%= @pension.mobile %></div>
         <%= content_tag :span, "#{@pension.coupon.disrate}%", :class => 'discount-mark' if @coupon %>
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
-        <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' if @pension.rooms.count > 0 %>
+        <% if @pension.rooms.count > 0 %>
+          <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' %>
+        <% elsif !@pension.room_table.blank? %>
+          <%= link_to content_tag(:div, '', :id => 'pension-info-room'), @pension.room_table.url, :class => 'room_btn' %>
+        <% end %>
       </div>
       <div style="clear:both;"></div>
     </div>

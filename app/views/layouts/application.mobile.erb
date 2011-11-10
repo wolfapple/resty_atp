@@ -25,9 +25,9 @@
     <% unless params[:controller] == "main" %>
     <div id="header" data-role="header" data-theme="r">
       <% if request.headers['referer'].nil? %>
-        <%= link_to 'home', root_url, 'data-icon' => 'home' %>
+        <%= link_to 'home', root_url, 'data-icon' => 'home', 'data-transition' => 'flip' %>
       <% else %>
-        <%= link_to '이전', :back, 'data-icon' => 'arrow-l' %>
+        <%= link_to '이전', :back, 'data-icon' => 'arrow-l', 'data-direction' => 'reverse' %>
       <% end %>
       <div class="align-center"><%= header %></div>
     	<%= link_to '검색', '#', 'data-icon' => 'search', 'data-iconpos' => 'left', :class => 'ui-btn-right', :id => 'search-btn' %>

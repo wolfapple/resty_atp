@@ -50,7 +50,7 @@ Rails.application.config.sorcery.configure do |config|
   # --- user config ---
   config.user_config do |user|
     # -- core --
-    user.username_attribute_name = :email                                        # change default username
+    user.username_attribute_names = :email                                        # change default username
                                                                                       # attribute, for example, 
                                                                                       # to use :email as the login.
                                                                                       

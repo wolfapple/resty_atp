@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
       session[:mobile_param] == "1"
     else
       request.user_agent =~ /Mobile|webOS/
-      false
     end
   end
   

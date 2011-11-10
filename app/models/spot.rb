@@ -15,7 +15,7 @@ class Spot < ActiveRecord::Base
   
   default_scope order('pensions_count desc')
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
-  scope :main, where(:is_main => true)
+  scope :main, reorder('rand()').limit(8)
   
   def pensions
     Pension.near([self.latitude, self.longitude], 10, {:units => :km})
