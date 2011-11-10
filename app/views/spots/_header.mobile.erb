@@ -1,10 +1,7 @@
-<div class="ui-bar">
-	<%= select('area', 'id', Area.all.collect {|x| [x.title, area_spots_path(x, params.merge(:sub_area_id => nil))]},
-	  {:prompt => "지역", :selected => @area ? area_spots_path(@area, params.merge(:sub_area_id => nil)) : ''},
-	  {:onchange => "document.location.href = this.value"}) %>
-	<%= select('sub_area', 'id', @area.sub_areas.collect {|x| [x.title, sub_area_spots_path(x, params.merge(:area_id => nil))]},
-	  {:prompt => "지역", :selected => @sub_area ? sub_area_spots_path(@sub_area, params.merge(:area_id => nil)) : ''},
-	  {:onchange => "document.location.href = this.value"}) if @area %>
-	<%#= link_to '지도보기', params.merge(:map => true) %>
+<div id="spot-nav" class="ui-bar">
+  <%= form_tag spots_path, :method => :get, 'data-ajax' => false do %>
+    <%= select_tag 'area_id', options_from_collection_for_select(Area.all, 'id', 'title', @area ? @area.id : ''), :prompt => @area ? '전체' : '지역', :onchange => "$('#sub_area_id').val('');$('#spot-nav form').submit()" %>
+    <%= select_tag 'sub_area_id', options_from_collection_for_select(@area.sub_areas, 'id', 'title', @sub_area ? @sub_area.id : ''), :prompt => @sub_area ? '전체' : '지역', :onchange => "$('#spot-nav form').submit()" if @area %>
+	<% end %>
 </div>
 <hr class="green">

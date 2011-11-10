@@ -1,13 +1,13 @@
 # -*- encoding : utf-8 -*-
 class SpotsController < ApplicationController
   def index
-    if params[:area_id]
-      @area = Area.find(params[:area_id])
-      @spots = @area.spots
-    elsif params[:sub_area_id]
+    if !params[:sub_area_id].blank?
       @sub_area = SubArea.find(params[:sub_area_id])
       @area = @sub_area.area
       @spots = @sub_area.spots
+    elsif !params[:area_id].blank?
+      @area = Area.find(params[:area_id])
+      @spots = @area.spots
     else
       @spots = Spot.all
     end
