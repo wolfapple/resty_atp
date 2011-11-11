@@ -99,7 +99,6 @@
 		ul {
 			list-style-type: none;
 			list-style-position: outside;
-			margin-top: 5px;
 			li {
 				margin-left: -15px;
 				height: 25px;
@@ -136,6 +135,8 @@
 		}
 		.notice {
 			height: 100px;
+			margin-top: 15px;
+			margin-bottom: 0px;
 		}
 		.discount {
 			margin-top: 15px;
