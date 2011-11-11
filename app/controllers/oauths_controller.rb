@@ -3,7 +3,11 @@ class OauthsController < ApplicationController
   skip_before_filter :require_login
   
   def oauth
-    login_at(params[:provider])
+    if mobile_device?
+      login_at(params[:provider], :mobile => true)
+    else
+      login_at(params[:provider])
+    end
   end
 
   def callback

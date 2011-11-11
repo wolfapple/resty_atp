@@ -22,10 +22,9 @@ namespace :resty do
   desc 'update like count'
   task :get_like_count => :environment do
     require 'open-uri'
-    require 'json'
     Pension.all.each do |pension|
-      result = JSON.parse(open("https://graph.facebook.com/http://www.resty.co.kr/pensions/#{pension.id}").read)
-      pension.update_attribute :like_count, result['likes'] + result['shares']
+      doc = Nokogiri::XML(open("https://api.facebook.com/method/fql.query?query=select%20total_count%20from%20link_stat%20where%20url=%22http://www.resty.co.kr/pensions/#{pension.id}%22"))
+      pension.update_attribute :like_count, doc.css('total_count').inner_text.to_i
     end
   end
   

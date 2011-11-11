@@ -61,7 +61,7 @@
 	width: 361px;
 	height: 462px;
 	&.tab1 {
-		background-image: url("/assets/resty_focus_bg.png");
+		background-image: url("/assets/resty_focus_bg2.png");
 	}
 	&.tab2 {
 		background-image: url("/assets/activities_bg.png");
@@ -99,7 +99,7 @@
 		ul {
 			list-style-type: none;
 			list-style-position: outside;
-			margin-top: 15px;
+			margin-top: 5px;
 			li {
 				margin-left: -15px;
 				height: 25px;
@@ -145,10 +145,15 @@
 			margin-top: 10px;
 			padding-left: 10px;
 		}
+		.coupon-title {
+			position: relative;
+			top: 10px;
+			left: 15px;
+		}
 		.more-coupon {
 			position: relative;
 			top: 5px;
-			left: 260px;
+			left: 110px;
 		}
 	}
 	#activities {

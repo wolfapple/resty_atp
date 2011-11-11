@@ -42,7 +42,7 @@
   <div class="box_footer"></div>
 </div>
 <div class="coupon-banner">
-  <%= link_to image_tag('social_com_button.png'), pensions_path(params.merge(:coupon => true)) %>
+  <%= link_to image_tag('social_com_button.png', :alt => '펜션 소셜커머스'), pensions_path(params.merge(:coupon => true)) %>
 </div>
 <div class="must_visit_banner">
   <a href="<%= pensions_path(params.merge(:must_visit => true)) %>">

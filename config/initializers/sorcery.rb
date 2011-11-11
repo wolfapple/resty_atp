@@ -182,3 +182,22 @@ Rails.application.config.sorcery.configure do |config|
   config.user_class = "User"                                                          # define which model authenticates
                                                                                       # with sorcery.
 end
+
+# external mobile
+module Sorcery
+  module Controller
+    module Submodules
+      module External
+        module InstanceMethods
+          protected
+          def login_at(provider, args = {})
+            @provider = Config.send(provider)
+            url = @provider.login_url(params,session)
+            url += '&display=touch' if args[:mobile]
+            redirect_to url if @provider.has_callback?
+          end
+        end
+      end
+    end
+  end
+end
