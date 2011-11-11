@@ -18,6 +18,7 @@ class Coupon < ActiveRecord::Base
     coupons += self.make_hash("http://www.socialmanager.co.kr/Xml/Output/coupen/couponmoa.ga", '쿠펜')
     coupons += self.make_hash("http://www.moapanda.com/xml/couponMoa.php", "모아판다")
     coupons += self.make_hash("http://toursns.com/couponmoa.php", "소셜커머스여행")
+    coupons += self.make_hash("http://www.dealnow.co.kr/front.php/meta/couponmoa", "딜나우")
     coupons.compact!
     self.pension_matching(coupons)
   end
