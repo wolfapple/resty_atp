@@ -24,7 +24,7 @@
   <div data-role="page">
     <% unless params[:controller] == "main" %>
     <div id="header" data-role="header" data-theme="r">
-      <% if request.headers['referer'].nil? %>
+      <% if request.headers['referer'].nil? or request.headers['referer'].split('/')[2] != request.env['HTTP_HOST'] %>
         <%= link_to 'home', root_url, 'data-icon' => 'home', 'data-transition' => 'flip' %>
       <% else %>
         <%= link_to '이전', :back, 'data-icon' => 'arrow-l', 'data-direction' => 'reverse' %>

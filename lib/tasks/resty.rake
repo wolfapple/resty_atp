@@ -219,6 +219,7 @@ namespace :resty do
       pension.increment! :ranking, pension.foreignlanguage.to_i if [1, 3, 5, -3, -5].include? pension.foreignlanguage.to_i
       pension.decrement! :ranking if pension.url and (pension.url.index('blog') or pension.url.index('cafe') or pension.url.index('visitkorea') or pension.url.index('huepension') or pension.url.index('kbs1'))
       pension.decrement! :ranking if pension.mobile.blank?
+      pension.increment! :ranking, 5 unless pension.thumbnail.blank?
       pbar.inc
     end
     pbar.finish
