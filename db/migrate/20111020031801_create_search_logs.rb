@@ -3,6 +3,7 @@ class CreateSearchLogs < ActiveRecord::Migration
   def change
     create_table :search_logs do |t|
       t.string :input
+      t.string :remote_ip
       t.integer :count, :default => 0
 
       t.timestamps

@@ -1,7 +1,7 @@
 # -*- encoding : utf-8 -*-
 class SearchController < ApplicationController
   def result
-    SearchLog.create(:input => params[:address])
+    SearchLog.create(:input => params[:address], :remote_ip => request.env['REMOTE_ADDR'])
     if params[:latitude].blank? or params[:longitude].blank?
       like = "%#{params[:address]}%"
       @pensions = Pension.where("title like ?", like)
