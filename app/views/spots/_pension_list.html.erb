@@ -37,7 +37,11 @@
   	<div class="right">
   		<div class="pension-addr" title="<%= pension.addr %>"><%= pension.short_addr %></div>
   		<div class="pension-price">
-  		  <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
+  		  <% if pension.min_price == 0 %>
+  		    사이트 확인 가능
+  		  <% else %>
+  		    <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
+  		  <% end %>
   		</div>
   		<div class="pension-review">
   			<span class="pension-review-count"><%= pension.comments_count %></span>
