@@ -67,7 +67,7 @@ class Pension < ActiveRecord::Base
   
   def html
     "<h3>#{self.title}</h3>
-    <img src='http://www.resty.co.kr#{self.list_img}' class='thumbnail'>
+    <img src='#{self.list_img}' class='thumbnail'>
     <div><p><img src='/assets/address_icon.png'>&nbsp;#{self.addr}</p>
     <p><img src='/assets/phone_icon.png'>&nbsp;#{self.mobile}</p>
     <p class='link'><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a></p></div>"
