@@ -100,7 +100,6 @@
 			list-style-type: none;
 			list-style-position: outside;
 			li {
-				margin-left: -15px;
 				height: 25px;
 				padding-left: 10px;
 				&.odd {
@@ -137,10 +136,14 @@
 			height: 100px;
 			margin-top: 15px;
 			margin-bottom: 0px;
+			margin-left: 0px;
+			padding-left: 30px;
 		}
 		.discount {
 			margin-top: 15px;
 			height: 150px;
+			margin-left: 0px;
+			padding-left: 30px;
 		}
 		.fb-like {
 			margin-top: 10px;

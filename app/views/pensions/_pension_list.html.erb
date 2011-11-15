@@ -17,15 +17,16 @@
 
 <div class="list">
 <% @pensions.each do |pension| %>
-  <div id="pension-<%= pension.id %>" class="pension-item"><a name="pension-<%= pension.id %>"></a>
+  <div class="line-dotted"></div>
+  <div id="pension-<%= pension.id %>" class="pension-item">
+    <a name="pension-<%= pension.id %>"></a>
     <%= content_tag :span, 'must-visit-mark', :class => 'must-visit-mark' if params[:must_visit] or pension.must_visit %>
     <%= content_tag :span, "#{pension.coupon.disrate}%", :class => 'discount-mark' if pension.coupon %>
-  	<div class="line-dotted"></div>
   	<div class="left">
-  		<div class="pension-thumbnail">
-  		  <%= link_to image_tag(pension.list_img), pension %>
-  		</div>
-  		<div class="pension-info">
+      <div class="pension-thumbnail">
+        <%= link_to image_tag(pension.list_img), pension %>
+      </div>
+      <div class="pension-info">
         <div class="pension-name">
           <%= link_to pension.title, pension %>
           <% if pension.like_count > 0 %>
@@ -45,24 +46,22 @@
         <% unless pension.facilities.blank? %>
           <div class="pension-faci"><strong>시설:</strong> <%= pension.facilities %></div>
         <% end %>
-  		</div>
+      </div>
   	</div>
   	<div class="right">
-  		<div class="pension-addr" title="<%= pension.addr %>"><%= pension.short_addr %></div>
-  		<div class="pension-price">
-  		  <% if pension.min_price == 0 %>
-  		    사이트 확인 가능
-  		  <% else %>
-  		    <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
-  		  <% end %>
-  		</div>
-  		<div class="pension-review">
+      <div class="pension-addr" title="<%= pension.addr %>"><%= pension.short_addr %></div>
+      <div class="pension-price">
+        <% if pension.min_price == 0 %>
+          사이트 확인 가능
+        <% else %>
+          <%= number_with_delimiter(pension.min_price) %>원 ~ <%= number_with_delimiter(pension.max_price) %>원
+        <% end %>
+      </div>
+      <div class="pension-review">
         <span class="pension-review-count"><%= pension.comments_count %></span>
-  			<%= link_to '리뷰/후기', pension %>
-  			<span class="pension-detail">
-  				<%= link_to '상세보기', pension %>
-  			</span>
-  		</div>
+        <span class="review-btn"><%= link_to '리뷰/후기', pension %></span>
+        <span class="detail-btn"><%= link_to '상세보기', pension %></span>
+      </div>
   	</div>
   </div>
   <% unless pension.longitude.blank? or pension.latitude.blank? %>

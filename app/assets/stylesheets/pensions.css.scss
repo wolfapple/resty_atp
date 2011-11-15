@@ -2,10 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #sidebar {
-	position: relative;
 	float: left;
 	width: 228px;
-	margin: 22px 27px 0px 10px;
+	padding: 22px 27px 0px 10px;
 	h3 {
 		height: 46px;
 		text-indent: -5000px;
@@ -31,10 +30,10 @@
 		}
 	}
 	.must_visit_banner {
-		position: relative;
 		background-image: url("/assets/list_side_must_visit_bg.png");
 		height: 183px;
 		margin: 20px 0px 30px 0px;
+		position: relative;
 		h3 {
 			position: absolute;
 			background-image: url("/assets/list_side_must_visit_watermark.png");
@@ -57,6 +56,7 @@
 	}
 	.box_footer {
 		background-image: url("/assets/list_side_box_footer.png");
+		background-repeat: no-repeat;
 		height: 8px;
 	}
 	ul {
@@ -242,15 +242,11 @@
 	  padding-left: 5px;
 	}
 	.header {
-		position: relative;
-		float: right;
 		width: 707px;
 		margin: 37px 10px 0px 0px;
 		.crumbs {
-			float: left;
 			background-image: url("/assets/list_navigator_bg_1.png");
 			background-repeat: no-repeat;
-			width: 707px;
 			height: 38px;
 			line-height: 38px;
 			padding-left: 20px;
@@ -296,7 +292,6 @@
 			clear: both;
 			background-image: url("/assets/list_navigator_bg_1.png");
 			background-repeat: no-repeat;
-			width: 707px;
 			height: 38px;
 			line-height: 38px;
 			padding-left: 15px;
@@ -417,8 +412,6 @@
 		display: none;
 	}
 	#pension-list {
-		position: relative;
-    float: right;
     width: 707px;
     margin: 10px 10px 50px 0px;
 		a:hover {
@@ -487,20 +480,57 @@
 				margin-top: 15px;
 			}
 			.left {
-				position: absolute;
 				float: left;
 				width: 470px;
 				height: 150px;
 			}
 			.right {
-				position: absolute;
 				float: right;
 				background-image: url("/assets/list_pension_info_bg.png");
 				background-repeat: no-repeat;
-				width: 237px;
-				height: 150px;
-				right: 0px;
-				margin-top: 16px;
+				width: 230px;
+				height: 140px;
+				margin-top: 10px;
+				.pension-addr {
+					background-image: url("/assets/list_pension_icon_address.png");
+					background-repeat: no-repeat;
+					margin-top: 5px;
+					margin-left: 20px;
+					padding-left: 30px;
+					padding-top: 5px;
+				}
+				.pension-price {
+					background-image: url("/assets/list_pension_icon_price.png");
+					background-repeat: no-repeat;
+					margin-top: 15px;
+					margin-left: 22px;
+					padding-left: 30px;
+					padding-top: 5px;
+				}
+				.pension-review {
+					background-image: url("/assets/list_pension_icon_review.png");
+					background-repeat: no-repeat;
+					margin-top: 15px;
+					margin-left: 22px;
+					span.pension-review-count {
+						font-weight: bold;
+						text-align: center;
+						margin-left: 5px;
+					}
+					span.review-btn {
+						position: relative;
+						top: 15px;
+						padding-left: 15px;
+					}
+					span.detail-btn {
+						background-image: url("/assets/list_pension_icon_detail.png");
+						background-repeat: no-repeat;
+						margin: 4px 0px 0px 100px;
+						width: 100px;
+						height: 25px;
+						padding: 6px 0px 0px 30px;
+					}
+				}
 			}
 			.pension-thumbnail {
 				position: relative;
@@ -546,47 +576,6 @@
 				.pension-faci {
 					margin: 5px;
 				}
-			}
-			.pension-addr {
-				background-image: url("/assets/list_pension_icon_address.png");
-				background-repeat: no-repeat;
-				margin: 0px 20px 0px 25px;
-				height: 25px;
-				padding: 6px 0px 0px 35px;
-			}
-			.pension-price {
-				background-image: url("/assets/list_pension_icon_price.png");
-				background-repeat: no-repeat;
-				margin: 10px 20px 0px 25px;
-				height: 25px;
-				padding: 6px 0px 0px 35px;
-			}
-			.pension-review {
-				background-image: url("/assets/list_pension_icon_review.png");
-				background-repeat: no-repeat;
-				margin: 10px 20px 0px 25px;
-				width: 200px;
-				height: 35px;
-			}
-			.pension-review > span.pension-review-count {
-				position: absolute;
-				margin: 0px;
-				width: 25px;
-				font-weight: bold;
-				text-align: center;
-			}
-			.pension-review > a {
-				position: absolute;
-				margin: 10px 0px 0px 33px;
-			}
-			.pension-review > span.pension-detail {
-				position: absolute;
-				background-image: url("/assets/list_pension_icon_detail.png");
-				background-repeat: no-repeat;
-				margin: 4px 0px 0px 100px;
-				width: 100px;
-				height: 25px;
-				padding: 6px 0px 0px 30px;
 			}
 		}
 		.line-dotted {
