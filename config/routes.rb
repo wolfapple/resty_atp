@@ -28,6 +28,8 @@ RestyAtp::Application.routes.draw do
     get :update_comments_count, :on => :collection
     get :nearby, :on => :member
     get :map, :on => :member
+    get :blog_posts, :on => :collection
+    get :pension_images, :on => :collection
   end
   resources :spots do
     resources :pensions

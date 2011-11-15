@@ -1,25 +1,34 @@
-<div class="near-pensions-box">
-  <h3>근처의 다른 펜션</h3>
+<div class="pensions-box">
+  <h3 class="nearby"><%= link_to '더보기', nearby_pension_path(@pension) %></h3>
   <% if @near_by_pensions.length == 0 %>
     <div class="no-pensions">10km이내에 펜션이 없습니다!</div>
   <% else %>
     <ul>
     <% @near_by_pensions.each do |pension| %>
       <li>
-        <table class="near-by-pensions">
-          <tr>
-            <td><%= link_to pension.title, pension, :class => 'name' %></td>
-            <td>
-              <% if pension.like_count > 0 %>
-                <span class="like"><%= image_tag('like_resty.png', :width => '20px') %> <%= pension.like_count %></span>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td><span title="<%= pension.addr %>"><%= pension.short_addr %></span></td>
-            <td><%= link_to "#{pension.distance.round(2)}km", pension, :class => 'review' %></td>
-          </tr>
-        </table>
+        <%= link_to image_tag(pension.list_img, :class => 'nearby'), pension %>
+        <div class="pension-info">
+          <%= link_to truncate("[#{pension.sub_area.title}] #{pension.title}", :length => 13), pension %>
+          <div class="distance"><%= pension.distance.round(2) %>km</div>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
+  <div class="footer"></div>
+</div>
+
+<div class="pensions-box">
+  <h3 class="coupon"><%= link_to '더보기', pensions_path(:coupon => true) %></h3>
+  <% if @coupons.count == 0 %>
+    <div class="no-pensions">소셜커머스 진행 펜션이 없습니다!</div>
+  <% else %>
+    <ul>
+    <% @coupons.each do |coupon| %>
+      <li>
+        <%= link_to image_tag(coupon.pension.list_img, :class => 'coupon'), coupon.pension %>
+        <%= content_tag :div, "#{coupon.disrate}%", :class => 'discount-mark' %>
+        <p class="title"><%= link_to truncate("[#{coupon.pension.sub_area.title}] #{coupon.pension.title}", :length => 20), coupon.pension %></p>
       </li>
     <% end %>
     </ul>

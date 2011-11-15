@@ -69,19 +69,39 @@ class PensionsController < ApplicationController
     @title = @pension.title
     @area = @pension.area
     @sub_area = @pension.sub_area
-    @spots = @sub_area.spots
-    @near_by_pensions = @pension.near_by
-    @reviews = @pension.reviews.page(params[:page]).per(5)
+    @near_by_pensions = @pension.near_by(5)
     @blog_search = BlogSearch.new("#{@sub_area.title} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
-    @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(5)
-    #@activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
+    @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(3)
+    @image_search = PensionImage.new("#{@sub_area.title} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
+    @pension_images = Kaminari::paginate_array(@image_search.results).page(params[:page]).per(6)
     @markers = [{:latitude => @pension.latitude, :longitude => @pension.longitude}].to_json
     @coupon = @pension.coupon
+    @coupons = Coupon.ing.order('rand()').limit(5)
+  end
+  
+  def blog_posts
+    @pension = Pension.find(params[:id])
+    @sub_area = @pension.sub_area
+    @blog_search = BlogSearch.new("#{@pension.addr.split(' ')[1][0..-2]} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
+    @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(3)
+  end
+  
+  def pension_images
+    @pension = Pension.find(params[:id])
+    @sub_area = @pension.sub_area
+    @image_search = PensionImage.new("#{@pension.addr.split(' ')[1][0..-2]} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
+    @pension_images = Kaminari::paginate_array(@image_search.results).page(params[:page]).per(6)
   end
   
   def nearby
     @pension = Pension.find(params[:id])
-    @pensions = @pension.near_by
+    point = [@pension.latitude, @pension.longitude]
+    @pensions = Pension.where('id <> ?', @pension.id).near(point, 10, {:units => :km, :order => :distance})
+    @spots = Spot.near(point, 10, {:units => :km, :order => :distance})
+    pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
+    spot_markers = @spots.collect {|x| {:key => "spot-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html, :icon => {:image => 'http://www.google.com/mapfiles/marker_green.png'}}}
+    @results = (pension_markers + spot_markers).to_json
+    render 'search/result'
   end
     
   def update_like_count

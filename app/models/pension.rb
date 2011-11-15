@@ -29,8 +29,12 @@ class Pension < ActiveRecord::Base
     scope "task#{num}", where(:address02 => "task#{num}")
   end
   
-  def near_by
-    Pension.unscoped.where("id <> ?", self.id).near(self, 10, {:units => :km, :order => :distance, :limit => 15})
+  def near_by(limit=nil)
+    if limit.nil?  
+      Pension.unscoped.where("id <> ?", self.id).near(self, 10, {:units => :km, :order => :distance})
+    else
+      Pension.unscoped.where("id <> ?", self.id).near(self, 10, {:units => :km, :order => :distance, :limit => limit})
+    end
   end
   
   def short_addr
@@ -61,12 +65,12 @@ class Pension < ActiveRecord::Base
     end
   end
   
-  def html(mobile=false)
-    if mobile
-      "<h4 style='margin-top: 0px'><a href='/pensions/#{self.id}'>#{self.title}</a></h4>"
-    else
-      "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a>"
-    end
+  def html
+    "<h3>#{self.title}</h3>
+    <img src='http://www.resty.co.kr#{self.list_img}' class='thumbnail'>
+    <div><p><img src='/assets/address_icon.png'>&nbsp;#{self.addr}</p>
+    <p><img src='/assets/phone_icon.png'>&nbsp;#{self.mobile}</p>
+    <p class='link'><a href='/pensions/#{self.id}' target='_blank'>펜션 바로가기</a></p></div>"
   end
   
   def html_list

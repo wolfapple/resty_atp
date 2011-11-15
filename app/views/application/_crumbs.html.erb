@@ -1,0 +1,12 @@
+<div class="crumbs">
+  <%= link_to '전국', pensions_path %>
+	<% if @area %>
+		<span class="delimiter">&nbsp;>&nbsp;</span>
+		<%= link_to @area.title, area_pensions_path(@area) %>
+	<% end %>
+	<% if @sub_area %>
+		<span class="delimiter">&nbsp;>&nbsp;</span>
+		<%= link_to @sub_area.title, sub_area_pensions_path(@sub_area) %>
+	<% end %>
+	<%= content_tag :span, link_to('리스트로 돌아가기', :back), :class => 'back' if params[:controller] == 'pensions' and params[:action] == 'show' and !request.headers['referer'].nil? and request.headers['referer'].split('/')[2] == request.env['HTTP_HOST'] %>
+</div>

@@ -1,0 +1,14 @@
+<div class="title">
+  <%= paginate @blog_reviews, :params => {:action => 'blog_posts'}, :remote => true, :theme => 'ajax' %>
+</div>
+<ul>
+<% @blog_reviews.each do |item| %>
+  <li>
+    <%= link_to raw(truncate_html(item.title, :length => 50, :word_boundary => true)), item.link, :target => :blank %>
+    <p><%= raw item.desc %></p>
+  </li>
+<% end %>
+<% if @blog_reviews.count == 0 %>
+  <li><p class="empty">수집된 블로그 리뷰가 없습니다.</p></li>
+<% end %>
+</ul>

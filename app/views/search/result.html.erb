@@ -6,7 +6,13 @@
     <div class="content">
       <ul>
       <% @pensions.each do |pension| %>
-        <li class="<%= cycle('odd', 'even') %>" data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>"><%= link_to pension.title, pension, :target => '_blank' %><%= " @#{pension.sub_area.title}" if params[:latitude].blank? or params[:longitude].blank? %></li>
+        <li data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>">
+          <%= link_to image_tag("http://www.resty.co.kr"+pension.list_img), pension, :class => 'thumbnail' %>
+          <p>
+            <%= link_to pension.title, pension, :target => '_blank' %>
+            <%= "@#{pension.addr.split(' ')[1][0..-2]}" if (params[:latitude].blank? or params[:longitude].blank?) and params[:controller] == 'search' %>
+          </p>
+        </li>
       <% end %>
       </ul>
     </div>
@@ -25,11 +31,16 @@
   <div class="box_footer"></div>
 </div>
 <div id="search-map">
-  <h1>'<%= params[:address] %>'</h1>
-  <span><%= "인근 펜션과 여행지" if !params[:longitude].blank? and !params[:latitude].blank? %> 검색 결과입니다.</span>
+  <% if @pension %>
+    <h1>'<%= @pension.title %>'</h1>
+    <span>인근 펜션과 여행지 검색 결과입니다.</span>
+  <% else %>
+    <h1>'<%= params[:address] %>'</h1>
+    <span><%= "인근 펜션과 여행지" if !params[:longitude].blank? and !params[:latitude].blank? %> 검색 결과입니다.</span>
+  <% end %>
   <hr>
   <div id="map" style="height:645px"></div>
-  <p><%= link_to 'powered by 야후! 거기', 'http://kr.gugi.yahoo.com/', :target => '_blank' %></p>
+  <p><%= link_to 'powered by 야후! 거기', 'http://kr.gugi.yahoo.com/', :target => '_blank' unless @pension %></p>
 </div>
 
 <script type="text/javascript" charset="utf-8">

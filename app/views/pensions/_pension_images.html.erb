@@ -1,0 +1,13 @@
+<div class="title">
+  <%= paginate @pension_images, :params => {:action => 'pension_images'}, :remote => true, :theme => 'ajax' %>
+</div>
+<ul>
+<% @pension_images.each_with_index do |item, idx| %>
+  <li<%= ' class=last' if (idx+1) % 3 == 0 %>>
+    <%= link_to image_tag(item.thumbnail), item.link, :target => :blank %>
+  </li>
+<% end %>
+<% if @pension_images.count == 0 %>
+  <li class="empty">수집된 이미지가 없습니다.</li>
+<% end %>
+</ul>

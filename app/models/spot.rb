@@ -21,16 +21,19 @@ class Spot < ActiveRecord::Base
     Pension.near([self.latitude, self.longitude], 10, {:units => :km})
   end
     
-  def near_by_pensions
-    Pension.unscoped.near([self.latitude, self.longitude], 10, {:units => :km, :order => :distance, :limit => 15})
+  def near_by_pensions(limit=nil)
+    if limit.nil?
+      Pension.unscoped.near([self.latitude, self.longitude], 10, {:units => :km, :order => :distance})
+    else
+      Pension.unscoped.near([self.latitude, self.longitude], 10, {:units => :km, :order => :distance, :limit => limit})
+    end
   end
   
-  def html(mobile=false)
-    if mobile
-      "<h4 style='margin-top: 0px'><a href='/spots/#{self.id}'>#{self.title}</a></h4>"
-    else
-      "<h3 style='margin-top: 0px'>#{self.title}</h3><a href='/spots/#{self.id}' target='_blank'>여행지 바로가기</a>"
-    end
+  def html
+    "<h3>#{self.title}</h3>
+    <div><p><img src='/assets/address_icon.png'>&nbsp;#{self.addr}</p>
+    <p><img src='/assets/phone_icon.png'>&nbsp;#{self.phone}</p>
+    <p class='link'><a href='/spots/#{self.id}' target='_blank'>여행지 바로가기</a></p></div>"
   end
   
   private

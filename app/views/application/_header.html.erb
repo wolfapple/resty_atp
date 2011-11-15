@@ -1,15 +1,4 @@
-<div class="crumbs">
-  <%= link_to '전국', pensions_path %>
-	<% if @area %>
-		> <%= link_to @area.title, area_pensions_path(@area) %>
-	<% end %>
-	<% if @sub_area %>
-		> <%= link_to @sub_area.title, sub_area_pensions_path(@sub_area) %>
-	<% end %>
-	<% if params[:controller] == 'pensoins' and params[:actoin] == 'index' %>
-	  <span class="count">(<%= number_with_delimiter @total %>개의 펜션)</span>
-	<% end %>
-</div>
+<%= render 'crumbs' %>
 
 <div class="nav">
   <div class="addr1">

@@ -20,10 +20,10 @@ class SpotsController < ApplicationController
     @sub_area = @spot.sub_area
     @spots = @sub_area.spots
     @reviews = @spot.reviews.page(params[:page]).per(5)
-    @near_by_pensions = @spot.near_by_pensions
+    @near_by_pensions = @spot.near_by_pensions(5)
     @pensions = @near_by_pensions[0...10]
-    #@activities = graph.search(@sub_area.title, {:limit => 3}) if current_user
     @markers = [{:latitude => @spot.latitude, :longitude => @spot.longitude}].to_json
+    @coupons = Coupon.ing.order('rand()').limit(5)
   end
   
   def update_like_count

@@ -14,7 +14,7 @@
 
 <div id="main_content">
   <div class="header">
-    <%= render 'header' %>
+    <%= render 'crumbs' %>
   </div>
   <div id="show-content">
     <div class="title">
@@ -98,18 +98,10 @@
     </div>
 
     <div id="blog-review">
-      <div id="blog-review-title"></div>
-      <div id="blog-review-list">
-        <ul>
-        <% @blog_reviews.each do |item| %>
-          <li>
-            <%= link_to raw(truncate_html(item.title, :length => 50, :word_boundary => true)), item.link, :target => :blank %>
-            <p><%= raw item.desc %></p>
-          </li>
-        <% end %>
-        </ul>
-        <%= paginate @blog_reviews %>
-      </div>
+      <%= render 'blog_posts' %>
+    </div>
+    <div id="pension-image">
+      <%= render 'pension_images' %>
     </div>
   </div>
 </div>
