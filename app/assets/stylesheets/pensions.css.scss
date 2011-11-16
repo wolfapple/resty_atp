@@ -816,9 +816,9 @@
 			ul {
 				list-style-type: none;
 				margin: 0px;
+				padding-left: 0px;
 				li {
 					border-bottom: 2px solid #ccc;
-					margin-left: -40px;
 					margin-right: 5px;
 					padding-top: 10px;
 					&:hover {
@@ -849,6 +849,9 @@
 					bottom: 5px;
 				}
 			}
+			p.empty {
+				text-align: center;
+			}
 			ul {
 				list-style-type: none;
 				margin-top: 5px;
@@ -861,10 +864,6 @@
 				margin-bottom: 5px;
 				&.last {
 					margin-right: 0px;
-				}
-				&.empty {
-					text-align: center;
-					width: 350px;
 				}
 				img {
 					width: 110px;

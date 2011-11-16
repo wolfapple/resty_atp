@@ -7,7 +7,7 @@
     <%= link_to image_tag(item.thumbnail), item.link, :target => :blank %>
   </li>
 <% end %>
-<% if @pension_images.count == 0 %>
-  <li class="empty">수집된 이미지가 없습니다.</li>
-<% end %>
 </ul>
+<% if @pension_images.count == 0 %>
+  <p class="empty">수집된 이미지가 없습니다.</p>
+<% end %>
