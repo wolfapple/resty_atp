@@ -4,8 +4,8 @@
 <ul>
 <% @blog_reviews.each do |item| %>
   <li>
-    <%= link_to raw(truncate_html(item.title, :length => 50, :word_boundary => true)), item.link, :target => :blank %>
-    <p><%= raw item.desc %></p>
+    <p class="ellipsis"><%= link_to strip_tags(item.title), item.link, :target => :blank %></p>
+    <p><%= strip_tags item.desc %></p>
   </li>
 <% end %>
 <% if @blog_reviews.count == 0 %>

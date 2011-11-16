@@ -832,6 +832,10 @@
 						&.empty {
 							text-align: center;
 						}
+						&.ellipsis {
+							font-weight: bold;
+							margin-top: 0px;
+						}
 					}
 				}
 			}

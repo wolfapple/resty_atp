@@ -21,6 +21,11 @@ a {
 	text-decoration: none;
 	color: #222;
 }
+.ellipsis {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
 #totalWrapper {
 	width: 3000px;
 	position: relative;

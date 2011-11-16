@@ -118,7 +118,7 @@
     <li class="<%= cycle 'odd', 'even' %>">
       <%= link_to truncate_html("<span>[#{spot.sub_area.title}]</span> #{spot.title}", :length => !spot.is_season ? 20 : 22), spot %>
       (<%= spot.pensions.length %>)
-      <%= content_tag :span, 'season', :class => 'season' if !spot.is_season %>
+      <%= content_tag :span, 'season', :class => 'season' if spot.is_season %>
     </li>
   <% end %>
   </ul>

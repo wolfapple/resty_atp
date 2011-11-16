@@ -41,12 +41,17 @@ class Pension < ActiveRecord::Base
     self.addr.split(' ')[0..2].join(' ')
   end
   
+  def sub_addr
+    self.addr.split(' ')[1][0..-2]
+  end
+  
   def list_img
     if self.thumbnail.url.index('http:/')
       'http://' + self.thumbnail.url.split('http:/')[1]
     else
       self.thumbnail.thumb.url
     end
+    "/assets/thumb_pension_photo_noimage.jpg" if Rails.env == "development"
   end
   
   def show_img
@@ -55,6 +60,7 @@ class Pension < ActiveRecord::Base
     else
       self.thumbnail.url
     end
+    "/assets/thumb_pension_photo_noimage.jpg" if Rails.env == "development"
   end
   
   def og_img
