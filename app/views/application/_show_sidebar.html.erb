@@ -6,9 +6,9 @@
     <ul>
     <% @near_by_pensions.each do |pension| %>
       <li>
-        <%= link_to image_tag(pension.list_img, :class => 'nearby'), pension %>
+        <%= link_to image_tag("http://www.resty.co.kr"+pension.list_img, :class => 'nearby'), pension %>
         <div class="pension-info">
-          <%= link_to truncate("[#{pension.sub_area.title}] #{pension.title}", :length => 13), pension %>
+          <p><%= link_to truncate(pension.title, :length => 12), pension %></p>
           <div class="distance"><%= pension.distance.round(2) %>km</div>
         </div>
       </li>
