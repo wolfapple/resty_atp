@@ -20,7 +20,7 @@
       <h2><%= @spot.title %></h2>
       <div class="fb-like" data-href="http://www.resty.co.kr/spots/<%= @spot.id %>" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
     </div>
-    <div class="line-green"></div>
+    <hr class="line-green">
     <div class="body">
       <div id="spot-info-sum"><%= @spot.description %><p>출처 : 한국관광공사</p></div>
       <div class="right">
@@ -38,7 +38,7 @@
     </div>
     <div id="show-footer">
 	    <%= render 'map' %>
-      <div class="line-green"></div>
+      <hr class="line-green">
     </div>
     <div id="show-review">
       <div id="spot-review-title"></div>

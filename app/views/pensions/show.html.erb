@@ -21,14 +21,17 @@
       <h2><%= @pension.title %></h2>
       <div class="fb-like" data-href="http://www.resty.co.kr/pensions/<%= @pension.id %>" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
     </div>
-    <div class="line-green"></div>
+    <hr class="line-green">
     <div class="body">
       <div class="pension-photo">
         <%= image_tag @pension.show_img %>
       </div>
       <div class="pension-detail">
+        <div id="pension-info-addr"><%= @pension.addr %></div>
         <div id="pension-info-type"><%= @pension.roomstructure %></div>
+        <div id="pension-info-price"><%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원</div>
         <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') unless @pension.facilities.blank? %></div>
+        <%= content_tag :div, "#{@pension.coupon.disrate}%", :class => 'discount-mark' if @coupon %>
         <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>
         <div id="pension-info-url"><%= link_to truncate(@pension.url, :length => 50), @pension.url, :target => '_blank' %></div>
         <div id="pension-info-start">
@@ -37,12 +40,9 @@
             <input type="image" src="/assets/header_searchbox_button.png" id="findway-button" class="<%= 'searchByAddress' if @pension.longitude.blank? %><%= 'searchByGPS' unless @pension.longitude.blank? %>">
           </div>
         </div>
-        <div id="pension-info-addr"><%= @pension.addr %></div>
         <div id="info-gps-x"><%= @pension.longitude %></div>
         <div id="info-gps-y"><%= @pension.latitude %></div>
-        <div id="pension-info-price"><%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원</div>
         <div id="pension-info-phone"><%= @pension.mobile %></div>
-        <%= content_tag :span, "#{@pension.coupon.disrate}%", :class => 'discount-mark' if @coupon %>
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <% if @pension.rooms.count > 0 %>
           <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' %>
@@ -56,7 +56,7 @@
     <!-- 소셜 커머스 -->
     <% if @coupon %>
     <div id="coupon">
-      <div class="line-green"></div>
+      <hr class="line-green">
       <div class="detail">
         <%= link_to image_tag(@coupon.image, :alt => '펜션 소셜커머스'), @coupon.link, :target => '_blank' %>
         <div class="info">
@@ -65,18 +65,18 @@
           <p class="price">
             <span class="org_price"><%= number_with_delimiter @coupon.org_price %>원</span>
             <span class="dis_price"><%= number_with_delimiter @coupon.dis_price %>원</span>
+            <span class="provider"><%= @coupon.provider %> 진행중</span>
           </p>
         </div>
-        <p style="clear:both"></p>
+        <p class="clear"></p>
       </div>
-      <span class="provider"><%= @coupon.provider %> 진행중</span>
-      <div class="line-green"></div>
+      <hr class="line-green">
     </div>
     <% end %>
 
     <div id="show-footer">
   		<%= render 'map' %>
-      <div class="line-green"></div>
+  		<hr class="line-green">
     </div>
     <div id="show-review">
       <div id="pension-review-title"></div>
