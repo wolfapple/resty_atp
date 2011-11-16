@@ -70,9 +70,9 @@ class PensionsController < ApplicationController
     @area = @pension.area
     @sub_area = @pension.sub_area
     @near_by_pensions = @pension.near_by(5)
-    @blog_search = BlogSearch.new("#{@sub_area.title} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
+    @blog_search = BlogSearch.new("#{@pension.addr.split(' ')[1][0..-2]} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(3)
-    @image_search = PensionImage.new("#{@sub_area.title} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
+    @image_search = PensionImage.new("#{@pension.addr.split(' ')[1][0..-2]} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
     @pension_images = Kaminari::paginate_array(@image_search.results).page(params[:page]).per(6)
     @markers = [{:latitude => @pension.latitude, :longitude => @pension.longitude}].to_json
     @coupon = @pension.coupon
