@@ -630,7 +630,6 @@
 					background-image: url("/assets/show_pension_info_type_bg.png");
 					background-repeat: no-repeat;
 					height: 20px;
-					width: 400px;
 					margin-top: 20px;
 					padding: 25px 0px 0px 2px;
 				}
@@ -638,7 +637,6 @@
 					background-image: url("/assets/show_pension_info_faci_bg.png");
 					background-repeat: no-repeat;
 					height: 20px;
-					width: 400px;
 					margin-top: 5px;
 					padding: 25px 0px 0px 2px;
 				}
@@ -646,7 +644,6 @@
 					background-image: url("/assets/show_pension_info_theme_bg.png");
 					background-repeat: no-repeat;
 					height: 20px;
-					width: 400px;
 					margin-top: 5px;
 					padding: 25px 0px 0px 2px;
 				}
@@ -654,7 +651,6 @@
 					background-image: url("/assets/show_pension_sites.png");
 					background-repeat: no-repeat;
 					height: 20px;
-					width: 500px;
 					margin-top: 5px;
 					padding: 25px 0px 0px 2px;
 				}
@@ -806,6 +802,7 @@
 			float: left;
 			width: 350px;
 			margin-top: 30px;
+			margin-bottom: 30px;
 			.title {
 				background-image: url("/assets/blog_header.png");
 				background-repeat: no-repeat;
@@ -839,8 +836,9 @@
 		#pension-image {
 			float: right;
 			width: 350px;
-			margin-left: 7px;
+			padding-left: 7px;
 			margin-top: 33px;
+			margin-bottom: 33px;
 			.title {
 				background-image: url("/assets/image_header.png");
 				background-repeat: no-repeat;

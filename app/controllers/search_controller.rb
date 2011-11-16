@@ -3,9 +3,10 @@ class SearchController < ApplicationController
   def result
     SearchLog.create(:input => params[:address], :remote_ip => request.remote_ip)
     if params[:latitude].blank? or params[:longitude].blank?
-      like = "%#{params[:address]}%"
-      @pensions = Pension.where("title like ?", like)
-      @spots = Spot.where("title like ?", like)
+      addr = params[:address].gsub('팬션', '펜션')
+      like = addr.split(' ').collect {|x| "title like '%#{x.strip}%'"}.join(' and ')
+      @pensions = Pension.where(like)
+      @spots = Spot.where(like)
     else
       point = [params[:latitude].to_f, params[:longitude].to_f]
       @pensions = Pension.near(point, 10, {:units => :km, :order => :distance})

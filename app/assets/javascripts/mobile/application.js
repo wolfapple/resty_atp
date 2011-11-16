@@ -19,7 +19,7 @@ $(document).ready(function() {
 		else {
 			key = 'SCZCvtrV34ErTv2a2ZdLauxFfsqApLenIVjl3Y.JdtAiB36Njp4Pv9VXHnbQ9fkNMg--'
 			$.getJSON('http://kr.open.gugi.yahoo.com/service/poi.php?callback=?',
-				{appid:key, q:addr.replace('펜션', ''), encoding:'utf-8', output:'json', results:1},
+				{appid:key, q:$.trim(addr.replace('펜션', '').replace('팬션', '')), encoding:'utf-8', output:'json', results:1},
 				function(data) {
 					if(data.ResultSet.head.Error == 0 && data.ResultSet.head.Found > 0) {
 						$('#longitude-hidden').val(data.ResultSet.locations.item[0].longitude);

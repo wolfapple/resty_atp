@@ -18,7 +18,7 @@
   </div>
   <div id="show-content">
     <div class="title">
-      <h2><%= @pension.title %></h2>
+      <h2><%= @pension.title %><span style="display:none"><%= @pension.title.gsub('펜션', '팬션') %></span></h2>
       <div class="fb-like" data-href="http://www.resty.co.kr/pensions/<%= @pension.id %>" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
     </div>
     <hr class="line-green">
