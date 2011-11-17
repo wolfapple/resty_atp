@@ -29,7 +29,13 @@
       <div class="pension-detail">
         <div id="pension-info-addr"><%= @pension.addr %></div>
         <div id="pension-info-type"><%= @pension.roomstructure %></div>
-        <div id="pension-info-price"><%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원</div>
+        <div id="pension-info-price">
+          <% if @pension.min_price == 0 %>
+            사이트 확인 가능
+          <% else %>
+            <%= @pension.min_price / 10000 %> ~ <%= @pension.max_price / 10000 %> 만원
+          <% end %>
+        </div>
         <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') unless @pension.facilities.blank? %></div>
         <%= content_tag :div, "#{@pension.coupon.disrate}%", :class => 'discount-mark' if @coupon %>
         <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>

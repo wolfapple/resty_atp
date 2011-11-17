@@ -17,6 +17,10 @@ class Spot < ActiveRecord::Base
   scope :uncategorized, where('area_id = 0 or sub_area_id = 0')
   scope :main, reorder('rand()').limit(8)
   
+  def sub_addr
+    self.addr.split(' ')[1][0..-2]
+  end
+  
   def pensions
     Pension.near([self.latitude, self.longitude], 10, {:units => :km})
   end

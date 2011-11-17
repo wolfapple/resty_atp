@@ -211,14 +211,16 @@ namespace :resty do
         pension.increment! :ranking if pension.facilities.index('수영장')
         pension.increment! :ranking if pension.facilities.index('스파/월풀')
         pension.increment! :ranking if pension.facilities.index('카페')
-        pension.increment! :ranking if pension.facilities.index('스파/월풀')
+        pension.increment! :ranking if pension.facilities.index('개별바베큐')
       end
       pension.increment! :ranking, 3 if pension.must_visit
       pension.increment! :ranking if pension.min_price > 0
       pension.increment! :ranking, pension.foreignlanguage.to_i if [1, 3, 5, -3, -5].include? pension.foreignlanguage.to_i
       pension.decrement! :ranking if pension.url and (pension.url.index('blog') or pension.url.index('cafe') or pension.url.index('visitkorea') or pension.url.index('huepension') or pension.url.index('kbs1'))
       pension.decrement! :ranking if pension.mobile.blank?
-      pension.increment! :ranking, 5 unless pension.thumbnail.blank?
+      pension.increment! :ranking, 3 unless pension.thumbnail.blank?
+      pension.increment! :ranking unless pension.room_table.blank?
+      pension.increment! :ranking if pension.rooms.count > 0
       pbar.inc
     end
     pbar.finish
