@@ -4,7 +4,7 @@
 <ul>
 <% @blog_reviews.each do |item| %>
   <li>
-    <p class="ellipsis"><%= link_to strip_tags(item.title), item.link, :target => :blank %></p>
+    <b><%= link_to truncate(strip_tags(item.title), :length => 30), item.link, :target => :blank %></b>
     <p><%= strip_tags item.desc %></p>
   </li>
 <% end %>
