@@ -42,7 +42,7 @@
   <div id="resty-focus">
     <ul class="notice">
     <% @notices.each do |notice| %>
-      <li class="<%= cycle('odd', 'even') %>"><%= link_to truncate(notice.title, :length => 30), notice.link, :target => '_blank' %></li>
+      <li class="<%= cycle('odd', 'even') %>"><%= link_to notice.title, notice.link, :target => '_blank', :class => 'ellipsis' %></li>
     <% end %>
     </ul>
     <span class="coupon-title"><%= link_to image_tag('social_commerce.png', :alt => '펜션 소셜커머스'), pensions_path(:coupon => true) %></span>
@@ -50,9 +50,19 @@
     <ul class="discount">
     <% @coupons.each do |coupon| %>
       <li class="<%= cycle('odd', 'even') %>">
-        <%= link_to truncate("[#{coupon.pension.sub_area.title}] #{coupon.pension.title}", :length => 20), coupon.pension %>
-        <span class="disrate"><%= coupon.disrate %>%</span>
-        <span class="expiry">~<%= "#{coupon.end_at.month}월 #{coupon.end_at.day}일" %></span>
+        <table class="coupon-table">
+          <tr>
+            <td class="title">
+              <table>
+                <tr>
+                  <td><%= link_to "[#{coupon.pension.sub_addr}] #{coupon.pension.title}", coupon.pension, :class => 'ellipsis' %></td>
+                  <td><span class="disrate"><%= coupon.disrate %>%</span></td>
+                </tr>
+              </table>
+            </td>
+            <td class="expiry">~<%= "#{coupon.end_at.month}월 #{coupon.end_at.day}일" %></td>
+          </tr>
+        </table>
       </li>
     <% end %>
     </ul>
@@ -66,6 +76,38 @@
       <div class="fb-activity" data-site="resty.co.kr" data-app-id="267286263291604" data-width="350" data-height="184" data-header="false" data-border-color="white" data-filter="/spots" data-linktarget="_top"></div>
     </div>
   </div>
+</div>
+<div id="main-must-visit">
+  <%= link_to content_tag(:div, '', :id => 'main-must-visit-title'), pensions_path(:must_visit => true) %>
+  <div id="slider" class="nivoSlider" style="width:352px;height:265px;">
+  <% @must_visits.each do |mv| %>
+    <%= link_to image_tag("http://www.resty.co.kr#{mv.img.url}", :title => "[#{mv.pension.sub_area.title}] #{mv.pension.title}"), pension_path(mv.pension) %>
+  <% end %>
+  </div>
+</div>
+
+<div id="main-themes">
+  <ul>
+  <% @themes.each_with_index do |theme, idx| %>
+    <li><%= link_to content_tag(:div, theme.title, :class => "theme_#{idx+1}"), theme_pensions_path(theme) %></li>
+  <% end %>
+  </ul>
+</div>
+
+<div id="main-landmarks">
+  <ul>
+  <% @spots.each do |spot| %>
+    <li class="<%= cycle 'odd', 'even' %>">
+      <table>
+        <tr>
+          <td><%= link_to raw("[#{spot.sub_addr}] <b>#{spot.title}</b>"), spot, :class => 'ellipsis' %></td>
+          <td><%= content_tag :span, "(#{spot.pensions.length})" %></td>
+          <td><%= content_tag :span, 'season', :class => 'season' if spot.is_season %></td>
+        </tr>
+      </table>
+    </li>
+  <% end %>
+  </ul>
 </div>
 
 <script type="text/javascript" charset="utf-8" src="/assets/jquery.nivo.slider.pack.js"></script>
@@ -95,31 +137,3 @@
     $('#tabs').removeClass('tab1');
   }
 </script>
-<div id="main-must-visit">
-  <%= link_to content_tag(:div, '', :id => 'main-must-visit-title'), pensions_path(:must_visit => true) %>
-  <div id="slider" class="nivoSlider" style="width:352px;height:265px;">
-  <% @must_visits.each do |mv| %>
-    <%= link_to image_tag("http://www.resty.co.kr#{mv.img.url}", :title => "[#{mv.pension.sub_area.title}] #{mv.pension.title}"), pension_path(mv.pension) %>
-  <% end %>
-  </div>
-</div>
-
-<div id="main-themes">
-  <ul>
-  <% @themes.each_with_index do |theme, idx| %>
-    <li><%= link_to content_tag(:div, theme.title, :class => "theme_#{idx+1}"), theme_pensions_path(theme) %></li>
-  <% end %>
-  </ul>
-</div>
-
-<div id="main-landmarks">
-  <ul>
-  <% @spots.each do |spot| %>
-    <li class="<%= cycle 'odd', 'even' %>">
-      <%= link_to truncate_html("<span>[#{spot.sub_area.title}]</span> #{spot.title}", :length => !spot.is_season ? 20 : 22), spot %>
-      (<%= spot.pensions.length %>)
-      <%= content_tag :span, 'season', :class => 'season' if spot.is_season %>
-    </li>
-  <% end %>
-  </ul>
-</div>

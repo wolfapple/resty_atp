@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.dotdotdot-1.3.0-packed
 var gpsX1 = 130.0;
 var gpsY1 = 40.0;
 var gpsX2 = 0.0;
@@ -148,6 +149,8 @@ function showPathMapFromAddress(sAddress, eAddress, sText, eText){
 }
 
 $(document).ready(function() {
+	// dotdotdot
+	$(".ellipsis").dotdotdot({wrap:'letter'});
 	// 사이드바 more/less
 	$('#sidebar h3').click(function() {
 		$(this).toggleClass('hide');

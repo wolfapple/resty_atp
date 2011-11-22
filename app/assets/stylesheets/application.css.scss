@@ -9,10 +9,18 @@
 @import "nivo-slider";
 
 body, form, div {
-	font-family: Tahoma,Dotum;
+	font-family: Dotum,Tahoma;
 	font-size: 9pt;
 	color: #333;
 	margin: 0px;
+}
+table {
+	margin: 0px;
+	padding: 0px;
+	td, tr {
+		margin: 0px;
+		padding: 0px;
+	}
 }
 img {
 	border: none;
@@ -20,11 +28,6 @@ img {
 a {
 	text-decoration: none;
 	color: #222;
-}
-.ellipsis {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
 }
 #totalWrapper {
 	width: 3000px;

@@ -210,8 +210,11 @@
 			}
 			.title {
 				clear: both;
-				position: relative;
-				bottom: 5px;
+				padding-right: 10px;
+				.dotdotdot {
+					position: relative;
+					bottom: 3px;
+				}
 			}
 		}
 		.footer {
