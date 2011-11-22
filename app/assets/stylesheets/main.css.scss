@@ -113,7 +113,11 @@
 					background-repeat: no-repeat;
 					background-position: 0 .5em;
 				}
+				a {
+					float: left;
+				}
 				.disrate {
+					float: left;
 					width: 33px;
 					height: 18px;
 					background: url("/assets/discount_bg.png");

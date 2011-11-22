@@ -28,10 +28,10 @@
       <li>
         <%= link_to image_tag(coupon.pension.list_img), coupon.pension, :class => 'coupon' %>
         <%= content_tag :div, "#{coupon.disrate}%", :class => 'discount-mark' %>
-        <div class="title">
+        <p class="title">
           <%= link_to truncate(coupon.pension.title, :length => 13), coupon.pension %>
           <%= "@#{coupon.pension.sub_addr}" %>
-        </div>
+        </p>
       </li>
     <% end %>
     </ul>
