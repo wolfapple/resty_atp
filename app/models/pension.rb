@@ -42,7 +42,12 @@ class Pension < ActiveRecord::Base
   end
   
   def sub_addr
-    self.addr.split(' ')[1][0..-2]
+    temp = addr.split(' ')
+    if temp[1][-1] == '시' or temp[1][-1] == '군'
+      temp[1][0..-2]
+    else
+      temp[0]
+    end
   end
   
   def list_img
