@@ -42,7 +42,7 @@
   <div id="resty-focus">
     <ul class="notice">
     <% @notices.each do |notice| %>
-      <li class="<%= cycle('odd', 'even') %>"><%= link_to notice.title, notice.link, :target => '_blank', :class => 'ellipsis' %></li>
+      <li class="<%= cycle('odd', 'even') %>"><%= link_to truncate(notice.title, :length => 30), notice.link, :target => '_blank' %></li>
     <% end %>
     </ul>
     <span class="coupon-title"><%= link_to image_tag('social_commerce.png', :alt => '펜션 소셜커머스'), pensions_path(:coupon => true) %></span>
@@ -50,19 +50,9 @@
     <ul class="discount">
     <% @coupons.each do |coupon| %>
       <li class="<%= cycle('odd', 'even') %>">
-        <table class="coupon-table">
-          <tr>
-            <td class="title">
-              <table>
-                <tr>
-                  <td><%= link_to "[#{coupon.pension.sub_addr}] #{coupon.pension.title}", coupon.pension, :class => 'ellipsis' %></td>
-                  <td><span class="disrate"><%= coupon.disrate %>%</span></td>
-                </tr>
-              </table>
-            </td>
-            <td class="expiry">~<%= "#{coupon.end_at.month}월 #{coupon.end_at.day}일" %></td>
-          </tr>
-        </table>
+        <%= link_to truncate("[#{coupon.pension.sub_addr}] #{coupon.pension.title}", :length => 20), coupon.pension %>
+        <span class="disrate"><%= coupon.disrate %>%</span>
+        <span class="expiry">~<%= "#{coupon.end_at.month}월 #{coupon.end_at.day}일" %></span>
       </li>
     <% end %>
     </ul>
@@ -98,13 +88,10 @@
   <ul>
   <% @spots.each do |spot| %>
     <li class="<%= cycle 'odd', 'even' %>">
-      <table>
-        <tr>
-          <td><%= link_to raw("[#{spot.sub_addr}] <b>#{spot.title}</b>"), spot, :class => 'ellipsis' %></td>
-          <td><%= content_tag :span, "(#{spot.pensions.length})" %></td>
-          <td><%= content_tag :span, 'season', :class => 'season' if spot.is_season %></td>
-        </tr>
-      </table>
+      <%= "[#{spot.sub_addr}]" %>
+      <%= link_to truncate(spot.title, :length => spot.is_season ? 12 : 16), spot %>
+      <%= content_tag :span, "(#{spot.pensions.length})" %>
+      <%= content_tag :span, 'season', :class => 'season' if spot.is_season %>
     </li>
   <% end %>
   </ul>

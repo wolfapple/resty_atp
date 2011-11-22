@@ -213,9 +213,11 @@
 			.title {
 				clear: both;
 				padding-right: 10px;
-				.dotdotdot {
-					position: relative;
-					bottom: 10px;
+				position: relative;
+				bottom: 10px;
+				font-weight: normal;
+				a {
+					font-weight: bold;
 				}
 			}
 		}

@@ -123,16 +123,8 @@
 					font-size: .9em;
 					margin-left: 5px;
 				}
-				a {
-					height: 2em;
-				}
-				.coupon-table {
-					width: 300px;
-					position: relative;
-					bottom: .4em;
-					.expiry {
-						width: 70px;
-					}
+				.expiry {
+					float: right;
 				}
 			}
 		}
@@ -209,7 +201,7 @@
 				background-position: 0 .6em;
 			}
 			a {
-				height: 2em;
+				font-weight: bold;
 				&:hover {
 					color: #2ab07b;
 				}

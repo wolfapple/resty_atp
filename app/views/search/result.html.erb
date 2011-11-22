@@ -8,8 +8,8 @@
       <% @pensions.each do |pension| %>
         <li data-id="pension-<%= pension.id %>" data-lat="<%= pension.latitude %>" data-lng="<%= pension.longitude %>">
           <%= link_to image_tag(pension.list_img), pension, :class => 'thumbnail' %>
-          <p class="ellipsis">
-            <%= link_to pension.title, pension, :target => '_blank' %>
+          <p>
+            <%= link_to truncate(pension.title, :length => 25), pension, :target => '_blank' %>
             <%= "@#{pension.sub_addr}" if (params[:latitude].blank? or params[:longitude].blank?) and params[:controller] == 'search' %>
           </p>
         </li>
@@ -23,7 +23,7 @@
     <div class="content">
       <ul>
       <% @spots.each do |spot| %>
-        <li class="<%= cycle('odd', 'even') %> ellipsis" data-id="spot-<%= spot.id %>" data-lat="<%= spot.latitude %>", data-lng="<%= spot.longitude %>"><%= link_to spot.title, spot, :target => '_blank' %></li>
+        <li class="<%= cycle('odd', 'even') %>" data-id="spot-<%= spot.id %>" data-lat="<%= spot.latitude %>", data-lng="<%= spot.longitude %>"><%= link_to truncate(spot.title, :length => 15), spot, :target => '_blank' %></li>
       <% end %>
       </ul>
     </div>
