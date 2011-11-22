@@ -6,7 +6,7 @@
     <ul>
     <% @near_by_pensions.each do |pension| %>
       <li>
-        <%= link_to image_tag(pension.list_img, :class => 'nearby'), pension %>
+        <%= link_to image_tag(pension.list_img), pension, :class => 'nearby' %>
         <div class="pension-info">
           <%= link_to pension.title, pension, :class => 'ellipsis' %>
           <div class="distance"><%= pension.distance.round(2) %>km</div>
@@ -26,7 +26,7 @@
     <ul>
     <% @coupons.each do |coupon| %>
       <li>
-        <%= link_to image_tag(coupon.pension.list_img, :class => 'coupon'), coupon.pension %>
+        <%= link_to image_tag(coupon.pension.list_img), coupon.pension, :class => 'coupon' %>
         <%= content_tag :div, "#{coupon.disrate}%", :class => 'discount-mark' %>
         <div class="title">
           <%= link_to raw("[#{coupon.pension.sub_addr}] <strong>#{coupon.pension.title}</strong>"), coupon.pension, :class => 'ellipsis' %>

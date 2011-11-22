@@ -165,15 +165,18 @@
 	    height: 73px;
 	    padding: 0px 0px 0px 15px;
 	    margin: 0px;
-			img {
+			.coupon {
 				float: left;
-				&.nearby {
-					margin-top: 10px;
-					height: 47px;
-				}
-				&.coupon {
+				img {
 					margin-top: 5px;
 					height: 40px;
+				}
+			}
+			.nearby {
+				float: left;
+				img {
+					margin-top: 10px;
+					height: 47px;
 				}
 			}
 			.pension-info {
@@ -199,8 +202,7 @@
 			.discount-mark {
 				color: white;
 				padding-top: 3px;
-				margin-top: 5px;
-				margin-right: 10px;
+				margin: 5px 10px 0px 0px;
 				background-image: url("/assets/discount_tag.png");
 				background-repeat: no-repeat;
 				width: 47px;
@@ -213,7 +215,7 @@
 				padding-right: 10px;
 				.dotdotdot {
 					position: relative;
-					bottom: 3px;
+					bottom: 10px;
 				}
 			}
 		}
