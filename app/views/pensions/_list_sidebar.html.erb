@@ -1,8 +1,8 @@
 <div class="themes_box">
-  <h3 class="more<%= ' hide' if params[:theme_id] and params[:theme_id].to_i > 5 %>">테마</h3>
+  <h3 class="more hide">테마</h3>
   <ul>
     <% Theme.all.each_with_index do |theme, idx| %>
-      <li class="<%= cycle('odd', 'even') %><%= ' toggle-list' if idx > 4 %><%= ' hide' if idx > 4 and params[:theme_id].to_i <= 5 %>">
+      <li class="<%= cycle('odd', 'even') %><%= ' toggle-list' if idx > 4 %>">
         <%= link_to_unless params[:theme_id].to_i == theme.id, theme.title, params.merge(:theme_id => theme.id, :page => nil) %>
       </li>
     <% end %>
@@ -23,10 +23,10 @@
 </div>
 
 <div class="facilities_box">
-  <h3 class="more<%= ' hide' if @facilities.count > 0 and @facilities.sort.last.id > 5 %>">시설</h3>
+  <h3 class="more hide">시설</h3>
   <ul>
   <% Facility.all.each_with_index do |facility, idx| %>
-    <li class="<%= cycle('odd', 'even') %><%= ' toggle-list' if idx > 4 %><%= ' hide' if idx > 4 and (@facilities.count == 0 or @facilities.sort.last.id <= 5) %>">
+    <li class="<%= cycle('odd', 'even') %><%= ' toggle-list' if idx > 4 %>">
       <% if @facilities.include?(facility) %>
         <span class="checkbox checked">
           <%= link_to facility.title, remove_facility(facility.id) %>
