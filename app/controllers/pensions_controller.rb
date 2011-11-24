@@ -79,6 +79,13 @@ class PensionsController < ApplicationController
     @coupons = Coupon.ing.order('rand()').limit(5)
   end
   
+  def outlink
+    @pension = Pension.find(params[:id])
+    @log = PensionLog.find_or_create_by_pension_id_and_created_at_and_area_id_and_sub_area_id @pension.id, DateTime.current.to_date, @pension.area, @pension.sub_area
+    @log.increment! :count
+    redirect_to @pension.url
+  end
+  
   def blog_posts
     @pension = Pension.find(params[:id])
     @sub_area = @pension.sub_area

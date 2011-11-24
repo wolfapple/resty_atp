@@ -1,4 +1,4 @@
-# -*- encoding : utf-8 -*-
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025024909) do
+ActiveRecord::Schema.define(:version => 20111124064330) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -99,6 +99,18 @@ ActiveRecord::Schema.define(:version => 20111025024909) do
 
   add_index "must_visits", ["pension_id"], :name => "index_must_visits_on_pension_id"
 
+  create_table "pension_logs", :force => true do |t|
+    t.integer "area_id"
+    t.integer "sub_area_id"
+    t.integer "pension_id"
+    t.date    "created_at"
+    t.integer "count",       :default => 0
+  end
+
+  add_index "pension_logs", ["area_id"], :name => "index_pension_logs_on_area_id"
+  add_index "pension_logs", ["pension_id"], :name => "index_pension_logs_on_pension_id"
+  add_index "pension_logs", ["sub_area_id"], :name => "index_pension_logs_on_sub_area_id"
+
   create_table "pension_reviews", :force => true do |t|
     t.integer  "user_id"
     t.integer  "pension_id"
@@ -148,6 +160,7 @@ ActiveRecord::Schema.define(:version => 20111025024909) do
     t.string    "babycarriage",    :limit => 200
     t.string    "thumbnail",       :limit => 500
     t.string    "room_table",      :limit => 500
+    t.string    "thumbnail_daum",  :limit => 500
     t.string    "mark",            :limit => 45
     t.integer   "ranking",                                        :null => false
     t.integer   "min_price",                                      :null => false
@@ -187,7 +200,8 @@ ActiveRecord::Schema.define(:version => 20111025024909) do
 
   create_table "search_logs", :force => true do |t|
     t.string   "input"
-    t.integer  "count",      :default => 0
+    t.string   "remote_ip",  :limit => 20
+    t.integer  "count",                    :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -281,16 +295,5 @@ ActiveRecord::Schema.define(:version => 20111025024909) do
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
-
-  create_table "withus", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "title"
-    t.text     "content"
-    t.string   "pension_name"
-    t.string   "pension_url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

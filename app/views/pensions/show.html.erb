@@ -39,7 +39,7 @@
         <div id="pension-info-faci"><%= @pension.facilities.split(',').join(', ') unless @pension.facilities.blank? %></div>
         <%= content_tag :div, "#{@pension.coupon.disrate}%", :class => 'discount-mark' if @coupon %>
         <div id="pension-info-theme"><%= @pension.themes.collect {|x| x.title}.join(', ') %></div>
-        <div id="pension-info-url"><%= link_to truncate(@pension.url, :length => 50), @pension.url, :target => '_blank' %></div>
+        <div id="pension-info-url"><%= link_to truncate(@pension.url, :length => 50), outlink_pension_path(@pension), :target => '_blank' %></div>
         <div id="pension-info-start">
           <div id="findway-box">
             <input type="text" value="<%= @pension.title %>까지의 길을 찾아드립니다." name="findway" id="findway-word" onclick="this.value='';" onkeypress="if(event.keyCode==13){$('#findway-button').trigger('click');}">

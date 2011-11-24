@@ -30,6 +30,7 @@ RestyAtp::Application.routes.draw do
     get :map, :on => :member
     get :blog_posts, :on => :collection
     get :pension_images, :on => :collection
+    get :outlink, :on => :member
   end
   resources :spots do
     resources :pensions

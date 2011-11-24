@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  area: 
+  sub_area: 
+  pension: 
+
+two:
+  area: 
+  sub_area: 
+  pension: 
