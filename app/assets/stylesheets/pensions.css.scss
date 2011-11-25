@@ -815,6 +815,9 @@
 			width: 350px;
 			margin-top: 30px;
 			margin-bottom: 30px;
+			.ajax-loader {
+				margin-left: 150px;
+			}
 			.title {
 				background-image: url("/assets/blog_header.png");
 				background-repeat: no-repeat;
@@ -855,6 +858,9 @@
 			padding-left: 7px;
 			margin-top: 33px;
 			margin-bottom: 33px;
+			.ajax-loader {
+				margin-left: 150px;
+			}
 			.title {
 				background-image: url("/assets/image_header.png");
 				background-repeat: no-repeat;

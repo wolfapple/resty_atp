@@ -104,10 +104,14 @@
     </div>
 
     <div id="blog-review">
-      <%= render 'blog_posts' %>
+      <%= image_tag "ajax-loader.gif", :class => 'ajax-loader' %>
     </div>
     <div id="pension-image">
-      <%= render 'pension_images' %>
+      <%= image_tag "ajax-loader.gif", :class => 'ajax-loader' %>
     </div>
+    <script type="text/javascript" charset="utf-8">
+      $.get("/pensions/blog_posts?id=<%= @pension.id %>");
+      $.get("/pensions/pension_images?id=<%= @pension.id %>");
+    </script>
   </div>
 </div>
