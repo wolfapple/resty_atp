@@ -73,6 +73,10 @@ class PensionsController < ApplicationController
     @markers = [{:latitude => @pension.latitude, :longitude => @pension.longitude}].to_json
     @coupon = @pension.coupon
     @coupons = Coupon.ing.order('rand()').limit(5)
+    if mobile_device?
+      @blog_search = BlogSearch.new("#{@pension.sub_addr} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
+      @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(5)
+    end
   end
   
   def outlink
