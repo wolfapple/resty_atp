@@ -10,6 +10,7 @@ class Spot < ActiveRecord::Base
   # geocode
   geocoded_by :addr
   after_validation :geocode, :if => :addr_changed?
+  after_create :geocode
   # pension count
   after_validation :update_pensions_count, :if => :is_main
   
