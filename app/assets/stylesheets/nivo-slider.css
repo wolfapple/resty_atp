@@ -1,5 +1,5 @@
 /*
- * jQuery Nivo Slider v2.6
+ * jQuery Nivo Slider v2.7
  * http://nivo.dev7studios.com
  *
  * Copyright 2011, Gilbert Pellegrom
@@ -48,10 +48,10 @@
 .nivo-caption {
 	position:absolute;
 	left:0px;
-	bottom:5px;
+	bottom:0px;
 	background:#000;
 	color:#fff;
-	opacity:0.3; /* Overridden by captionOpacity setting */
+	opacity:0.8; /* Overridden by captionOpacity setting */
 	width:100%;
 	z-index:8;
 }
@@ -67,21 +67,10 @@
 }
 /* Direction nav styles (e.g. Next & Prev) */
 .nivo-directionNav a {
-	position: absolute;
-	top: 45%;
-	z-index: 9;
-	width: 30px;
-	height: 30px;
-	background: url("/assets/arrows.png") no-repeat;
-	text-indent: -9999px;
-	border: 0;
-}
-.nivo-directionNav a.nivo-prevNav {
-	left: 15px;
-}
-.nivo-directionNav a.nivo-nextNav {
-	background-position: -30px 0;
-	right: 15px;
+	position:absolute;
+	top:45%;
+	z-index:9;
+	cursor:pointer;
 }
 .nivo-prevNav {
 	left:0px;

@@ -254,6 +254,9 @@
 	.header {
 		width: 707px;
 		margin: 37px 10px 0px 0px;
+		ins {
+			margin-top: 5px !important;
+		}
 		.crumbs {
 			background-image: url("/assets/list_navigator_bg_1.png");
 			background-repeat: no-repeat;
@@ -382,7 +385,7 @@
 	.map {
 		width: 705px;
 		height: 65px;
-		margin: 20px 0px 0px 1px;
+		margin: 10px 0px 0px 1px;
 		#map {
 			position: absolute;
 			width: 705px;

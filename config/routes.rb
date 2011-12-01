@@ -5,7 +5,7 @@ RestyAtp::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   # login, logout
-  # match 'login' => 'user_sessions#new', :as => :login
+  match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   # oauth
   resource :oauth do
@@ -48,9 +48,11 @@ RestyAtp::Application.routes.draw do
   resources :spots
   resources :contacts 
   #search
-  # match 'search/autocomplete' => 'search#autocomplete'
-  # match 'search/map' => 'search#map'
   match 'search/result' => 'search#result', :via => :post
+  #api
+  namespace :api do
+    resources :pensions
+  end
   # main
   match 'main' => 'main#index'
   root :to => 'main#index'
