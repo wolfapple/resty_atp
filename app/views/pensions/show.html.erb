@@ -48,7 +48,7 @@
         </div>
         <div id="info-gps-x"><%= @pension.longitude %></div>
         <div id="info-gps-y"><%= @pension.latitude %></div>
-        <div id="pension-info-phone"><%= @pension.mobile %></div>
+        <div id="pension-info-phone"><%= @pension.mobile or "사이트 확인 가능" %></div>
         <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <% if @pension.rooms.count > 0 %>
           <%= link_to content_tag(:div, '', :id => 'pension-info-room'), pension_rooms_path(@pension), :class => 'room_btn' %>
