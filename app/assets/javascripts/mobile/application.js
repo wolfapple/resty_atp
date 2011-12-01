@@ -34,8 +34,3 @@ $(document).ready(function() {
 		}
 	});
 });
-
-function moveAds() {
-	$('#adsense_hidden iframe').appendTo('#adsense');
-	$('#adsense_hidden').remove();
-}
