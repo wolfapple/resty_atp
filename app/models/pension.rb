@@ -51,22 +51,26 @@ class Pension < ActiveRecord::Base
   end
   
   def list_img
-    if Rails.env == "development"
-      "/assets/thumb_pension_photo_noimage.jpg"
-    elsif self.thumbnail.url.index('http:/')
+    if self.thumbnail.url.index('http:/')
       'http://' + self.thumbnail.url.split('http:/')[1]
     else
-      self.thumbnail.thumb.url
+      if Rails.env == "development"
+        "http://www.resty.co.kr#{self.thumbnail.thumb.url}"
+      else
+        self.thumbnail.thumb.url
+      end
     end
   end
   
   def show_img
-    if Rails.env == "development"
-      "/assets/thumb_pension_photo_noimage.jpg"
-    elsif self.thumbnail.url.index('http:/')
+    if self.thumbnail.url.index('http:/')
       'http://' + self.thumbnail.url.split('http:/')[1]
     else
-      self.thumbnail.url
+      if Rails.env == "development"
+        "http://www.resty.co.kr#{self.thumbnail.url}"
+      else
+        self.thumbnail.url
+      end
     end
   end
   

@@ -7,4 +7,12 @@ class MustVisit < ActiveRecord::Base
   validates_uniqueness_of :pension_id
   
   scope :main, order('rand()').limit(10)
+  
+  def image
+    if Rails.env == "development"
+      "http://www.resty.co.kr#{self.img.url}"
+    else
+      self.img.url
+    end
+  end
 end

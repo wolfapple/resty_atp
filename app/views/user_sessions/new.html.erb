@@ -1,22 +1,36 @@
-<%= form_tag user_sessions_path do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="field">
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-    <%= label_tag :remember_me %>
-  </div>
-  <div class="actions"><%= submit_tag "Log in" %></div>
-<% end %>
+<div id="login-form">
+  <h1>resty 계정 로그인</h1>
+  <hr class="gray">
+  <%= form_tag user_sessions_path do %>
+    <table>
+      <tr><td colspan="3" class="alert"><%= alert %></td></tr>
+      <tr>
+        <td><%= label_tag :email, image_tag('email_label.png') %></td>
+        <td><%= text_field_tag :email, params[:email], :class => 'text-input' %></td>
+        <td>
+          <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+          <%= label_tag :remember_me, '자동로그인' %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= label_tag :password, image_tag('pwd_label.png') %></td>
+        <td><%= password_field_tag :password, nil, :class => 'text-input' %></td>
+        <td><%= image_submit_tag "login_btn.png" %></td>
+      </tr>
+    </table>
+  <% end %>
+  <div class="dot"></div>
+  <ul id="btns">
+    <li><%= link_to image_tag('fb_login_btn.png'), auth_at_provider_path(:provider => :facebook), :class => 'fb' %></li>
+    <li><%= image_tag('btn_delimiter.png') %></li>
+    <li><%= link_to image_tag('join_btn.png'), new_user_path %></li>
+  </ul>
+  <hr class="gray">
 
-<%= form_tag password_resets_path, :method => :post do %>
-  <div class="field">
-    <%= label_tag :email %><br />
-    <%= text_field_tag :email %> <%= submit_tag "Reset my password!" %>
-  </div>
-<% end %>
+  <%= form_tag password_resets_path, :method => :post do %>
+    <div class="field">
+      <%= label_tag :email %><br />
+      <%= text_field_tag :email %> <%= submit_tag "Reset my password!" %>
+    </div>
+  <% end %>
+</div>

@@ -1,3 +1,58 @@
 // Place all the styles related to the user_sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#login-form {
+	margin: 100px 0px;
+	h1 {
+		background: url("/assets/login_title.png");
+		background-repeat: no-repeat;
+		background-position: center;
+		text-indent: -9999px;
+	}
+	hr {
+		&.gray {
+			color: #ccc;
+			background-color: #ccc;
+			height: 3px;
+			border: none;
+		}
+	}
+	.dot {
+		height: 3px;
+		background: url("/assets/list_pension_info_dot.png");
+		background-repeat: repeat-x;
+	}
+	table {
+		margin: 20px auto 10px auto;
+		tr td {
+			padding: 5px;
+		}
+		.alert {
+			font-weight: bold;
+			color: red;
+			text-align: center;
+		}
+	}
+	#btns {
+		width: 417px;
+		margin: 10px auto;
+		padding-left: 0px;
+		text-align: right;
+		list-style-type: none;
+		li {
+			display: inline;
+			line-height: 30px;
+			height: 30px;
+			padding-left: 10px;
+			.fb img {
+				position: relative;
+				top: 3px;
+			}
+		}
+	}
+	.text-input {
+		border: 2px solid #ccc;
+		width: 240px;
+		height: 23px;
+	}
+}

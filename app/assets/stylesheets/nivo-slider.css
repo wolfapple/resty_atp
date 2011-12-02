@@ -71,6 +71,17 @@
 	top:45%;
 	z-index:9;
 	cursor:pointer;
+	width: 30px;
+	height: 30px;
+	background: url("/assets/arrows.png") no-repeat;
+	text-indent: -9999px;
+}
+.nivo-directionNav a.nivo-prevNav {
+	left: 15px;
+}
+.nivo-directionNav a.nivo-nextNav {
+	background-position: -30px 0;
+	right: 15px;
 }
 .nivo-prevNav {
 	left:0px;

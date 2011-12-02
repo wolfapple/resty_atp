@@ -71,7 +71,7 @@
   <%= link_to content_tag(:div, '', :id => 'main-must-visit-title'), pensions_path(:must_visit => true) %>
   <div id="slider" class="nivoSlider" style="width:352px;height:265px;">
   <% @must_visits.each do |mv| %>
-    <%= link_to image_tag(mv.img.url, :title => "[#{mv.pension.sub_area.title}] #{mv.pension.title}"), pension_path(mv.pension) %>
+    <%= link_to image_tag(mv.image, :title => "[#{mv.pension.sub_area.title}] #{mv.pension.title}"), pension_path(mv.pension) %>
   <% end %>
   </div>
 </div>
