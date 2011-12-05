@@ -16,7 +16,7 @@ class Api::PensionsController < ActionController::Base
       @pensions = Pension
     end
     @pensions = @pensions.page(params[:page]).per(per)
-    respond_with(:pensions => @pensions, :total_page => @pensions.num_pages)
+    respond_with(:total_page => @pensions.num_pages, :pensions => @pensions)
   end
   
   def show
