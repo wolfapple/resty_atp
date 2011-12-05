@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Api::PensionsController < ActionController::Base
   respond_to :json, :xml
   
@@ -11,9 +12,11 @@ class Api::PensionsController < ActionController::Base
     elsif params[:latitude].present? and params[:longitude].present?
       point = [params[:latitude].to_f, params[:longitude].to_f]
       @pensions = Pension.near(point, distance, {:units => :km, :order => :distance})
+    else
+      @pensions = Pension
     end
     @pensions = @pensions.page(params[:page]).per(per)
-    respond_with(@pensions)
+    respond_with(:pensions => @pensions, :total_page => @pensions.num_pages)
   end
   
   def show
