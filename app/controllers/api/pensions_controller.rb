@@ -30,6 +30,7 @@ class Api::PensionsController < ActionController::Base
     @sub_area = @pension.sub_area
     @blog_search = BlogSearch.new("#{@pension.sub_addr} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
     @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(per)
-    respond_with(:total_page => @blog_reviews.num_pages, :posts => @blog_reviews)
+    @posts = @blog_reviews.collect {|x| {:title => ActionController::Base.helpers.strip_tags(x.title), :link => x.link, :desc => ActionController::Base.helpers.strip_tags(x.desc)}}
+    respond_with(:total_page => @blog_reviews.num_pages, :posts => @posts)
   end
 end
