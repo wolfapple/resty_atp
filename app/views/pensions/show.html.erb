@@ -94,7 +94,8 @@
   		<hr class="line-green">
     </div>
     <div id="show-review">
-      <div id="pension-review-title"></div>
+      <div id="pension-review-title"></div> 
+      <%#= render 'reviews/index' %>
       <fb:comments href="http://www.resty.co.kr/pensions/<%= @pension.id %>" num-posts="5" width="709"></fb:comments>
       <script type="text/javascript" charset="utf-8">
         FB.Event.subscribe('comment.create', function(response) {
@@ -119,8 +120,8 @@
       <%= image_tag "ajax-loader.gif", :class => 'ajax-loader' %>
     </div>
     <script type="text/javascript" charset="utf-8">
-      $.get("/pensions/blog_posts?id=<%= @pension.id %>");
-      $.get("/pensions/pension_images?id=<%= @pension.id %>");
+      $.get("<%= blog_posts_pension_path(@pension) %>");
+      $.get("<%= pension_images_pension_path(@pension) %>");
     </script>
   </div>
 </div>

@@ -14,6 +14,9 @@ class CreateSpots < ActiveRecord::Migration
       t.integer :pensions_count, :default => 0
       t.integer :comments_count, :default => 0
       t.integer :like_count, :default => 0
+      t.integer :reviews_count, :default => 0
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

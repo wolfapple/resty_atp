@@ -1,0 +1,16 @@
+<div id="login-form">
+  <h1 class="join">resty 회원가입</h1>
+  <hr class="gray">
+  <table>
+    <tr>
+      <td class="join-fb"><%= image_tag 'fb_login_info.png' %></td>
+      <td rowspan="2"><%= image_tag 'join_delimiter.png' %></td>
+      <td class="join-resty"><%= image_tag 'resty_login_info.png' %></td>
+    </tr>
+    <tr>
+      <td class="join-fb"><%= link_to image_tag('join_fb_btn.png'), auth_at_provider_path(:provider => :facebook) %></td>
+      <td class="join-resty"><%= link_to image_tag('join_resty_btn.png'), new_user_path %></td>
+    </tr>
+  </table>
+  <hr class="gray">
+</div>

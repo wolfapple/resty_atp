@@ -4,10 +4,16 @@
 #login-form {
 	margin: 100px 0px;
 	h1 {
-		background: url("/assets/login_title.png");
-		background-repeat: no-repeat;
-		background-position: center;
 		text-indent: -9999px;
+		&.login {
+			background: url("/assets/login_title.png") no-repeat center;
+		}
+		&.reset-password {
+			background: url("/assets/reset_password_title.png") no-repeat center;
+		}
+		&.join {
+			background: url("/assets/join_title.png") no-repeat center;
+		}
 	}
 	hr {
 		&.gray {
@@ -22,15 +28,36 @@
 		background: url("/assets/list_pension_info_dot.png");
 		background-repeat: repeat-x;
 	}
+	#error_explanation {
+		margin-top: 20px;
+		font-weight: bold;
+		color: red;
+		text-align: center;
+	}
+	.form-error {
+		color: red;
+		text-align: right;
+		margin: 0px;
+		padding: 0px;
+	}
 	table {
 		margin: 20px auto 10px auto;
 		tr td {
 			padding: 5px;
-		}
-		.alert {
-			font-weight: bold;
-			color: red;
-			text-align: center;
+			&.align-center {
+				text-align: center;
+			}
+			&.align-right {
+				text-align: right;
+			}
+			&.join-fb {
+				padding-right: 100px;
+				padding-top: 20px;
+			}
+			&.join-resty {
+				padding-left: 100px;
+				padding-top: 20px;
+			}
 		}
 	}
 	#btns {
@@ -54,5 +81,14 @@
 		border: 2px solid #ccc;
 		width: 240px;
 		height: 23px;
+		font-size: 15px;
+		font-family: verdana;
+		padding-left: .5em;
+		&.disabled {
+			background: #ccc;
+		}
+	}
+	#reset-input {
+		display: none;
 	}
 }

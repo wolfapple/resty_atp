@@ -9,6 +9,6 @@ class User < ActiveRecord::Base
   
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_length_of :password, :minimum => 3, :if => :password
-  validates_confirmation_of :password, :if => :password
+  validates_length_of :password, :minimum => 3, :if => :password, :message => '비밀번호는 3자 이상 입력해 주세요.'
+  validates_confirmation_of :password, :if => :password, :message => '비밀번호가 일치하지 않습니다.'
 end

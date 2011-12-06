@@ -1,30 +1,33 @@
-<%= form_for @user, :url => password_reset_path(@user), :html => {:method => :put} do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<div id="login-form">
+  <h1 class="reset-password">resty 비밀번호 변경</h1>
+  <hr class="gray">
+  <%= form_for @user, :url => password_reset_path(@user), :html => {:method => :put} do |f| %>
+  <table>
+    <tr>
+      <td class="align-center"><%= f.label :email, image_tag('email_label.png') %></td>
+      <td><%= f.text_field :email, :class => 'text-input disabled', :disabled => true %></td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :password, image_tag('pwd_label.png') %></td>
+      <td><%= f.password_field :password, :class => 'text-input' %></td>
+    </tr>
+    <% if @user.errors[:password].present? %>
+    <tr>
+      <td colspan="2">
+        <% @user.errors[:password].each do |msg| %>
+          <%= content_tag :p, msg, :class => 'form-error' %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td class="align-center"><%= f.label :password_confirmation, image_tag('pwd_confirmation_label.png') %></td>
+      <td><%= f.password_field :password_confirmation, :class => 'text-input' %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="align-right"><%= image_submit_tag "update_btn.png" %></td>
+    </tr>
+  </table>
+  <%= hidden_field_tag :token, @token %>
   <% end %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= @user.email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
-    <%= hidden_field_tag :token, @token %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

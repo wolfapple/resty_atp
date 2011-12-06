@@ -5,6 +5,6 @@ class UserMailer < ActionMailer::Base
   def reset_password_email(user)
     @user = user
     @url = "http://www.resty.co.kr/password_resets/#{user.reset_password_token}/edit"
-    mail to: user.email, :subject => 'Your password has been reset'
+    mail to: user.email, :subject => '[레스티] 패스워드를 변경해 주세요.'
   end
 end

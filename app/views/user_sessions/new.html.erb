@@ -1,9 +1,12 @@
 <div id="login-form">
-  <h1>resty 계정 로그인</h1>
+  <h1 class="login">resty 계정 로그인</h1>
   <hr class="gray">
-  <%= form_tag user_sessions_path do %>
+  <div id="error_explanation">
+    <%= alert %>
+    <%= link_to '(비밀번호를 잃어버리셨습니까?)', '#', :onclick => "$('#reset-input').toggle();$('#login-input').toggle();" if flash[:alert].present? %>
+  </div>
+  <%= form_tag user_sessions_path, :id => 'login-input' do %>
     <table>
-      <tr><td colspan="3" class="alert"><%= alert %></td></tr>
       <tr>
         <td><%= label_tag :email, image_tag('email_label.png') %></td>
         <td><%= text_field_tag :email, params[:email], :class => 'text-input' %></td>
@@ -19,6 +22,15 @@
       </tr>
     </table>
   <% end %>
+  <%= form_tag password_resets_path, :method => :post, :id => 'reset-input' do %>
+    <table>
+      <tr>
+        <td><%= label_tag :email, image_tag('email_label.png') %></td>
+        <td><%= text_field_tag :email, params[:email], :class => 'text-input' %></td>
+        <td><%= submit_tag '비밀번호 초기화' %></td>
+      </tr>
+    </table>
+  <% end %>
   <div class="dot"></div>
   <ul id="btns">
     <li><%= link_to image_tag('fb_login_btn.png'), auth_at_provider_path(:provider => :facebook), :class => 'fb' %></li>
@@ -26,11 +38,4 @@
     <li><%= link_to image_tag('join_btn.png'), new_user_path %></li>
   </ul>
   <hr class="gray">
-
-  <%= form_tag password_resets_path, :method => :post do %>
-    <div class="field">
-      <%= label_tag :email %><br />
-      <%= text_field_tag :email %> <%= submit_tag "Reset my password!" %>
-    </div>
-  <% end %>
 </div>

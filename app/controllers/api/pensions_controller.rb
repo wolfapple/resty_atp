@@ -23,4 +23,13 @@ class Api::PensionsController < ActionController::Base
     @pension = Pension.find(params[:id])
     respond_with(@pension)
   end
+  
+  def blog_posts
+    per = params[:per].present?? params[:per] : 5
+    @pension = Pension.find(params[:id])
+    @sub_area = @pension.sub_area
+    @blog_search = BlogSearch.new("#{@pension.sub_addr} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
+    @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(per)
+    respond_with(:total_page => @blog_reviews.num_pages, :posts => @blog_reviews)
+  end
 end

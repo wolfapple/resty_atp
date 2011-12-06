@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class SpotsController < ApplicationController
+  before_filter :store_location, :only => [:show]
+  
   def index
     if !params[:sub_area_id].blank?
       @sub_area = SubArea.find(params[:sub_area_id])
@@ -24,6 +26,7 @@ class SpotsController < ApplicationController
     @pensions = @near_by_pensions[0...10]
     @markers = [{:latitude => @spot.latitude, :longitude => @spot.longitude}].to_json
     @coupons = Coupon.ing.order('rand()').limit(5)
+    @reviews = @spot.reviews.page(1).per(5)
   end
   
   def update_like_count

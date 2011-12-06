@@ -21,6 +21,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'truncate_html'
 gem 'geocoder'
+gem 'jquery_notify_bar'
 
 group :development do
   gem 'pry'

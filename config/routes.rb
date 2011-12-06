@@ -4,7 +4,8 @@ RestyAtp::Application.routes.draw do
     
   devise_for :admin_users, ActiveAdmin::Devise.config
   
-  # login, logout
+  # join, login, logout
+  # match 'join' => 'users#join', :as => :join
   # match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   # oauth
@@ -16,23 +17,25 @@ RestyAtp::Application.routes.draw do
   # resources :user_sessions
   # resources :password_resets
   #etc
-  # resources :users do
-  #   get :map, :on => :member
-  # end
+  resources :users do
+    get :map, :on => :member
+  end
   resources :themes do
     resources :pensions
   end
   resources :pensions do
+    # resources :reviews
     resources :rooms
     get :update_like_count, :on => :collection
     get :update_comments_count, :on => :collection
     get :nearby, :on => :member
     get :map, :on => :member
-    get :blog_posts, :on => :collection
-    get :pension_images, :on => :collection
+    get :blog_posts, :on => :member
+    get :pension_images, :on => :member
     get :outlink, :on => :member
   end
   resources :spots do
+    resources :reviews
     resources :pensions
     get :map, :on => :member
   end
@@ -46,12 +49,14 @@ RestyAtp::Application.routes.draw do
     resources :pensions
   end
   resources :spots
-  resources :contacts 
+  resources :contacts
   #search
   match 'search/result' => 'search#result', :via => :post
   #api
   namespace :api do
-    resources :pensions
+    resources :pensions do
+      get :blog_posts, :on => :member
+    end
   end
   # main
   match 'main' => 'main#index'

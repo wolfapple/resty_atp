@@ -32,7 +32,7 @@
       <div id="login">
       <% if current_user %>
         <div id="logout">
-          <%= current_user.username %>님 환영합니다.
+          <%= link_to (current_user.username or current_user.email), edit_user_path(current_user) %>님 환영합니다.
           <%#= link_to 'My Resty', current_user %> |
           <%= link_to 'Logout', :logout %>
         </div>
@@ -86,5 +86,8 @@
       </p>
     </div>
   </div>
+  <% if flash[:notice].present? %>
+    <%= jquery_notify_bar('notice', flash[:notice], :cls => 'notify-bar') %>
+  <% end %>
 </body>
 </html>

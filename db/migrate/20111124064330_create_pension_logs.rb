@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class CreatePensionLogs < ActiveRecord::Migration
   def change
     create_table :pension_logs do |t|

@@ -1,5 +1,7 @@
 # -*- encoding : utf-8 -*-
 class PensionsController < ApplicationController
+  before_filter :store_location, :only => [:show]
+  
   def index
     # get area and spot
     if !params[:sub_area_id].blank?
@@ -73,6 +75,7 @@ class PensionsController < ApplicationController
     @markers = [{:latitude => @pension.latitude, :longitude => @pension.longitude}].to_json
     @coupon = @pension.coupon
     @coupons = Coupon.ing.order('rand()').limit(5)
+    @reviews = @pension.reviews.page(1).per(5)
     if mobile_device?
       @blog_search = BlogSearch.new("#{@pension.sub_addr} #{@pension.title}", 20, "#{@sub_area.id}_#{@pension.id}")
       @blog_reviews = Kaminari::paginate_array(@blog_search.results).page(params[:page]).per(5)

@@ -3,7 +3,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me, 
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:external, :remember_me]
+Rails.application.config.sorcery.submodules = [:external, :remember_me, :reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -125,18 +125,18 @@ Rails.application.config.sorcery.configure do |config|
                                                                                                 # used for hammering
                                                                                                 # protection.
                                                                                                 
-    # user.reset_password_mailer = UserMailer                                                          # mailer class. Needed.
+    user.reset_password_mailer = UserMailer                                                     # mailer class. Needed.
     
     # user.reset_password_email_method_name = :reset_password_email                             # reset password email
                                                                                                 # method on your mailer
                                                                                                 # class.
                                                                                                 
-    # user.reset_password_expiration_period = nil                                               # how many seconds
+    user.reset_password_expiration_period = 30.minutes                                          # how many seconds
                                                                                                 # before the reset
                                                                                                 # request expires. nil
                                                                                                 # for never expires.
                                                                                                 
-    # user.reset_password_time_between_emails = 5 * 60                                          # hammering protection,
+    user.reset_password_time_between_emails = nil                                               # hammering protection,
                                                                                                 # how long to wait
                                                                                                 # before allowing
                                                                                                 # another email to be

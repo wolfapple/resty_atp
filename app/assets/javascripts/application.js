@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.notifyBar
 var gpsX1 = 130.0;
 var gpsY1 = 40.0;
 var gpsX2 = 0.0;

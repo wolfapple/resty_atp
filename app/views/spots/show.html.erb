@@ -53,6 +53,7 @@
     </div>
     <div id="show-review">
       <div id="spot-review-title"></div>
+      <%#= render 'reviews/index' %>
       <fb:comments href="http://www.resty.co.kr/spots/<%= @spot.id %>" num-posts="5" width="709"></fb:comments>
       <script type="text/javascript" charset="utf-8">
         FB.Event.subscribe('comment.create', function(response) {

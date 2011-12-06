@@ -1,89 +1,32 @@
-<div id="sidebar">
-  <%= render 'menu' %>
-</div>
-
-<div id="main_content">
-  <script src="../../assets/javascripts/sub.js" type="text/javascript"></script>
-
-  	<div id="private-info">
-  		<div id="private-info-title">
-  		    <h3>개인정보관리</h3>
-  		    <div class="line_green"></div>
-  		</div>
-  		<div id="private-info-body">
-  			<div id="email">
-  				<div class="subject">이메일</div>
-  				<input type="text" size="15" /> @ 
-  				<input type="text" size="20" />
-  			</div>
-  			<div id="password">
-  				<span class="subject">비밀번호</span>
-  				<input type="text" size="15" />
-  			</div>
-  			<div id="re_password">
-  				<span class="subject">비밀번호 확인</span>
-  				<input type="text" size="15" />
-  			</div>
-  			<div id="receive_allow">
-  				<span class="subject">정보수신</span>
-  				<span class="radio"><label>resty 관련 이메일 정보를 받습니다.</label><input type="radio" /></span>
-  			</div>
-  		</div>
-  	</div>
-
-  	<div id="service-connect">
-  		<div id="service-connect-title">
-  		    <h3>서비스 연결 (선택옵션)</h3>
-  		    <div class="line_green"></div>
-  		</div>
-  		<div id="service-connect-body">
-  			<div>
-  				<img src="../../assets/images/mymenu_service_connect_facebook.png" title="facebook" /><span class="checkbox"><input type="checkbox" /></span>
-  			</div>
-  			<div>
-  				<img src="../../assets/images/mymenu_service_connect_twitter.png" title="twitter" /><span class="checkbox"><input type="checkbox" /></span>
-  			</div>
-  			<div>
-  				<img src="../../assets/images/mymenu_service_connect_flickr.png" title="flickr" /><span class="checkbox"><input type="checkbox" /></span>
-  			</div>
-  			<div>
-  				<img src="../../assets/images/mymenu_service_connect_instagram.png" title="instagram" /><span class="checkbox"><input type="checkbox" /></span>
-  			</div>
-  			<div>
-  				<img src="../../assets/images/mymenu_service_connect_foursquare.png" title="foursquare" /><span class="checkbox"><input type="checkbox" /></span>
-  			</div>
-  		</div>
-  	</div>
-
-  	<div id="etc-info">
-  		<div id="etc-info-title">
-  		    <h3>추가정는입력</h3>
-  		    <div class="line_green"></div>
-  		</div>
-  		<div id="etc-info-body">
-  			<div id="gender">
-  				<div class="subject">성별</div>
-  				<span class="radio"><label>남</label><input type="radio" name="gender" value="m" /></span>
-  				<span class="radio"><label>여</label><input type="radio" name="gender" value="f" /></span>
-  				<div> </div>
-  			</div>
-  			<div id="age">
-  				<div class="subject">나이</div>
-  				<span class="radio"><label>10대</label><input type="radio" name="age" value="10" /></span>
-  				<span class="radio"><label>20대</label><input type="radio" name="age" value="20" /></span>
-  				<span class="radio"><label>30대</label><input type="radio" name="age" value="30" /></span>
-  				<span class="radio"><label>40대</label><input type="radio" name="age" value="40" /></span>
-  				<span class="radio"><label>50대</label><input type="radio" name="age" value="50" /></span>
-  				<span class="radio"><label>60대</label><input type="radio" name="age" value="60" /></span>
-  				<div> </div>
-  			</div>
-  			<div id="region">
-  				<div class="subject">사는 지역</div>
-  				<input type="text" size="15" />
-  			</div>
-  		</div>
-  	</div>
-  </div>
-  
-  <%= render 'form' %>
+<div id="login-form">
+  <h1 class="reset-password">resty 비밀번호 변경</h1>
+  <hr class="gray">
+  <%= form_for @user, :html => {:method => :put} do |f| %>
+  <table>
+    <tr>
+      <td class="align-center"><%= f.label :email, image_tag('email_label.png') %></td>
+      <td><%= f.text_field :email, :class => 'text-input disabled', :disabled => true %></td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :password, image_tag('pwd_label.png') %></td>
+      <td><%= f.password_field :password, :class => 'text-input' %></td>
+    </tr>
+    <% if @user.errors[:password].present? %>
+    <tr>
+      <td colspan="2">
+        <% @user.errors[:password].each do |msg| %>
+          <%= content_tag :p, msg, :class => 'form-error' %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+    <tr>
+      <td class="align-center"><%= f.label :password_confirmation, image_tag('pwd_confirmation_label.png') %></td>
+      <td><%= f.password_field :password_confirmation, :class => 'text-input' %></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="align-right"><%= image_submit_tag "update_btn.png" %></td>
+    </tr>
+  </table>
+  <% end %>
 </div>

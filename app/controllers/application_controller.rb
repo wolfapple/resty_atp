@@ -14,7 +14,16 @@ class ApplicationController < ActionController::Base
   end
   
   def not_authenticated
-    redirect_to login_path, :alert => '로그인이 필요합니다.'
+    redirect_to login_path, :notice => '로그인이 필요합니다.'
+  end
+  
+  def store_location
+    session[:return_to] = request.env['REQUEST_URI']
+  end
+  
+  def redirect_after_login
+    redirect_to (session[:return_to] || root_path), :notice => '로그인 되었습니다.'
+    session[:return_to] = nil
   end
   
   private

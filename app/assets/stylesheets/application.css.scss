@@ -8,6 +8,7 @@
 @import "jquery-ui/jquery-ui-1.8.16.custom";
 @import "colorbox";
 @import "nivo-slider";
+@import "jquery.notifyBar";
 
 body, form, div {
 	font-family: Dotum,Tahoma;
@@ -201,4 +202,11 @@ li.autocomplete_category {
 	width: 1024px;
 	height: 768px;
 	border: 1px solid;
+}
+.notify-bar {
+	background: black;
+	color: white;
+	opacity: .7;
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
 }

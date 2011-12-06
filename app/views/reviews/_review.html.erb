@@ -1,0 +1,9 @@
+<div id="review_<%= review.id %>" class="review-item">
+  <span>
+    Posted <%= time_ago_in_words review.created_at %>
+    <%= link_to 'Delete', (@pension.present?? pension_review_path(@pension, review) : spot_review_path(@spot, review)), :method => :delete, :remote => true %>
+  </span>
+  <p><b><%= review.user.email %></b></p>
+  <br>
+  <%= content_tag :p, review.content %>
+</div>
