@@ -5,8 +5,8 @@ RestyAtp::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   
   # join, login, logout
-  # match 'join' => 'users#join', :as => :join
-  # match 'login' => 'user_sessions#new', :as => :login
+  match 'join' => 'users#join', :as => :join
+  match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   # oauth
   resource :oauth do
@@ -14,17 +14,15 @@ RestyAtp::Application.routes.draw do
   end
   match 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
   # auth
-  # resources :user_sessions
-  # resources :password_resets
+  resources :user_sessions
+  resources :password_resets
   #etc
-  resources :users do
-    get :map, :on => :member
-  end
+  resources :users
   resources :themes do
     resources :pensions
   end
   resources :pensions do
-    # resources :reviews
+    resources :reviews
     resources :rooms
     get :update_like_count, :on => :collection
     get :update_comments_count, :on => :collection

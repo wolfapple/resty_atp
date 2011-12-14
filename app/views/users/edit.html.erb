@@ -1,28 +1,78 @@
 <div id="login-form">
-  <h1 class="reset-password">resty 비밀번호 변경</h1>
+  <h1 class="edit">resty 개인정보 변경</h1>
   <hr class="gray">
   <%= form_for @user, :html => {:method => :put} do |f| %>
   <table>
     <tr>
-      <td class="align-center"><%= f.label :email, image_tag('email_label.png') %></td>
+      <td class="align-center"><%= f.label :email, content_tag(:h3, '이메일') %></td>
       <td><%= f.text_field :email, :class => 'text-input disabled', :disabled => true %></td>
     </tr>
+    <% if @user.providers.count == 0 %>
     <tr>
-      <td class="align-center"><%= f.label :password, image_tag('pwd_label.png') %></td>
-      <td><%= f.password_field :password, :class => 'text-input' %></td>
-    </tr>
-    <% if @user.errors[:password].present? %>
-    <tr>
-      <td colspan="2">
-        <% @user.errors[:password].each do |msg| %>
-          <%= content_tag :p, msg, :class => 'form-error' %>
-        <% end %>
+      <td class="align-center"><%= f.label :password, content_tag(:h3, '비밀번호') %></td>
+      <td>
+        <%= f.password_field :password, :class => 'text-input' %>
+        <%= content_tag :p, @user.errors[:password][0], :class => 'form-error' if @user.errors[:password].present? %>
       </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :password_confirmation, content_tag(:h3, '비밀번호확인') %></td>
+      <td><%= f.password_field :password_confirmation, :class => 'text-input' %></td>
     </tr>
     <% end %>
     <tr>
-      <td class="align-center"><%= f.label :password_confirmation, image_tag('pwd_confirmation_label.png') %></td>
-      <td><%= f.password_field :password_confirmation, :class => 'text-input' %></td>
+      <td class="align-center"><%= f.label :gender, content_tag(:h3, '성별') %></td>
+      <td>
+        <% if @me.present? %>
+          <%= f.radio_button :gender, 'M', :checked => (@gender.present? and @gender == 'male') %> 남
+          &nbsp;&nbsp;&nbsp;
+          <%= f.radio_button :gender, 'F', :checked => (@gender.present? and @gender == 'female') %> 여
+        <% else %>
+          <%= f.radio_button :gender, 'M' %> 남
+          &nbsp;&nbsp;&nbsp;
+          <%= f.radio_button :gender, 'F' %> 여
+        <% end %>
+        <%= content_tag :p, @user.errors[:gender][0], :class => 'form-error' if @user.errors[:gender].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :age, content_tag(:h3, '나이') %></td>
+      <td>
+        <% (10..60).step(10).each do |num| %>
+          <% if @me.present? %>
+            <%= f.radio_button :age, num, :checked => (@age.present? and @age / num == 1) %>
+          <% else %>
+            <%= f.radio_button :age, num %>
+          <% end %>
+          <%= "#{num}대" %>
+          <%= num == 30 ? raw("<br>") : raw("&nbsp;&nbsp;&nbsp;") %>
+        <% end %>
+        <%= content_tag :p, @user.errors[:age][0], :class => 'form-error' if @user.errors[:age].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :area, content_tag(:h3, '사는지역') %></td>
+      <td>
+        <% if @me.present? %>
+          <select id="user_area" name="user[area]">
+            <option value="">지역</option>
+            <% ['서울/인천/경기', '강원', '충북', '대전/충남', '전북', '광주/전남', '대구/경북', '부산/울산/경남', '제주'].each do |area| %>
+              <option value="<%= area %>"<%= ' selected="selected"' unless @area.nil? or area.index(@area).nil? %>><%= area %></option>
+            <% end %>
+          </select>
+        <% else %>
+          <%= f.select :area, options_for_select(['서울/인천/경기', '강원', '충북', '대전/충남', '전북', '광주/전남', '대구/경북', '부산/울산/경남', '제주']) %>
+        <% end %>
+        <%= content_tag :p, @user.errors[:area][0], :class => 'form-error' if @user.errors[:area].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :email_agree, content_tag(:h3, '정보수신') %></td>
+      <td>
+        <%= f.radio_button :email_agree, true %> 예
+        &nbsp;&nbsp;&nbsp;
+        <%= f.radio_button :email_agree, false %> 아니오
+      </td>
     </tr>
     <tr>
       <td colspan="2" class="align-right"><%= image_submit_tag "update_btn.png" %></td>

@@ -45,7 +45,7 @@ Rails.application.config.sorcery.configure do |config|
     config.facebook.callback_url = "http://www.resty.co.kr/oauth/callback?provider=facebook"
   end
   config.facebook.user_info_mapping = {:email => "email", :username => "name"}
-  config.facebook.scope = "email,offline_access,publish_stream,user_checkins,friends_checkins,publish_checkins,friends_status"
+  config.facebook.scope = "user_birthday,user_location,email,offline_access,publish_stream,user_checkins,friends_checkins,publish_checkins,friends_status"
   
   # --- user config ---
   config.user_config do |user|

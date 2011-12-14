@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class UsersController < ApplicationController
   before_filter :require_login, :except => [:join, :new, :create]
+  skip_before_filter :user_info_check
   
   def join
   end
@@ -25,13 +26,25 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @me = graph.get_object('me') if @user.providers.count == 1 and @user.gender.nil?
+    if @me.present?
+      if @me['gender'].present?
+        @gender = @me['gender']
+      end
+      if @me['birthday'].present?
+        @age = Time.new.year - @me['birthday'].split('/').last.to_i + 1
+      end
+      if @me['location']['name'].present?
+        @area = @me['location']['name'].split(' ').first
+      end
+    end
     redirect_to root_path, :notice => '잘못된 접근입니다.' unless @user = current_user
   end
   
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user, :notice => '회원 정보 수정 완료!'
+      redirect_to root_path, :notice => '회원 정보 수정 완료!'
     else
       render :edit
     end

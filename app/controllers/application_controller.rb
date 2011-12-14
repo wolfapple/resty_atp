@@ -2,6 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :prepare_for_mobile
+  before_filter :user_info_check
   helper_method :graph
   
   protected
@@ -19,6 +20,10 @@ class ApplicationController < ActionController::Base
   
   def store_location
     session[:return_to] = request.env['REQUEST_URI']
+  end
+  
+  def user_info_check
+    redirect_to edit_user_path(current_user), :notice => '정보를 입력해 주세요.' if current_user and current_user.gender.nil?
   end
   
   def redirect_after_login

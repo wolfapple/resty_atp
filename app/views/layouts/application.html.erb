@@ -50,7 +50,7 @@
       <% else %>
         <div id="login_fb">
           <%= link_to image_tag('header_login_facebook.png'), auth_at_provider_path(:provider => :facebook) %>
-          <%#= link_to image_tag('header_login.png'), login_path %><%#= link_to image_tag('header_join.png'), join_path %>
+          <%= link_to image_tag('header_login.png'), login_path %><%= link_to image_tag('header_join.png'), join_path %>
         </div>
       <% end %>
       </div>

@@ -8,7 +8,7 @@
   <%= form_tag user_sessions_path, :id => 'login-input' do %>
     <table>
       <tr>
-        <td><%= label_tag :email, image_tag('email_label.png') %></td>
+        <td class="align-center"><%= label_tag :email, content_tag(:h3, '이메일') %></td>
         <td><%= text_field_tag :email, params[:email], :class => 'text-input' %></td>
         <td>
           <%= check_box_tag :remember_me, 1, params[:remember_me] %>
@@ -16,7 +16,7 @@
         </td>
       </tr>
       <tr>
-        <td><%= label_tag :password, image_tag('pwd_label.png') %></td>
+        <td class="align-center"><%= label_tag :password, content_tag(:h3, '비밀번호') %></td>
         <td><%= password_field_tag :password, nil, :class => 'text-input' %></td>
         <td><%= image_submit_tag "login_btn.png" %></td>
       </tr>
@@ -25,7 +25,7 @@
   <%= form_tag password_resets_path, :method => :post, :id => 'reset-input' do %>
     <table>
       <tr>
-        <td><%= label_tag :email, image_tag('email_label.png') %></td>
+        <td><%= label_tag :email, content_tag(:h3, '이메일') %></td>
         <td><%= text_field_tag :email, params[:email], :class => 'text-input' %></td>
         <td><%= submit_tag '비밀번호 초기화' %></td>
       </tr>

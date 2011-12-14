@@ -30,6 +30,9 @@ img {
 a {
 	text-decoration: none;
 	color: #222;
+	&.underline {
+		text-decoration: underline;
+	}
 }
 #totalWrapper {
 	width: 3000px;
@@ -85,13 +88,6 @@ a {
 			text-decoration: underline;
 		}
 	}
-}
-#login_fb {
-	position: absolute;
-	float: right;
-	right: 0px;
-	width: 180px;
-	height: 27px;
 }
 #search_bar {
 	background-image: url("/assets/header_search_bg.png");
@@ -209,4 +205,23 @@ li.autocomplete_category {
 	opacity: .7;
 	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 	filter: alpha(opacity=70);
+}
+.pages ul {
+	list-style-type: none;
+	padding-left: 1em;
+	li {
+		line-height: 1.5em;
+	}
+}
+.field_with_errors {
+	display: inline;
+	input {
+		border: 2px solid red !important;
+	}
+}
+.form-error {
+	color: red;
+	text-align: right;
+	margin: 0px;
+	padding: 0px;
 }

@@ -1,1 +1,79 @@
-<%= render 'form' %>
+<div id="login-form">
+  <h1 class="join">resty 회원 가입</h1>
+  <hr class="gray">
+  <%= form_for @user do |f| %>
+  <table>
+    <tr>
+      <td class="align-center"><%= f.label :email, content_tag(:h3, '이메일') %></td>
+      <td>
+        <%= f.text_field :email, :class => 'text-input' %>
+        <%= content_tag :p, @user.errors[:email][0], :class => 'form-error' if @user.errors[:email].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :password, content_tag(:h3, '비밀번호') %></td>
+      <td>
+        <%= f.password_field :password, :class => 'text-input' %>
+        <%= content_tag :p, @user.errors[:password][0], :class => 'form-error' if @user.errors[:password].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :password_confirmation, content_tag(:h3, '비밀번호확인') %></td>
+      <td><%= f.password_field :password_confirmation, :class => 'text-input' %></td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :gender, content_tag(:h3, '성별') %></td>
+      <td>
+        <%= f.radio_button :gender, 'M' %> 남&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= f.radio_button :gender, 'F' %> 여
+        <%= content_tag :p, @user.errors[:gender][0], :class => 'form-error' if @user.errors[:gender].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :age, content_tag(:h3, '나이') %></td>
+      <td>
+        <% (10..60).step(10).each do |num| %>
+          <%= f.radio_button :age, num %><%= "#{num}대" %>
+          <%= num == 30 ? raw("<br>") : raw("&nbsp;&nbsp;&nbsp;") %>
+        <% end %>
+        <%= content_tag :p, @user.errors[:age][0], :class => 'form-error' if @user.errors[:age].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :area, content_tag(:h3, '사는지역') %></td>
+      <td>
+        <%= f.select :area, options_for_select([['지역', nil], '서울/경기', '강원', '충북', '대전/충남', '전북', '광주/전남', '대구/경북', '부산/경남', '제주']) %>
+        <%= content_tag :p, @user.errors[:area][0], :class => 'form-error' if @user.errors[:area].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-center"><%= f.label :email_agree, content_tag(:h3, '정보수신') %></td>
+      <td>
+        <%= f.radio_button :email_agree, true %> 예
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= f.radio_button :email_agree, false %> 아니오
+      </td>
+    </tr>
+    <tr>
+      <td class="align-right" colspan="2">
+        <%= f.check_box :term %>
+        <%= f.label :term_accept, link_to('이용약관', page_path('terms'), :class => 'underline', :target => '_blank') + "에 동의합니다." %>
+        <%= content_tag :p, @user.errors[:term][0], :class => 'form-error' if @user.errors[:term].present? %>
+      </td>
+    </tr>
+    <tr>
+      <td class="align-right" colspan="2">
+        <%= f.check_box :privacy %>
+        <%= f.label :privacy_accept, link_to('개인정보 수집 및 이용', page_path('privacy'), :class => 'underline', :target => '_blank') + "에 동의합니다." %>
+        <%= content_tag :p, @user.errors[:privacy][0], :class => 'form-error' if @user.errors[:privacy].present? %>
+      </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+      <td colspan="2" class="align-right">
+        <%= image_submit_tag "join_submit_btn.png" %>
+        <%= link_to image_tag('cancel_btn.png'), root_path %>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+</div>

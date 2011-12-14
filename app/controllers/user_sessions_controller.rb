@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class UserSessionsController < ApplicationController
   skip_before_filter :require_login, :except => [:destroy]
+  skip_before_filter :user_info_check
   
   def new
   end
