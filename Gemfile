@@ -23,6 +23,10 @@ gem 'truncate_html'
 gem 'geocoder'
 gem 'jquery_notify_bar'
 
+group :production do
+  gem 'newrelic_rpm'
+end
+
 group :development do
   gem 'pry'
   gem 'rails-dev-boost', :git => 'git://github.com/thedarkone/rails-dev-boost.git', :require => 'rails_development_boost'
