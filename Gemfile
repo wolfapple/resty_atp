@@ -22,10 +22,7 @@ gem 'mini_magick'
 gem 'truncate_html'
 gem 'geocoder'
 gem 'jquery_notify_bar'
-
-group :production do
-  gem 'newrelic_rpm'
-end
+gem 'newrelic_rpm', :git => 'git://github.com/newrelic/rpm.git'
 
 group :development do
   gem 'pry'
