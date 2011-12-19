@@ -1,5 +1,18 @@
+<h3>펜션 바로가기</h3>
+<ul class="pension-link">
+<% @pension_links.each do |pension| %>
+  <li>
+    <%= link_to image_tag(pension.list_img), pension, :target => '_blank', :class => 'thumb' %>
+    <div>
+      <%= link_to pension.title, pension, :target => '_blank', :class => 'title' %>
+      <%= content_tag :p, "#{pension.mobile} | #{pension.addr}" %>
+    </div>
+  </li>
+<% end %>
+  <li class="last"></li>
+</ul>
+<% if @pensions.present? and @spots.present? %>
 <script src="/assets/jquery.gmap.min.js" type="text/javascript"></script>
-
 <div id="search-list">
   <h3><%#= image_tag 'http://www.google.com/mapfiles/marker.png', :height => '20px' %>주변 펜션 (<%= @pensions.size %>)</h3>
   <div class="search-pensions">
@@ -39,27 +52,11 @@
     <span><%= "인근 펜션과 여행지" if !params[:longitude].blank? and !params[:latitude].blank? %> 검색 결과입니다.</span>
   <% end %>
   <hr>
-  <script type="text/javascript"><!--
-  google_ad_client = "ca-pub-1635765536037773";
-  /* 레스티 리더보드 */
-  google_ad_slot = "1375861710";
-  google_ad_width = 728;
-  google_ad_height = 90;
-  //-->
-  </script>
-  <script type="text/javascript"
-  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-  </script>
   <div id="map" style="height:645px"></div>
   <p><%= link_to 'powered by 야후! 거기', 'http://kr.gugi.yahoo.com/', :target => '_blank' unless @pension %></p>
 </div>
-
 <script type="text/javascript" charset="utf-8">
-  <% if @pensions.size == 0 and @spots.size == 0 %>
-    $('#map').gMap({address:'대전', zoom:7});
-  <% else %>
-    $('#map').gMap({markers:<%= raw @results %>, zoom: 'fit', latitude:'fit', longitude:'fit'});
-  <% end %>
+  $('#map').gMap({markers:<%= raw @results %>, zoom: 'fit', latitude:'fit', longitude:'fit'});
   $(function() {
     $('#search-list li').mouseenter(function() {
       $(this).addClass('over');
@@ -78,3 +75,4 @@
     });
   });
 </script>
+<% end %>

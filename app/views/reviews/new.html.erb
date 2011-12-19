@@ -1,0 +1,5 @@
+<h1>리뷰등록</h1>
+<%= form_tag (@pension.present?? pension_reviews_path(@pension) : spot_reviews_path(@spot)) do %>
+  <%= text_area_tag 'review[content]' %>
+  <%= submit_tag '저장' %>
+<% end %>

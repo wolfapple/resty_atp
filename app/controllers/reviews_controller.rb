@@ -1,13 +1,13 @@
 # -*- encoding : utf-8 -*-
 class ReviewsController < ApplicationController
+  before_filter :store_location
   before_filter :require_login
-  def index
+    
+  def new
     if params[:pension_id].present?
       @pension = Pension.find(params[:pension_id])
-      @reviews = @pension.reviews.page(params[:page]).per(5)
     elsif params[:spot_id].present?
       @spot = Spot.find(params[:spot_id])
-      @reviews = @spot.reviews.page(params[:page]).per(5)
     end
   end
   
@@ -22,8 +22,13 @@ class ReviewsController < ApplicationController
     end
     if @review.save
       graph.put_wall_post(params[:review][:content]) if params[:facebook]
+      if @pension.present?
+        redirect_to @pension
+      else
+        redirect_to @spot
+      end
     else
-      flash[:alert] = @review.errors[:content][0]
+      render :new
     end
   end
   

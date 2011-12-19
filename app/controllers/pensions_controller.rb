@@ -1,7 +1,5 @@
 # -*- encoding : utf-8 -*-
 class PensionsController < ApplicationController
-  before_filter :store_location, :only => [:show]
-  
   def index
     # get area and spot
     if !params[:sub_area_id].blank?

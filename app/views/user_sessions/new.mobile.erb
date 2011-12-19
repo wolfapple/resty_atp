@@ -1,0 +1,18 @@
+<div class="align-center">
+  <p class="alert"><%= alert %></p>
+  <%= form_tag user_sessions_path, :id => 'login-input' do %>
+    <div data-role="fieldcontain">
+      <%= label_tag :email, '이메일' %>
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+    <div data-role="fieldcontain">
+      <%= label_tag :password, '비밀번호' %>
+      <%= password_field_tag :password %>
+    </div>
+    <%= hidden_field_tag :remember_me, 1 %>
+    <div class="ui-bar">
+      <%= link_to '페이스북으로 로그인', auth_at_provider_path(:provider => :facebook), 'data-role' => 'button' %>
+      <%= submit_tag '로그인' %>
+    </div>
+  <% end %>
+</div>

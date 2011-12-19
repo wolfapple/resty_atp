@@ -2,19 +2,18 @@
 class SearchController < ApplicationController
   def result
     SearchLog.create(:input => params[:address], :remote_ip => request.remote_ip)
-    if params[:latitude].blank? or params[:longitude].blank?
-      addr = params[:address].gsub('팬션', '펜션')
-      like = addr.split(' ').collect {|x| "title like '%#{x.strip}%'"}.join(' and ')
-      @pensions = Pension.where(like)
-      @spots = Spot.where(like)
-    else
+    if params[:latitude].present? and params[:longitude].present?
       point = [params[:latitude].to_f, params[:longitude].to_f]
       @pensions = Pension.near(point, 10, {:units => :km, :order => :distance})
       @spots = Spot.near(point, 10, {:units => :km, :order => :distance})
+      pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
+      spot_markers = @spots.collect {|x| {:key => "spot-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html, :icon => {:image => 'http://www.google.com/mapfiles/marker_green.png'}}}
+      @results = (pension_markers + spot_markers).to_json
     end
-    pension_markers = @pensions.collect {|x| {:key => "pension-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html}}
-    spot_markers = @spots.collect {|x| {:key => "spot-#{x.id}", :latitude => x.latitude, :longitude => x.longitude, :html => x.html, :icon => {:image => 'http://www.google.com/mapfiles/marker_green.png'}}}
-    @results = (pension_markers + spot_markers).to_json
+    # 펜션바로가기
+    addr = params[:address].gsub('팬션', '펜션')
+    like = addr.split(' ').collect {|x| "title like '%#{x.strip}%'"}.join(' and ')
+    @pension_links = Pension.where(like).limit(3)
   end
     
   def autocomplete

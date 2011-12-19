@@ -10,6 +10,12 @@ GIT
       oauth2 (~> 0.4.1)
 
 GIT
+  remote: git://github.com/newrelic/rpm.git
+  revision: 032ddf2f46970485ce30f44e8aca39b86265d919
+  specs:
+    newrelic_rpm (3.3.0)
+
+GIT
   remote: git://github.com/thedarkone/rails-dev-boost.git
   revision: c648d229fa981c5f9bcbd8ac6baa520582c248c6
   specs:
@@ -124,7 +130,6 @@ GEM
     multi_json (1.0.3)
     multipart-post (1.1.3)
     mysql2 (0.3.10)
-    newrelic_rpm (3.3.0)
     nokogiri (1.5.0)
     oauth (0.4.5)
     oauth2 (0.4.1)
@@ -223,7 +228,7 @@ DEPENDENCIES
   meta_search (>= 1.1.0.pre)
   mini_magick
   mysql2
-  newrelic_rpm
+  newrelic_rpm!
   nokogiri
   progressbar
   pry
