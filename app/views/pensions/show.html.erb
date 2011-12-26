@@ -88,7 +88,7 @@
       <%#= render 'pension_reviews/index' %>
       <fb:comments href="http://www.resty.co.kr/pensions/<%= @pension.id %>" num-posts="5" width="709"></fb:comments>
       <script type="text/javascript" charset="utf-8">
-        window.fbAsyncInit = function() {
+        $(window).load(function() {
           FB.Event.subscribe('comment.create', function(response) {
             $.get('/pensions/update_comments_count', {id:<%= @pension.id %>});
           });
@@ -101,7 +101,7 @@
           FB.Event.subscribe('edge.remove', function(response) {
             $.get('/pensions/update_like_count', {id:<%= @pension.id %>, remove:true});
           });
-        }
+        });
       </script>
     </div>
 
