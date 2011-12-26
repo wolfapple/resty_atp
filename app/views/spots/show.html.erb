@@ -46,18 +46,20 @@
       <%#= render 'reviews/index' %>
       <fb:comments href="http://www.resty.co.kr/spots/<%= @spot.id %>" num-posts="5" width="709"></fb:comments>
       <script type="text/javascript" charset="utf-8">
-        FB.Event.subscribe('comment.create', function(response) {
-          $.get('/spots/update_comments_count', {id:<%= @spot.id %>});
-        });
-        FB.Event.subscribe('comment.remove', function(response) {
-          $.get('/spots/update_comments_count', {id:<%= @spot.id %>, remove:true});
-        });
-        FB.Event.subscribe('edge.create', function(response) {
-          $.get('/spots/update_like_count', {id:<%= @spot.id %>});
-        });
-        FB.Event.subscribe('edge.remove', function(response) {
-          $.get('/spots/update_like_count', {id:<%= @spot.id %>, remove:true});
-        });
+        window.fbAsyncInit = function() {
+          FB.Event.subscribe('comment.create', function(response) {
+            $.get('/spots/update_comments_count', {id:<%= @spot.id %>});
+          });
+          FB.Event.subscribe('comment.remove', function(response) {
+            $.get('/spots/update_comments_count', {id:<%= @spot.id %>, remove:true});
+          });
+          FB.Event.subscribe('edge.create', function(response) {
+            $.get('/spots/update_like_count', {id:<%= @spot.id %>});
+          });
+          FB.Event.subscribe('edge.remove', function(response) {
+            $.get('/spots/update_like_count', {id:<%= @spot.id %>, remove:true});
+          });
+        }
       </script>
     </div>
   </div>

@@ -85,21 +85,23 @@
     </div>
     <div id="show-review">
       <div id="pension-review-title"></div> 
-      <%#= render 'reviews/index' %>
+      <%#= render 'pension_reviews/index' %>
       <fb:comments href="http://www.resty.co.kr/pensions/<%= @pension.id %>" num-posts="5" width="709"></fb:comments>
       <script type="text/javascript" charset="utf-8">
-        FB.Event.subscribe('comment.create', function(response) {
-          $.get('/pensions/update_comments_count', {id:<%= @pension.id %>});
-        });
-        FB.Event.subscribe('comment.remove', function(response) {
-          $.get('/pensions/update_comments_count', {id:<%= @pension.id %>, remove:true});
-        });
-        FB.Event.subscribe('edge.create', function(response) {
-          $.get('/pensions/update_like_count', {id:<%= @pension.id %>});
-        });
-        FB.Event.subscribe('edge.remove', function(response) {
-          $.get('/pensions/update_like_count', {id:<%= @pension.id %>, remove:true});
-        });
+        window.fbAsyncInit = function() {
+          FB.Event.subscribe('comment.create', function(response) {
+            $.get('/pensions/update_comments_count', {id:<%= @pension.id %>});
+          });
+          FB.Event.subscribe('comment.remove', function(response) {
+            $.get('/pensions/update_comments_count', {id:<%= @pension.id %>, remove:true});
+          });
+          FB.Event.subscribe('edge.create', function(response) {
+            $.get('/pensions/update_like_count', {id:<%= @pension.id %>});
+          });
+          FB.Event.subscribe('edge.remove', function(response) {
+            $.get('/pensions/update_like_count', {id:<%= @pension.id %>, remove:true});
+          });
+        }
       </script>
     </div>
 
