@@ -34,7 +34,7 @@ class UsersController < ApplicationController
       if @me['birthday'].present?
         @age = Time.new.year - @me['birthday'].split('/').last.to_i + 1
       end
-      if @me['location']['name'].present?
+      if @me['location'].present? and @me['location']['name'].present?
         @area = @me['location']['name'].split(' ').first
       end
     end
