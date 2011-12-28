@@ -25,7 +25,7 @@
     <hr class="line-green">
     <div class="body">
       <div class="pension-photo">
-        <%= image_tag @pension.show_img %>
+        <%= link_to image_tag(@pension.show_img), outlink_pension_path(@pension), :target => '_blank' %>
       </div>
       <div class="pension-detail">
         <div id="pension-info-addr"><%= @pension.addr %></div>
