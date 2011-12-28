@@ -12,7 +12,7 @@
   <%= render 'pension_reviews/reviews' %>
   <% if @reviews.length == 0 %>
     <div id="no-review">
-      <p>아직 레스티 펜션의 리뷰가 없습니다. 레스티 펜션의 첫번째 리뷰를 남겨주세요 :)</p>
+      <p>아직 리뷰가 없습니다. <strong>"<%= @pension.title %>"</strong> 의 첫번째 리뷰를 남겨주세요 :)</p>
       <%= link_to image_tag('review_write_btn_event.png'), new_pension_review_path(@pension) %>
     </div>
   <% end %>
