@@ -5,7 +5,9 @@
   <table>
     <tr>
       <td class="align-center"><%= f.label :email, content_tag(:h3, '이메일') %></td>
-      <td><%= f.text_field :email, :class => 'text-input disabled', :disabled => true %></td>
+      <td>
+        <%= f.text_field :email, :class => 'text-input disabled', :disabled => true %>
+      </td>
     </tr>
     <% if @user.providers.count == 0 %>
     <tr>

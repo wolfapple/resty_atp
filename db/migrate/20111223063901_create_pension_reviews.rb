@@ -4,7 +4,15 @@ class CreatePensionReviews < ActiveRecord::Migration
     create_table :pension_reviews do |t|
       t.references :user
       t.references :pension
-      t.text :content
+      t.integer :overall
+      t.string :title
+      t.string :content
+      t.integer :clean
+      t.integer :kindness
+      t.integer :price
+      t.integer :location
+      t.integer :interior
+      t.integer :helpful, :default => 0
 
       t.timestamps
     end

@@ -1,0 +1,18 @@
+<% @reviews.each do |review| %>
+  <div id="review_<%= review.id %>" class="review-item">
+    <p class="info">
+      <span class="stars" data-rating="<%= review.overall %>"></span>
+      <%= content_tag :strong, (review.user.username or review.user.email.split('@')[0]) %>님의 리뷰입니다.
+      <span class="created_at">(<%= review.created_at.to_date %> 작성)</span>
+      <%= link_to '삭제', pension_review_path(@pension, review), :method => :delete, :remote => true, :class => 'btn', :confirm => '정말 삭제하시겠습니까?' %>
+    </p>
+    <p class="content">
+      <%= content_tag :strong, review.title %><br>
+      <%= content_tag :span, truncate(review.content, :length => 100), :class => 'truncated' %>
+      <span class="detail">
+        <%= link_to '자세히보기', detail_pension_review_path(@pension, review), :remote => true %>
+      </span>
+    </p>
+  </div>
+<% end %>
+<%= paginate @reviews, :params => {:controller => 'pension_reviews', :action => 'index', :pension_id => @pension.id}, :remote => true %>

@@ -1,0 +1,23 @@
+<div id="pension-review-title">
+  <%= image_tag('pension_review_header.png') %>
+  <% if @reviews.length > 0 %>
+    <span id="reviews-count">
+      <strong><%= @pension.reviews_count %></strong> 개의 리뷰가 있습니다.
+    </span>
+    <%= link_to image_tag('review_write_btn_event.png'), new_pension_review_path(@pension) %>
+  <% end %>
+  <hr class="gray">
+</div>
+<div id="reviews">
+  <%= render 'pension_reviews/reviews' %>
+  <% if @reviews.length == 0 %>
+    <div id="no-review">
+      <p>아직 레스티 펜션의 리뷰가 없습니다. 레스티 펜션의 첫번째 리뷰를 남겨주세요 :)</p>
+      <%= link_to image_tag('review_write_btn_event.png'), new_pension_review_path(@pension) %>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(".stars").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/',readOnly:true});
+</script>

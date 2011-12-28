@@ -1,5 +1,5 @@
 # -*- encoding : utf-8 -*-
 require 'test_helper'
 
-class ReviewsHelperTest < ActionView::TestCase
+class SpotReviewsHelperTest < ActionView::TestCase
 end

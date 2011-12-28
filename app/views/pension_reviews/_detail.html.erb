@@ -1,0 +1,26 @@
+<table class="stars-table">
+  <tr>
+    <td>청결도</td>
+    <td><span class="stars" data-rating="<%= @review.clean %>"></span></td>
+    <td>가격만족도</td>
+    <td><span class="stars" data-rating="<%= @review.price %>"></span></td>
+    <td>인테리어</td>
+    <td><span class="stars" data-rating="<%= @review.interior %>"></span></td>
+  </tr>
+  <tr>
+    <td>친절도</td>
+    <td><span class="stars" data-rating="<%= @review.kindness %>"></span></td>
+    <td>위치접근성</td>
+    <td><span class="stars" data-rating="<%= @review.location %>"></span></td>
+    <td colspan="2">
+      <span class="helpful">
+        이 리뷰가 도움이 되셨나요?
+        <%= link_to '예', helpful_pension_review_path(@review.pension, @review), :remote => true, :class => 'btn', :method => :put %>
+      </span>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript" charset="utf-8">
+  $("#review_<%= @review.id %> .stars-table .stars").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/',readOnly:true});
+</script>

@@ -1,0 +1,114 @@
+<div id="sidebar">
+  <%= render 'show_sidebar' %>
+</div>
+
+<div id="main_content">
+  <div id="review_new">
+    <h1>리뷰작성하기</h1>
+    <hr class="gray">
+    <div id="pension-info">
+      <%= image_tag(@pension.show_img, :width => '100px') %>
+      <div class="right"><strong><%= @pension.title %></strong><br><%= @pension.addr %></div>
+      <div class="clear"></div>
+    </div>
+    <%= form_for @review do |f| %>
+      <h2>이 펜션에 대한 전체적인 평가를 해주세요 (별 5개 만점!)</h2>
+      <span id="overall" data-rating="<%= @review.overall %>"></span>
+      <span id="overall-cap"></span>
+      <%= content_tag :span, @review.errors[:overall][0], :class => 'form-error' %>
+      <h2>이 펜션을 한마디로 표현해주신다면?</h2>
+      <%= f.text_field :title %> (예 : 이 시대 최고의 펜션 ㅠ.ㅠ)<br>
+      <%= content_tag :span, @review.errors[:title][0], :class => 'form-error' %>
+      <h2>
+        이 펜션에서 느끼셨던 좋았던 점과 아쉬웠던 점을 써주세요 (400자 이내)
+        <div id="count">400</div>
+        <div id="barbox"><div id="bar"></div></div>
+      </h2>
+      <%= f.text_area :content %>
+      <%= content_tag :span, @review.errors[:content][0], :class => 'form-error' %>
+      <h2>마지막으로 5차원으로 촘촘하게 평가해주세요</h2>
+      <table>
+        <tr>
+          <td class="label">청결도</td>
+          <td><span id="clean" data-rating="<%= @review.clean %>"></span></td>
+          <td>(깨끗했다면 별 다섯개, 남자 대학생 하숙집보다 더러웠다면 별 한개)</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td><%= content_tag :span, @review.errors[:clean][0], :class => 'form-error' %></td>
+        </tr>
+        <tr>
+          <td class="label">친절도</td>
+          <td><span id="kindness" data-rating="<%= @review.kindness %>"></span></td>
+          <td>(친절했다면 별 다섯개, 싸울뻔했다면 별 한개)</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td><%= content_tag :span, @review.errors[:kindness][0], :class => 'form-error' %></td>
+        </tr>
+        <tr>
+          <td class="label">가격만족도</td>
+          <td><span id="price" data-rating="<%= @review.price %>"></span></td>
+          <td>(가격만큼 가치가 있었다면 별 다섯개, 돈이 너무 아까웠다면 별 한개)</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td><%= content_tag :span, @review.errors[:price][0], :class => 'form-error' %></td>
+        </tr>
+        <tr>
+          <td class="label">위치접근성</td>
+          <td><span id="location" data-rating="<%= @review.location %>"></span></td>
+          <td>(찾아가기 쉬우셨다면 별 다섯개, 찾아가다 도로 집으로 가실뻔 했다면 별 한개)</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td><%= content_tag :span, @review.errors[:location][0], :class => 'form-error' %></td>
+        </tr>
+        <tr>
+          <td class="label">인테리어</td>
+          <td><span id="interior" data-rating="<%= @review.interior %>"></span></td>
+          <td>(인테리어와 외관이 아름다웠다면 별 다섯개, 주인의 센스가 의심스러웠다면 별 한개)</td>
+        </tr>
+        <tr>
+          <td class="label"></td>
+          <td><%= content_tag :span, @review.errors[:interior][0], :class => 'form-error' %></td>
+        </tr>
+      </table>
+      <hr class="gray">
+      <div id="submit">
+        <%= f.submit '리뷰 작성 완료' %>
+        <p>감사합니다. 거침없이 완료버튼 클릭!</p>
+        <%= content_tag :p,  (check_box_tag :facebook, true, true) + "페이스북에 게시" if current_user.external? %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $("#overall").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/', scoreName:'pension_review[overall]', hintList:['비추예요', '별로예요', '나쁘지 않아요', '좋아요, 강추!', '사랑해요♥'], target:"#overall-cap", targetKeep:true});
+    $("#clean").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/', scoreName:'pension_review[clean]'});
+    $("#kindness").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/', scoreName:'pension_review[kindness]'});
+    $("#price").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/', scoreName:'pension_review[price]'});
+    $("#location").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/', scoreName:'pension_review[location]'});
+    $("#interior").raty({start:function(){return $(this).attr('data-rating');}, path:'/assets/', scoreName:'pension_review[interior]'});
+    
+    $("#pension_review_content").keyup(function() {
+      var box = $(this).val();
+      var main = box.length * 100;
+      var value = (main / 400);
+      var count = 400 - box.length;
+      if(box.length <= 400) {
+        $('#bar').removeClass('red');
+        $('#barbox').removeClass('red');
+        $('#bar').animate({'width':value + '%'}, 1);
+      }
+      else {
+        $('#bar').addClass('red');
+        $('#barbox').addClass('red');
+      }
+      $('#count').html(count);
+      return false;
+    });
+  });
+</script>

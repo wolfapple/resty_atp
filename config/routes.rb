@@ -22,7 +22,10 @@ RestyAtp::Application.routes.draw do
     resources :pensions
   end
   resources :pensions do
-    resources :reviews
+    resources :reviews, :controller => :pension_reviews do
+      get :detail, :on => :member
+      put :helpful, :on => :member
+    end
     resources :rooms
     get :update_like_count, :on => :collection
     get :update_comments_count, :on => :collection
@@ -33,7 +36,7 @@ RestyAtp::Application.routes.draw do
     get :outlink, :on => :member
   end
   resources :spots do
-    resources :reviews
+    resources :reviews, :controller => :spot_reviews
     resources :pensions
     get :map, :on => :member
   end

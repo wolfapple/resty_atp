@@ -5,6 +5,7 @@
 @import "user_sessions";
 @import "search";
 @import "contacts";
+@import "pension_reviews";
 @import "jquery-ui/jquery-ui-1.8.16.custom";
 @import "colorbox";
 @import "nivo-slider";
@@ -215,7 +216,7 @@ li.autocomplete_category {
 }
 .field_with_errors {
 	display: inline;
-	input {
+	input, textarea {
 		border: 2px solid red !important;
 	}
 }
@@ -224,4 +225,20 @@ li.autocomplete_category {
 	text-align: right;
 	margin: 0px;
 	padding: 0px;
+}
+hr {
+	&.line-green {
+		color: #2AB07B;
+		background-color: #2AB07B;
+		height: 3px;
+		margin: 0px;
+		border: none;
+	}
+	&.gray {
+		color: #ccc;
+		background-color: #ccc;
+		height: 3px;
+		margin: 0px;
+		border: none;
+	}
 }

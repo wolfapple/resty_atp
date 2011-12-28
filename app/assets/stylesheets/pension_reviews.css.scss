@@ -1,0 +1,159 @@
+// Place all the styles related to the pension_reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#review_new {
+	margin-top: 35px;
+	#bar {
+		background-color:#2AB07B;
+		width:0px;
+		height:15px;
+		&.red {
+			background-color: red;
+		}
+	}
+	#barbox {
+		float:right;
+		height:15px;
+		background-color:#FFFFFF;
+		width:100px;
+		border:solid 2px #96d8bd;
+		margin-right:3px;
+		-webkit-border-radius:5px;
+		-moz-border-radius:5px;
+		&.red {
+			border: solid 2px red;
+		}
+	}
+	#count {
+		float:right;
+		margin-right:8px;
+		font-size:16px;
+		font-weight:bold;
+		color:#666666
+	}
+	h1 {
+		background: url("/assets/new_review_header.png");
+		background-repeat: no-repeat;
+		text-indent: -9999px;
+		height: 20px;
+		margin: 0px;
+	}
+	h2 {
+		background: #f2f2f2;
+		font-size: 1em;
+		padding: 10px;
+		border-top: 1px dashed #818181;
+		margin-top: 20px;
+	}
+	#pension-info {
+		margin-top: 20px;
+		margin-bottom: 40px;
+		img {
+			float: left;
+		}
+		.right {
+			margin-left: 120px;
+		}
+		.clear {
+			clear: both;
+		}
+	}
+	#pension_review_title {
+		border: 1px solid #ccc;
+		height: 2em;
+		width: 500px;
+		margin-right: 10px;
+	}
+	#pension_review_content {
+		border: 1px solid #ccc;
+		width: 714px;
+		height: 100px;
+	}
+	#overall, #clean, #kindness, #price, #location, #interior {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	#overall-cap {
+		position: relative;
+	}
+	table {
+		tr td {
+			padding: 2px 0px;
+		}
+		.label {
+			width: 70px;
+			display: inline-block;
+			text-align: right;
+		}
+		.form-error {
+			margin-left: 10px;
+		}
+	}
+	#submit {
+		input {
+			background: #2ab07b;
+			border: 2px solid #96d8bd;
+			padding: 5px 10px;
+			color: white;
+			font-size: 1.2em;
+		}
+		margin-top: 20px;
+		text-align: center;
+	}
+}
+#reviews {
+	#no-review {
+		text-align: center;
+	}
+	.review-item {
+		margin-top: 10px;
+		border-bottom: 1px solid #ccc;
+		.stars {
+			margin-right: 10px;
+		}
+		.created_at {
+			color: #666;
+		}
+		.info .btn {
+			float: right;
+		}
+		.btn {
+			background: #2ab07b;
+			color: white;
+			padding: 3px 5px;
+		}
+		.content {
+			padding: 10px;
+			background: #e8f7f2;
+		}
+		.detail a {
+			display: block;
+			color: #396;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		.stars-table {
+			width: 100%;
+			margin-bottom: 10px;
+			tr {
+				height: 30px;
+			}
+		}
+	}
+}
+#reviews-count strong {
+	color: #2AB07B;
+}
+#pension-review-title {
+	margin-top: 50px;
+	#reviews-count {
+		margin-left: 10px;
+	}
+	a {
+		float: right;
+	}
+	hr {
+		clear: both;
+	}
+}

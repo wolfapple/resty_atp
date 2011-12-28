@@ -112,6 +112,10 @@ class Pension < ActiveRecord::Base
     @roomstrucutre_names || temp
   end
   
+  def resty_url
+    "http://www.resty.co.kr/pensions/#{self.id}"
+  end
+  
   private
   def assign_facilities
     if @facility_names

@@ -611,13 +611,6 @@
 				margin-right: 10px;
 			}
 		}
-		.line-green {
-			color: #2AB07B;
-			background-color: #2AB07B;
-			height: 2px;
-			margin: 0px;
-			border: none;
-		}
 		.body {
 			background-image: url("/assets/show_detail_bgcolor.png");
 			background-repeat: repeat;
@@ -805,27 +798,16 @@
 			background-repeat: repeat;
 			clear: both;
 		}
-		#show-review {
-			#pension-review-title {
-				background-image: url("/assets/show_pension_review_title.png");
-				background-repeat: no-repeat;
-				width: 705px;
-				height: 30px;
-				margin-top: 40px;
-			}
-		}
 		#blog-review {
-			float: left;
-			width: 350px;
 			margin-top: 30px;
 			margin-bottom: 30px;
 			.ajax-loader {
 				margin-left: 150px;
 			}
 			.title {
-				background-image: url("/assets/blog_header.png");
+				background-image: url("/assets/pension_blog_header.png");
 				background-repeat: no-repeat;
-				height: 10px;
+				margin-bottom: 5px;
 				.paginator {
 					float: right;
 					position: relative;
@@ -838,7 +820,6 @@
 				padding-left: 0px;
 				li {
 					border-bottom: 2px solid #ccc;
-					margin-right: 5px;
 					padding-top: 10px;
 					&:hover {
 						background: #f2f2f2;
@@ -857,18 +838,15 @@
 			}
 		}
 		#pension-image {
-			float: right;
-			width: 350px;
-			padding-left: 7px;
 			margin-top: 33px;
 			margin-bottom: 33px;
 			.ajax-loader {
 				margin-left: 150px;
 			}
 			.title {
-				background-image: url("/assets/image_header.png");
+				background-image: url("/assets/pension_image_header.png");
 				background-repeat: no-repeat;
-				height: 10px;
+				margin-bottom: 5px;
 				.paginator {
 					float: right;
 					position: relative;
@@ -880,14 +858,14 @@
 			}
 			ul {
 				list-style-type: none;
-				margin-top: 5px;
+				margin-top: 10px;
+				padding-left: 0px;
 			}
 			ul li {
 				display: inline;
 				float: left;
-				margin-left: -40px;
-				margin-right: 46px;
-				margin-bottom: 5px;
+				margin-right: 9px;
+				margin-bottom: 50px;
 				&.last {
 					margin-right: 0px;
 				}

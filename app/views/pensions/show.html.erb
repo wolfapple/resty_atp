@@ -15,7 +15,7 @@
 <div id="main_content">
   <div class="header">
     <%= render 'crumbs' %>
-    <%= link_to image_tag('skiapp_banner_705_80.png', :id => 'banner'), 'https://market.android.com/details?id=resty.corp&feature=search_result#?t=W251bGwsMSwxLDEsInJlc3R5LmNvcnAiXQ..', :target => '_blank' %>
+    <%= image_tag('review_event_banner_1.png', :id => 'banner') %>
   </div>
   <div id="show-content">
     <div class="title">
@@ -83,10 +83,9 @@
   		<%= render 'map' %>
   		<hr class="line-green">
     </div>
-    <div id="show-review">
-      <div id="pension-review-title"></div> 
-      <%#= render 'pension_reviews/index' %>
-      <fb:comments href="http://www.resty.co.kr/pensions/<%= @pension.id %>" num-posts="5" width="709"></fb:comments>
+    <div id="show-review"> 
+      <%= render 'pension_reviews/index' %>
+      <!-- <fb:comments href="http://www.resty.co.kr/pensions/<%= @pension.id %>" num-posts="5" width="709"></fb:comments> -->
       <script type="text/javascript" charset="utf-8">
         $(window).load(function() {
           FB.Event.subscribe('comment.create', function(response) {

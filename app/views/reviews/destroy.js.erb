@@ -1,6 +1,0 @@
-$('#review_<%= @review.id %>').fadeOut();
-<% if params[:pension_id].present? %>
-	$('#reviews-count').html('<%= "#{@pension.reviews.count}개의 리뷰가 있습니다." %>');
-<% else %>
-	$('#reviews-count').html('<%= "#{@spot.reviews.count}개의 리뷰가 있습니다." %>');
-<% end %>

@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AddDetailsToUsers < ActiveRecord::Migration
   def change
     add_column :users, :gender, :string, :limit => 1

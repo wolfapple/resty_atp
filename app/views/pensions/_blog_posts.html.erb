@@ -1,6 +1,7 @@
 <div class="title">
   <%= paginate @blog_reviews, :params => {:action => 'blog_posts'}, :remote => true, :theme => 'ajax' %>
 </div>
+<hr class="gray">
 <ul>
 <% @blog_reviews.each do |item| %>
   <li>
