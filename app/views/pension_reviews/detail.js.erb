@@ -1,3 +1,4 @@
-$("#review_<%= @review.id %> .truncated").html("<%= escape_javascript(raw(@review.content.gsub(/\n/, '<br>'))) %>");
+$("#review_<%= @review.id %> .truncated").hide();
+$("#review_<%= @review.id %> .full-content").show();
 $("<%= escape_javascript(render 'detail') %>").insertAfter($('#review_<%= @review.id %> .content'));
-$("#review_<%= @review.id %> .detail").html("<%= escape_javascript(link_to('자세히보기', '#', :onclick => "$('#review_#{@review.id} .stars-table').toggle();return false;")) %>");
+$("#review_<%= @review.id %> .detail").html("<%= escape_javascript(link_to('자세히보기', '#', :onclick => "$('#review_#{@review.id} .stars-table, #review_#{@review.id} .truncated, #review_#{@review.id} .full-content').toggle();return false;")) %>");

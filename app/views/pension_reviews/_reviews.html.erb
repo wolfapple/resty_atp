@@ -9,6 +9,7 @@
     <p class="content">
       <%= content_tag :strong, review.title %><br>
       <%= content_tag :span, truncate(review.content, :length => 100), :class => 'truncated' %>
+      <%= content_tag :span, raw(review.content.gsub(/\n/, '<br>')), :class => 'full-content' %>
       <span class="detail">
         <%= link_to '자세히보기', detail_pension_review_path(@pension, review), :remote => true %>
       </span>

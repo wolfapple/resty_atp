@@ -20,7 +20,7 @@ class PensionReviewsController < ApplicationController
     @pension = Pension.find(params[:pension_id])
     @review = @pension.reviews.new(params[:pension_review])
     if @review.save
-      graph.put_wall_post("'#{@pension.title}' 에 대한 리뷰를 작성하였습니다. #{@pension.resty_url}") if params[:facebook]
+      graph.put_wall_post("#{@review.user.username}님이 '#{@pension.title}' 에 대한 환상적인 리뷰를 남겨주셨습니다. #{@pension.resty_url}") if params[:facebook]
       redirect_to @pension
     else
       @near_by_pensions = @pension.near_by(5)
