@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    redirect_to root_path, :notice => '잘못된 접근입니다.' unless @user == current_user
     @me = graph.get_object('me') if @user.providers.count == 1 and @user.gender.nil?
     if @me.present?
       if @me['gender'].present?
@@ -38,7 +39,6 @@ class UsersController < ApplicationController
         @area = @me['location']['name'].split(' ').first
       end
     end
-    redirect_to root_path, :notice => '잘못된 접근입니다.' unless @user = current_user
   end
   
   def update

@@ -4,7 +4,7 @@
       <span class="stars" data-rating="<%= review.overall %>"></span>
       <%= content_tag :strong, (review.user.username or review.user.email.split('@')[0]) %>님의 리뷰입니다.
       <span class="created_at">(<%= review.created_at.to_date %> 작성)</span>
-      <%= link_to '삭제', pension_review_path(@pension, review), :method => :delete, :remote => true, :class => 'btn', :confirm => '정말 삭제하시겠습니까?' %>
+      <%= link_to '삭제', pension_review_path(@pension, review), :method => :delete, :remote => true, :class => 'btn', :confirm => '정말 삭제하시겠습니까?' if review.user == current_user %>
     </p>
     <p class="content">
       <%= content_tag :strong, review.title %><br>
