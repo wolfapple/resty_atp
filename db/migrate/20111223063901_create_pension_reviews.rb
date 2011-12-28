@@ -6,7 +6,7 @@ class CreatePensionReviews < ActiveRecord::Migration
       t.references :pension
       t.integer :overall
       t.string :title
-      t.string :content
+      t.text :content
       t.integer :clean
       t.integer :kindness
       t.integer :price
