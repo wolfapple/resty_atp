@@ -4,6 +4,7 @@ class Pension < ActiveRecord::Base
   has_many :rooms
   has_many :theme_pensions, :dependent => :destroy
   has_many :themes, :through => :theme_pensions
+  has_many :logs, :class_name => "PensionLog"
   has_one :must_visit, :dependent => :destroy
   has_one :coupon, :dependent => :destroy, :conditions => ['is_valid = 1 and end_at > now()']
   belongs_to :area

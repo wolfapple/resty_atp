@@ -205,22 +205,21 @@ namespace :resty do
     puts "ranking..."
     pbar = ProgressBar.new("ranking", Pension.count)
     Pension.update_all :ranking => 0
+    max_review = Pension.maximum('reviews_count')
+    max_outlink = PensionLog.find_by_sql("select max(total) max_total from (select sum(count) as total from pension_logs group by pension_id) logs").first.max_total
     Pension.all.each do |pension|
-      pension.increment! :ranking if pension.themes.count > 0
+      total = 0
+      total += 20 if pension.must_visit
       if pension.facilities
-        pension.increment! :ranking if pension.facilities.index('수영장')
-        pension.increment! :ranking if pension.facilities.index('스파/월풀')
-        pension.increment! :ranking if pension.facilities.index('카페')
-        pension.increment! :ranking if pension.facilities.index('개별바베큐')
+        total += 5 if pension.facilities.index('수영장')
+        total += 5 if pension.facilities.index('스파/월풀')
+        total += 5 if pension.facilities.index('카페')
+        total += 5 if pension.facilities.index('조식')
       end
-      pension.increment! :ranking, 5 if pension.must_visit
-      pension.increment! :ranking if pension.min_price > 0
-      pension.increment! :ranking, pension.foreignlanguage.to_i if [1, 3, 5, -3, -5].include? pension.foreignlanguage.to_i
-      pension.decrement! :ranking if pension.url and (pension.url.index('blog') or pension.url.index('cafe') or pension.url.index('visitkorea') or pension.url.index('huepension') or pension.url.index('kbs1'))
-      pension.decrement! :ranking if pension.mobile.blank?
-      pension.increment! :ranking, 3 unless pension.thumbnail.blank?
-      pension.increment! :ranking unless pension.room_table.blank?
-      pension.increment! :ranking if pension.rooms.count > 0
+      total += 20 * pension.reviews_count / max_review
+      total += 20 * pension.logs.sum('count') / max_outlink
+      total += pension.comments_count
+      pension.increment! :ranking, total
       pbar.inc
     end
     pbar.finish
