@@ -6,7 +6,6 @@
   <meta property="og:description" content="<%= @pension.addr %>">
   <meta property="og:image"       content="<%= @pension.og_img %>">
 <% end %>
-<script type="text/javascript" charset="utf-8" src="/assets/jquery.colorbox-min.js"></script>
 
 <div id="sidebar">
   <%= render 'show_sidebar' %>
@@ -15,7 +14,7 @@
 <div id="main_content">
   <div class="header">
     <%= render 'crumbs' %>
-    <%= image_tag('review_event_banner_1.png', :id => 'banner') %>
+    <%= link_to image_tag('review_event_banner_1.png', :id => 'banner'), '/assets/review_event_popup.png', :class => 'colorbox' %>
   </div>
   <div id="show-content">
     <div class="title">
@@ -50,9 +49,8 @@
         <div id="info-gps-x"><%= @pension.longitude %></div>
         <div id="info-gps-y"><%= @pension.latitude %></div>
         <div id="pension-info-phone"><%= @pension.mobile or "사이트 확인 가능" %></div>
-        <%= javascript_tag "$(document).ready(function(){$('.room_btn').colorbox();})" %>
         <% unless @pension.room_table.blank? %>
-          <%= link_to content_tag(:div, '', :id => 'pension-info-room'), @pension.room_table.url, :class => 'room_btn' %>
+          <%= link_to content_tag(:div, '', :id => 'pension-info-room'), @pension.room_table.url, :class => 'colorbox' %>
         <% end %>
       </div>
       <div style="clear:both;"></div>

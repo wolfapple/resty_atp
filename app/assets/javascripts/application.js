@@ -9,6 +9,7 @@
 //= require jquery-ui
 //= require jquery.notifyBar
 //= require jquery.raty.min
+//= require jquery.colorbox-min
 var gpsX1 = 130.0;
 var gpsY1 = 40.0;
 var gpsX2 = 0.0;
@@ -150,6 +151,7 @@ function showPathMapFromAddress(sAddress, eAddress, sText, eText){
 }
 
 $(document).ready(function() {
+	$('.colorbox').colorbox();
 	// 사이드바 more/less
 	$('#sidebar h3').click(function() {
 		$(this).toggleClass('hide');
