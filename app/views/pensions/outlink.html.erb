@@ -1,0 +1,23 @@
+<div id="toolbar">
+  <div id="toolbar-inner">
+    <table>
+      <tr>
+        <td><%= link_to image_tag('iframe_logo.png'), root_path, :class => 'logo' %></td>
+        <td>
+          <!-- AddThis Button BEGIN -->
+          <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="<%= @pension.resty_url %>">
+          <a class="addthis_button_facebook"></a>
+          <a class="addthis_button_twitter"></a>
+          <a class="addthis_button_email"></a>
+          <a class="addthis_counter addthis_bubble_style"></a>
+          </div>
+          <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4efc50335c4f7ad5"></script>
+          <!-- AddThis Button END -->
+        </td>
+        <td>이 펜션이 마음에 드시나요? 친구에게 추천해보세요:)</td>
+      </tr>
+    </table>
+    <%= link_to image_tag('iframe_close_btn.png'), @pension.url, :id => 'close_btn' %>
+  </div>
+</div>
+<iframe frameborder="0" src="<%= @pension.url %>" noresize="noresize"></iframe>

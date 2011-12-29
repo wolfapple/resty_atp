@@ -82,9 +82,10 @@ class PensionsController < ApplicationController
   
   def outlink
     @pension = Pension.find(params[:id])
+    @title = @pension.title
     @log = PensionLog.find_or_create_by_pension_id_and_created_at_and_area_id_and_sub_area_id @pension.id, DateTime.current.to_date, @pension.area.id, @pension.sub_area.id
     @log.increment! :count
-    redirect_to @pension.url
+    render :layout => 'iframe'
   end
   
   def blog_posts
