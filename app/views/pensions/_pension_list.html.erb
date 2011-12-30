@@ -59,7 +59,7 @@
       </div>
       <div class="pension-review">
         <span class="pension-review-count"><%= pension.reviews_count %></span>
-        <span class="review-btn"><%= link_to '리뷰/후기', pension %></span>
+        <span class="review-btn"><%= link_to '리뷰/후기', pension_path(pension) + "#show-review" %></span>
         <span class="detail-btn"><%= link_to '상세보기', pension %></span>
       </div>
   	</div>
