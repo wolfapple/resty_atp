@@ -49,7 +49,7 @@ ActiveAdmin.register Pension do
       f.input :remove_thumbnail, :as => :boolean
       f.input :room_table, :as => :file
       f.input :remove_room_table, :as => :boolean
-      f.input :ranking
+      f.input :comments_count
     end
     f.inputs "시설 정보" do
       f.input :facility_names, :as => :check_boxes, :collection => Facility.all.collect{|x| x.title}, :label => '시설'

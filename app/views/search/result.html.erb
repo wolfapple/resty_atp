@@ -1,16 +1,18 @@
-<h3>펜션 바로가기</h3>
-<ul class="pension-link">
-<% @pension_links.each do |pension| %>
-  <li>
-    <%= link_to image_tag(pension.list_img), pension, :target => '_blank', :class => 'thumb' %>
-    <div>
-      <%= link_to pension.title, pension, :target => '_blank', :class => 'title' %>
-      <%= content_tag :p, "#{pension.mobile} | #{pension.addr}" %>
-    </div>
-  </li>
+<% if @pension_links.present? %>
+  <h3>펜션 바로가기</h3>
+  <ul class="pension-link">
+  <% @pension_links.each do |pension| %>
+    <li>
+      <%= link_to image_tag(pension.list_img), pension, :target => '_blank', :class => 'thumb' %>
+      <div>
+        <%= link_to pension.title, pension, :target => '_blank', :class => 'title' %>
+        <%= content_tag :p, "#{pension.mobile} | #{pension.addr}" %>
+      </div>
+    </li>
+  <% end %>
+    <li class="last"></li>
+  </ul>
 <% end %>
-  <li class="last"></li>
-</ul>
 <% if @pensions.present? and @spots.present? %>
 <script src="/assets/jquery.gmap.min.js" type="text/javascript"></script>
 <div id="search-list">

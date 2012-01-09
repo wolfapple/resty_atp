@@ -1,20 +1,24 @@
-<h3 style="margin-left:10px;">펜션 바로가기</h3>
-<ul data-role="listview" class="pension-list">
-<% @pension_links.each do |pension| %>
-  <li>
-    <%= image_tag pension.list_img, :class => 'pension-thumbnail' %>
-    <a href="<%= url_for pension %>">
-      <%= content_tag :h3, pension.title %>
-      <%= content_tag :p, pension.mobile %>      
-      <%= content_tag :p, pension.addr %>
-      <%= content_tag :span, raw("#{pension.coupon.disrate}% &darr;"), :class => 'ui-li-count' if pension.coupon %>
-    </a>
-  </li>
+<% if @pension_links.present? %>
+  <h3 style="margin-left:10px;">펜션 바로가기</h3>
+  <ul data-role="listview" class="pension-list">
+  <% @pension_links.each do |pension| %>
+    <li>
+      <%= image_tag pension.list_img, :class => 'pension-thumbnail' %>
+      <a href="<%= url_for pension %>">
+        <%= content_tag :h3, pension.title %>
+        <%= content_tag :p, pension.mobile %>      
+        <%= content_tag :p, pension.addr %>
+        <%= content_tag :span, raw("#{pension.coupon.disrate}% &darr;"), :class => 'ui-li-count' if pension.coupon %>
+      </a>
+    </li>
+  <% end %>
+  <%= content_tag :li, '펜션이 존재하지 않습니다.', :class => 'align-center' if @pension_links.length == 0 %>
+  </ul>
 <% end %>
-<%= content_tag :li, '펜션이 존재하지 않습니다.', :class => 'align-center' if @pension_links.length == 0 %>
-</ul>
 <% if @pensions.present? and @spots.present? %>
-  <h3 style="margin-left:10px;">'<%= params[:address] %>' 검색 결과</h3>
+  <h3 style="margin-left:10px;">
+      '<%= @pension.nil?? params[:address] : @pension.title %>' 검색 결과
+  </h3>
   <div data-role="navbar" data-theme="b">
     <ul>
       <li><%= link_to "펜션 #{@pensions.size}개", '#', :onclick => "$('.pension-list').show();$('.spot-list').hide();", :class => 'ui-btn-active' %></li>
