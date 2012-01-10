@@ -27,7 +27,11 @@ class Coupon < ActiveRecord::Base
   
   def self.make_hash(url, provider)
     require 'open-uri'
-    doc = Nokogiri::XML(open(url))
+    begin
+      doc = Nokogiri::XML(open(url))
+    rescue
+      return []
+    end
     doc.xpath("//deal[contains(title, '펜션')]").map do |i|
       addr = i.css('shop_address').inner_text.strip
       phone = i.css('shop_tel').inner_text.strip
