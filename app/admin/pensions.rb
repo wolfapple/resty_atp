@@ -15,7 +15,7 @@ ActiveAdmin.register Pension do
     column '펜션명' do |pension|
       link_to pension.title, edit_admin_pension_path(pension), :target => '_blank'
     end
-    column 'URL', do |pension|
+    column 'URL' do |pension|
       link_to pension.url, pension.url, :target => '_blank'
     end
     column '주소', :addr
