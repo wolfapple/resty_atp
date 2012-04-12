@@ -1,38 +1,24 @@
 # -*- encoding : utf-8 -*-
 require "bundler/capistrano"
 
-set :application, "goodoc"
-set :repository,  "git@github.com:Fast-Track-Asia/goodoc.git"
+set :application, "resty_atp"
+set :repository,  "git@github.com:wolfapple/resty_atp.git"
 set :scm, :git
 set :ssh_options, { :forward_agent => true}
 set :rails_env, "production"
 
 default_environment["RAILS_ENV"] = 'production'
-default_environment["RUBY_VERSION"] = "ruby-1.9.3-p125"
+default_environment["RUBY_VERSION"] = "ruby-1.9.2-p318"
 
 default_run_options[:shell] = 'bash'
 
-task :production do
-  default_environment["PATH"]         = "/home/www/.rvm/gems/ruby-1.9.3-p125/bin:/home/www/.rvm/gems/ruby-1.9.3-p125@global/bin:/home/www/.rvm/rubies/ruby-1.9.3-p125/bin:/home/www/.rvm/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
-  default_environment["GEM_HOME"]     = "/home/www/.rvm/gems/ruby-1.9.3-p125"
-  default_environment["GEM_PATH"]     = "/home/www/.rvm/gems/ruby-1.9.3-p125:/home/www/.rvm/gems/ruby-1.9.3-p125@global"
-  set :branch, "origin/production"
-  set :deploy_to, "/home/www/goodoc"
-  set :user, "www"
-  set :password, "goodoc!@#"
-  server "1.234.2.182", :app, :web, :db, :primary => true
-end
-
-task :dev do
-  default_environment["PATH"]         = "/home/goodoc/.rvm/gems/ruby-1.9.3-p125/bin:/home/goodoc/.rvm/gems/ruby-1.9.3-p125@global/bin:/home/goodoc/.rvm/rubies/ruby-1.9.3-p125/bin:/home/goodoc/.rvm/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
-  default_environment["GEM_HOME"]     = "/home/goodoc/.rvm/gems/ruby-1.9.3-p125"
-  default_environment["GEM_PATH"]     = "/home/goodoc/.rvm/gems/ruby-1.9.3-p125:/home/goodoc/.rvm/gems/ruby-1.9.3-p125@global"
-  set :branch, "origin/dev"
-  set :deploy_to, "/home/goodoc/rails_project/goodoc"
-  set :user, "goodoc"
-  set :password, "goodoc!@#"
-  server "1.234.2.149", :app, :web, :db, :primary => true
-end
+default_environment["PATH"]         = "/usr/local/rvm/gems/ruby-1.9.2-p318/bin:/usr/local/rvm/gems/ruby-1.9.2-p318@global/bin:/usr/local/rvm/rubies/ruby-1.9.2-p318/bin:/usr/local/rvm/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
+default_environment["GEM_HOME"]     = "/usr/local/rvm/gems/ruby-1.9.2-p318"
+default_environment["GEM_PATH"]     = "/usr/local/rvm/gems/ruby-1.9.2-p318:/usr/local/rvm/gems/ruby-1.9.2-p318@global"
+set :branch, "origin/master"
+set :deploy_to, "/rails_project/resty_atp"
+set :user, "root"
+server "125.209.195.29", :app, :web, :db, :primary => true
 
 namespace :deploy do
   desc "Deploy your application"
