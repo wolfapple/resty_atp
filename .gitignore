@@ -5,4 +5,5 @@ tmp/
 .sass-cache/
 public/uploads
 config/database.yml
+config/unicorn.rb
 db/scheme.rb

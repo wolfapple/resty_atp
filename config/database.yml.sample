@@ -15,7 +15,7 @@ development:
   database: resty_atp_development
   pool: 5
   username: root
-  password: vldvos
+  password: 
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -28,15 +28,15 @@ test:
   database: resty_atp_test
   pool: 5
   username: root
-  password: vldvos
+  password: 
   socket: /tmp/mysql.sock
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: resty_atp_development
+  database: resty_atp_production
   pool: 5
   username: root
-  password: vldvos
+  password: 
   socket: /tmp/mysql.sock
